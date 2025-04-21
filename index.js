@@ -9,6 +9,10 @@ let score = 0;
 
 const TOTAL_QUESTIONS = 75;
 
+document.getElementById("next-btn").style.display = "none";
+document.getElementById("explanation-container").style.display = "none";
+document.getElementById("confirm-btn").style.display = "block";
+
 const questionSources = [
   { questions: questions1(), percentage: 100 },
   { questions: questions2(), percentage: 0 },
@@ -63,10 +67,6 @@ function showQuestion() {
   });
 
   selectedAnswers = [];
-
-  document.getElementById("next-btn").style.display = "none";
-  document.getElementById("explanation-container").style.display = "none";
-  document.getElementById("confirm-btn").style.display = "block";
 
   const instructionText = document.getElementById("selection-instruction");
   if (question.number_of_correct_answers > 1) {
