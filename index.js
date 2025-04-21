@@ -1,3 +1,7 @@
+import questions1 from './public/data/questions1.js';
+import questions2 from './public/data/questions2.js';
+import questions4 from './public/data/questions4.js';
+
 let currentQuestionIndex = 0;
 let questions = [];
 let selectedAnswers = [];
@@ -6,9 +10,9 @@ let score = 0;
 const TOTAL_QUESTIONS = 75;
 
 const questionSources = [
-  { file: "./data/questions1.json", percentage: 100 },
-  { file: "./data/questions2.json", percentage: 0 },
-  { file: "./data/questions4.json", percentage: 0 },
+  { questions: questions1(), percentage: 100 },
+  { questions: questions2(), percentage: 0 },
+  { questions: questions4(), percentage: 0 },
 ];
 
 async function loadQuestions() {
@@ -16,13 +20,10 @@ async function loadQuestions() {
     const loadedQuestions = [];
 
     for (const source of questionSources) {
-      const response = await fetch(source.file);
-      const data = await response.json();
-
       const numberToTake = Math.round(
         (source.percentage / 100) * TOTAL_QUESTIONS
       );
-      const shuffled = data.sort(() => 0.5 - Math.random());
+      const shuffled = source.questions.sort(() => 0.5 - Math.random());
       loadedQuestions.push(...shuffled.slice(0, numberToTake));
     }
 
@@ -115,6 +116,9 @@ function enableSingleSelection() {
     button.disabled = false;
   });
 }
+
+document.getElementById("confirm-btn").onclick = checkAnswer;
+document.getElementById("next-btn").onclick = nextQuestion;
 
 function checkAnswer() {
   const question = questions[currentQuestionIndex];
