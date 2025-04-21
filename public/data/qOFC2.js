@@ -3,7 +3,7 @@ export default function questions2() {
     {
       id: "q1",
       question:
-        "The code below creates a class and extends that class. When it is invoked, an error is generated. What must be done to fix the error?\n\nChoose 1 answer.",
+        "The code below creates a class and extends that class. When it is invoked, an error is generated. \n\nWhat must be done to fix the error?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -20,7 +20,7 @@ export default function questions2() {
     {
       id: "q2",
       question:
-        "A developer wants to implement a decorator function to be used as a logger on class methods. Below is the decorator function that has been developed, but it does not work as intended. Which of the below statements are true?\n\nChoose 2 answers.",
+        "A developer wants to implement a decorator function to be used as a logger on class methods. Below is the decorator function that has been developed, but it does not work as intended. \n\nWhich of the below statements are true?",
       type: "multiple choice",
       correct_options: ["A", "D"],
       number_of_correct_answers: 2,
@@ -33,11 +33,11 @@ export default function questions2() {
       code: "function logger(fn) {\n\n     const func = fn;\n\n     fn = function ( ... args) {\n\n          console.log(`Arguments are ${JSON.stringify(args)}')\n\n          func( ... args);\n\n     }\n\n     return fn;\n}\n\n// The logger has been implemented in the class as shown below.\n\nclass User {\n\n     @logger\n\n     getUser(id) {\n\n          // Method implementation\n\n     }\n\n     @logger\n\n     saveUser(user) {\n\n          // Method implementation\n\n     }\n}",
       explanation:
         "Cuando un decorador se aplica a un método de clase, recibe tres argumentos: el prototipo de la clase, el nombre del método y el descriptor del método. Por lo tanto, la opción A es correcta. La opción D también es correcta porque el tercer argumento que recibe el decorador es el descriptor del método, el cual se puede usar para modificar el comportamiento del método decorado. La función 'logger' en el código no tiene la estructura adecuada para usarse como decorador de métodos, ya que no toma estos tres argumentos. Las opciones B y C son incorrectas: los decoradores sí pueden extender métodos, y el segundo argumento no es una referencia al objeto de clase, sino el nombre de la propiedad.",
-    },
+    },    
     {
       id: "q3",
       question:
-        "A developer needs to write a function that can be used to return a total of all the numbers passed to that function. The amount of numbers passed to the function is variable and will seldom be the same. Which of the following statements about the 'arguments' object provide the correct information needed to solve this problem?\n\nChoose 3 answers.",
+        "A developer needs to write a function that can be used to return a total of all the numbers passed to that function. The amount of numbers passed to the function is variable and will seldom be the same. \n\nWhich of the following statements about the 'arguments' object provide the correct information needed to solve this problem?",
       type: "multiple choice",
       correct_options: ["A", "C", "E"],
       number_of_correct_answers: 3,
@@ -51,11 +51,11 @@ export default function questions2() {
       code: "",
       explanation:
         "La opción A es correcta porque 'arguments' contiene todos los valores que se pasan a una función. La opción C también es cierta ya que 'arguments' es un objeto parecido a un array (array-like), lo que significa que tiene una propiedad 'length' y se puede acceder a sus elementos por índice, pero no tiene métodos como 'map' o 'forEach'. La opción E es correcta porque el objeto 'arguments' solo está disponible en funciones normales, no en funciones flecha (arrow functions). La opción B es incorrecta porque 'arguments' no es un array real. La opción D es falsa, ya que no hay un límite fijo de 10 valores; 'arguments' puede contener cualquier cantidad de argumentos.",
-    },
+    },    
     {
       id: "q4",
       question:
-        "Following the principle of least privilege, a developer has defined a function named 'calculateDate' that uses a local variable named 'newDate' which cannot be accessed outside the function. How can the developer create a privileged function named 'getWeekday' that has access to the local variable and can be invoked outside the 'calculateDate' function?\n\nChoose 1 answer.",
+        "Following the principle of least privilege, a developer has defined a function named 'calculateDate' that uses a local variable named 'newDate' which cannot be accessed outside the function. How can the developer create a privileged function named 'getWeekday' that has access to the local variable and can be invoked outside the 'calculateDate' function? \n\nWhat would be the best approach?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -72,7 +72,7 @@ export default function questions2() {
     {
       id: "q5",
       question:
-        "If the expected output in the browser JavaScript console is 'Hi, my name is Hootie. I hoot!', what would be the missing code indicated by the JavaScript code comments below?\n\nChoose 2 answers.",
+        "If the expected output in the browser JavaScript console is 'Hi, my name is Hootie. I hoot!', what would be the missing code indicated by the JavaScript code comments below? \n\nWhat would you include?",
       type: "multiple choice",
       correct_options: ["A", "C"],
       number_of_correct_answers: 2,
@@ -85,11 +85,11 @@ export default function questions2() {
       code: "function Mascot(name) {\n\n     this.name = name;\n\n}\n\nMascot.prototype.getGreeting = function () {\n\n     return `Hi, my name is ${this.name}.`;\n\n}\n\nfunction Owl(name, sound) {\n\n     // missing code here\n\n     this.sound = sound;\n\n}\n\nOwl.prototype = Object.create(Mascot.prototype);\n\nOwl.prototype.getGreeting = function () {\n\n     // missing code here\n\n     return `${greeting} I ${this.sound}!`;\n\n}\n\nconst myOwl = new Owl('Hootie', 'hoot');\n\nconst greeting = myOwl.getGreeting();\n\nconsole.log(greeting);",
       explanation:
         "La opción A es correcta porque `Mascot.call(this, name);` permite que la función constructora 'Owl' herede las propiedades de 'Mascot' y asigne correctamente el nombre. La opción C también es correcta porque `Mascot.prototype.getGreeting.call(this);` permite invocar el método heredado desde 'Mascot' con el contexto del objeto actual, accediendo así al nombre correctamente. La opción B es incorrecta porque intenta acceder al método directamente desde el constructor, lo cual no es válido. La opción D también es incorrecta porque `Mascot.name = name;` no tiene ningún efecto sobre la instancia creada.",
-    },
+    },    
     {
       id: "q6",
       question:
-        "A developer is working with the following complex object. When she invokes 'user1.getUserInfo()', she gets an error at the 'compilePermissions' function. Which function can be used to solve the problem?\n\nChoose 1 answer.",
+        "A developer is working with the following complex object. When she invokes 'user1.getUserInfo()', she gets an error at the 'compilePermissions' function. \n\nHow can this issue be solved?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -106,7 +106,7 @@ export default function questions2() {
     {
       id: "q7",
       question:
-        "A module 'tools.js' contains a greeting function that is exported as shown. A second module contains the code shown below. When the code is run, what will be displayed in the console?\n\nChoose 1 answer.",
+        "A module 'tools.js' contains a greeting function that is exported as shown. A second module contains the code shown below. When the code is run, \n\nwhat will be displayed in the console?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -119,11 +119,11 @@ export default function questions2() {
       code: "// greeting function in tools.js\n\nexport function greeting(name) {\n\n     console.log('Welcome ' + name);\n\n}\n\n// Code contained in second module\n\ngreeting('User');\n\nimport {greeting} from './tools.js';",
       explanation:
         "En los módulos ES, las declaraciones `import` son hoisted al inicio del archivo, por lo que el símbolo importado está disponible durante toda la evaluación del módulo. Aunque en el código la llamada a `greeting('User')` aparece antes de la instrucción `import`, el motor de JavaScript ya ha registrado la importación antes de ejecutar cualquier línea de código. Por lo tanto, la función se puede usar correctamente y se muestra 'Welcome User' en la consola.",
-    },
+    },    
     {
       id: "q8",
       question:
-        "Given the JavaScript code below, which command returns the value of 5?\n\nChoose 1 answer.",
+        "Given the JavaScript code below, \n\nwhich command returns the value of 5?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -140,7 +140,7 @@ export default function questions2() {
     {
       id: "q9",
       question:
-        "A developer has chosen to use recursion in order to determine the factorial of a number. She has written the function below and invoked it. However, she receives a range error when the code is run because the recursion doesn't stop. What can she add to correct this and end the execution when the value of 'num' is 1?\n\nChoose 1 answer.",
+        "A developer has chosen to use recursion in order to determine the factorial of a number. She has written the function below and invoked it. However, she receives a range error when the code is run because the recursion doesn't stop. \n\nWhat can she add to correct this and end the execution when the value of 'num' is 1?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -153,11 +153,11 @@ export default function questions2() {
       code: "function factorial(num) {\n\n     // Add code here\n\n     return num * factorial(num - 1);\n\n}\n\nconst result = factorial(9);",
       explanation:
         "La opción A es la correcta porque en una función recursiva es importante tener una condición de salida para evitar que la función se ejecute infinitamente. Al agregar 'if (num === 1) { return 1; }', la función retorna 1 cuando 'num' es igual a 1, lo que detiene la recursión y calcula correctamente el factorial. Las otras opciones no implementan correctamente una condición de salida para la recursión.",
-    },
+    },    
     {
       id: "q10",
       question:
-        "A developer has defined the following code that checks if the value of 'price' is greater than 999 and displays a message in the console. If the name is 'Marc' and the price is 999, what will be the output in the console when this code is executed?\n\nChoose 1 answer.",
+        "A developer has defined the following code that checks if the value of 'price' is greater than 999 and displays a message in the console. If the name is 'Marc' and the price is 999, \n\nwhat will be the output in the console when this code is executed?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -174,7 +174,7 @@ export default function questions2() {
     {
       id: "q11",
       question:
-        "During a weekly developer team meeting, a developer has been asked to present 3 different ways of creating a simple object in JavaScript. She has come up with the following three techniques for creating the same object. She tests the code below and discovers some issues. Identify the issues with the current code.\n\nChoose 3 answers.",
+        "During a weekly developer team meeting, a developer has been asked to present 3 different ways of creating a simple object in JavaScript. She has come up with the following three techniques for creating the same object. She tests the code below and discovers some issues. \n\nIdentify the issues with the current code.",
       type: "multiple choice",
       correct_options: ["A", "C", "E"],
       number_of_correct_answers: 3,
@@ -188,11 +188,11 @@ export default function questions2() {
       code: "// Technique 1\n\nlet room1 = {\n\n     name: 'Board Room';\n\n     capacity: 20;\n\n     requireSchedule: true\n\n},\n\n// Technique 2\n\nlet room1 = Object.create(null);\n\nroom1.name: 'Board Room';\n\nroom1.capacity: 20;\n\nroom1.requireSchedule: true;\n\n// Technique 3\n\nfunction Room(name, capacity, rSchedule) {\n\n     this.name = name;\n\n     this.capacity = capacity;\n\n     this.requireSchedule = rSchedule;\n\n}\n\nlet room1 = Room('Board Room', 20, true);",
       explanation:
         "Las respuestas correctas son A, C y E:\n\n- En la técnica 2, el operador de asignación (=) debe usarse en lugar de los dos puntos para asignar los valores a las propiedades.\n- En la técnica 3, la palabra clave 'new' debe usarse antes de invocar la función constructora para crear una nueva instancia del objeto.\n- En la técnica 1, se deben usar comas (no puntos y comas) después de cada propiedad en el objeto literal para separarlas correctamente.",
-    },
+    },    
     {
       id: "q12",
       question:
-        "A developer has written the following code to implement a Student class for a JavaScript project. What will be the outcome when this code is executed in the browser?\n\nChoose 1 answer.",
+        "A developer has written the following code to implement a Student class for a JavaScript project. \n\nWhat will be the outcome when this code is executed in the browser?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -209,7 +209,7 @@ export default function questions2() {
     {
       id: "q13",
       question:
-        "The line of code below is importing functionality from the file module.js. Using the import statement, which of the following export statements is required to make the import statement workable?\n\nChoose 1 answer.",
+        "The line of code below is importing functionality from the file module.js. Using the import statement, \n\nwhich of the following export statements is required to make the import statement workable?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -222,11 +222,11 @@ export default function questions2() {
       code: "import { squareRoot, determineArea, getPerimeter } from './modules/module.js';",
       explanation:
         "Para que los elementos `squareRoot`, `determineArea` y `getPerimeter` estén disponibles para ser importados, deben ser exportados explícitamente desde el archivo `module.js`. La opción A muestra una exportación que incluye todos los elementos necesarios. La opción D es incorrecta porque omite `getPerimeter`. Las opciones B y C son sintácticamente incorrectas o mal aplicadas para este caso. En resumen, para poder importar un símbolo, este debe haber sido previamente exportado de forma explícita.",
-    },
+    },    
     {
       id: "q14",
       question:
-        "A developer is creating a function that can be used to generate random numbers between 1 and some upper limit. She wants the function to produce a set amount of random numbers and be able to retrieve those numbers at any time. This function doesn't meet the requirement. She realizes she needs either an 'iterator' or a 'generator'. Which would be best to implement and why?\n\nChoose 1 answer.",
+        "A developer is creating a function that can be used to generate random numbers between 1 and some upper limit. She wants the function to produce a set amount of random numbers and be able to retrieve those numbers at any time. This function doesn't meet the requirement. She realizes she needs either an 'iterator' or a 'generator'. \n\nWhich would be best to implement and why?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -243,7 +243,7 @@ export default function questions2() {
     {
       id: "q15",
       question:
-        "To help manage a scheduling app, a developer is setting up object inheritance for different rooms. She then views the contents of this object in the console and notices a problem. The prototype is set to the default Object and doesn't include the 'availToSchedule' function. She needs to add a code before creating a 'boardRoom' object to correct this. Which option provides the most optimal solution?\n\nChoose 1 answer.",
+        "To help manage a scheduling app, a developer is setting up object inheritance for different rooms. She then views the contents of this object in the console and notices a problem. The prototype is set to the default Object and doesn't include the 'availToSchedule' function. \n\nShe needs to add code before creating a 'boardRoom' object to correct this. Which option provides the most optimal solution?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -256,11 +256,11 @@ export default function questions2() {
       code: "function Rooms (nameStr, mRoomBool, scheduleBool) {\n\n     this.name = nameStr;\n\n     this.meetingRoom = mRoomBool;\n\n     this.canSchedule = scheduleBool;\n\n};\n\nRooms.prototype.availToSchedule = function() {\n\n     return this.canSchedule;\n\n}\n\nfunction MeetingRooms(nameStr, scheduleBool, capacityNum) {\n\n     Rooms.call(this, nameStr, true, scheduleBool);\n\n     this.capacity = capacityNum;\n\n}\n\n// To test the inheritance, she creates an object for the board room.\n\n// Add code here\n\nlet boardRoom = new MeetingRooms ('Board Room', true, 20);",
       explanation:
         "La opción correcta es la C. Es necesario establecer la cadena de prototipos correctamente para que el objeto 'MeetingRooms' herede de 'Rooms'. La opción C hace esto de manera óptima al crear el prototipo de 'MeetingRooms' basado en 'Rooms.prototype', y luego asegura que el constructor de 'MeetingRooms' esté bien configurado para que no apunte a 'Object'. Esto garantiza que las instancias de 'MeetingRooms' puedan acceder al método 'availToSchedule' de 'Rooms'.",
-    },
+    },    
     {
       id: "q16",
       question:
-        "A developer wants to implement cache functionality on his website to reduce the number of unwanted HTTP requests to the server. A decorator has been developed to achieve this. Which of the following code snippets implements the created decorator function correctly?",
+        "A developer wants to implement cache functionality on his website to reduce the number of unwanted HTTP requests to the server. \n\nA decorator has been developed to achieve this. Which of the following code snippets implements the created decorator function correctly?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -276,7 +276,7 @@ export default function questions2() {
     {
       id: "q17",
       question:
-        "A developer is working on a welcome message for the company website. This message is controlled by two objects. The developer needs to use the substitute greeting. What code can be used to modify the retrieval of the greeting in the 'showGreeting' function?\n\nChoose 3 answers.",
+        "A developer is working on a welcome message for the company website. This message is controlled by two objects. The developer needs to use the substitute greeting. \n\nWhat code can be used to modify the retrieval of the greeting in the 'showGreeting' function?",
       type: "multiple choice",
       correct_options: ["B", "D", "E"],
       number_of_correct_answers: 3,
@@ -290,11 +290,11 @@ export default function questions2() {
       code: "let greeting = {\n     morningGreet: \"Welcome, and Good Morning!\",\n     eveningGreet: \"Welcome, and Good Evening!\",\n     getGreeting(gTime) {\n          if (gTime === 'morningGreet' || gTime === 'eveningGreet') {\n               return this[gTime];\n          }\n          return \"Welcome!\";\n     }\n};\n\nlet substituteGreeting = {\n     morningGreet: 'We apologize that our site is down this morning.',\n     eveningGreet: \"We apologize that our site is down this evening.\"\n};\n\nfunction showGreeting(theTime) {\n     const greet = greeting.getGreeting(theTime); // Replace this line of code to use substituteGreeting\n     document.getElementById('greet').innerHTML = greet;\n}",
       explanation:
         "Para usar el objeto `substituteGreeting` como el contexto (`this`) dentro de la función `getGreeting`, se pueden utilizar los métodos `call`, `apply` o `bind`. \n\n- `call` llama directamente a la función con un nuevo `this` y una lista de argumentos.\n- `apply` hace lo mismo pero con un array de argumentos.\n- `bind` devuelve una nueva función con `this` ya vinculado, y se debe invocar manualmente, como se hace en la opción B.\n\nPor eso, las respuestas correctas son B, D y E.",
-    },
+    },    
     {
       id: "q18",
       question:
-        "A developer has completed a function named 'retrieveScores' in the tools module (tools.js). She now needs to export that function and import it into 'main.js'. Both JavaScript files are located in the same directory. Which of the following shows the correct way to export the function and then import it into 'main.js'.",
+        "A developer has completed a function named 'retrieveScores' in the tools module (tools.js). She now needs to export that function and import it into 'main.js'. Both JavaScript files are located in the same directory. \n\nWhich of the following shows the correct way to export the function and then import it into 'main.js'?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
@@ -310,7 +310,7 @@ export default function questions2() {
     {
       id: "q19",
       question:
-        "A developer is gathering data from an API for a project she is working on. The API limits the number of records sent back as a part of the response to 50. However, the response contains a new URL as the value of the '_next' property if additional records are available. The developer has set up a function that is successfully retrieving 50 records. She now needs to add code that will loop through and retrieve records until they have all been retrieved. Which code solves this problem?",
+        "A developer is gathering data from an API for a project she is working on. The API limits the number of records sent back as a part of the response to 50. However, the response contains a new URL as the value of the '_next' property if additional records are available. \n\nThe developer has set up a function that is successfully retrieving 50 records. She now needs to add code that will loop through and retrieve records until they have all been retrieved. Which code solves this problem?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -322,11 +322,11 @@ export default function questions2() {
       },
       explanation:
         "La opción B es la correcta. Se debe verificar si existe un valor en 'response._next' y, en ese caso, llamar a 'retrieveData' pasando la nueva URL para seguir recuperando los registros. Las demás opciones contienen errores de lógica o sintaxis.",
-    },
+    },    
     {
       id: "q20",
       question:
-        "A developer is working to debug some code used on the company website. She has identified that the problem is associated with a 'connections' object. In order to figure out what is going on, she needs to display the properties and values of the 'connections' object at a particular time in the program. What temporary code could be used to display the properties and values of the object?",
+        "A developer is working to debug some code used on the company website. She has identified that the problem is associated with a 'connections' object. \n\nIn order to figure out what is going on, she needs to display the properties and values of the 'connections' object at a particular time in the program. What temporary code could be used to display the properties and values of the object?",
       type: "multiple choice",
       correct_options: ["B", "D"],
       number_of_correct_answers: 2,
@@ -342,7 +342,7 @@ export default function questions2() {
     {
       id: "q21",
       question:
-        "Which options can be used to iterate through the properties of the object below?",
+        "Which options can be used to iterate through the properties of the object below? \n\nWhat are the valid methods?",
       type: "multiple choice",
       correct_options: ["A", "D", "E"],
       number_of_correct_answers: 3,
@@ -355,11 +355,11 @@ export default function questions2() {
       },
       explanation:
         "Las opciones A, D y E son correctas. La opción A utiliza 'Object.keys()' para obtener las claves del objeto, la opción D usa 'Object.getOwnPropertyNames()' para obtener las propiedades directas del objeto, y la opción E usa el bucle 'for...in' para recorrer las propiedades del objeto. Las opciones B y C tienen errores de sintaxis o de uso de métodos no aplicables.",
-    },
+    },    
     {
       id: "q22",
       question:
-        "Determine the output in the browser JavaScript console when the code below is executed.",
+        "Determine the output in the browser JavaScript console when the code below is executed. \n\nWhat will be displayed?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -375,7 +375,7 @@ export default function questions2() {
     {
       id: "q23",
       question:
-        "A developer is working on an online application. Whenever the user starts the application, certain settings are established by the user and stored in the settings object. Once these settings are established, they shouldn't be changed by any outside code. What function can the developer use in order to keep the settings object from changing?",
+        "A developer is working on an online application. Whenever the user starts the application, certain settings are established by the user and stored in the settings object. \n\nOnce these settings are established, they shouldn't be changed by any outside code. What function can the developer use in order to keep the settings object from changing?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -387,11 +387,11 @@ export default function questions2() {
       },
       explanation:
         "El método 'Object.freeze()' hace que un objeto sea inmutable, lo que significa que no se pueden agregar, eliminar ni modificar las propiedades del objeto, lo cual es lo que se necesita en este caso para evitar que los ajustes sean cambiados.",
-    },
+    },    
     {
       id: "q24",
       question:
-        "When the code below is run, which value will output to the console?\n\nChoose 1 answer.",
+        "When the code below is run, \n\nwhich value will output to the console?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -408,7 +408,7 @@ export default function questions2() {
     {
       id: "q25",
       question:
-        "A developer is working on a site that allows users to interact with and manage client data. Occasionally, a user may want to normalize the data. A 'normalize data' button is available at the bottom of the screen with this handler. The 'normalizeTheData' function is contained in the 'utilities/dataUtil.js' module. This module has been loaded so that the 'normalizeTheData' function is available. However, this module is quite large and the developer would like to change how it is loaded since the user interacts with this feature only occasionally. What code should be placed inside the handler in order to load this module only when needed?",
+        "A developer is working on a site that allows users to interact with and manage client data. Occasionally, a user may want to normalize the data. A 'normalize data' button is available at the bottom of the screen with this handler. The 'normalizeTheData' function is contained in the 'utilities/dataUtil.js' module. \n\nThis module has been loaded so that the 'normalizeTheData' function is available. However, this module is quite large and the developer would like to change how it is loaded since the user interacts with this feature only occasionally. What code should be placed inside the handler in order to load this module only when needed?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -424,7 +424,7 @@ export default function questions2() {
     {
       id: "q26",
       question:
-        "A developer wants to use a decorator to extend the behavior of a User class that has been developed already. The decorator should add a user Type to the User Class using the prototype. Below is the newly developed decorator function, but it does not work as expected. Which of the following statements are true?\n\nChoose 2 answers.",
+        "A developer wants to use a decorator to extend the behavior of a User class that has been developed already. The decorator should add a user Type to the User Class using the prototype. \n\nBelow is the newly developed decorator function, but it does not work as expected. Which of the following statements are true?",
       type: "multiple choice",
       correct_options: ["A", "C"],
       number_of_correct_answers: 2,
@@ -441,7 +441,7 @@ export default function questions2() {
     {
       id: "q27",
       question:
-        "Jane wants to implement error handling in her functions with the help of a decorator. Her application has two functions to get the data from the server and update it. The function declaration of each function is given below. The code in the functions is working perfectly. After implementing the decorator function, the server returns a 400 Bad Request error. She realizes that the issue is with her decorator. How can the decorator function be fixed?",
+        "Jane wants to implement error handling in her functions with the help of a decorator. Her application has two functions to get the data from the server and update it. The function declaration of each function is given below. The code in the functions is working perfectly. After implementing the decorator function, the server returns a 400 Bad Request error. \n\nShe realizes that the issue is with her decorator. How can the decorator function be fixed?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -453,11 +453,11 @@ export default function questions2() {
       },
       explanation:
         "La opción D es correcta porque en el decorador se recibe un número indefinido de argumentos mediante `...args`, pero al llamar a `fn()` no se pasan esos argumentos. La línea `await fn();` debería ser `await fn(...args);` para pasar correctamente todos los argumentos recibidos a la función decorada.",
-    },
+    },    
     {
       id: "q28",
       question:
-        "The following code contains a function that receives the name of a customer as its input parameter, invokes a helper function to get the current day of the week, and returns a message containing both. Which of the following statements are true regarding the execution of the two functions?",
+        "The following code contains a function that receives the name of a customer as its input parameter, invokes a helper function to get the current day of the week, and returns a message containing both. \n\nWhich of the following statements are true regarding the execution of the two functions?",
       type: "multiple choice",
       correct_options: ["A", "B"],
       number_of_correct_answers: 2,
@@ -473,7 +473,7 @@ export default function questions2() {
     {
       id: "q29",
       question:
-        "A development team wants to migrate its legacy JavaScript code to a newer ES6 code. The first step in this migration is to identify and convert code containing prototype-based inheritance into classes. William has been given the code snippet below for conversion into a class. Which of the following statements regarding the conversion of the given code is false?",
+        "A development team wants to migrate its legacy JavaScript code to a newer ES6 code. The first step in this migration is to identify and convert code containing prototype-based inheritance into classes. \n\nWilliam has been given the code snippet below for conversion into a class. Which of the following statements regarding the conversion of the given code is false?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -489,7 +489,7 @@ export default function questions2() {
     {
       id: "q30",
       question:
-        "A developer is working on a meeting room reservation system. Each meeting room in the company is represented using a JavaScript object. Following a meeting, feedback can be provided on the state of the room. The feedback is attached to the 'feedback' property. When the feedback is resolved, it needs to be removed using the function below. The problem with the function is that the property is not removed from the object. What statement can be used to remove the property?",
+        "A developer is working on a meeting room reservation system. Each meeting room in the company is represented using a JavaScript object. Following a meeting, feedback can be provided on the state of the room. The feedback is attached to the 'feedback' property. \n\nWhen the feedback is resolved, it needs to be removed using the function below. The problem with the function is that the property is not removed from the object. What statement can be used to remove the property?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -505,7 +505,7 @@ export default function questions2() {
     {
       id: "q31",
       question:
-        "A developer working on an online quiz has imported two functions and a variable named 'questionCnt' from a module named 'question.js'. However, she receives an error when incrementing 'questionCnt'. What is causing the error and what code should she use?",
+        "A developer working on an online quiz has imported two functions and a variable named 'questionCnt' from a module named 'question.js'. \n\nHowever, she receives an error when incrementing 'questionCnt'. What is causing the error and what code should she use?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -517,11 +517,11 @@ export default function questions2() {
       },
       explanation:
         "La opción C es correcta porque las variables importadas son de solo lectura, y no se pueden modificar directamente. Para cambiar el valor de 'questionCnt', debe utilizarse una función como 'updateQuestionCount' que realice el cambio en el módulo original.",
-    },
+    },        
     {
       id: "q32",
       question:
-        "A developer is working on a function that will merge user objects from two different systems. The function is a good start, but there are two problems the developer would like to fix. First, when the objects are combined, she would like any properties in the 'newObj' to overwrite the same properties in the 'oldObj' if they exist in both. Also, the combined objects shouldn't be child objects. Moreover, when the code checks for the 'createdDate' property, she wants to make sure that the property is not inherited. Which code changes will meet the objectives of this function?",
+        "A developer is working on a function that will merge user objects from two different systems. The function is a good start, but there are two problems the developer would like to fix. \n\nFirst, when the objects are combined, she would like any properties in the 'newObj' to overwrite the same properties in the 'oldObj' if they exist in both. Also, the combined objects shouldn't be child objects. Moreover, when the code checks for the 'createdDate' property, she wants to make sure that the property is not inherited. Which code changes will meet the objectives of this function?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -537,7 +537,7 @@ export default function questions2() {
     {
       id: "q33",
       question:
-        "A developer employed by an online shopping platform wants to make all of his class methods read-only to avoid any tampering. A decorator function named 'readonly' has been developed for this purpose. The class methods are given below. Which property descriptor(s) can be used for making the class methods read-only?\n\nChoose 1 answer.",
+        "A developer employed by an online shopping platform wants to make all of his class methods read-only to avoid any tampering. \n\nA decorator function named 'readonly' has been developed for this purpose. The class methods are given below. Which property descriptor(s) can be used for making the class methods read-only?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -554,7 +554,7 @@ export default function questions2() {
     {
       id: "q34",
       question:
-        "Adam has developed two decorator functions to cache data and handle exceptions. They have been used in the Cart class as shown below. The 'cacheData' decorator function will help cache the data used in the getCart method while the handleException decorator will help handle exceptions. Adam found out that the 'cacheData' decorator can also throw an exception that needs to be handled by the handleException decorator. Which of the options below are true regarding the desired outcome?",
+        "Adam has developed two decorator functions to cache data and handle exceptions. They have been used in the Cart class as shown below. \n\nThe 'cacheData' decorator function will help cache the data used in the getCart method while the handleException decorator will help handle exceptions. Adam found out that the 'cacheData' decorator can also throw an exception that needs to be handled by the handleException decorator. Which of the options below are true regarding the desired outcome?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -570,7 +570,7 @@ export default function questions2() {
     {
       id: "q35",
       question:
-        "A developer is working on an online application that provides equivalent keystrokes for certain functionality. In order to implement this, the keystrokes are handled by a named function called 'handleKeyPress'. But she would like to add the option to remove this feature. Which code statement can be used to remove the given event listener?",
+        "A developer is working on an online application that provides equivalent keystrokes for certain functionality. \n\nIn order to implement this, the keystrokes are handled by a named function called 'handleKeyPress'. But she would like to add the option to remove this feature. Which code statement can be used to remove the given event listener?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -582,11 +582,11 @@ export default function questions2() {
       },
       explanation:
         "La opción C es correcta. Para eliminar el listener del evento 'keypress', se debe llamar a 'removeEventListener' en el objeto al que se le añadió el evento (en este caso, 'document'), con los mismos parámetros que se usaron al agregarlo. En este caso, el valor 'false' indica que se debe usar la fase de burbujeo del evento.",
-    },
+    },       
     {
       id: "q36",
       question:
-        "A developer has defined multiple functions and a JavaScript object in the 'utilities.js' module. These are needed in the main JavaScript file named 'main.js' in order to complete a project. The following export statement is at the bottom of the 'utilities.js' file. The 'utilities.js' file is contained in a subfolder named 'util' in the current directory. Which import statement can be added to the 'main.js' file to make 'splitUnit', 'createUnit', 'normalizeUnit', and the 'manageObj' object available for use?",
+        "A developer has defined multiple functions and a JavaScript object in the 'utilities.js' module. These are needed in the main JavaScript file named 'main.js' in order to complete a project. \n\nThe 'utilities.js' file is contained in a subfolder named 'util' in the current directory. Which import statement can be added to the 'main.js' file to make 'splitUnit', 'createUnit', 'normalizeUnit', and the 'manageObj' object available for use?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -602,7 +602,7 @@ export default function questions2() {
     {
       id: "q37",
       question:
-        "Adam has written the following code for a student portal application. However, it does not work as intended and throws an undefined error. Which statement is true regarding the implementation?",
+        "Adam has written the following code for a student portal application. However, it does not work as intended and throws an undefined error. \n\nWhich statement is true regarding the implementation?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -618,7 +618,7 @@ export default function questions2() {
     {
       id: "q38",
       question:
-        "A JavaScript developer has written the following code for an employee application that invokes multiple functions. Which of the following represents the correct sequence of messages that will be displayed in the console when this code is executed?\n\nChoose 1 answer.",
+        "A JavaScript developer has written the following code for an employee application that invokes multiple functions. \n\nWhich of the following represents the correct sequence of messages that will be displayed in the console when this code is executed?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -635,7 +635,7 @@ export default function questions2() {
     {
       id: "q39",
       question:
-        "As part of an online course, a questions array is built in order to keep track of all the questions that have been presented to the learner. Below is a sample of what the 'questionsArray' might look like. As shown, the array sometimes collects duplicates. In order to process the array, a developer must remove the duplicate values. What line of code can be used to remove the duplicates?",
+        "As part of an online course, a questions array is built in order to keep track of all the questions that have been presented to the learner. \n\nBelow is a sample of what the 'questionsArray' might look like. As shown, the array sometimes collects duplicates. In order to process the array, a developer must remove the duplicate values. What line of code can be used to remove the duplicates?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -647,11 +647,11 @@ export default function questions2() {
       },
       explanation:
         "La opción D es la correcta porque un Set en JavaScript automáticamente elimina los elementos duplicados. Al pasar el array a un Set, los valores duplicados se eliminan y se obtiene un nuevo conjunto de valores únicos.",
-    },
+    },        
     {
       id: "q40",
       question:
-        "Un desarrollador necesita definir un proceso automatizado para una aplicación de gestión de empleados. Como parte del proceso, se está utilizando el método setTimeout() para ejecutar dos funciones. La segunda función debe ejecutarse sin ningún retraso después de la primera. La variable 'data' ha sido asignada con un valor esperado para fines de prueba. Se ha escrito el siguiente código. ¿Cuáles de las siguientes afirmaciones son verdaderas sobre la salida de este código?\n\nElige 2 respuestas.",
+        "Un desarrollador necesita definir un proceso automatizado para una aplicación de gestión de empleados. Como parte del proceso, se está utilizando el método setTimeout() para ejecutar dos funciones. \n\nLa segunda función debe ejecutarse sin ningún retraso después de la primera. La variable 'data' ha sido asignada con un valor esperado para fines de prueba. Se ha escrito el siguiente código. ¿Cuáles de las siguientes afirmaciones son verdaderas sobre la salida de este código?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
@@ -668,7 +668,7 @@ export default function questions2() {
     {
       id: "q41",
       question:
-        "While working on a new project, a developer encounters a situation that requires the use of a single function from each of three different modules. The 'parseData' function is needed from 'dataUtil.js'. The 'compose' function is needed from 'util.js'. And the 'normalizeData' function is needed from 'commonUtils.js'. All three module files are contained in a subfolder of the project named 'utilities'. In order to make these functions easily available throughout the project, the developer decides to create a passthrough module named 'pass.js' in the main project folder. What code must be added to 'pass.js' to make the three functions available to any module that imports 'pass.js'?",
+        "While working on a new project, a developer encounters a situation that requires the use of a single function from each of three different modules. \n\nThe 'parseData' function is needed from 'dataUtil.js'. The 'compose' function is needed from 'util.js'. And the 'normalizeData' function is needed from 'commonUtils.js'. All three module files are contained in a subfolder of the project named 'utilities'. In order to make these functions easily available throughout the project, the developer decides to create a passthrough module named 'pass.js' in the main project folder. What code must be added to 'pass.js' to make the three functions available to any module that imports 'pass.js'?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -684,7 +684,7 @@ export default function questions2() {
     {
       id: "q42",
       question:
-        "A developer wants to implement a User class to ease the process of creating multiple user objects with similar properties. Given below is the class implementation. However, the instantiation throws an error. Which of the following is the reason?",
+        "A developer wants to implement a User class to ease the process of creating multiple user objects with similar properties. \n\nGiven below is the class implementation. However, the instantiation throws an error. Which of the following is the reason?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -700,7 +700,7 @@ export default function questions2() {
     {
       id: "q43",
       question:
-        "A developer is working on a solution that requires producing a function that has access to a variable that is private; it can't be affected by other code. She has created a possible solution to test her approach. What will be displayed in the console?",
+        "A developer is working on a solution that requires producing a function that has access to a variable that is private; it can't be affected by other code. \n\nShe has created a possible solution to test her approach. What will be displayed in the console?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -712,11 +712,11 @@ export default function questions2() {
       },
       explanation:
         "La opción D es correcta. La función `incrementCnt` se invoca, y la variable `count` se incrementa por el valor de `counter` que se establece a 5 dentro de la función `setCounter`. Por lo tanto, `count` se incrementa de 0 a 5, lo que se muestra en la consola.",
-    },
+    },        
     {
       id: "q44",
       question:
-        "What will be the result of the JavaScript code below when executed?",
+        "What will be the result of the JavaScript code below \n\nwhen executed?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -732,7 +732,7 @@ export default function questions2() {
     {
       id: "q45",
       question:
-        "A developer is creating 100 objects using the following techniques shown below. After examining technique A and technique B, which statement accurately reflects how many versions of the 'fullName' method will be created with each technique?",
+        "A developer is creating 100 objects using the following techniques shown below. \n\nAfter examining technique A and technique B, which statement accurately reflects how many versions of the 'fullName' method will be created with each technique?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -748,7 +748,7 @@ export default function questions2() {
     {
       id: "q46",
       question:
-        "The following function has been set up to check an object. If the value of results is greater than 80, a property named 'tested' should be added to the object before it is sent to the 'recordResults' function. However, the original object should not be changed in the process. Which of the following statements are correct about this function?",
+        "The following function has been set up to check an object. \n\nIf the value of results is greater than 80, a property named 'tested' should be added to the object before it is sent to the 'recordResults' function. However, the original object should not be changed in the process. Which of the following statements are correct about this function?",
       type: "multiple choice",
       correct_options: ["B", "D"],
       number_of_correct_answers: 2,
@@ -764,7 +764,7 @@ export default function questions2() {
     {
       id: "q47",
       question:
-        "Un desarrollador quiere implementar una clase Buyer que sea una clase hija de User. Las clases desarrolladas se muestran a continuación, pero no funcionan como se espera. ¿Cuáles de las siguientes afirmaciones son verdaderas?\n\nElige 2 respuestas.",
+        "Un desarrollador quiere implementar una clase Buyer que sea una clase hija de User. Las clases desarrolladas se muestran a continuación, pero no funcionan como se espera. \n\n¿Cuáles de las siguientes afirmaciones son verdaderas?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
@@ -777,6 +777,6 @@ export default function questions2() {
       code: "class Buyer {\n\n     constructor(id, name, age) {\n\n          // implementación aquí\n\n     }\n\n}\n\nclass User extends Buyer {\n\n     constructor(id, name, age, purchaseHistory) {\n\n          this.purchaseHistory = purchaseHistory;\n\n          super(id, name, age, 25000);\n\n     }\n\n     addToPurchaseHistory(purchase) {\n\n          console.log(`User ${this.name} purchased ${purchase}`);\n\n          this.purchaseHistory.push(purchase);\n\n   }\n\n}",
       explanation:
         "En el código, se debe usar la palabra clave 'super' para invocar el constructor de la clase padre antes de acceder a 'this' en la clase hija. Además, la clase hija siempre debe extender de la clase padre. Aunque el constructor de la clase 'User' espera 3 parámetros, la clase 'Buyer' pasa 4 parámetros al constructor de la clase padre. Aunque esto no es ideal, JavaScript ignora los parámetros adicionales y las propiedades de la clase padre son heredadas por la clase hija, lo que permite que se acceda a la propiedad 'name' en el método 'addToPurchaseHistory'.",
-    },
+    }        
   ];
 };

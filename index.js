@@ -1,5 +1,5 @@
-import questions1 from './public/data/questions1.js';
-import questions2 from './public/data/questions2.js';
+import questions1 from './public/data/qVTC1.js';
+import questions2 from './public/data/qOFC2.js';
 import questions4 from './public/data/questions4.js';
 
 let currentQuestionIndex = 0;
@@ -14,8 +14,8 @@ document.getElementById("explanation-container").style.display = "none";
 document.getElementById("confirm-btn").style.display = "block";
 
 const questionSources = [
-  { questions: questions1(), percentage: 100 },
-  { questions: questions2(), percentage: 0 },
+  { questions: questions1(), percentage: 50 },
+  { questions: questions2(), percentage: 50 },
   { questions: questions4(), percentage: 0 },
 ];
 

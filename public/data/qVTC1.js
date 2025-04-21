@@ -1,4 +1,4 @@
-export default function questions1() {
+export default function questions2() {
   return [
     {
       id: "q1",
