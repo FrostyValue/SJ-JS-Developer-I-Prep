@@ -277,7 +277,7 @@ export default function questions2() {
       question:
         "The code below was developed to integrate caching with an application. The getUsernameFromCache() function initially converts the 'id' into a number and retrieves the username from the cache. If no relevant username is present for the 'id', null is returned. When the 'id' argument is not a valid number, NaN is returned. During the third invocation of the getUsername() function, an error was thrown in the try-catch block of the getUsername() function. \n\nWhich of the following represents the correct output of the three lines of code that are executed?",
       type: "multiple choice",
-      correct_options: [A],
+      correct_options: ["A"],
       number_of_correct_answers: 1,
       options: {
         A: '"Username is NaN" "Username is null" "Username is undefined"',
@@ -294,7 +294,7 @@ export default function questions2() {
       question:
         "A developer is working on a requirement to store dates for an online course. Two different dates need to be converted into milliseconds before they can be stored. The first is the date entered by the learner in the correct format. The second is the current date when a learner logs in. Two functions are needed for converting these dates. \n\nWhich two statements are required to make these functions work as intended?",
       type: "multiple choice",
-      correct_options: [A],
+      correct_options: ["A"],
       number_of_correct_answers: 1,
       options: {
         A: "FIRST FUNCTION: return Date.parse(date); SECOND FUNCTION: return Date.now();",
@@ -311,7 +311,7 @@ export default function questions2() {
       question:
         "A developer of Cosmic Electronics is working with an array of objects named 'products' in JavaScript. Each object in the array represents a product and contains the product name and code. For example, the code below represents a product named '100 kW Generator'. The developer needs to build an array that stores each product as a string containing the product code and name separated by '-'. In the new array, the '100 kW Generator' should be stored as 'G100 - 100 kW Generator'. Furthermore, if the array contains a generator that has 500 kW output power, then that generator should be excluded from the resulting array. \n\nWhich statement can be used to meet this requirement?",
       type: "multiple choice",
-      correct_options: [A],
+      correct_options: ["A"],
       number_of_correct_answers: 1,
       options: {
         A: "products.filter(product => !product.name.includes('500 kW')).map(product => `${product.code} - ${product.name}`);",
@@ -328,7 +328,7 @@ export default function questions2() {
       question:
         "A developer working for Cosmic University is building a web page that will display student information such as enrollment number, name, major, duration, and degree. The value of the degree should depend on the duration. For example, if the duration is 4, then the degree should always be 'Bachelor'. If the duration is an empty string (\"\"), then the value of degree should be 'N/A'. The JavaScript code below has been written to check the duration returned from the server. However, the code does not work as intended if a student has enrolled in a certificate program that lasts for six months or less, in which case the duration returned by the server is 0. When this occurs, the degree is set to 'N/A', which is incorrect. \n\nWhich of the following should be used in place of the existing condition on line (3) to resolve this issue using the best solution?",
       type: "multiple choice",
-      correct_options: [C],
+      correct_options: ["C"],
       number_of_correct_answers: 1,
       options: {
         A: 'duration == " || duration != 0',
@@ -345,7 +345,7 @@ export default function questions2() {
       question:
         "A JavaScript developer has defined an array named 'customers' that contains a list of four customers (see below the question). The customers should be displayed on a web page like below. 1. Allison Smith 2. Ashley James 3. Jon Bond 4. Olivia Williams A function named 'displayCustomer' has been defined to display a customer on the web page by manipulating the DOM. It accepts two parameters, namely, 'number' and 'name'. \n\nWhat code should be used to iterate over the 'customers' array and display all the customers on the web page?",
       type: "multiple choice",
-      correct_options: [A],
+      correct_options: ["A"],
       number_of_correct_answers: 1,
       options: {
         A: "customers.forEach((item, index) => displayCustomer(index+1, item));",
@@ -538,7 +538,7 @@ export default function questions2() {
     {
       id: "q33",
       question:
-        "If the JSON. \n\nparse() method is applied to each of the following strings, which will parse without an error?",
+        "If the JSON.parse() method is applied to each of the following strings.\n\nWhich will parse without an error?",
       type: "multiple choice",
       correct_options: ["D"],
       options: {

@@ -33,7 +33,7 @@ export default function questions2() {
       code: "function logger(fn) {\n\n     const func = fn;\n\n     fn = function ( ... args) {\n\n          console.log(`Arguments are ${JSON.stringify(args)}')\n\n          func( ... args);\n\n     }\n\n     return fn;\n}\n\n// The logger has been implemented in the class as shown below.\n\nclass User {\n\n     @logger\n\n     getUser(id) {\n\n          // Method implementation\n\n     }\n\n     @logger\n\n     saveUser(user) {\n\n          // Method implementation\n\n     }\n}",
       explanation:
         "Cuando un decorador se aplica a un método de clase, recibe tres argumentos: el prototipo de la clase, el nombre del método y el descriptor del método. Por lo tanto, la opción A es correcta. La opción D también es correcta porque el tercer argumento que recibe el decorador es el descriptor del método, el cual se puede usar para modificar el comportamiento del método decorado. La función 'logger' en el código no tiene la estructura adecuada para usarse como decorador de métodos, ya que no toma estos tres argumentos. Las opciones B y C son incorrectas: los decoradores sí pueden extender métodos, y el segundo argumento no es una referencia al objeto de clase, sino el nombre de la propiedad.",
-    },    
+    },
     {
       id: "q3",
       question:
@@ -51,7 +51,7 @@ export default function questions2() {
       code: "",
       explanation:
         "La opción A es correcta porque 'arguments' contiene todos los valores que se pasan a una función. La opción C también es cierta ya que 'arguments' es un objeto parecido a un array (array-like), lo que significa que tiene una propiedad 'length' y se puede acceder a sus elementos por índice, pero no tiene métodos como 'map' o 'forEach'. La opción E es correcta porque el objeto 'arguments' solo está disponible en funciones normales, no en funciones flecha (arrow functions). La opción B es incorrecta porque 'arguments' no es un array real. La opción D es falsa, ya que no hay un límite fijo de 10 valores; 'arguments' puede contener cualquier cantidad de argumentos.",
-    },    
+    },
     {
       id: "q4",
       question:
@@ -85,7 +85,7 @@ export default function questions2() {
       code: "function Mascot(name) {\n\n     this.name = name;\n\n}\n\nMascot.prototype.getGreeting = function () {\n\n     return `Hi, my name is ${this.name}.`;\n\n}\n\nfunction Owl(name, sound) {\n\n     // missing code here\n\n     this.sound = sound;\n\n}\n\nOwl.prototype = Object.create(Mascot.prototype);\n\nOwl.prototype.getGreeting = function () {\n\n     // missing code here\n\n     return `${greeting} I ${this.sound}!`;\n\n}\n\nconst myOwl = new Owl('Hootie', 'hoot');\n\nconst greeting = myOwl.getGreeting();\n\nconsole.log(greeting);",
       explanation:
         "La opción A es correcta porque `Mascot.call(this, name);` permite que la función constructora 'Owl' herede las propiedades de 'Mascot' y asigne correctamente el nombre. La opción C también es correcta porque `Mascot.prototype.getGreeting.call(this);` permite invocar el método heredado desde 'Mascot' con el contexto del objeto actual, accediendo así al nombre correctamente. La opción B es incorrecta porque intenta acceder al método directamente desde el constructor, lo cual no es válido. La opción D también es incorrecta porque `Mascot.name = name;` no tiene ningún efecto sobre la instancia creada.",
-    },    
+    },
     {
       id: "q6",
       question:
@@ -119,7 +119,7 @@ export default function questions2() {
       code: "// greeting function in tools.js\n\nexport function greeting(name) {\n\n     console.log('Welcome ' + name);\n\n}\n\n// Code contained in second module\n\ngreeting('User');\n\nimport {greeting} from './tools.js';",
       explanation:
         "En los módulos ES, las declaraciones `import` son hoisted al inicio del archivo, por lo que el símbolo importado está disponible durante toda la evaluación del módulo. Aunque en el código la llamada a `greeting('User')` aparece antes de la instrucción `import`, el motor de JavaScript ya ha registrado la importación antes de ejecutar cualquier línea de código. Por lo tanto, la función se puede usar correctamente y se muestra 'Welcome User' en la consola.",
-    },    
+    },
     {
       id: "q8",
       question:
@@ -153,7 +153,7 @@ export default function questions2() {
       code: "function factorial(num) {\n\n     // Add code here\n\n     return num * factorial(num - 1);\n\n}\n\nconst result = factorial(9);",
       explanation:
         "La opción A es la correcta porque en una función recursiva es importante tener una condición de salida para evitar que la función se ejecute infinitamente. Al agregar 'if (num === 1) { return 1; }', la función retorna 1 cuando 'num' es igual a 1, lo que detiene la recursión y calcula correctamente el factorial. Las otras opciones no implementan correctamente una condición de salida para la recursión.",
-    },    
+    },
     {
       id: "q10",
       question:
@@ -188,7 +188,7 @@ export default function questions2() {
       code: "// Technique 1\n\nlet room1 = {\n\n     name: 'Board Room';\n\n     capacity: 20;\n\n     requireSchedule: true\n\n},\n\n// Technique 2\n\nlet room1 = Object.create(null);\n\nroom1.name: 'Board Room';\n\nroom1.capacity: 20;\n\nroom1.requireSchedule: true;\n\n// Technique 3\n\nfunction Room(name, capacity, rSchedule) {\n\n     this.name = name;\n\n     this.capacity = capacity;\n\n     this.requireSchedule = rSchedule;\n\n}\n\nlet room1 = Room('Board Room', 20, true);",
       explanation:
         "Las respuestas correctas son A, C y E:\n\n- En la técnica 2, el operador de asignación (=) debe usarse en lugar de los dos puntos para asignar los valores a las propiedades.\n- En la técnica 3, la palabra clave 'new' debe usarse antes de invocar la función constructora para crear una nueva instancia del objeto.\n- En la técnica 1, se deben usar comas (no puntos y comas) después de cada propiedad en el objeto literal para separarlas correctamente.",
-    },    
+    },
     {
       id: "q12",
       question:
@@ -222,7 +222,7 @@ export default function questions2() {
       code: "import { squareRoot, determineArea, getPerimeter } from './modules/module.js';",
       explanation:
         "Para que los elementos `squareRoot`, `determineArea` y `getPerimeter` estén disponibles para ser importados, deben ser exportados explícitamente desde el archivo `module.js`. La opción A muestra una exportación que incluye todos los elementos necesarios. La opción D es incorrecta porque omite `getPerimeter`. Las opciones B y C son sintácticamente incorrectas o mal aplicadas para este caso. En resumen, para poder importar un símbolo, este debe haber sido previamente exportado de forma explícita.",
-    },    
+    },
     {
       id: "q14",
       question:
@@ -256,7 +256,7 @@ export default function questions2() {
       code: "function Rooms (nameStr, mRoomBool, scheduleBool) {\n\n     this.name = nameStr;\n\n     this.meetingRoom = mRoomBool;\n\n     this.canSchedule = scheduleBool;\n\n};\n\nRooms.prototype.availToSchedule = function() {\n\n     return this.canSchedule;\n\n}\n\nfunction MeetingRooms(nameStr, scheduleBool, capacityNum) {\n\n     Rooms.call(this, nameStr, true, scheduleBool);\n\n     this.capacity = capacityNum;\n\n}\n\n// To test the inheritance, she creates an object for the board room.\n\n// Add code here\n\nlet boardRoom = new MeetingRooms ('Board Room', true, 20);",
       explanation:
         "La opción correcta es la C. Es necesario establecer la cadena de prototipos correctamente para que el objeto 'MeetingRooms' herede de 'Rooms'. La opción C hace esto de manera óptima al crear el prototipo de 'MeetingRooms' basado en 'Rooms.prototype', y luego asegura que el constructor de 'MeetingRooms' esté bien configurado para que no apunte a 'Object'. Esto garantiza que las instancias de 'MeetingRooms' puedan acceder al método 'availToSchedule' de 'Rooms'.",
-    },    
+    },
     {
       id: "q16",
       question:
@@ -290,7 +290,7 @@ export default function questions2() {
       code: "let greeting = {\n     morningGreet: \"Welcome, and Good Morning!\",\n     eveningGreet: \"Welcome, and Good Evening!\",\n     getGreeting(gTime) {\n          if (gTime === 'morningGreet' || gTime === 'eveningGreet') {\n               return this[gTime];\n          }\n          return \"Welcome!\";\n     }\n};\n\nlet substituteGreeting = {\n     morningGreet: 'We apologize that our site is down this morning.',\n     eveningGreet: \"We apologize that our site is down this evening.\"\n};\n\nfunction showGreeting(theTime) {\n     const greet = greeting.getGreeting(theTime); // Replace this line of code to use substituteGreeting\n     document.getElementById('greet').innerHTML = greet;\n}",
       explanation:
         "Para usar el objeto `substituteGreeting` como el contexto (`this`) dentro de la función `getGreeting`, se pueden utilizar los métodos `call`, `apply` o `bind`. \n\n- `call` llama directamente a la función con un nuevo `this` y una lista de argumentos.\n- `apply` hace lo mismo pero con un array de argumentos.\n- `bind` devuelve una nueva función con `this` ya vinculado, y se debe invocar manualmente, como se hace en la opción B.\n\nPor eso, las respuestas correctas son B, D y E.",
-    },    
+    },
     {
       id: "q18",
       question:
@@ -322,7 +322,7 @@ export default function questions2() {
       },
       explanation:
         "La opción B es la correcta. Se debe verificar si existe un valor en 'response._next' y, en ese caso, llamar a 'retrieveData' pasando la nueva URL para seguir recuperando los registros. Las demás opciones contienen errores de lógica o sintaxis.",
-    },    
+    },
     {
       id: "q20",
       question:
@@ -355,7 +355,7 @@ export default function questions2() {
       },
       explanation:
         "Las opciones A, D y E son correctas. La opción A utiliza 'Object.keys()' para obtener las claves del objeto, la opción D usa 'Object.getOwnPropertyNames()' para obtener las propiedades directas del objeto, y la opción E usa el bucle 'for...in' para recorrer las propiedades del objeto. Las opciones B y C tienen errores de sintaxis o de uso de métodos no aplicables.",
-    },    
+    },
     {
       id: "q22",
       question:
@@ -371,6 +371,36 @@ export default function questions2() {
       },
       explanation:
         "El método 'speak()' de la clase 'Pet' es sobrescrito por la propiedad de 'Pet.prototype.speak'. Sin embargo, la clase hija 'Bot' sobrescribe 'speak()' nuevamente, lo que da como resultado que 'myPet.speak()' devuelva 'pet meows!' y 'myBot.speak()' devuelva 'bot beeps!'.",
+      code: `
+    class Pet {
+      constructor(name) {
+        this.name = name;
+      }
+    
+      speak() {
+        return \`\${this.name} woofs!\`;
+      }
+    }
+    
+    Pet.prototype.speak = function () {
+      return \`\${this.name} meows!\`;
+    };
+    
+    class Bot extends Pet {
+      constructor(name) {
+        super(name);
+      }
+    
+      speak() {
+        return \`\${this.name} beeps!\`;
+      }
+    }
+    
+    const myPet = new Pet("pet");
+    const myBot = new Bot("bot");
+    
+    console.log(myPet.speak(), myBot.speak());
+    `,
     },
     {
       id: "q23",
@@ -387,7 +417,7 @@ export default function questions2() {
       },
       explanation:
         "El método 'Object.freeze()' hace que un objeto sea inmutable, lo que significa que no se pueden agregar, eliminar ni modificar las propiedades del objeto, lo cual es lo que se necesita en este caso para evitar que los ajustes sean cambiados.",
-    },    
+    },
     {
       id: "q24",
       question:
@@ -453,7 +483,7 @@ export default function questions2() {
       },
       explanation:
         "La opción D es correcta porque en el decorador se recibe un número indefinido de argumentos mediante `...args`, pero al llamar a `fn()` no se pasan esos argumentos. La línea `await fn();` debería ser `await fn(...args);` para pasar correctamente todos los argumentos recibidos a la función decorada.",
-    },    
+    },
     {
       id: "q28",
       question:
@@ -517,7 +547,7 @@ export default function questions2() {
       },
       explanation:
         "La opción C es correcta porque las variables importadas son de solo lectura, y no se pueden modificar directamente. Para cambiar el valor de 'questionCnt', debe utilizarse una función como 'updateQuestionCount' que realice el cambio en el módulo original.",
-    },        
+    },
     {
       id: "q32",
       question:
@@ -582,7 +612,7 @@ export default function questions2() {
       },
       explanation:
         "La opción C es correcta. Para eliminar el listener del evento 'keypress', se debe llamar a 'removeEventListener' en el objeto al que se le añadió el evento (en este caso, 'document'), con los mismos parámetros que se usaron al agregarlo. En este caso, el valor 'false' indica que se debe usar la fase de burbujeo del evento.",
-    },       
+    },
     {
       id: "q36",
       question:
@@ -647,7 +677,7 @@ export default function questions2() {
       },
       explanation:
         "La opción D es la correcta porque un Set en JavaScript automáticamente elimina los elementos duplicados. Al pasar el array a un Set, los valores duplicados se eliminan y se obtiene un nuevo conjunto de valores únicos.",
-    },        
+    },
     {
       id: "q40",
       question:
@@ -712,7 +742,7 @@ export default function questions2() {
       },
       explanation:
         "La opción D es correcta. La función `incrementCnt` se invoca, y la variable `count` se incrementa por el valor de `counter` que se establece a 5 dentro de la función `setCounter`. Por lo tanto, `count` se incrementa de 0 a 5, lo que se muestra en la consola.",
-    },        
+    },
     {
       id: "q44",
       question:
@@ -777,6 +807,6 @@ export default function questions2() {
       code: "class Buyer {\n\n     constructor(id, name, age) {\n\n          // implementación aquí\n\n     }\n\n}\n\nclass User extends Buyer {\n\n     constructor(id, name, age, purchaseHistory) {\n\n          this.purchaseHistory = purchaseHistory;\n\n          super(id, name, age, 25000);\n\n     }\n\n     addToPurchaseHistory(purchase) {\n\n          console.log(`User ${this.name} purchased ${purchase}`);\n\n          this.purchaseHistory.push(purchase);\n\n   }\n\n}",
       explanation:
         "En el código, se debe usar la palabra clave 'super' para invocar el constructor de la clase padre antes de acceder a 'this' en la clase hija. Además, la clase hija siempre debe extender de la clase padre. Aunque el constructor de la clase 'User' espera 3 parámetros, la clase 'Buyer' pasa 4 parámetros al constructor de la clase padre. Aunque esto no es ideal, JavaScript ignora los parámetros adicionales y las propiedades de la clase padre son heredadas por la clase hija, lo que permite que se acceda a la propiedad 'name' en el método 'addToPurchaseHistory'.",
-    }        
+    },
   ];
-};
+}

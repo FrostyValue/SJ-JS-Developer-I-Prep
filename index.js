@@ -180,6 +180,14 @@ function checkAnswer() {
 function nextQuestion() {
   currentQuestionIndex++;
   selectedAnswers = [];
+
+  // Ocultar la explicación y el botón "Siguiente"
+  document.getElementById("explanation-container").style.display = "none";
+  document.getElementById("next-btn").style.display = "none";
+
+  // Mostrar el botón "Confirmar"
+  document.getElementById("confirm-btn").style.display = "block";
+
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
