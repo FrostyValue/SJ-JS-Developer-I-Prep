@@ -421,7 +421,7 @@ export default function questions2() {
     {
       id: "q24",
       question:
-        "When the code below is run, \n\nwhich value will output to the console?",
+        "When the code below is run. /n/nWhich value will output to the console?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -681,15 +681,15 @@ export default function questions2() {
     {
       id: "q40",
       question:
-        "Un desarrollador necesita definir un proceso automatizado para una aplicación de gestión de empleados. Como parte del proceso, se está utilizando el método setTimeout() para ejecutar dos funciones. \n\nLa segunda función debe ejecutarse sin ningún retraso después de la primera. La variable 'data' ha sido asignada con un valor esperado para fines de prueba. Se ha escrito el siguiente código. ¿Cuáles de las siguientes afirmaciones son verdaderas sobre la salida de este código?",
+        "A developer needs to define an automated process for an employee management application. As part of the process, the setTimeout() method is being used to execute two functions. The second function should be executed without any delay after the first function. The 'data' variable has been assigned to an expected value for the purpose of testing. The following code has been written. /n/nWhich of the following statements are true about the output of this code?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
       options: {
-        A: "La función updateProfile() se llamará inmediatamente después de la ejecución de la función updateRole().",
-        B: "El último mensaje en la consola será 'process complete'.",
-        C: "La función updateRole() se llamará después de la ejecución de la declaración 'process complete' en la consola.",
-        D: "El segundo mensaje en la consola será 'updated user: Jim Stokes'!",
+        A: "The updateProfile() function will be called immediately after the execution of the updateRole() function.",
+        B: "The last message in the console will be 'process complete'.",
+        C: "The updateRole() function will be called after the execution of the 'process complete' console.log() statement.",
+        D: "The second message in the console will be 'updated user: Jim Stokes'!",
       },
       code: "const data = {\n\n     user: {\n\n          name: 'Jim Stokes',\n\n          updated: '2020-07-25'\n\n   }\n\n};\n\nconst fetchUser = (data) => {\n\n     const user = data.user ? data.user.name : null;\n\n     return user;\n\n}\n\nconsole.log('starting the process');\n\nsetTimeout(()=> {\n\n     console.log('updating user role');\n\n     updateRole();\n\n}, 1000);\n\nsetTimeout(()=> {\n\n     console.log('updating user profile');\n\n     updateProfile();\n\n}, 0)\n\nconsole.log(`updated user: ${fetchUser(data)}`);\n\nconsole.log('process complete');",
       explanation:

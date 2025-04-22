@@ -446,7 +446,7 @@ export default function questions2() {
     {
       id: "q27",
       question:
-        " \n\ncheckNumber(fieldNum) { // Add code here to meet the requirements } Which two code blocks meet the requirements for the 'checkNumber' function?",
+        "Which two code blocks meet the requirements for the 'checkNumber' function?",
       type: "multiple choice",
       correct_options: ["A", "C"],
       options: {
@@ -455,6 +455,7 @@ export default function questions2() {
         C: "let num = Number.parseFloat(fieldNum); return Number.isInteger(num);",
         D: "let num = parseFloat(fieldNum); return num.isInteger();",
       },
+      code: "checkNumber(fieldNum) { // Add code here to meet the requirements } ",
       explanation:
         "Las opciones A y C son correctas, ya que ambas utilizan 'parseFloat' para convertir 'fieldNum' a un número flotante y luego verifican si es un número entero usando 'Number.isInteger()'. Las otras opciones contienen errores en la sintaxis o lógica.",
     },
@@ -662,7 +663,7 @@ export default function questions2() {
     },
     {
       id: "q42",
-      question: " \n\nWhich of the following operations would result in NaN being placed in variable 'num'?",
+      question: "Which of the following operations would result in NaN being placed in variable 'num'?",
       type: "multiple choice",
       options: {
         A: "const num = 1/ Number('1000');",
