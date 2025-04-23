@@ -1,6 +1,7 @@
 import questions1 from './public/data/qVTC1.js';
 import questions2 from './public/data/qOFC2.js';
-import questions4 from './public/data/questions4.js';
+import questions3 from './public/data/qBE3.js';
+import questions4 from './public/data/qDH4.js';
 
 let currentQuestionIndex = 0;
 let questions = [];
