@@ -346,7 +346,7 @@ export default function questions5() {
     {
       id: "q21",
       question:
-        "The sample code below includes 7 console.log statements, an async function, and promises. When the code is invoked, what would be the order of the console messages that would be displayed?",
+        "The sample code below includes 7 console.log statements, an async function, and promises. When the code is invoked. \n\nWhat would be the order of the console messages that would be displayed?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
