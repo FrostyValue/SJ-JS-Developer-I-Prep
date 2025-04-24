@@ -13,9 +13,9 @@ export default function questions2() {
         C: "The call to 'super' should not include the 'userName' variable.",
         D: "The 'User' class should extend the 'Admin' class.",
       },
-      code: "class User {\n\n     constructor(userName) {\n\n          this.userName = userName;\n\n     }\n}\n\ngetUserName() {\n\n     return this.userName;\n\n}\n\nclass Admin extends User {\n\n     constructor(userName, adminLevel) {\n\n          this.adminLevel = adminLevel;\n\n          super(userName);\n\n     }\n};\n\nlet usr = new Admin('admin123', 3);",
+      code: "class User {\n  constructor(userName) {\n    this.userName = userName;\n  }\n}\n\ngetUserName() {\n  return this.userName;\n}\n\nclass Admin extends User {\n  constructor(userName, adminLevel) {\n    this.adminLevel = adminLevel;\n    super(userName);\n  }\n}\n\nlet usr = new Admin('admin123', 3);",
       explanation:
-        "En JavaScript, cuando una clase hija (subclase) define un constructor, debe llamar a 'super()' antes de poder utilizar 'this'. En este código, la línea 'this.adminLevel = adminLevel;' aparece antes de la llamada a 'super(userName);', lo cual genera un error. Para solucionarlo, se debe mover la llamada a 'super()' como la primera línea dentro del constructor.",
+        "La opción correcta es la A: 'The call to 'super' should be the first line in the constructor.'. La palabra clave 'extends' se utiliza para crear una clase hija o subclase de otra clase. La clase hija puede incluir un constructor. Sin embargo, si se utiliza un constructor en la clase hija, debe llamar a 'super' antes de usar la palabra clave 'this' dentro del constructor.\n\nEs posible pasar valores al constructor de la clase padre incluyendo esos valores como parte de la llamada a 'super'. El error que se muestra en el código de ejemplo es el resultado de usar la palabra clave 'this' antes de llamar a 'super'.",
     },
     {
       id: "q2",
@@ -30,9 +30,9 @@ export default function questions2() {
         C: "The second argument passed to the decorator function is a reference to the class object.",
         D: "The final argument passed to the decorator function is the descriptor of the method being decorated.",
       },
-      code: "function logger(fn) {\n\n     const func = fn;\n\n     fn = function ( ... args) {\n\n          console.log(`Arguments are ${JSON.stringify(args)}')\n\n          func( ... args);\n\n     }\n\n     return fn;\n}\n\n// The logger has been implemented in the class as shown below.\n\nclass User {\n\n     @logger\n\n     getUser(id) {\n\n          // Method implementation\n\n     }\n\n     @logger\n\n     saveUser(user) {\n\n          // Method implementation\n\n     }\n}",
+      code: "function logger(fn) {\n  const func = fn;\n  fn = function (...args) {\n    console.log(`Arguments are ${JSON.stringify(args)}`);\n    func(...args);\n  };\n  return fn;\n}\n\n// The logger has been implemented in the class as shown below.\nclass User {\n  @logger\n  getUser(id) {\n    // Method implementation\n  }\n\n  @logger\n  saveUser(user) {\n    // Method implementation\n  }\n}",
       explanation:
-        "Cuando un decorador se aplica a un método de clase, recibe tres argumentos: el prototipo de la clase, el nombre del método y el descriptor del método. Por lo tanto, la opción A es correcta. La opción D también es correcta porque el tercer argumento que recibe el decorador es el descriptor del método, el cual se puede usar para modificar el comportamiento del método decorado. La función 'logger' en el código no tiene la estructura adecuada para usarse como decorador de métodos, ya que no toma estos tres argumentos. Las opciones B y C son incorrectas: los decoradores sí pueden extender métodos, y el segundo argumento no es una referencia al objeto de clase, sino el nombre de la propiedad.",
+        "Las opciones correctas son A: 'The logger decorator function receives three arguments as it is being used to decorate a class method.' y D: 'The final argument passed to the decorator function is the descriptor of the method being decorated.'.\n\n**Explicación detallada:**\n\nTres parámetros se pasan a una función decoradora que se utiliza para decorar un método de clase.\n\n1. **Primer parámetro:** Es el objetivo (target), que hace referencia al objeto de la clase que necesita ser decorado.\n2. **Segundo parámetro:** Es el nombre de la propiedad que necesita ser decorada. Cuando se utiliza como decorador de método de clase, este es el nombre del método que se está decorando.\n3. **Tercer parámetro:** Es el descriptor, que es un objeto que da acceso al método decorado a través de su propiedad 'value'.\n\nA continuación está la implementación correcta de la función decoradora:\n\n```javascript\nfunction logger(target, key, descriptor) {\n  const originalMethod = descriptor.value;\n  descriptor.value = function (...args) {\n    console.log(`Arguments are ${JSON.stringify(args)}`);\n    return originalMethod.apply(this, args);\n  };\n  return descriptor;\n}\n```",
     },
     {
       id: "q3",
@@ -48,31 +48,30 @@ export default function questions2() {
         D: "The 'arguments' object can store up to 10 values that are passed to the function.",
         E: "The 'arguments' object is only available for non-arrow functions.",
       },
-      code: "",
       explanation:
-        "La opción A es correcta porque 'arguments' contiene todos los valores que se pasan a una función. La opción C también es cierta ya que 'arguments' es un objeto parecido a un array (array-like), lo que significa que tiene una propiedad 'length' y se puede acceder a sus elementos por índice, pero no tiene métodos como 'map' o 'forEach'. La opción E es correcta porque el objeto 'arguments' solo está disponible en funciones normales, no en funciones flecha (arrow functions). La opción B es incorrecta porque 'arguments' no es un array real. La opción D es falsa, ya que no hay un límite fijo de 10 valores; 'arguments' puede contener cualquier cantidad de argumentos.",
+        "Las opciones correctas son A: 'The 'arguments' object of a function contains all the values passed to the function.', C: 'The 'arguments' object is an array-like collection of values.', y E: 'The 'arguments' object is only available for non-arrow functions.'.\n\n**Explicación detallada:**\n\nEl objeto 'arguments' está disponible para todas las funciones que no sean funciones flecha (arrow functions). Es un objeto similar a un array que puede ser accedido dentro de una función. Contiene todos los valores que se pasan a la función. La palabra clave 'arguments' se utiliza para acceder al objeto de argumentos. Por ejemplo, arguments[0] puede usarse para acceder al primer argumento que se pasa a la función.\n\nEs importante tener en cuenta que aunque es similar a un array, no es un array real, por lo que no tiene acceso a todos los métodos que se aplican a los arrays.",
     },
     {
       id: "q4",
       question:
-        "Following the principle of least privilege, a developer has defined a function named 'calculateDate' that uses a local variable named 'newDate' which cannot be accessed outside the function. How can the developer create a privileged function named 'getWeekday' that has access to the local variable and can be invoked outside the 'calculateDate' function? \n\nWhat would be the best approach?",
+        "Following the principle of least privilege, a developer has defined a function named 'calculateDate' that uses a local variable named 'newDate' which cannot be accessed outside the function. \n\nHow can the developer create a privileged function named 'getWeekday' that has access to the local variable and can be invoked outside the 'calculateDate' function?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
         A: "Define an inner function before the statement that returns the 'newDate' variable.",
         B: "Define an outer function that includes the 'calculateDate' function.",
-        C: "Define an outer function that declares a local variable named 'newDate'",
+        C: "Define an outer function that declares a local variable named 'newDate'.",
         D: "Define an inner function that gets returned by the 'calculateDate' function.",
       },
-      code: "function calculateDate(str) {\n\n     let newDate = new Date(str);\n\n     newDate.setDate(newDate.getDate() + 10);\n\n     return newDate;\n\n}",
+      code: "function calculateDate(str) {\n  let newDate = new Date(str);\n  newDate.setDate(newDate.getDate() + 10);\n  return newDate;\n}",
       explanation:
-        "La opción D es la correcta porque una función interna puede acceder a las variables locales de la función externa que la contiene. Si se devuelve esa función interna, se convierte en una función privilegiada que puede ser invocada desde fuera, pero que aún tiene acceso a las variables privadas de su ámbito original. Esto se conoce como 'closure' en JavaScript. Las otras opciones no aseguran acceso externo controlado o no siguen correctamente el principio de menor privilegio.",
+        "La opción correcta es la D: 'Define an inner function that gets returned by the 'calculateDate' function.'. Para definir una función privilegiada, el desarrollador puede usar un closure. La función 'calculateDate' puede contener una función interna llamada 'getWeekday' que tiene acceso a la variable local de la función 'calculateDate'. Esta función interna puede ser devuelta para que sea posible invocarla fuera de la función externa.\n\n**Ejemplo de implementación:**\n\n```javascript\nfunction calculateDate(str) {\n  let newDate = new Date(str);\n  newDate.setDate(newDate.getDate() + 10);\n\n  return {\n    getWeekday: function () {\n      return newDate.toLocaleDateString(undefined, { weekday: 'long' });\n    },\n    newDate,\n  };\n}\n```\n\nEsta función devuelve un objeto que contiene la variable 'newDate' y una función llamada 'getWeekday'. La función 'getWeekday' puede ser invocada desde fuera para obtener el día de la semana como sigue:\n\n```javascript\ncalculateDate('January 1, 2020').getWeekday();\n```\n\nSi una función interna se define antes de la declaración de retorno, solo puede ser accesible dentro de la función 'calculateDate'. Definir una función externa no le dará acceso automáticamente a la variable 'newDate' ya que su alcance está limitado.",
     },
     {
       id: "q5",
       question:
-        "If the expected output in the browser JavaScript console is 'Hi, my name is Hootie. I hoot!', what would be the missing code indicated by the JavaScript code comments below? \n\nWhat would you include?",
+        "If the expected output in the browser JavaScript console is 'Hi, my name is Hootie. I hoot!', what would be the missing code indicated by the JavaScript code comments below?",
       type: "multiple choice",
       correct_options: ["A", "C"],
       number_of_correct_answers: 2,
@@ -82,31 +81,31 @@ export default function questions2() {
         C: "let greeting = Mascot.prototype.getGreeting.call(this);",
         D: "Mascot.name = name;",
       },
-      code: "function Mascot(name) {\n\n     this.name = name;\n\n}\n\nMascot.prototype.getGreeting = function () {\n\n     return `Hi, my name is ${this.name}.`;\n\n}\n\nfunction Owl(name, sound) {\n\n     // missing code here\n\n     this.sound = sound;\n\n}\n\nOwl.prototype = Object.create(Mascot.prototype);\n\nOwl.prototype.getGreeting = function () {\n\n     // missing code here\n\n     return `${greeting} I ${this.sound}!`;\n\n}\n\nconst myOwl = new Owl('Hootie', 'hoot');\n\nconst greeting = myOwl.getGreeting();\n\nconsole.log(greeting);",
+      code: "function Mascot(name) {\n  this.name = name;\n}\n\nMascot.prototype.getGreeting = function () {\n  return `Hi, my name is ${this.name}.`;\n};\n\nfunction Owl(name, sound) {\n  // missing code here\n  this.sound = sound;\n}\n\nOwl.prototype = Object.create(Mascot.prototype);\nOwl.prototype.getGreeting = function () {\n  // missing code here\n  return `${greeting} I ${this.sound}!`;\n};\n\nconst myOwl = new Owl('Hootie', 'hoot');\nconst greeting = myOwl.getGreeting();\n\nconsole.log(greeting);",
       explanation:
-        "La opción A es correcta porque `Mascot.call(this, name);` permite que la función constructora 'Owl' herede las propiedades de 'Mascot' y asigne correctamente el nombre. La opción C también es correcta porque `Mascot.prototype.getGreeting.call(this);` permite invocar el método heredado desde 'Mascot' con el contexto del objeto actual, accediendo así al nombre correctamente. La opción B es incorrecta porque intenta acceder al método directamente desde el constructor, lo cual no es válido. La opción D también es incorrecta porque `Mascot.name = name;` no tiene ningún efecto sobre la instancia creada.",
+        "Las opciones correctas son A: 'Mascot.call(this, name);' y C: 'let greeting = Mascot.prototype.getGreeting.call(this);'.\n\n**Explicación detallada:**\n\n1. **Mascot.call(this, name):** Los hijos o extensiones de un objeto pueden inicializar propiedades heredadas invocando el constructor del padre usando el método 'call', que establece el contexto de 'this' mientras pasa los parámetros necesarios. En este escenario, Mascot.call(this, name) puede ejecutarse dentro de la función constructora Owl para establecer el valor de la propiedad heredada 'name'.\n\n2. **Mascot.prototype.getGreeting.call(this):** En la definición de la función 'getGreeting' del objeto Owl, Mascot.prototype.getGreeting.call(this) puede ejecutarse para invocar el método sobrescrito del objeto padre y usar el valor devuelto en la cadena concatenada que se utiliza en la llamada console.log().",
     },
     {
       id: "q6",
       question:
-        "A developer is working with the following complex object. When she invokes 'user1.getUserInfo()', she gets an error at the 'compilePermissions' function. \n\nHow can this issue be solved?",
+        "A developer is working with the following complex object. When she invokes 'user1.getUserInfo()', she gets an error at the 'compilePermissions' function. \n\nWhich function can be used to solve the problem?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
         A: "const compilePermissions () => { return `${this.role} - ${this.getPermissionsLevel()}`; }",
         B: "const compilePermissions = function() { return this.role + ' - ' + this.getPermissionsLevel(); }",
-        C: "const compilePermissions = () => return `${this.role} - ${this.getPermissionsLevel()}`; }",
+        C: "const compilePermissions = () => return `${this.role} - ${this.getPermissionsLevel()}`;",
         D: "const compilePermissions = () => { return `${this.role} - ${this.getPermissionsLevel()}`; }",
       },
-      code: "let user1 = {\n\n     firstName: 'John',\n\n     lastName: 'Smith',\n\n     role: 'admin',\n\n     level: 10,\n\n     getPermissionsLevel() {\n\n          if (this.role === 'admin') return this.level + 5;\n\n          return this.level;\n\n     },\n\n     getUserInfo() {\n\n          let fullName = this.firstName + ' ' + this.lastName;\n\n          function compilePermissions() {\n\n                    return `${this.role} - ${this.getPermissionsLevel()}`;\n\n         }\n\n          let perms = compilePermissions();\n\n          return fullName + ' + ' + perms;\n\n     }\n\n}",
+      code: "let user1 = {\n  firstName: 'John',\n  lastName: 'Smith',\n  role: 'admin',\n  level: 10,\n  getPermissionsLevel() {\n    if (this.role === 'admin') return this.level + 5;\n    return this.level;\n  },\n  getUserInfo() {\n    let fullName = this.firstName + ' ' + this.lastName;\n    function compilePermissions() {\n      return `${this.role} - ${this.getPermissionsLevel()}`;\n    }\n    let perms = compilePermissions();\n    return fullName + ' + ' + perms;\n  }\n};",
       explanation:
-        "La opción D es la correcta. En una función flecha (arrow function), el valor de 'this' se mantiene dentro del contexto léxico de la función, lo que significa que 'this' se refiere al objeto 'user1' y no se pierde al llamar a 'compilePermissions'. En las otras opciones, 'this' dentro de una función tradicional no se comporta de la misma manera, lo que puede causar que no se acceda correctamente al contexto del objeto 'user1' y genere un error.",
+        "La opción correcta es la D: 'const compilePermissions = () => { return `${this.role} - ${this.getPermissionsLevel()}`; }'.\n\n**Explicación detallada:**\n\nUna función flecha es una expresión de función que utiliza una sintaxis más concisa. Una función flecha maneja la vinculación de la palabra clave 'this' de manera diferente a otros tipos de funciones. La palabra clave 'this' está vinculada al objeto en su alcance léxico y no depende de cómo se invocó la función.\n\nLa función flecha funciona en este caso porque la palabra clave 'this' está vinculada al objeto 'user1' y no al objeto que llama a la función. Una función regular no funcionaría porque 'this' no está vinculado correctamente. Las otras dos opciones que incluyen funciones flecha tienen sintaxis incorrecta que generaría un error de sintaxis.",
     },
     {
       id: "q7",
       question:
-        "A module 'tools.js' contains a greeting function that is exported as shown. A second module contains the code shown below. When the code is run, \n\nwhat will be displayed in the console?",
+        "A module 'tools.js' contains a greeting function that is exported as shown. A second module contains the code shown below. When the code is run, what will be displayed in the console?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -116,31 +115,30 @@ export default function questions2() {
         C: "Uncaught ReferenceError: greeting is not defined",
         D: "Welcome undefined",
       },
-      code: "// greeting function in tools.js\n\nexport function greeting(name) {\n\n     console.log('Welcome ' + name);\n\n}\n\n// Code contained in second module\n\ngreeting('User');\n\nimport {greeting} from './tools.js';",
+      code: "// greeting function in tools.js\n\nexport function greeting(name) {\n  console.log('Welcome ' + name);\n}\n\n// Code contained in second module\ngreeting('User');\n\nimport {greeting} from './tools.js';",
       explanation:
-        "En los módulos ES, las declaraciones `import` son hoisted al inicio del archivo, por lo que el símbolo importado está disponible durante toda la evaluación del módulo. Aunque en el código la llamada a `greeting('User')` aparece antes de la instrucción `import`, el motor de JavaScript ya ha registrado la importación antes de ejecutar cualquier línea de código. Por lo tanto, la función se puede usar correctamente y se muestra 'Welcome User' en la consola.",
+        "La opción correcta es la B: 'Welcome User'. Los imports son elevados (hoisted) al principio del código. Esto significa que incluso si una función es importada al final del archivo, está disponible para su uso en todo el archivo.\n\nEn este caso, la función greeting funciona normalmente debido a la elevación, por lo que no genera ningún error y produce la salida esperada.",
     },
     {
       id: "q8",
       question:
-        "Given the JavaScript code below, \n\nwhich command returns the value of 5?",
+        "Given the JavaScript code below, which command returns the value of 5?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
-        A: "process()(15,3);",
+        A: "process()(15,3));",
         B: "process(3)(15);",
         C: "process(3, 5)();",
         D: "process(15)(3, 0);",
       },
-      code: "var process = (num1) => {\n\n     return (num2, num3) => {\n\n          if (typeof num3 == 'undefined') {\n               num3 = 0;\n          }\n\n          return Math.floor(num1 / num2 + num3);\n     }\n}",
+      code: "var process = (num1) => {\n  return (num2, num3) => {\n    if (typeof num3 == 'undefined') {\n      num3 = 0;\n    }\n    return Math.floor(num1 / num2 + num3);\n  };\n};",
       explanation:
-        "La función `process` es una función de orden superior que devuelve otra función. En la opción D, `process(15)` devuelve una nueva función que luego se invoca con los argumentos `(3, 0)`, resultando en `Math.floor(15 / 3 + 0)`, que da 5. Las otras opciones resultan en errores o valores distintos. Por ejemplo, la opción A lanza un error por falta de argumentos; la B da como resultado `Math.floor(3 / 15)`, que es 0; y la C da `NaN` porque `num2` es undefined.",
+        "La opción correcta es la D: 'process(15)(3, 0);'. Este código de JavaScript ilustra un ejemplo de una función de orden superior, que es una función que devuelve otra función.\n\n**Desglose del cálculo:**\n\n```javascript\nlet func1 = process(15); // num1 = 15\nlet result1 = func1(3, 0); // num2 = 3 y num3 = 0\n// Resultado = Math.floor(15/3+0) = 5\n```\n\nEjecutar process(3, 5)(); generará NaN porque num2 está indefinido. De manera similar, process()(15, 3)); también generará NaN porque num1 está indefinido. El código process(3)(15); producirá un número decimal menor a 1, que será redondeado hacia abajo a 0 debido a la función Math.floor().",
     },
     {
       id: "q9",
-      question:
-        "A developer has chosen to use recursion in order to determine the factorial of a number. She has written the function below and invoked it. However, she receives a range error when the code is run because the recursion doesn't stop. \n\nWhat can she add to correct this and end the execution when the value of 'num' is 1?",
+      question: "A developer has chosen to use recursion in order to determine the factorial of a number. She has written the function below and invoked it. However, she receives a range error when the code is run because the recursion doesn't stop. \n\nWhat can she add to correct this and end the execution when the value of 'num' is 1?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -148,16 +146,14 @@ export default function questions2() {
         A: "if (num === 1) { return 1; }",
         B: "if (num === 1) { factorial(); }",
         C: "if (num === 1) { return; }",
-        D: "if (num === 1) { return factorial(); }",
+        D: "if (num === 1) { return factorial(); }"
       },
-      code: "function factorial(num) {\n\n     // Add code here\n\n     return num * factorial(num - 1);\n\n}\n\nconst result = factorial(9);",
-      explanation:
-        "La opción A es la correcta porque en una función recursiva es importante tener una condición de salida para evitar que la función se ejecute infinitamente. Al agregar 'if (num === 1) { return 1; }', la función retorna 1 cuando 'num' es igual a 1, lo que detiene la recursión y calcula correctamente el factorial. Las otras opciones no implementan correctamente una condición de salida para la recursión.",
+      code: "function factorial(num) {\n  // Add code here\n  return num * factorial(num - 1);\n}\n\nconst result = factorial(9);",
+      explanation: "La opción correcta es la A: 'if (num === 1) { return 1; }'. Una función recursiva necesita manejar dos casos: un caso base que termina la recursión y un caso recursivo que la continúa (llama nuevamente a la función).\n\nEl código del ejemplo no incluía una manera para que la recursión terminara. Cuando el número 1 se pasa a la función, debería devolverse (sin invocar nuevamente la función) para que la pila de llamadas pueda comenzar a resolver todas las llamadas a la función y devolver los resultados.\n\nAgregar esta condición evita la ejecución infinita y asegura que la recursión tenga un punto de terminación claro.",
     },
     {
       id: "q10",
-      question:
-        "A developer has defined the following code that checks if the value of 'price' is greater than 999 and displays a message in the console. If the name is 'Marc' and the price is 999, \n\nwhat will be the output in the console when this code is executed?",
+      question: "A developer has defined the following code that checks if the value of 'price' is greater than 999 and displays a message in the console. If the name is 'Marc' and the price is 999, what will be the output in the console when this code is executed?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -165,16 +161,14 @@ export default function questions2() {
         A: "Uncaught ReferenceError: isGreater is not defined",
         B: "Congratulations, Marc! You qualify for a free membership card worth $undefined!",
         C: "Congratulations, undefined! You qualify for a free membership card worth $20!",
-        D: "Uncaught ReferenceError: name is not defined",
+        D: "Uncaught ReferenceError: name is not defined"
       },
-      code: "// Sample data object added for testing.\n\nconst data = {\n\n     customer: {\n\n          name: 'James'\n\n     },\n\n     sale: {\n\n          price: 500\n\n     }\n\n};\n\n// The name and price are obtained by accessing the properties of an object like the sample shown above.\n\nconst name = data.customer.name;\n\nconst price = data.sale.price;\n\nfunction checkPrice () {\n\n     let isGreater = false;\n\n     if (price > 999) {\n\n          isGreater = true;\n\n     }\n\nreturn isGreater;\n\n}\n\ncheckPrice();\n\nconsole.log(`Congratulations, ${name}! You qualify for a free membership card worth $${isGreater ? '50' : '20'}!');",
-      explanation:
-        "La opción A es la correcta porque la variable 'isGreater' está definida dentro de la función 'checkPrice' y no es accesible fuera de esa función. El error ocurre cuando se intenta acceder a 'isGreater' en la línea 'console.log', donde JavaScript no encuentra la variable definida, causando un 'ReferenceError'. Las otras opciones son incorrectas porque el problema radica en el alcance de la variable 'isGreater', no en los valores de 'name' o 'price'.",
+      code: "// Sample data object added for testing.\nconst data = {\n  customer: {\n    name: 'James'\n  },\n  sale: {\n    price: 500\n  }\n};\n\n// The name and price are obtained by accessing the properties of an object like the sample shown above.\nconst name = data.customer.name;\nconst price = data.sale.price;\n\nfunction checkPrice() {\n  let isGreater = false;\n  if (price > 999) {\n    isGreater = true;\n  }\n  return isGreater;\n}\n\ncheckPrice();\nconsole.log(`Congratulations, ${name}! You qualify for a free membership card worth $${isGreater ? '50' : '20'}!`);",
+      explanation: "La opción correcta es la A: 'Uncaught ReferenceError: isGreater is not defined'. Cuando se ejecuta el código, se muestra un mensaje de error en lugar del mensaje esperado.\n\nEl mensaje usado como parámetro en el método console.log() tiene acceso a la variable 'name' debido a su alcance global, pero no tiene acceso a la variable 'isGreater' porque tiene un alcance de función o local. La variable 'name' puede ser accedida en todo el archivo de JavaScript después de su inicialización, ya que está disponible globalmente.\n\nPor otro lado, la variable 'isGreater' solo está disponible para su uso dentro de la función 'checkPrice' porque fue declarada dentro de esa función. Para mostrar el mensaje requerido en la consola, el desarrollador debería haber llamado a la función 'checkPrice' dentro del literal de plantilla como sigue: `${checkPrice() ? '50' : '20'}`.",
     },
     {
       id: "q11",
-      question:
-        "During a weekly developer team meeting, a developer has been asked to present 3 different ways of creating a simple object in JavaScript. She has come up with the following three techniques for creating the same object. She tests the code below and discovers some issues. \n\nIdentify the issues with the current code.",
+      question: "During a weekly developer team meeting, a developer has been asked to present 3 different ways of creating a simple object in JavaScript. She has come up with the following three techniques for creating the same object. She tests the code below and discovers some issues. \n\nIdentify the issues with the current code.",
       type: "multiple choice",
       correct_options: ["A", "C", "E"],
       number_of_correct_answers: 3,
@@ -183,16 +177,14 @@ export default function questions2() {
         B: "The third parameter passed to the constructor in the third technique should be 'requireSchedule'.",
         C: "In the third technique, the 'new' keyword should be used prior to invoking the function.",
         D: "The 'Object.create' method in the second technique should not use the 'null' value in the parentheses.",
-        E: "The object literal in the first technique should use a comma rather than a semicolon after each property.",
+        E: "The object literal in the first technique should use a comma rather than a semicolon after each property."
       },
-      code: "// Technique 1\n\nlet room1 = {\n\n     name: 'Board Room';\n\n     capacity: 20;\n\n     requireSchedule: true\n\n},\n\n// Technique 2\n\nlet room1 = Object.create(null);\n\nroom1.name: 'Board Room';\n\nroom1.capacity: 20;\n\nroom1.requireSchedule: true;\n\n// Technique 3\n\nfunction Room(name, capacity, rSchedule) {\n\n     this.name = name;\n\n     this.capacity = capacity;\n\n     this.requireSchedule = rSchedule;\n\n}\n\nlet room1 = Room('Board Room', 20, true);",
-      explanation:
-        "Las respuestas correctas son A, C y E:\n\n- En la técnica 2, el operador de asignación (=) debe usarse en lugar de los dos puntos para asignar los valores a las propiedades.\n- En la técnica 3, la palabra clave 'new' debe usarse antes de invocar la función constructora para crear una nueva instancia del objeto.\n- En la técnica 1, se deben usar comas (no puntos y comas) después de cada propiedad en el objeto literal para separarlas correctamente.",
+      code: "// Technique 1\nlet room1 = {\n  name: 'Board Room';\n  capacity: 20;\n  requireSchedule: true\n},\n\n// Technique 2\nlet room1 = Object.create(null);\nroom1.name: 'Board Room';\nroom1.capacity: 20;\nroom1.requireSchedule: true;\n\n// Technique 3\nfunction Room(name, capacity, rSchedule) {\n  this.name = name;\n  this.capacity = capacity;\n  this.requireSchedule = rSchedule;\n}\n\nlet room1 = Room('Board Room', 20, true);",
+      explanation: "Las opciones correctas son A: 'In the second technique, the assignment operator (=) should be used instead of a colon to assign each property value.', C: 'In the third technique, the 'new' keyword should be used prior to invoking the function.', y E: 'The object literal in the first technique should use a comma rather than a semicolon after each property.'.\n\n**Explicación detallada:**\n\n1. **Error en la técnica 1:** Los objetos literales se crean rápidamente usando llaves. Dentro de las llaves, las propiedades y valores se separan con un colon (:). Cada par clave-valor debe estar separado por una coma (,). El uso incorrecto de un punto y coma en la técnica 1 causa un error.\n\n2. **Error en la técnica 2:** Aunque 'Object.create(null)' es válido para crear un objeto sin prototipo, las propiedades deben asignarse usando el operador '=' en lugar de ':'.\n\n3. **Error en la técnica 3:** Para invocar un constructor, siempre se debe usar la palabra clave 'new'. Esto asegura que la función cree un nuevo objeto. El código correcto sería: `let room1 = new Room('Board Room', 20, true);`.",
     },
     {
       id: "q12",
-      question:
-        "A developer has written the following code to implement a Student class for a JavaScript project. \n\nWhat will be the outcome when this code is executed in the browser?",
+      question: "A developer has written the following code to implement a Student class for a JavaScript project. \n\nWhat will be the outcome when this code is executed in the browser?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -200,33 +192,28 @@ export default function questions2() {
         A: "'The adult status of the student with age 21 is true' will be displayed in the console.",
         B: "There will be no errors and no output will be displayed.",
         C: "'The adult status of the student with age 21 is false' will be displayed in the console.",
-        D: "An error will be displayed in the console.",
+        D: "An error will be displayed in the console."
       },
-      code: 'class Student {\n\n     constructor(ageLimit, name, age) {\n        this.ageLimit = ageLimit;\n        this.name = name;\n        this.age = age;\n     }\n\n     get adultStatus() {\n         return (this.age > this.ageLimit ? "Adult" : "NOT Adult")\n     }\n\n     static isStudentAdult(age) {\n         let state = false;\n         if (age > this.ageLimit)\n             state = true;\n\n         let statusStatement = `The adult status of the student with age ${age} is ${state}`;\n         console.log(statusStatement);\n         return statusStatement;\n     }\n}\n\nlet student = new Student(18, "John", 32);\nStudent.isStudentAdult(21);',
-      explanation:
-        "La función `isStudentAdult` es un método estático, lo cual significa que no tiene acceso a las propiedades de instancia como `this.ageLimit`. En este contexto, `this.ageLimit` es `undefined`, por lo que la expresión `age > this.ageLimit` se evalúa como `21 > undefined`, lo cual es `false`. Por eso, `state` permanece en `false` y se imprime: 'The adult status of the student with age 21 is false'.",
-    },
-    {
+      code: "class Student {\n  constructor(ageLimit, name, age) {\n    this.ageLimit = ageLimit;\n    this.name = name;\n    this.age = age;\n  }\n\n  get adultStatus() {\n    return (this.age > this.ageLimit ? \"Adult\" : \"NOT Adult\");\n  }\n\n  static isStudentAdult(age) {\n    let state = false;\n    if (age > this.ageLimit)\n      state = true;\n    let statusStatement = `The adult status of the student with age ${age} is ${state}`;\n    console.log(statusStatement);\n    return statusStatement;\n  }\n}\n\nlet student = new Student(18, \"John\", 32);\nStudent.isStudentAdult(21);",
+      explanation: "La opción correcta es la C: 'The adult status of the student with age 21 is false'. El método 'isStudentAdult' es un método estático de clase. Cuando la variable de instancia 'ageLimit' es accedida usando la palabra clave 'this' dentro del método estático, su valor es undefined.\n\nEsto ocurre porque los métodos estáticos son llamados sin instanciar su clase y no pueden ser llamados a través de una instancia de clase. Como '21 > undefined' es falso, el valor de la variable 'state' permanece falso y 'The adult status of the student with age 21 is false' se muestra en la consola.",
+    },{
       id: "q13",
-      question:
-        "The line of code below is importing functionality from the file module.js. Using the import statement, \n\nwhich of the following export statements is required to make the import statement workable?",
+      question: "The line of code below is importing functionality from the file module.js. Using the import statement, which of the following export statements is required to make the import statement workable?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
       options: {
         A: "export { setPerimeter, getPerimeter, squareRoot, determineArea }",
-        B: "export default./modules/module.js",
-        C: "export * from./modules/module.js",
-        D: "export { squareRoot, determineArea }",
+        B: "export default ./modules/module.js",
+        C: "export * from ./modules/module.js",
+        D: "export { squareRoot, determineArea }"
       },
       code: "import { squareRoot, determineArea, getPerimeter } from './modules/module.js';",
-      explanation:
-        "Para que los elementos `squareRoot`, `determineArea` y `getPerimeter` estén disponibles para ser importados, deben ser exportados explícitamente desde el archivo `module.js`. La opción A muestra una exportación que incluye todos los elementos necesarios. La opción D es incorrecta porque omite `getPerimeter`. Las opciones B y C son sintácticamente incorrectas o mal aplicadas para este caso. En resumen, para poder importar un símbolo, este debe haber sido previamente exportado de forma explícita.",
+      explanation: "La opción correcta es la A: 'export { setPerimeter, getPerimeter, squareRoot, determineArea }'.\n\nPara acceder a las características de un módulo (funciones, variables, clases), primero deben ser exportadas. El comando export puede colocarse al inicio de la declaración o se puede exportar una lista de todos los elementos usando la declaración export e incluir cada elemento entre llaves. Esa es la técnica utilizada en esta pregunta.\n\nPara importar un elemento, primero debe ser exportado. Se pueden exportar elementos adicionales sin importarlos, como se hace en este ejemplo. Una exportación por defecto debe incluir el nombre del elemento. Un comodín (*) puede ser usado durante la importación pero no en la exportación.",
     },
     {
       id: "q14",
-      question:
-        "A developer is creating a function that can be used to generate random numbers between 1 and some upper limit. She wants the function to produce a set amount of random numbers and be able to retrieve those numbers at any time. This function doesn't meet the requirement. She realizes she needs either an 'iterator' or a 'generator'. \n\nWhich would be best to implement and why?",
+      question: "A developer is creating a function that can be used to generate random numbers between 1 and some upper limit. She wants the function to produce a set amount of random numbers and be able to retrieve those numbers at any time. This function doesn't meet the requirement. She realizes she needs either an 'iterator' or a 'generator'. \n\nWhich would be best to implement and why?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -234,33 +221,29 @@ export default function questions2() {
         A: "An iterator should be used since only an iterator can be used for this type of application.",
         B: "An iterator should be used since iterators are easier to work with than generators.",
         C: "A generator should be used since the randomNum function can be converted quite easily with function* and the 'yield' keyword.",
-        D: "A generator should be used since only a generator can be used for this type of application.",
+        D: "A generator should be used since only a generator can be used for this type of application."
       },
-      code: "function randomNum(upperLimit, howMany) {\n\n     let cnt = 1;\n\n     while (cnt <= howMany) {\n\n          let rand = Math.floor(Math.random() * upperLimit) + 1;\n\n          cnt++;\n\n          return rand;\n\n   };\n\n};\n\nrandomNum(100, 6);",
-      explanation:
-        "La opción correcta es la C. Un generador es la opción más adecuada para esta tarea porque permite la generación de una secuencia de valores mediante la palabra clave 'yield'. En este caso, la función 'randomNum' puede ser fácilmente convertida en un generador con 'function*' y 'yield', lo que permite que el estado de la función se mantenga entre invocaciones y se puedan obtener múltiples valores sin tener que ejecutar la función completamente en un solo paso.",
+      code: "function randomNum(upperLimit, howMany) {\n  let cnt = 1;\n  while (cnt <= howMany) {\n    let rand = Math.floor(Math.random() * upperLimit) + 1;\n    cnt++;\n    return rand;\n  };\n};\n\nrandomNum(100, 6);",
+      explanation: "La opción correcta es la C: 'A generator should be used since the randomNum function can be converted quite easily with function* and the 'yield' keyword.'.\n\n**Iteradores y generadores:**\n\n1. **Generadores:** Una función generadora devuelve un generador que luego puede usarse con 'next()' para acceder a cada elemento uno por uno. Los generadores suelen ser más fáciles de crear y adaptar.\n\n2. **Iteradores:** Un iterador es un objeto que implementa una secuencia uno por uno para una colección de elementos. Implementa el método 'next()' para proporcionar acceso secuencial. Una función puede configurarse para devolver un iterador.\n\nTanto los iteradores como los generadores pueden usarse indistintamente, pero en la mayoría de los casos, los generadores son más fáciles de implementar. La función 'randomNum' es bastante simple de convertir a una función generadora usando 'function*' y la palabra clave 'yield'.",
     },
     {
       id: "q15",
-      question:
-        "To help manage a scheduling app, a developer is setting up object inheritance for different rooms. She then views the contents of this object in the console and notices a problem. The prototype is set to the default Object and doesn't include the 'availToSchedule' function. \n\nShe needs to add code before creating a 'boardRoom' object to correct this. Which option provides the most optimal solution?",
+      question: "To help manage a scheduling app, a developer is setting up object inheritance for different rooms. She then views the contents of this object in the console and notices a problem. The prototype is set to the default Object and doesn't include the 'availToSchedule' function. She needs to add a code before creating a 'boardRoom' object to correct this. \n\nWhich option provides the most optimal solution?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
       options: {
-        A: "boardRoom.prototype = Object.create(Rooms.prototype);     Object.defineProperty(boardRoom.prototype, 'constructor', { value: boardRoom, enumerable: false, writable: true });",
+        A: "boardRoom.prototype = Object.create(Rooms.prototype); Object.defineProperty(boardRoom.prototype, 'constructor', { value: boardRoom, enumerable: false, writable: true });",
         B: "MeetingRooms.prototype = Object.create(Rooms.prototype);",
-        C: "MeetingRooms.prototype = Object.create(Rooms.prototype);     Object.defineProperty(MeetingRooms.prototype, 'constructor', { value: MeetingRooms, enumerable: false, writable: true });",
-        D: "boardRoom.prototype = Object.create(Rooms.prototype);",
+        C: "MeetingRooms.prototype = Object.create(Rooms.prototype); Object.defineProperty(MeetingRooms.prototype, 'constructor', { value: MeetingRooms, enumerable: false, writable: true });",
+        D: "boardRoom.prototype = Object.create(Rooms.prototype);"
       },
-      code: "function Rooms (nameStr, mRoomBool, scheduleBool) {\n\n     this.name = nameStr;\n\n     this.meetingRoom = mRoomBool;\n\n     this.canSchedule = scheduleBool;\n\n};\n\nRooms.prototype.availToSchedule = function() {\n\n     return this.canSchedule;\n\n}\n\nfunction MeetingRooms(nameStr, scheduleBool, capacityNum) {\n\n     Rooms.call(this, nameStr, true, scheduleBool);\n\n     this.capacity = capacityNum;\n\n}\n\n// To test the inheritance, she creates an object for the board room.\n\n// Add code here\n\nlet boardRoom = new MeetingRooms ('Board Room', true, 20);",
-      explanation:
-        "La opción correcta es la C. Es necesario establecer la cadena de prototipos correctamente para que el objeto 'MeetingRooms' herede de 'Rooms'. La opción C hace esto de manera óptima al crear el prototipo de 'MeetingRooms' basado en 'Rooms.prototype', y luego asegura que el constructor de 'MeetingRooms' esté bien configurado para que no apunte a 'Object'. Esto garantiza que las instancias de 'MeetingRooms' puedan acceder al método 'availToSchedule' de 'Rooms'.",
-    },
+      code: "function Rooms(nameStr, mRoomBool, scheduleBool) {\n  this.name = nameStr;\n  this.meetingRoom = mRoomBool;\n  this.canSchedule = scheduleBool;\n};\n\nRooms.prototype.availToSchedule = function () {\n  return this.canSchedule;\n};\n\nfunction MeetingRooms(nameStr, scheduleBool, capacityNum) {\n  Rooms.call(this, nameStr, true, scheduleBool);\n  this.capacity = capacityNum;\n}\n\n// To test the inheritance, she creates an object for the board room.\n// Add code here\n\nlet boardRoom = new MeetingRooms('Board Room', true, 20);",
+      explanation: "La opción correcta es la C: 'MeetingRooms.prototype = Object.create(Rooms.prototype); Object.defineProperty(MeetingRooms.prototype, 'constructor', { value: MeetingRooms, enumerable: false, writable: true });'.\n\n**Explicación detallada:**\n\nLa herencia se configura para que los atributos necesarios para todos los objetos se encuentren en el constructor padre. Los métodos se colocan en el prototipo. Los hijos heredan propiedades e invocan el constructor del padre usando el método 'call' mientras pasan valores.\n\nEn este caso, el prototipo se pierde durante la instanciación del objeto. Para corregir esto, es necesario configurar el prototipo manualmente en el constructor hijo. 'Object.create()' se puede usar para crear un nuevo objeto que tenga el prototipo del padre y luego el nuevo objeto se asigna como el prototipo del constructor hijo para que se cree una cadena de herencia.\n\nAsignar este prototipo manualmente provoca que el constructor se pierda. Esto se corrige utilizando 'Object.defineProperty' para agregar una nueva propiedad de constructor.",
+    },    
     {
       id: "q16",
-      question:
-        "A developer wants to implement cache functionality on his website to reduce the number of unwanted HTTP requests to the server. \n\nA decorator has been developed to achieve this. Which of the following code snippets implements the created decorator function correctly?",
+      question: "A developer wants to implement cache functionality on his website to reduce the number of unwanted HTTP requests to the server. A decorator has been developed to achieve this. \n\nWhich of the following code snippets implements the created decorator function correctly?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -268,15 +251,13 @@ export default function questions2() {
         A: "const findStudentRecord = retrieveStudentRecord(cachedStudentRecordRetrievalDecorator()); findStudentRecord(10).then(record => console.log(record));",
         B: "const findStudentRecord = cachedStudentRecordRetrievalDecorator(retrieveStudentRecord); findStudentRecord(10).then(record => console.log(record));",
         C: "const findStudentRecord = retrieveStudentRecord(cachedStudentRecordRetrievalDecorator); findStudentRecord(10).then(record => console.log(record));",
-        D: "const findStudentRecord = cachedStudentRecordRetrievalDecorator(retrieveStudentRecord()); findStudentRecord(10).then(record => console.log(record));",
+        D: "const findStudentRecord = cachedStudentRecordRetrievalDecorator(retrieveStudentRecord()); findStudentRecord(10).then(record => console.log(record));"
       },
-      explanation:
-        "La opción B es correcta porque pasa correctamente la función 'retrieveStudentRecord' al decorador 'cachedStudentRecordRetrievalDecorator', lo que permite que el decorador implemente la lógica de caché y luego se ejecute la función decorada. Las otras opciones tienen errores de sintaxis o invocación incorrecta.",
+      explanation: "La opción correcta es la B: 'const findStudentRecord = cachedStudentRecordRetrievalDecorator(retrieveStudentRecord); findStudentRecord(10).then(record => console.log(record));'.\n\n**Decoradores:**\n\nUn decorador es una función envolvente que envuelve una función existente y extiende su comportamiento. En este escenario, cachedStudentRecordRetrievalDecorator es la función envolvente que envuelve la función retrieveStudentRecord y extiende su comportamiento almacenando en caché los registros de estudiantes.\n\nPara que funcione correctamente, solo se pasa la referencia de la función retrieveStudentRecord al decorador, que luego gestiona la lógica de almacenamiento en caché antes de invocar la función original.",
     },
     {
       id: "q17",
-      question:
-        "A developer is working on a welcome message for the company website. This message is controlled by two objects. The developer needs to use the substitute greeting. \n\nWhat code can be used to modify the retrieval of the greeting in the 'showGreeting' function?",
+      question: "A developer is working on a welcome message for the company website. This message is controlled by two objects. The developer needs to use the substitute greeting. What code can be used to modify the retrieval of the greeting in the 'showGreeting' function?",
       type: "multiple choice",
       correct_options: ["B", "D", "E"],
       number_of_correct_answers: 3,
@@ -285,29 +266,26 @@ export default function questions2() {
         B: "const greet = greeting.getGreeting.bind(substituteGreeting, theTime) ();",
         C: "const greet = greeting.getGreeting.apply(substituteGreeting, theTime);",
         D: "const greet = greeting.getGreeting.apply(substituteGreeting, [theTime]);",
-        E: "const greet = greeting.getGreeting.call(substituteGreeting, theTime);",
+        E: "const greet = greeting.getGreeting.call(substituteGreeting, theTime);"
       },
-      code: "let greeting = {\n     morningGreet: \"Welcome, and Good Morning!\",\n     eveningGreet: \"Welcome, and Good Evening!\",\n     getGreeting(gTime) {\n          if (gTime === 'morningGreet' || gTime === 'eveningGreet') {\n               return this[gTime];\n          }\n          return \"Welcome!\";\n     }\n};\n\nlet substituteGreeting = {\n     morningGreet: 'We apologize that our site is down this morning.',\n     eveningGreet: \"We apologize that our site is down this evening.\"\n};\n\nfunction showGreeting(theTime) {\n     const greet = greeting.getGreeting(theTime); // Replace this line of code to use substituteGreeting\n     document.getElementById('greet').innerHTML = greet;\n}",
-      explanation:
-        "Para usar el objeto `substituteGreeting` como el contexto (`this`) dentro de la función `getGreeting`, se pueden utilizar los métodos `call`, `apply` o `bind`. \n\n- `call` llama directamente a la función con un nuevo `this` y una lista de argumentos.\n- `apply` hace lo mismo pero con un array de argumentos.\n- `bind` devuelve una nueva función con `this` ya vinculado, y se debe invocar manualmente, como se hace en la opción B.\n\nPor eso, las respuestas correctas son B, D y E.",
+      code: "let greeting = {\n  morningGreet: \"Welcome, and Good Morning!\",\n  eveningGreet: \"Welcome, and Good Evening!\",\n  getGreeting(gTime) {\n    if (gTime === 'morningGreet' || gTime === 'eveningGreet') {\n      return this[gTime];\n    }\n    return \"Welcome!\";\n  }\n};\n\nlet substituteGreeting = {\n  morningGreet: 'We apologize that our site is down this morning.',\n  eveningGreet: \"We apologize that our site is down this evening.\"\n};\n\n// The showGreeting function is used to show the greeting.\nfunction showGreeting(theTime) {\n  const greet = greeting.getGreeting(theTime); // Replace this line of code to use substituteGreeting\n  document.getElementById('greet').innerHTML = greet;\n}",
+      explanation: "Las opciones correctas son B: 'const greet = greeting.getGreeting.bind(substituteGreeting, theTime) ();', D: 'const greet = greeting.getGreeting.apply(substituteGreeting, [theTime]);', y E: 'const greet = greeting.getGreeting.call(substituteGreeting, theTime);'.\n\n**Explicación detallada:**\n\n1. **Método call():** Invoca indirectamente una función y permite establecer el objeto al que hace referencia 'this' pasando un objeto como el primer parámetro. Los argumentos son pasados en una lista separada por comas.\n\n2. **Método apply():** Similar a call(), pero los argumentos son pasados en forma de un array.\n\n3. **Método bind():** Devuelve una nueva función con un valor vinculado al keyword 'this'. Ese valor viene del primer parámetro. Puede enlazar argumentos adicionales a la nueva función con los parámetros que sigan al valor de 'this'. Se requiere invocar explícitamente la función resultante con '()' para ejecutarla.",
     },
     {
       id: "q18",
-      question:
-        "A developer has completed a function named 'retrieveScores' in the tools module (tools.js). She now needs to export that function and import it into 'main.js'. Both JavaScript files are located in the same directory. \n\nWhich of the following shows the correct way to export the function and then import it into 'main.js'?",
+      question: "A developer has completed a function named 'retrieveScores' in the tools module (tools.js). She now needs to export that function and import it into 'main.js'. Both JavaScript files are located in the same directory. \n\nWhich of the following shows the correct way to export the function and then import it into 'main.js'?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
       options: {
-        A: "EXPORT: export function retrieveScores() {/* Code for retrieving scores */};     IMPORT: import {retrieveScores};",
-        B: "EXPORT: export retrieveScores() {/* Code for retrieving scores */};     IMPORT: import retrieveScores from './tools.js';",
-        C: "EXPORT: export function retrieveScores() {/* Code for retrieving scores */};     IMPORT: import {retrieveScores} from './tools.js';",
-        D: "EXPORT: export default function retrieveScores() {/* Code for retrieving scores */};     IMPORT: import rScores from './tools.js';",
+        A: "EXPORT: export function retrieveScores() {/* Code for retrieving scores */}; IMPORT: import {retrieveScores};",
+        B: "EXPORT: export retrieveScores() {/* Code for retrieving scores */}; IMPORT: import retrieveScores from './tools.js';",
+        C: "EXPORT: export function retrieveScores() {/* Code for retrieving scores */}; IMPORT: import {retrieveScores} from './tools.js';",
+        D: "EXPORT: export default function retrieveScores() {/* Code for retrieving scores */}; IMPORT: import rScores from './tools.js';"
       },
-      explanation:
-        "Las opciones C y D son correctas porque la opción C utiliza una exportación nombrada, y la opción D utiliza una exportación por defecto. Ambas permiten importar la función correctamente en el archivo 'main.js'. Las otras opciones tienen errores en la sintaxis de exportación o importación.",
-    },
-    {
+      code: "function retrieveScores() {/* Code for retrieving scores */};",
+      explanation: "Las opciones correctas son C: 'EXPORT: export function retrieveScores() {/* Code for retrieving scores */}; IMPORT: import {retrieveScores} from './tools.js';' y D: 'EXPORT: export default function retrieveScores() {/* Code for retrieving scores */}; IMPORT: import rScores from './tools.js';'.\n\n**Explicación detallada:**\n\n1. **Exportación nombrada:**\n   - La función o variable debe identificarse por su nombre en la declaración de importación.\n   - Ejemplo: `export function retrieveScores() {...};` en tools.js.\n   - Importación: `import {retrieveScores} from './tools.js';`\n\n2. **Exportación por defecto:**\n   - Permite asignar cualquier nombre al importar la función o variable.\n   - Ejemplo: `export default function retrieveScores() {...};` en tools.js.\n   - Importación: `import rScores from './tools.js';`\n\nEs importante incluir la palabra clave 'function' durante la exportación al declarar la función.",
+    },{
       id: "q19",
       question: "A developer is gathering data from an API for a project she is working on. The API limits the number of records sent back as a part of the response to 50. However, the response contains a new URL as the value of the '_next' property if additional records are available. The developer has set up a function that is successfully retrieving 50 records. She now needs to add code that will loop through and retrieve records until they have all been retrieved. \n\nWhich code solves this problem?",
       type: "multiple choice",
@@ -321,11 +299,10 @@ export default function questions2() {
       },
       code: "const finalResults = [];\n\nfunction retrieveData(url) {\n  fetch(url)\n    .then((resp) => resp.json())\n    .then(function (response) {\n      if (response.results) {\n        finalResults.push(response.results);\n      }\n\n      // Add code here to retrieve remaining records\n\n    })\n    .catch((issue) => console.log(`Couldn't retrieve records: ${issue}`));\n};",
       explanation: "La opción correcta es la B: 'if (response._next) { retrieveData(response._next); }'. La recursión es una técnica para resolver problemas haciendo que una función se llame a sí misma. La función 'retrieveData' tiene todo lo necesario para recuperar registros. Simplemente necesita ser llamada de manera recursiva hasta que no haya más registros disponibles.\n\nEn este caso, la propiedad '_next' indica que hay más datos disponibles. Si existe esta propiedad en la respuesta, la función se llama nuevamente utilizando el nuevo URL como parámetro para seguir recuperando los registros restantes. Esto garantiza que todos los registros sean recuperados.",
-    },    
+    },
     {
       id: "q20",
-      question:
-        "A developer is working to debug some code used on the company website. She has identified that the problem is associated with a 'connections' object. \n\nIn order to figure out what is going on, she needs to display the properties and values of the 'connections' object at a particular time in the program. What temporary code could be used to display the properties and values of the object?",
+      question: "A developer is working to debug some code used on the company website. She has identified that the problem is associated with a 'connections' object. In order to figure out what is going on, she needs to display the properties and values of the 'connections' object at a particular time in the program. \n\nWhat temporary code could be used to display the properties and values of the object?",
       type: "multiple choice",
       correct_options: ["B", "D"],
       number_of_correct_answers: 2,
@@ -333,15 +310,12 @@ export default function questions2() {
         A: "for (let i of connections) { console.log('${i} -> ${connections[i]}'); }",
         B: "console.log(Object.entries(connections));",
         C: "console.log(Object.values(connections));",
-        D: "for (let i in connections) { console.log(`${i} -> ${connections[i]}`); }",
+        D: "for (let i in connections) { console.log(`${i} -> ${connections[i]} ); }"
       },
-      explanation:
-        "Las opciones B y D son correctas. La opción B utiliza 'Object.entries()' para obtener un array de pares clave-valor, lo que facilita la visualización de las propiedades y valores del objeto. La opción D utiliza un bucle 'for...in' para recorrer las propiedades del objeto y mostrar su clave y valor. La opción A tiene un error de sintaxis y la opción C solo muestra los valores del objeto sin las claves.",
-    },
-    {
+      explanation: "Las opciones correctas son B: 'console.log(Object.entries(connections));' y D: 'for (let i in connections) { console.log(`${i} -> ${connections[i]} ); }'.\n\n**Explicación detallada:**\n\n1. **Método Object.entries():** Devuelve un array que consiste en los pares clave-valor disponibles en un objeto. Este método solo incluye propiedades propias del objeto.\n\n2. **Ciclo for-in:** Itera sobre todas las propiedades enumerables de un objeto. La variable declarada en el ciclo contiene el nombre de cada propiedad a medida que pasa por las propiedades. Esa misma variable puede usarse para acceder al valor de la propiedad utilizando corchetes (connections[i]).\n\nAmbos enfoques permiten inspeccionar las propiedades y valores del objeto 'connections' en un momento específico del programa para depuración.",
+    },{
       id: "q21",
-      question:
-        "Which options can be used to iterate through the properties of the object below? \n\nWhat are the valid methods?",
+      question: "Which options can be used to iterate through the properties of the object below?",
       type: "multiple choice",
       correct_options: ["A", "D", "E"],
       number_of_correct_answers: 3,
@@ -350,15 +324,14 @@ export default function questions2() {
         B: "for (let prop of user) { console.log(prop[i]); }",
         C: "user.forEach((prop) => { console.log(user[prop]); });",
         D: "for (let prop of Object.getOwnPropertyNames(user)) { console.log(user[prop]); }",
-        E: "for (let prop in user) { console.log(user[prop]); }",
+        E: "for (let prop in user) { console.log(user[prop]); }"
       },
-      explanation:
-        "Las opciones A, D y E son correctas. La opción A utiliza 'Object.keys()' para obtener las claves del objeto, la opción D usa 'Object.getOwnPropertyNames()' para obtener las propiedades directas del objeto, y la opción E usa el bucle 'for...in' para recorrer las propiedades del objeto. Las opciones B y C tienen errores de sintaxis o de uso de métodos no aplicables.",
+      code: "let user = {\n  name: 'Jane',\n  age: 25,\n  admin: true,\n  created: new Date()\n};",
+      explanation: "Las opciones correctas son A: 'for (let prop of Object.keys(user)) { console.log(user[prop]); }', D: 'for (let prop of Object.getOwnPropertyNames(user)) { console.log(user[prop]); }', y E: 'for (let prop in user) { console.log(user[prop]); }'.\n\n**Explicación detallada:**\n\n1. **for...in:** El bucle 'for...in' se usa para iterar sobre todas las propiedades enumerables de un objeto. La variable declarada en el bucle contiene el nombre de cada propiedad.\n\n2. **Object.keys() con for...of:** El método 'Object.keys()' devuelve un array con los nombres de las propiedades enumerables del objeto. Luego, se puede usar 'for...of' para iterar sobre cada elemento del array.\n\n3. **Object.getOwnPropertyNames() con for...of:** Este método devuelve un array con todas las propiedades (enumerables y no enumerables) del objeto. Igual que con 'Object.keys()', se puede usar 'for...of' para iterar sobre los elementos.",
     },
     {
       id: "q22",
-      question:
-        "Determine the output in the browser JavaScript console when the code below is executed. \n\nWhat will be displayed?",
+      question: "Determine the output in the browser JavaScript console when the code below is executed.",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -366,45 +339,13 @@ export default function questions2() {
         A: "pet meows! bot meows!",
         B: "pet beeps! bot woofs!",
         C: "pet woofs! bot meows!",
-        D: "pet meows! bot beeps!",
+        D: "pet meows! bot beeps!"
       },
-      explanation:
-        "El método 'speak()' de la clase 'Pet' es sobrescrito por la propiedad de 'Pet.prototype.speak'. Sin embargo, la clase hija 'Bot' sobrescribe 'speak()' nuevamente, lo que da como resultado que 'myPet.speak()' devuelva 'pet meows!' y 'myBot.speak()' devuelva 'bot beeps!'.",
-      code: `
-    class Pet {
-      constructor(name) {
-        this.name = name;
-      }
-    
-      speak() {
-        return \`\${this.name} woofs!\`;
-      }
-    }
-    
-    Pet.prototype.speak = function () {
-      return \`\${this.name} meows!\`;
-    };
-    
-    class Bot extends Pet {
-      constructor(name) {
-        super(name);
-      }
-    
-      speak() {
-        return \`\${this.name} beeps!\`;
-      }
-    }
-    
-    const myPet = new Pet("pet");
-    const myBot = new Bot("bot");
-    
-    console.log(myPet.speak(), myBot.speak());
-    `,
-    },
-    {
+      code: "class Pet {\n  constructor(name) {\n    this.name = name;\n  }\n\n  speak() {\n    return `${this.name} woofs!`;\n  }\n};\n\nPet.prototype.speak = function () {\n  return `${this.name} meows!`;\n};\n\nclass Bot extends Pet {\n  constructor(name) {\n    super(name);\n  }\n\n  speak() {\n    return `${this.name} beeps!`;\n  }\n};\n\nconst myPet = new Pet('pet');\nconst myBot = new Bot('bot');\n\nconsole.log(myPet.speak(), myBot.speak());",
+      explanation: "La opción correcta es la D: 'pet meows! bot beeps!'.\n\n**Explicación detallada:**\n\n1. **Palabra clave extends:** Se utiliza en declaraciones o expresiones de clase para crear una clase hija de otra clase. Esto permite que la clase hija sobrescriba métodos de la clase padre.\n\n2. **Sobrescritura con prototype:** En JavaScript, los métodos de objetos pueden sobrescribirse usando la propiedad 'prototype'. En este caso, la función 'speak' de la clase 'Pet' es sobrescrita por 'Pet.prototype.speak'. Por lo tanto, 'myPet.speak()' devuelve 'pet meows!'.\n\n3. **Sobrescritura en la clase hija:** La clase 'Bot' sobrescribe el método 'speak' de la clase 'Pet'. Por esta razón, 'myBot.speak()' devuelve 'bot beeps!'.",
+    },{
       id: "q23",
-      question:
-        "A developer is working on an online application. Whenever the user starts the application, certain settings are established by the user and stored in the settings object. \n\nOnce these settings are established, they shouldn't be changed by any outside code. What function can the developer use in order to keep the settings object from changing?",
+      question: "A developer is working on an online application. Whenever the user starts the application, certain settings are established by the user and stored in the settings object. Once these settings are established, they shouldn't be changed by any outside code. \n\nWhat function can the developer use in order to keep the settings object from changing?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -412,15 +353,14 @@ export default function questions2() {
         A: "Object.seal(settings);",
         B: "Object.freeze(settings);",
         C: "Object.create(settings);",
-        D: "Object.preventExtensions(settings);",
+        D: "Object.preventExtensions(settings);"
       },
-      explanation:
-        "El método 'Object.freeze()' hace que un objeto sea inmutable, lo que significa que no se pueden agregar, eliminar ni modificar las propiedades del objeto, lo cual es lo que se necesita en este caso para evitar que los ajustes sean cambiados.",
+      code: "const settings = {};",
+      explanation: "La opción correcta es la B: 'Object.freeze(settings);'. El método 'Object.freeze()' coloca un objeto en un estado donde no puede ser modificado. Esto evita agregar nuevas propiedades al objeto, modificar o eliminar las propiedades existentes, cambiar los atributos de las propiedades del objeto, y cambiar el prototipo del objeto.\n\n**Otras opciones:**\n1. **Object.seal():** Permite modificar las propiedades existentes siempre que sean configurables, pero no permite agregar nuevas propiedades.\n2. **Object.preventExtensions():** Solo previene agregar nuevas propiedades al objeto.\n3. **Object.create():** Crea un nuevo objeto usando un objeto argumento como prototipo para el nuevo objeto.",
     },
     {
       id: "q24",
-      question:
-        "When the code below is run. /n/nWhich value will output to the console?",
+      question: "When the code below is run, which value will output to the console?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -428,16 +368,13 @@ export default function questions2() {
         A: "32",
         B: "62",
         C: "30",
-        D: "28",
+        D: "28"
       },
-      code: "let array = [1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1];\n\nlet sum = 0;\n\nfor (let i = 0; i < array.length; i++) {\n     let val = array[i] % 2;\n     if (val !== 0) {\n          continue;\n     }\n     sum += array[i];\n     if (sum > 26) {\n          break;\n     }\n}\n\nconsole.log(sum);",
-      explanation:
-        "El código recorre un arreglo y suma únicamente los valores pares utilizando el operador módulo (`%`). Si un número es impar, la instrucción `continue` salta esa iteración. Si el número es par, se suma a `sum`. Cuando `sum` supera 26, el bucle se detiene con `break`. Los valores pares acumulados antes de que esto suceda suman exactamente 30 (2 + 4 + 6 + 8 + 6 + 4). Por tanto, la consola imprimirá `30`, siendo la respuesta correcta la opción C.",
-    },
-    {
+      code: "let array = [1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 1];\n\nlet sum = 0;\n\nfor (let i = 0; i < array.length; i++) {\n  let val = array[i] % 2;\n  if (val !== 0) {\n    continue;\n  }\n  sum += array[i];\n  if (sum > 26) {\n    break;\n  }\n}\n\nconsole.log(sum);",
+      explanation: "La opción correcta es la C: '30'.\n\n**Explicación detallada:**\n\n1. **Operador % (módulo):** Verifica si un número es par o impar. En este caso, los valores pares son retenidos y los valores impares son saltados gracias a 'continue'.\n\n2. **Declaración continue:** Termina la ejecución de la iteración actual en un bucle y continúa con la siguiente.\n\n3. **Declaración break:** Termina inmediatamente la ejecución y sale del bucle.\n\n**Cálculo del resultado:**\n- Los valores pares del array son 2, 4, 6, 8, 6, 4, 2 (sumando estos en orden hasta que la suma supere 26).\n- Sumatoria: 2 + 4 + 6 + 8 + 6 + 4 = 30.\n- La condición 'if (sum > 26)' detiene el bucle cuando la suma alcanza 30, y ese valor se registra en la consola.",
+    },{
       id: "q25",
-      question:
-        "A developer is working on a site that allows users to interact with and manage client data. Occasionally, a user may want to normalize the data. A 'normalize data' button is available at the bottom of the screen with this handler. The 'normalizeTheData' function is contained in the 'utilities/dataUtil.js' module. \n\nThis module has been loaded so that the 'normalizeTheData' function is available. However, this module is quite large and the developer would like to change how it is loaded since the user interacts with this feature only occasionally. What code should be placed inside the handler in order to load this module only when needed?",
+      question: "A developer is working on a site that allows users to interact with and manage client data. Occasionally, a user may want to normalize the data. A 'normalize data' button is available at the bottom of the screen with this handler. The 'normalizeTheData' function is contained in the 'utilities/dataUtil.js' module. This module has been loaded so that the 'normalizeTheData' function is available. However, this module is quite large and the developer would like to change how it is loaded since the user interacts with this feature only occasionally. \n\nWhat code should be placed inside the handler in order to load this module only when needed?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -445,15 +382,14 @@ export default function questions2() {
         A: "import('./utilities/dataUtil.js').then((module) => module.normalizeTheData());",
         B: "import('normalizeTheData', './utilities/dataUtil.js'); normalizeTheData();",
         C: "import {normalizeTheData} from './utilities/dataUtil.js'; normalizeTheData();",
-        D: "import('normalizeTheData', './utilities/dataUtil.js').then((module) => normalizeTheData());",
+        D: "import('normalizeTheData', './utilities/dataUtil.js').then((module) => normalizeTheData());"
       },
-      explanation:
-        "La opción A es correcta porque usa la carga dinámica de módulos, lo que asegura que el módulo 'dataUtil.js' solo se cargue cuando se haga clic en el botón. La opción B no es válida por la sintaxis incorrecta, y la opción C carga el módulo inmediatamente, lo que no satisface la necesidad de cargarlo solo cuando sea necesario.",
+      code: "document.getElementById('normalizeBtn').addEventListener('click', function() {\n  normalizeTheData(); // Replace this line with the new code\n});",
+      explanation: "La opción correcta es la A: 'import('./utilities/dataUtil.js').then((module) => module.normalizeTheData());'.\n\n**Explicación detallada:**\n\nCuando se necesita cargar un módulo bajo demanda, se puede utilizar la carga dinámica. Para importar un módulo dinámicamente, la palabra clave 'import' se llama como una función. Esta llamada devuelve una promesa.\n\n1. **Método then():** Se puede usar el método 'then()' para responder a la promesa y recuperar el módulo. \n2. **Acceso a valores exportados:** Los valores exportados del módulo pueden ser accesibles usando la notación de punto.\n\nEsto permite optimizar el rendimiento cargando el módulo solo cuando se necesita.",
     },
     {
       id: "q26",
-      question:
-        "A developer wants to use a decorator to extend the behavior of a User class that has been developed already. The decorator should add a user Type to the User Class using the prototype. \n\nBelow is the newly developed decorator function, but it does not work as expected. Which of the following statements are true?",
+      question: "A developer wants to use a decorator to extend the behavior of a User class that has been developed already. The decorator should add a user Type to the User Class using the prototype. Below is the newly developed decorator function, but it does not work as expected. \n\nWhich of the following statements are true?",
       type: "multiple choice",
       correct_options: ["A", "C"],
       number_of_correct_answers: 2,
@@ -461,32 +397,28 @@ export default function questions2() {
         A: "The decorator function receives only one argument as it is being used as a class decorator.",
         B: "The prototype should be accessed via the second argument of the decorator function.",
         C: "The prototype should be accessed via the first argument of the decorator function.",
-        D: "It is only possible to access the class constructor via the class decorator.",
+        D: "It is only possible to access the class constructor via the class decorator."
       },
-      code: "function addUserType(target, name, descriptor) {\n\n     descriptor.value.prototype.userType = 'INTERNAL';\n\n     return descriptor;\n}\n\n\n//Below is the User Class.\n\n@addUserType\n\nclass User {\n\n     constructor(name, age, gender) {\n\n          this.name = name;\n\n          this.age = age;\n\n          this.gender = gender;\n\n   }\n\n}",
-      explanation:
-        "Cuando se aplica un decorador a una clase, este solo recibe un argumento: el constructor de la clase (el `target`). En este caso, se está usando la sintaxis de decorador como si fuera para un método, pasando tres parámetros, lo cual es incorrecto para un decorador de clase. Para modificar el prototipo correctamente, se debe acceder al `target.prototype`, donde `target` es el constructor de la clase. Por tanto, las opciones A y C son correctas.",
-    },
-    {
+      code: "function addUserType(target, name, descriptor) {\n  descriptor.value.prototype.userType = 'INTERNAL';\n  return descriptor;\n}\n\n// Below is the User Class.\n@addUserType\nclass User {\n  constructor(name, age, gender) {\n    this.name = name;\n    this.age = age;\n    this.gender = gender;\n  }\n}",
+      explanation: "Las opciones correctas son A: 'The decorator function receives only one argument as it is being used as a class decorator.' y C: 'The prototype should be accessed via the first argument of the decorator function.'.\n\n**Explicación detallada:**\n\n1. **Número de parámetros:** Solo un parámetro se pasa a una función decoradora cuando se utiliza para decorar una clase. Este parámetro es el objeto objetivo, que es la clase que está siendo decorada.\n\n2. **Acceso al prototipo:** La propiedad 'prototype' puede ser accesible junto con el constructor de la clase a través del decorador de clase.\n\n**Implementación correcta del decorador:**\n\n```javascript\nfunction addUserType(target) {\n  target.prototype.userType = 'INTERNAL';\n}\n```\n\nEsta implementación asegura que el prototipo de la clase decorada reciba la propiedad 'userType'.",
+    },{
       id: "q27",
-      question:
-        "Jane wants to implement error handling in her functions with the help of a decorator. Her application has two functions to get the data from the server and update it. The function declaration of each function is given below. The code in the functions is working perfectly. After implementing the decorator function, the server returns a 400 Bad Request error. \n\nShe realizes that the issue is with her decorator. How can the decorator function be fixed?",
+      question: "Jane wants to implement error handling in her functions with the help of a decorator. Her application has two functions to get the data from the server and update it. The function declaration of each function is given below. The code in the functions is working perfectly. After implementing the decorator function, the server returns a 400 Bad Request error. She realizes that the issue is with her decorator. \n\nHow can the decorator function be fixed?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
-        A: "Since the' errorHandlingDecorator' function on line 1 is not async, the keyword await cannot be used on the function fn().",
+        A: "Since the 'errorHandlingDecorator' function on line 1 is not async, the keyword await cannot be used on the function fn().",
         B: "Not enough information is available to find and fix the issue.",
         C: "The 'updateNote' function expects two arguments, but only one argument (args) is passed.",
-        D: "Use the spread operator ( ... ) to pass the parameters to fn() on line 4.",
+        D: "Use the spread operator (...) to pass the parameters to fn() on line 4."
       },
-      explanation:
-        "La opción D es correcta porque en el decorador se recibe un número indefinido de argumentos mediante `...args`, pero al llamar a `fn()` no se pasan esos argumentos. La línea `await fn();` debería ser `await fn(...args);` para pasar correctamente todos los argumentos recibidos a la función decorada.",
+      code: "async function getNote(id){\n  // Function implementation\n}\n\nasync function updateNote(id, updateValue){\n  // Function implementation\n}\n\n// Below is the decorator function that has been developed.\nfunction errorHandlingDecorator(fn) {\n  return async function (...args) {\n    try {\n      const val = await fn();\n      return val;\n    } catch (err) {\n      console.error(err);\n    }\n  }\n}",
+      explanation: "La opción correcta es la D: 'Use the spread operator (...) to pass the parameters to fn() on line 4.'.\n\n**Explicación detallada:**\n\nLa razón del error 400 (Bad Request) es que los datos requeridos para la solicitud HTTP faltan. En el código original, los argumentos que se pasan a la función no se están pasando a la función decorada fn() en la línea 4. \n\n- El operador de propagación (spread operator) se utiliza para recibir los argumentos, combinándolos en un array si hay más de uno. \n- Para pasar los valores como argumentos separados (en lugar de un array), se debe usar nuevamente el operador de propagación al pasarlos a fn().\n\nLa función decoradora 'errorHandlingDecorator' no necesita ser 'async' para permitir el uso de la palabra clave 'await'. Solo la función envolvente inmediata debe ser 'async', y este ya es el caso aquí.",
     },
     {
       id: "q28",
-      question:
-        "The following code contains a function that receives the name of a customer as its input parameter, invokes a helper function to get the current day of the week, and returns a message containing both. \n\nWhich of the following statements are true regarding the execution of the two functions?",
+      question: "The following code contains a function that receives the name of a customer as its input parameter, invokes a helper function to get the current day of the week, and returns a message containing both. \n\nWhich of the following statements are true regarding the execution of the two functions?",
       type: "multiple choice",
       correct_options: ["A", "B"],
       number_of_correct_answers: 2,
@@ -494,15 +426,14 @@ export default function questions2() {
         A: "Within the createCustomerMessage() function, the 'message' variable is not assigned to a value until all the lines in the getCurrentDay() function have been executed.",
         B: "When the getCurrentDay() function is encountered, it is added to the 'call stack', where it stays until its execution has been completed.",
         C: "The execution of the console.log() statement does not wait for the execution of the createCustomerMessage() function to finish.",
-        D: "The JavaScript interpreter completes the execution of the createCustomerMessage () function before executing the getCurrentDay() function.",
+        D: "The JavaScript interpreter completes the execution of the createCustomerMessage() function before executing the getCurrentDay() function."
       },
-      explanation:
-        "Las opciones A y B son correctas. En A, se indica correctamente que la variable 'message' no puede asignarse hasta que 'getCurrentDay()' haya devuelto un valor. En B, se describe el comportamiento de la pila de llamadas (call stack), donde se ejecuta completamente la función 'getCurrentDay()' antes de regresar el control a 'createCustomerMessage'. Las opciones C y D son incorrectas porque malinterpretan el flujo de ejecución síncrono de JavaScript.",
+      code: "const createCustomerMessage = (name) => {\n  const day = getCurrentDay();\n  const message = `Happy ${day}, ${name}!`;\n  return message;\n}\n\nconst getCurrentDay = () => {\n  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];\n  return weekdays[new Date().getDay()];\n}\n\nlet message = createCustomerMessage('Marcus');\nconsole.log(message);",
+      explanation: "Las opciones correctas son A: 'Within the createCustomerMessage() function, the 'message' variable is not assigned to a value until all the lines in the getCurrentDay() function have been executed.' y B: 'When the getCurrentDay() function is encountered, it is added to the 'call stack', where it stays until its execution has been completed.'.\n\n**Explicación detallada:**\n\n1. **Pila de llamadas (Call Stack):** Cuando se ejecuta el código, la función 'createCustomerMessage()' se agrega a la pila de llamadas y el navegador comienza su ejecución. Al encontrar 'getCurrentDay()', esta función también se agrega a la pila de llamadas.\n\n2. **Secuencia de ejecución:** Hasta que se ejecuten todas las líneas dentro de 'getCurrentDay()', la variable 'message' no se asigna al literal de plantilla. Solo después de que 'getCurrentDay()' termina, las líneas restantes de 'createCustomerMessage()' se ejecutan.\n\n3. **Orden de ejecución:** Finalmente, se asigna el valor retornado por 'createCustomerMessage()' a la variable global 'message' y el método 'console.log()' muestra el mensaje en la consola.",
     },
     {
       id: "q29",
-      question:
-        "A development team wants to migrate its legacy JavaScript code to a newer ES6 code. The first step in this migration is to identify and convert code containing prototype-based inheritance into classes. \n\nWilliam has been given the code snippet below for conversion into a class. Which of the following statements regarding the conversion of the given code is false?",
+      question: "A development team wants to migrate its legacy JavaScript code to a newer ES6 code. The first step in this migration is to identify and convert code containing prototype-based inheritance into classes. William has been given the code snippet below for conversion into a class. Which of the following statements regarding the conversion of the given code is false?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -510,26 +441,25 @@ export default function questions2() {
         A: "'latitude' and 'longitude' must be class fields.",
         B: "The name of the newly created class should be 'Location'.",
         C: "'startMoving' and 'stopMoving' should be two methods in the newly created class.",
-        D: "The constructor of the class should receive 'latitude' and 'longitude' as parameters",
+        D: "The constructor of the class should receive 'latitude' and 'longitude' as parameters."
       },
-      explanation:
-        "La opción A es falsa. Aunque se puede definir 'latitude' y 'longitude' como campos de clase explícitos, no es obligatorio hacerlo en ES6. Se pueden definir simplemente dentro del constructor como propiedades del objeto usando `this.latitude` y `this.longitude`. Las otras opciones son correctas: B mantiene el nombre original, C convierte los métodos del prototipo en métodos de clase, y D conserva los mismos parámetros en el constructor.",
-    },
+      code: "function Location(latitude, longitude) {\n  this.latitude = latitude;\n  this.longitude = longitude;\n}\n\nLocation.prototype.startMoving = function () {\n  // implementation here\n  console.log(\"Start moving\");\n};\n\nLocation.prototype.stopMoving = function () {\n  // implementation here\n  console.log(\"Stop moving\");\n};",
+      explanation: "La opción correcta es A: 'latitude' and 'longitude' must be class fields.'. Aunque se recomienda declarar las variables 'latitude' y 'longitude' como campos de clase o como propiedades del constructor, no es obligatorio que sean específicamente campos de clase. Estas variables pueden ser simplemente propiedades de instancia inicializadas dentro del constructor de la clase.\n\n**Conversión a una clase en ES6:**\n```javascript\nclass Location {\n  constructor(latitude, longitude) {\n    this.latitude = latitude;\n    this.longitude = longitude;\n  }\n\n  startMoving() {\n    console.log(\"Start moving\");\n  }\n\n  stopMoving() {\n    console.log(\"Stop moving\");\n  }\n}\n```",
+    }, 
     {
       id: "q30",
-      question:
-        "A developer is working on a meeting room reservation system. Each meeting room in the company is represented using a JavaScript object. Following a meeting, feedback can be provided on the state of the room. The feedback is attached to the 'feedback' property. \n\nWhen the feedback is resolved, it needs to be removed using the function below. The problem with the function is that the property is not removed from the object. What statement can be used to remove the property?",
+      question: "A developer is working on a meeting room reservation system. Each meeting room in the company is represented using a JavaScript object. Following a meeting, feedback can be provided on the state of the room. The feedback is attached to the 'feedback' property. When the feedback is resolved, it needs to be removed using the function below. The problem with the function is that the property is not removed from the object. \n\nWhat statement can be used to remove the property?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
         A: "obj.feedback = undefined;",
-        B: 'obj.feedback =";',
+        B: "obj.feedback = '';",
         C: "delete feedback;",
-        D: "delete obj.feedback;",
+        D: "delete obj.feedback;"
       },
-      explanation:
-        "La opción D es correcta. La instrucción `delete obj.feedback;` elimina completamente la propiedad 'feedback' del objeto. Las otras opciones no eliminan la propiedad: A la establece como `undefined`, B intenta asignar una cadena vacía con un error de sintaxis, y C intenta eliminar una variable no definida en ese contexto.",
+      code: "function removeFeedback(obj) {\n  if (obj.feedback) {\n    obj.feedback = null; // replace this line\n  }\n};",
+      explanation: "La opción correcta es la D: 'delete obj.feedback;'.\n\n**Explicación detallada:**\n\n- El operador 'delete' eliminará completamente una propiedad de un objeto en JavaScript.\n- Si se elimina la propiedad, el operador 'delete' devolverá 'true'.\n\n**Errores comunes:**\n- Establecer la propiedad en 'null', 'undefined' o una cadena vacía ('') no eliminará realmente la propiedad; simplemente establecerá su valor. La propiedad seguirá siendo parte del objeto.",
     },
     {
       id: "q31",
@@ -544,12 +474,11 @@ export default function questions2() {
         D: "The increment operator cannot be used on imported variables. This code should be used: questionCnt = questionCnt + 1;"
       },
       code: "import {questionCnt, updateQuestionCount, updateQuestions} from './question.js';\n\n// As she includes additional questions, she increments the question count using this code:\nquestionCnt++;",
-      explanation: "La opción correcta es la C: 'A variable cannot be changed outside a module. The imported function named 'updateQuestionCount' should be used to change the value.'. Cuando se importa una variable desde un módulo, es como si esa variable se definiera usando 'const'. No está permitido cambiar su valor fuera del módulo.\n\nCuando se proporciona una variable de este tipo, también debe proporcionarse una función para actualizar la variable si es necesario. En este caso, la función 'updateQuestionCount' puede utilizarse para realizar cambios en la variable 'questionCnt'. Esto asegura que los cambios en la variable se realicen correctamente sin violar las restricciones de los módulos.",
-    },    
+      explanation: "La opción correcta es la C: 'A variable cannot be changed outside a module. The imported function named 'updateQuestionCount' should be used to change the value.'.\n\n**Explicación detallada:**\n\nCuando se importa una variable desde un módulo, actúa como si estuviera definida usando 'const'. Por lo tanto, no se permite cambiar su valor fuera del módulo.\n\nPara solucionar este problema, el módulo puede proporcionar una función dedicada para actualizar la variable. En este caso, se puede utilizar la función 'updateQuestionCount' para modificar el valor de 'questionCnt' sin violar las restricciones del módulo.",
+    },
     {
       id: "q32",
-      question:
-        "A developer is working on a function that will merge user objects from two different systems. The function is a good start, but there are two problems the developer would like to fix. \n\nFirst, when the objects are combined, she would like any properties in the 'newObj' to overwrite the same properties in the 'oldObj' if they exist in both. Also, the combined objects shouldn't be child objects. Moreover, when the code checks for the 'createdDate' property, she wants to make sure that the property is not inherited. Which code changes will meet the objectives of this function?",
+      question: "A developer is working on a function that will merge user objects from two different systems. The function is a good start, but there are two problems the developer would like to fix. First, when the objects are combined, she would like any properties in the 'newObj' to overwrite the same properties in the 'oldObj' if they exist in both. Also, the combined objects shouldn't be child objects. Moreover, when the code checks for the 'createdDate' property, she wants to make sure that the property is not inherited. \n\nWhich code changes will meet the objectives of this function?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -557,15 +486,13 @@ export default function questions2() {
         A: "FIRST LINE: let combinedObj = oldObj.assign(newObj); SECOND LINE: if (!combinedObj.ownProperty('createdDate')) {",
         B: "FIRST LINE: let combinedObj = Object.assign({}, oldObj, newObj); SECOND LINE: if (!combinedObj.hasOwnProperty('createdDate')) {",
         C: "FIRST LINE: let combinedObj = oldObj.assign(newObj); SECOND LINE: if (!combinedObj.hasOwnProperty('createdDate')) {",
-        D: "FIRST LINE: let combinedObj = oldObj + newObj; SECOND LINE: if (!combinedObj.ownProperty('createdDate')) {",
+        D: "FIRST LINE: let combinedObj = oldObj + newObj; SECOND LINE: if (!combinedObj.ownProperty('createdDate')) {"
       },
-      explanation:
-        "La opción B es correcta porque `Object.assign({}, oldObj, newObj)` crea un nuevo objeto con las propiedades de ambos objetos, y en caso de conflicto, las propiedades de `newObj` sobrescriben las de `oldObj`. Además, `hasOwnProperty` asegura que la propiedad 'createdDate' no sea heredada.",
-    },
-    {
+      code: "function mergeObjects(oldObj, newObj) {\n  let combinedObj = {oldObj, newObj}; // Modify this line of code\n  if (!combinedObj.createdDate) { // Modify this line of code\n    combinedObj.createdDate = new Date();\n  }\n  return combinedObj;\n}",
+      explanation: "La opción correcta es la B: 'FIRST LINE: let combinedObj = Object.assign({}, oldObj, newObj); SECOND LINE: if (!combinedObj.hasOwnProperty('createdDate')) {'.\n\n**Explicación detallada:**\n\n1. **Object.assign():** Este método permite fusionar múltiples objetos copiando todas las propiedades enumerables propias de uno o más objetos fuente a un objeto destino. Esto asegura que las propiedades de 'newObj' sobrescriban las de 'oldObj' si existen en ambos.\n\n2. **hasOwnProperty():** Este método verifica si un objeto posee una propiedad específica y si es propia del objeto (es decir, no se hereda). Esto asegura que la verificación de 'createdDate' sea precisa y no incluya propiedades heredadas.\n\n**Código modificado:**\n```javascript\nlet combinedObj = Object.assign({}, oldObj, newObj);\nif (!combinedObj.hasOwnProperty('createdDate')) {\n  combinedObj.createdDate = new Date();\n}\n```",
+    },{
       id: "q33",
-      question:
-        "A developer employed by an online shopping platform wants to make all of his class methods read-only to avoid any tampering. \n\nA decorator function named 'readonly' has been developed for this purpose. The class methods are given below. Which property descriptor(s) can be used for making the class methods read-only?",
+      question: "A developer employed by an online shopping platform wants to make all of his class methods read-only to avoid any tampering. A decorator function named 'readonly' has been developed for this purpose. \n\nThe class methods are given below. Which property descriptor(s) can be used for making the class methods read-only?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -573,16 +500,14 @@ export default function questions2() {
         A: "Readonly, Writable",
         B: "Readonly",
         C: "Configurable",
-        D: "Writable",
+        D: "Writable"
       },
-      code: "class Transaction {\n\n     @readonly\n\n     getTransaction(id) {\n\n          //Method implementation\n\n     }\n\n     @readonly\n\n     saveTransaction(transaction) {\n\n          //Method implementation\n\n     }\n\n}",
-      explanation:
-        "El comportamiento de solo lectura de una propiedad en JavaScript se controla exclusivamente con el descriptor `writable`. Si `writable` se establece en `false`, la propiedad no podrá ser modificada. Este es el enfoque correcto para hacer métodos de clase inmutables. Por tanto, la opción correcta es la D. Ejemplo:\n\n```js\nfunction readonly(target, name, descriptor) {\n  descriptor.writable = false;\n  return descriptor;\n}\n```",
+      code: "class Transaction {\n  @readonly\n  getTransaction(id) {\n    // Method implementation\n  }\n\n  @readonly\n  saveTransaction(transaction) {\n    // Method implementation\n  }\n}",
+      explanation: "La opción correcta es la D: 'Writable'.\n\n**Explicación detallada:**\n\nEl comportamiento de solo lectura de una propiedad depende únicamente del descriptor de propiedad 'writable'. Este comportamiento es independiente de otros descriptores de propiedad como 'configurable'.\n\n**Implementación:**\nEl decorador puede configurarse de la siguiente manera para asegurar que los métodos sean de solo lectura:\n\n```javascript\nfunction readonly(target, name, descriptor) {\n  descriptor.writable = false;\n  return descriptor;\n}\n```",
     },
     {
       id: "q34",
-      question:
-        "Adam has developed two decorator functions to cache data and handle exceptions. They have been used in the Cart class as shown below. \n\nThe 'cacheData' decorator function will help cache the data used in the getCart method while the handleException decorator will help handle exceptions. Adam found out that the 'cacheData' decorator can also throw an exception that needs to be handled by the handleException decorator. Which of the options below are true regarding the desired outcome?",
+      question: "Adam has developed two decorator functions to cache data and handle exceptions. They have been used in the Cart class as shown below. The 'cacheData' decorator function will help cache the data used in the getCart method while the handleException decorator will help handle exceptions. Adam found out that the 'cacheData' decorator can also throw an exception that needs to be handled by the handleException decorator. \n\nWhich of the options below are true regarding the desired outcome?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -590,15 +515,13 @@ export default function questions2() {
         A: "Multiple decorators cannot be used on a class method.",
         B: "Line 2 should have the 'cacheData' decorator and line 3 should have the 'handleException' decorator to get the desired outcome.",
         C: "Only one of the decorator functions will be evaluated, so the desired outcome cannot be achieved.",
-        D: "The above implementation of the decorators will result in the desired outcome.",
+        D: "The above implementation of the decorators will result in the desired outcome."
       },
-      explanation:
-        "La opción B es correcta. Los decoradores se aplican en el orden en que se colocan, por lo que 'cacheData' debe ir antes que 'handleException'. De lo contrario, las excepciones generadas por el decorador 'cacheData' no serán manejadas correctamente.",
-    },
-    {
+      code: "class Cart {\n  @handleException\n  @cacheData\n  getCart() {\n    // Method implementation\n  }\n}",
+      explanation: "La opción correcta es la B: 'Line 2 should have the 'cacheData' decorator and line 3 should have the 'handleException' decorator to get the desired outcome.'.\n\n**Explicación detallada:**\n\n1. **Uso de múltiples decoradores:** Es posible usar múltiples decoradores en clases y propiedades de clase. Los decoradores se evalúan de arriba hacia abajo y luego los resultados se ejecutan como funciones de abajo hacia arriba.\n\n2. **Orden correcto para el resultado deseado:** Para manejar correctamente las excepciones generadas por 'cacheData', el decorador 'handleException' debe ser llamado después de que se ejecute el decorador 'cacheData'. Esto asegura que cualquier error lanzado por 'cacheData' sea manejado adecuadamente.\n\n**Implementación ajustada:**\n```javascript\nclass Cart {\n  @cacheData\n  @handleException\n  getCart() {\n    // Method implementation\n  }\n}\n```",
+    },{
       id: "q35",
-      question:
-        "A developer is working on an online application that provides equivalent keystrokes for certain functionality. \n\nIn order to implement this, the keystrokes are handled by a named function called 'handleKeyPress'. But she would like to add the option to remove this feature. Which code statement can be used to remove the given event listener?",
+      question: "A developer is working on an online application that provides equivalent keystrokes for certain functionality. In order to implement this, the keystrokes are handled by a named function called 'handleKeyPress'. But she would like to add the option to remove this feature. \n\nWhich code statement can be used to remove the given event listener?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -606,15 +529,14 @@ export default function questions2() {
         A: "document.removeEventListener('keypress', handleKeyPress, true);",
         B: "removeEventListener('keypress', handleKeyPress, true);",
         C: "document.removeEventListener('keypress', handleKeyPress, false);",
-        D: "window.removeEventListener('keypress', handleKeyPress, false);",
+        D: "window.removeEventListener('keypress', handleKeyPress, false);"
       },
-      explanation:
-        "La opción C es correcta. Para eliminar el listener del evento 'keypress', se debe llamar a 'removeEventListener' en el objeto al que se le añadió el evento (en este caso, 'document'), con los mismos parámetros que se usaron al agregarlo. En este caso, el valor 'false' indica que se debe usar la fase de burbujeo del evento.",
-    },
+      code: "document.addEventListener('keypress', handleKeyPress, false);",
+      explanation: "La opción correcta es la C: 'document.removeEventListener('keypress', handleKeyPress, false);'.\n\n**Explicación detallada:**\n\nEl método 'removeEventListener' elimina un listener de eventos que ha sido registrado previamente usando el método 'addEventListener'.\n\n**Requisitos para eliminar el listener correctamente:**\n1. El objetivo del evento (en este caso, 'document') debe coincidir.\n2. El nombre de la función que maneja el evento ('handleKeyPress') debe coincidir.\n3. El valor del parámetro 'useCapture' (en este caso, 'false') debe coincidir con el utilizado al agregar el listener de eventos. Si alguno de estos valores no coincide, el listener no será eliminado.",
+    },    
     {
       id: "q36",
-      question:
-        "A developer has defined multiple functions and a JavaScript object in the 'utilities.js' module. These are needed in the main JavaScript file named 'main.js' in order to complete a project. \n\nThe 'utilities.js' file is contained in a subfolder named 'util' in the current directory. Which import statement can be added to the 'main.js' file to make 'splitUnit', 'createUnit', 'normalizeUnit', and the 'manageObj' object available for use?",
+      question: "A developer has defined multiple functions and a JavaScript object in the 'utilities.js' module. These are needed in the main JavaScript file named 'main.js' in order to complete a project. The following export statement is at the bottom of the 'utilities.js' file. The 'utilities.js' file is contained in a subfolder named 'util' in the current directory. \n\nWhich import statement can be added to the 'main.js' file to make 'splitUnit', 'createUnit', 'normalizeUnit', and the 'manageObj' object available for use?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -622,31 +544,29 @@ export default function questions2() {
         A: "import {splitUnit, createUnit, normalizeUnit, manageObj} from './util/utilities.js';",
         B: "import * from './util/utilities.js';",
         C: "import {splitUnit, createUnit, normalizeUnit, manageObj} from '../util/utilities.js';",
-        D: "import all from './util/utilities.js';",
+        D: "import all from './util/utilities.js';"
       },
-      explanation:
-        "La opción A es la correcta, ya que la sintaxis correcta para importar funciones y objetos específicos desde un archivo que se encuentra en una subcarpeta es usar 'import {functionName} from './subfolder/filename.js';'. Las otras opciones contienen errores de sintaxis o rutas incorrectas.",
+      code: "export { splitUnit, compile, createUnit, normalizeUnit, manageObj };",
+      explanation: "La opción correcta es la A: 'import {splitUnit, createUnit, normalizeUnit, manageObj} from './util/utilities.js';'.\n\n**Explicación detallada:**\n\n1. **Importación de múltiples elementos exportados con nombre:** Para importar múltiples elementos exportados desde un módulo que utiliza exportaciones con nombre, los nombres de cada elemento deben enumerarse entre llaves.\n\n2. **Ruta de acceso correcta:** Dado que 'utilities.js' está en una subcarpeta llamada 'util' en el mismo directorio, la ruta en la declaración 'import' debe ser './util/utilities.js'. Usar '../util/utilities.js' sería incorrecto, ya que apunta a una carpeta 'util' en el directorio padre.\n\n3. **Importar todo con '*':** Si se utiliza '*' para importar todos los elementos exportados, se debe usar la sintaxis 'import * as util', donde 'util' es el nombre del objeto módulo que se usa como espacio de nombres para referirse a las exportaciones. Por ejemplo, cada elemento exportado podría ser accedido como 'util.splitUnit()'.",
     },
     {
       id: "q37",
-      question:
-        "Adam has written the following code for a student portal application. However, it does not work as intended and throws an undefined error. \n\nWhich statement is true regarding the implementation?",
+      question: "Adam has written the following code for a student portal application. However, it does not work as intended and throws an undefined error. \n\nWhich statement is true regarding the implementation?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
       options: {
         A: "An error occurs as the constructor does not pass an argument to initialize the 'subjectMarks' instance variable.",
         B: "The 'this' property cannot be accessed from within a nested function in a class method.",
-        C: "An error occurs since 'subjectMarks' is passed as an argument to the 'addSubjectMarksToReport' method but it is also an instance variable of the class.",
-        D: "Arrays can contain only primitive values but the 'addSubjectMarksToReport' method pushes an object into the 'subjectMarks' array.",
+        C: "An error occurs since 'subjectMarks' is passed as an argument to the 'addSubjectMarks ToReport' method but it is also an instance variable of the class.",
+        D: "Arrays can contain only primitive values but the 'addSubjectMarksToReport' method pushes an object into the 'subjectMarks' array."
       },
-      explanation:
-        "La opción B es correcta. En JavaScript, cuando se utiliza una función tradicional dentro de un método de clase, el contexto de 'this' se pierde. Para que 'this' apunte correctamente a la instancia de la clase, se debe usar una función de flecha. Las otras opciones no son correctas: A no es el error, C no es un problema y D es incorrecto ya que los arrays pueden contener objetos.",
+      code: "class StudentReport {\n  constructor(passMark, studentId) {\n    this.passMark = passMark;\n    this.studentId = studentId;\n    this.subjectMarks = [];\n  }\n\n  isSubjectPassed(subjectMark) {\n    return subjectMark >= this.passMark;\n  }\n\n  addSubjectMarksToReport(subjectMarks) {\n    subjectMarks.forEach(function (obj) {\n      let result = { ...obj, isPassed: this.isSubjectPassed(obj.mark) };\n      this.subjectMarks.push(result);\n    });\n    return subjectMarks;\n  }\n}\n\nlet studentReport = new StudentReport(40, 1234);\nlet marks = [{ name: \"Science\", mark: 70 }, { name: \"History\", mark: 39 }];\nstudentReport.addSubjectMarksToReport(marks);",
+      explanation: "La opción correcta es la B: 'The 'this' property cannot be accessed from within a nested function in a class method.'.\n\n**Explicación detallada:**\n\n1. **Problema con 'this':** Cuando se llama a una función en JavaScript, la palabra clave 'this' hace referencia al objeto global. Sin embargo, cuando esa misma función se llama dentro de 'strict mode' (modo estricto), el valor de 'this' es undefined.\n\n2. **Clases y 'this':** Dentro de un método de clase, 'this' hace referencia al objeto de la clase. Pero si se accede a 'this' desde una función anidada dentro de un método de clase, el valor de 'this' será undefined, ya que las clases siempre se ejecutan en modo estricto.\n\n**Corrección:** Se puede usar una función flecha dentro del método 'forEach'. Las funciones flecha no tienen su propio 'this'; en su lugar, heredan el valor de 'this' del entorno donde se definen.\n\n**Código corregido:**\n```javascript\naddSubjectMarksToReport(subjectMarks) {\n  subjectMarks.forEach((obj) => {\n    let result = { ...obj, isPassed: this.isSubjectPassed(obj.mark) };\n    this.subjectMarks.push(result);\n  });\n  return subjectMarks;\n}\n```",
     },
     {
       id: "q38",
-      question:
-        "A JavaScript developer has written the following code for an employee application that invokes multiple functions. \n\nWhich of the following represents the correct sequence of messages that will be displayed in the console when this code is executed?",
+      question: "A JavaScript developer has written the following code for an employee application that invokes multiple functions. \n\nWhich of the following represents the correct sequence of messages that will be displayed in the console when this code is executed?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -654,32 +574,28 @@ export default function questions2() {
         A: "processing name, generated message, creating string, Welcome to the company, Jon Bond!",
         B: "processing name, undefined, creating string, generated message",
         C: "processing name, creating string, generated message, Welcome to the company, Jon Bond!",
-        D: "Welcome to the company, Jon Bond!, processing name, generated message, creating string",
+        D: "Welcome to the company, Jon Bond!, processing name, generated message, creating string"
       },
-      code: "let name = 'Jon Bond';\n\nlet message;\n\nprocessName(name);\n\nconsole.log(message);\n\nfunction processName(name) {\n\n     console.log('processing name');\n\n     generateMessage(name);\n}\n\nfunction generateMessage(name) {\n\n     message = createString(name);\n\n     console.log('generated message');\n}\n\nfunction createString(name) {\n\n     console.log('creating string');\n\n     return `Welcome to the company, ${name}!';\n}",
-      explanation:
-        "Cuando el código se ejecuta, el motor de JavaScript crea un contexto de ejecución global y lo agrega a la pila de llamadas. Al encontrar la función `processName()`, el motor crea un contexto de ejecución para ella y lo coloca en la parte superior de la pila de llamadas. A su vez, esta función invoca `generateMessage()`, que invoca a `createString()`. El orden de los mensajes es el siguiente: primero se imprime 'processing name', luego 'creating string' cuando se ejecuta `createString()`, después 'generated message' al finalizar `generateMessage()`, y finalmente se muestra el mensaje completo 'Welcome to the company, Jon Bond!' al concluir el contexto global.",
-    },
-    {
+      code: "let name = 'Jon Bond';\nlet message;\n\nprocessName(name);\nconsole.log(message);\n\nfunction processName(name) {\n  console.log('processing name');\n  generateMessage(name);\n}\n\nfunction generateMessage(name) {\n  message = createString(name);\n  console.log('generated message');\n}\n\nfunction createString(name) {\n  console.log('creating string');\n  return `Welcome to the company, ${name}!`;\n}",
+      explanation: "La opción correcta es la C: 'processing name, creating string, generated message, Welcome to the company, Jon Bond!'.\n\n**Explicación detallada:**\n\n1. **Ejecución de funciones y pila de llamadas (call stack):**\n   - Cuando se ejecuta el código, la función `processName()` se agrega a la pila de llamadas y comienza su ejecución.\n   - `processName()` llama a `generateMessage()`, que a su vez llama a `createString()`. Esto provoca que las tres funciones se acumulen en la pila de llamadas en el orden:\n     1. `createString()`\n     2. `generateMessage()`\n     3. `processName()`\n\n2. **Secuencia de mensajes:**\n   - Al invocar `processName()`, se imprime 'processing name'.\n   - `generateMessage()` llama a `createString()`, que imprime 'creating string' y devuelve el mensaje.\n   - Después, `generateMessage()` imprime 'generated message'.\n   - Finalmente, el mensaje global 'Welcome to the company, Jon Bond!' se imprime en la consola.",
+    },{
       id: "q39",
-      question:
-        "As part of an online course, a questions array is built in order to keep track of all the questions that have been presented to the learner. \n\nBelow is a sample of what the 'questionsArray' might look like. As shown, the array sometimes collects duplicates. In order to process the array, a developer must remove the duplicate values. What line of code can be used to remove the duplicates?",
+      question: "As part of an online course, a questions array is built in order to keep track of all the questions that have been presented to the learner. Below is a sample of what the 'questionsArray' might look like. As shown, the array sometimes collects duplicates. \n\nIn order to process the array, a developer must remove the duplicate values. What line of code can be used to remove the duplicates?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
         A: "let newQuizQuestions = new WeakMap(quizQuestions);",
         B: "let newQuizQuestions = new UniqueArray(quizQuestions);",
-        C: "let newQuizQuestions = new Map(quizQuestions);",
-        D: "let newQuizQuestions = new Set(quizQuestions);",
+        C: "let new QuizQuestions = new Map(quizQuestions);",
+        D: "let newQuizQuestions = new Set(quizQuestions);"
       },
-      explanation:
-        "La opción D es la correcta porque un Set en JavaScript automáticamente elimina los elementos duplicados. Al pasar el array a un Set, los valores duplicados se eliminan y se obtiene un nuevo conjunto de valores únicos.",
+      code: "['q1', 'q5', 'q13', 'q4', 'q1', 'q2', 'q10', 'q11', 'q12', 'q13']",
+      explanation: "La opción correcta es la D: 'let newQuizQuestions = new Set(quizQuestions);'.\n\n**Explicación detallada:**\n\n1. **Uso de Set:** El tipo de colección 'Set' permite crear una colección que almacena valores únicos. Se puede crear un 'Set' pasando un iterable, como un array, al constructor de 'Set'. Esto asegura que no haya valores duplicados en el conjunto.\n\n2. **Ejemplo práctico:**\n```javascript\nlet questionsArray = ['q1', 'q5', 'q13', 'q4', 'q1', 'q2', 'q10', 'q11', 'q12', 'q13'];\nlet uniqueQuestions = [...new Set(questionsArray)];\nconsole.log(uniqueQuestions); // ['q1', 'q5', 'q13', 'q4', 'q2', 'q10', 'q11', 'q12']\n```",
     },
     {
       id: "q40",
-      question:
-        "A developer needs to define an automated process for an employee management application. As part of the process, the setTimeout() method is being used to execute two functions. The second function should be executed without any delay after the first function. The 'data' variable has been assigned to an expected value for the purpose of testing. The following code has been written. /n/nWhich of the following statements are true about the output of this code?",
+      question: "A developer needs to define an automated process for an employee management application. As part of the process, the setTimeout() method is being used to execute two functions. The second function should be executed without any delay after the first function. The 'data' variable has been assigned to an expected value for the purpose of testing. The following code has been written. \n\nWhich of the following statements are true about the output of this code?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
@@ -687,32 +603,28 @@ export default function questions2() {
         A: "The updateProfile() function will be called immediately after the execution of the updateRole() function.",
         B: "The last message in the console will be 'process complete'.",
         C: "The updateRole() function will be called after the execution of the 'process complete' console.log() statement.",
-        D: "The second message in the console will be 'updated user: Jim Stokes'!",
+        D: "The second message in the console will be 'updated user: Jim Stokes'!"
       },
-      code: "const data = {\n\n     user: {\n\n          name: 'Jim Stokes',\n\n          updated: '2020-07-25'\n\n   }\n\n};\n\nconst fetchUser = (data) => {\n\n     const user = data.user ? data.user.name : null;\n\n     return user;\n\n}\n\nconsole.log('starting the process');\n\nsetTimeout(()=> {\n\n     console.log('updating user role');\n\n     updateRole();\n\n}, 1000);\n\nsetTimeout(()=> {\n\n     console.log('updating user profile');\n\n     updateProfile();\n\n}, 0)\n\nconsole.log(`updated user: ${fetchUser(data)}`);\n\nconsole.log('process complete');",
-      explanation:
-        "Cuando se ejecuta el código, los siguientes pasos ocurren:\n\n1) Se imprime 'starting the process'.\n2) El primer setTimeout con 1000 ms agregará la función 'updateRole()' a la cola de mensajes.\n3) El segundo setTimeout con 0 ms agregará 'updateProfile()' a la cola de mensajes, pero después de que termine todo el código sincrónico.\n4) Se imprime 'updated user: Jim Stokes' después de obtener el nombre del usuario.\n5) Se imprime 'process complete'.\n6) Se imprime 'updating user profile', seguido de 'updating user role'.\n\nPor lo tanto, 'updateRole()' se llama después de 'process complete' y 'updated user: Jim Stokes' aparece como el segundo mensaje.",
+      code: "const data = {\n  user: {\n    name: 'Jim Stokes',\n    updated: '2020-07-25'\n  }\n};\n\nconst fetchUser = (data) => {\n  const user = data.user ? data.user.name : null;\n  return user;\n};\n\nconsole.log('starting the process');\nsetTimeout(() => {\n  console.log('updating user role');\n  updateRole();\n}, 1000);\n\nsetTimeout(() => {\n  console.log('updating user profile');\n  updateProfile();\n}, 0);\n\nconsole.log(`updated user: ${fetchUser(data)}`);\nconsole.log('process complete');",
+      explanation: "Las opciones correctas son C: 'The updateRole() function will be called after the execution of the 'process complete' console.log() statement.' y D: 'The second message in the console will be 'updated user: Jim Stokes'!'.\n\n**Explicación detallada:**\n\n1. **Manejo de la pila de llamadas (call stack):** Todas las llamadas de función son procesadas en la pila de llamadas primero. Cuando se encuentra un 'setTimeout', el código dentro de él se agrega a la 'message queue', donde espera a ser ejecutado.\n\n2. **Uso de la cola de mensajes (message queue):** Los mensajes en la cola solo se procesan después de que la pila de llamadas esté vacía. Esto significa que 'setTimeout()' con un retraso de 0 ms no se ejecuta inmediatamente. En este caso, el código de la cola ejecutará 'updateProfile()' antes de 'updateRole()', ya que tiene un retraso menor.\n\n**Secuencia de ejecución:**\n- El primer mensaje es 'starting the process'.\n- El segundo mensaje es 'updated user: Jim Stokes'.\n- El tercer mensaje es 'process complete'.\n- El cuarto mensaje, 'updating user profile', ocurre justo después.\n- El quinto mensaje, 'updating user role', aparece al final.",
     },
     {
       id: "q41",
-      question:
-        "While working on a new project, a developer encounters a situation that requires the use of a single function from each of three different modules. \n\nThe 'parseData' function is needed from 'dataUtil.js'. The 'compose' function is needed from 'util.js'. And the 'normalizeData' function is needed from 'commonUtils.js'. All three module files are contained in a subfolder of the project named 'utilities'. In order to make these functions easily available throughout the project, the developer decides to create a passthrough module named 'pass.js' in the main project folder. What code must be added to 'pass.js' to make the three functions available to any module that imports 'pass.js'?",
+      question: "While working on a new project, a developer encounters a situation that requires the use of a single function from each of three different modules. The 'parseData' function is needed from 'dataUtil.js'. The 'compose' function is needed from 'util.js'. And the 'normalizeData' function is needed from 'commonUtils.js'. All three module files are contained in a subfolder of the project named 'utilities'. In order to make these functions easily available throughout the project, the developer decides to create a passthrough module named 'pass.js' in the main project folder. \n\nWhat code must be added to 'pass.js' to make the three functions available to any module that imports 'pass.js'?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
       options: {
         A: "import {parseData, compose, normalizeData} from './utilities/dataUtil.js','./utilities/util.js', './utilities/commonUtils.js';",
-        B: "export {parseData} from './utilities/dataUtil.js';     export {compose} from './utilities/util.js';     export {normalizeData} from './utilities/commonUtils.js';",
-        C: "import {parseData} from './utilities/dataUtil.js';     import {compose} from './utilities/util.js';     import {normalizeData} from './utilities/commonUtils.js';",
-        D: "export {parseData, compose, normalizeData} from './utilities/dataUtil.js' ,' ./utilities/util.js', './utilities/commonUtils.js';",
+        B: "export {parseData} from './utilities/dataUtil.js'; export {compose} from './utilities/util.js'; export {normalizeData} from './utilities/commonUtils.js';",
+        C: "import {parseData} from './utilities/dataUtil.js'; import {compose} from './utilities/util.js'; import {normalizeData} from './utilities/commonUtils.js';",
+        D: "export {parseData, compose, normalizeData} from './utilities/dataUtil.js' ,' ./utilities/util.js', './utilities/commonUtils.js';"
       },
-      explanation:
-        "La opción B es correcta porque se utiliza la sintaxis adecuada de exportación para hacer que las funciones de los módulos 'dataUtil.js', 'util.js' y 'commonUtils.js' estén disponibles a través del módulo 'pass.js'. Las otras opciones son incorrectas debido a errores de sintaxis o lógica en la importación/exportación.",
+      explanation: "La opción correcta es la B: 'export {parseData} from './utilities/dataUtil.js'; export {compose} from './utilities/util.js'; export {normalizeData} from './utilities/commonUtils.js;'.\n\n**Explicación detallada:**\n\nUn módulo de pasarela ('passthrough module') se puede crear importando elementos de otros módulos y exportándolos para hacerlos disponibles a cualquier otro módulo que los requiera. Esto se puede lograr utilizando la sintaxis 'export from', que permite importar y exportar un elemento en una sola línea.\n\n**Ejemplo práctico:**\n```javascript\nexport {parseData} from './utilities/dataUtil.js';\nexport {compose} from './utilities/util.js';\nexport {normalizeData} from './utilities/commonUtils.js';\n```\n\nUna vez creado el módulo de pasarela, cualquier módulo puede importar las funciones necesarias desde este módulo usando declaraciones de importación estándar.",
     },
     {
       id: "q42",
-      question:
-        "A developer wants to implement a User class to ease the process of creating multiple user objects with similar properties. Given below is the class implementation. However, the instantiation throws an error. \n\nWhich of the following is the reason?",
+      question: "A developer wants to implement a User class to ease the process of creating multiple user objects with similar properties. Given below is the class implementation. However, the instantiation throws an error. \n\nWhich of the following is the reason?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -720,15 +632,13 @@ export default function questions2() {
         A: "The objects userObj1 and userObj2 were instantiated with the same value of the Id property.",
         B: "The same class cannot be used to instantiate two different objects.",
         C: "A class cannot contain two constructors.",
-        D: "The name of an object should start with a capital letter.",
+        D: "The name of an object should start with a capital letter."
       },
-      explanation:
-        "La opción C es correcta. En JavaScript, una clase no puede contener más de un constructor. El error se produce porque la clase `User` tiene dos métodos `constructor`, lo que no está permitido. Las otras opciones no son correctas porque no están relacionadas con la causa del error.",
-    },
-    {
+      code: "class User {\n  constructor(id, name, age, salary) {\n    this.id = id;\n    this.name = name;\n    this.age = age;\n    this.salary = salary;\n  }\n\n  constructor(id, name, age) {\n    this.id = id;\n    this.name = name;\n    this.age = age;\n  }\n}\n\n// The User class was instantiated using the following code:\nconst userObj1 = new User(1, \"Alice\", 30, 43000);\nconst userObj2 = new User(1, \"John\", 45);",
+      explanation: "La opción correcta es la C: 'A class cannot contain two constructors.'.\n\n**Explicación detallada:**\n\n1. **Un constructor por clase:** En JavaScript, una clase solo puede tener un único constructor. Si se intenta definir más de un constructor en la misma clase, el código generará un error de sintaxis.\n\n2. **Corrección:** Para manejar múltiples configuraciones de inicialización, el constructor puede aceptar parámetros opcionales y ajustar la lógica según los valores recibidos.\n\n**Ejemplo corregido:**\n```javascript\nclass User {\n  constructor(id, name, age, salary = null) {\n    this.id = id;\n    this.name = name;\n    this.age = age;\n    this.salary = salary;\n  }\n}\n\nconst userObj1 = new User(1, \"Alice\", 30, 43000);\nconst userObj2 = new User(1, \"John\", 45);\n```",
+    },{
       id: "q43",
-      question:
-        "A developer is working on a solution that requires producing a function that has access to a variable that is private; it can't be affected by other code. \n\nShe has created a possible solution to test her approach. What will be displayed in the console?",
+      question: "A developer is working on a solution that requires producing a function that has access to a variable that is private; it can't be affected by other code. She has created a possible solution to test her approach. \n\nWhat will be displayed in the console?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -736,15 +646,14 @@ export default function questions2() {
         A: "NaN",
         B: "Uncaught ReferenceError: incrementCnt is not defined",
         C: "Uncaught ReferenceError: setCounter is not defined",
-        D: "5",
+        D: "5"
       },
-      explanation:
-        "La opción D es correcta. La función `incrementCnt` se invoca, y la variable `count` se incrementa por el valor de `counter` que se establece a 5 dentro de la función `setCounter`. Por lo tanto, `count` se incrementa de 0 a 5, lo que se muestra en la consola.",
+      code: "function initialize() {\n  let count = 0;\n  let counter = 1;\n  setCounter(5);\n  function setCounter(val) {\n    if (val > 0) counter = val;\n  };\n  return function(num) {\n    setCounter(num);\n    count += counter;\n    console.log(count);\n  };\n};\n\nconst incrementCnt = initialize();\n\n// Once she has run this code, she opens the console and invokes the 'incrementCnt' function.\nincrementCnt();",
+      explanation: "La opción correcta es la D: '5'.\n\n**Explicación detallada:**\n\n1. **Hoisting de funciones:** Las declaraciones de funciones en JavaScript son 'hoisted', lo que significa que se colocan en memoria antes de que se ejecute el código. Esto permite que una función sea llamada incluso antes de ser definida lexicamente en el código.\n\n2. **Uso de closures:** El closure permite que las variables y funciones dentro de una función se retengan en memoria y sean accesibles incluso después de que la función que las contiene haya terminado. En este caso, la función 'incrementCnt' que es devuelta por 'initialize()' todavía tiene acceso a 'setCounter', 'count' y 'counter' a través del closure.\n\n**Secuencia de ejecución:**\n- Cuando se llama a 'incrementCnt()', el valor inicial de 'counter' se establece en 5.\n- La función incrementa 'count' por el valor de 'counter', produciendo el valor '5' en la consola.",
     },
     {
       id: "q44",
-      question:
-        "What will be the result of the JavaScript code below \n\nwhen executed?",
+      question: "What will be the result of the JavaScript code below when executed?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -752,15 +661,13 @@ export default function questions2() {
         A: "Date and timestamp will be displayed in the browser console.",
         B: "The displayTime() function will throw an error.",
         C: "Only the date will be displayed in the browser console.",
-        D: "The displayDate() function will throw an error.",
+        D: "The displayDate() function will throw an error."
       },
-      explanation:
-        "La opción D es correcta. La función `displayDate` está siendo declarada como una expresión de función (una función anónima asignada a una variable). Debido a esto, `displayDate` no se encuentra definida antes de su asignación, lo que causa un error cuando se invoca antes de su definición.",
-    },
-    {
+      code: "displayTime(0);\n\ndisplayDate();\n\nfunction displayTime(secondsDelay) {\n  function delay(seconds) {\n    setTimeout(() => { console.log(`time: ${new Date().getTime()}`) }, seconds * 1000);\n  }\n  delay(secondsDelay);\n}\n\nvar displayDate = function () {\n  console.log(`date: ${new Date()}`);\n};",
+      explanation: "La opción correcta es la D: 'The displayDate() function will throw an error.'.\n\n**Explicación detallada:**\n\n1. **Funciones creadas mediante expresión:** Las funciones creadas usando la sintaxis de expresión, como 'displayDate', necesitan estar definidas antes de ser usadas. En este caso, 'displayDate()' se llama antes de que la función sea definida, lo que genera un error.\n\n2. **Hoisting y uso de 'var':** Aunque el uso de 'var' provoca que la variable 'displayDate' sea hoisted, solo la declaración de la variable se eleva, no su valor asignado. Por lo tanto, cuando 'displayDate()' se invoca antes de la definición, el valor de 'displayDate' será 'undefined', lo que genera un error.",
+    },{
       id: "q45",
-      question:
-        "A developer is creating 100 objects using the following techniques shown below. \n\nAfter examining technique A and technique B, which statement accurately reflects how many versions of the 'fullName' method will be created with each technique?",
+      question: "A developer is creating 100 objects using the following techniques shown below. After examining technique A and technique B, which statement accurately reflects how many versions of the 'fullName' method will be created with each technique?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -768,15 +675,14 @@ export default function questions2() {
         A: "Technique A produces 1 version and technique B produces 1 version.",
         B: "Technique A produces 100 versions and technique B produces 1 version.",
         C: "Technique A produces 1 version and technique B produces 100 versions.",
-        D: "Technique A produces 100 versions and technique B produces 100 versions.",
+        D: "Technique A produces 100 versions and technique B produces 100 versions."
       },
-      explanation:
-        "La opción B es correcta. En la Técnica A, se crea un nuevo método `fullName` en cada instancia del objeto, por lo que habrá 100 versiones del método. En la Técnica B, el método `fullName` se agrega al prototipo de la función constructora, lo que significa que solo existe 1 versión compartida por todas las instancias.",
+      code: "// Technique A\nfunction NewUser(fName, lName) {\n  this.firstName = fName;\n  this.lastName = lName;\n  this.fullName = function() {\n    return `${this.firstName} ${this.lastName}`;\n  };\n};\n\n// Following technique repeated 100 times with different names and variables\nconst usr1 = new NewUser('Stan', 'Jones');\n\n// Technique B\nfunction NewUser(fName, lName) {\n  this.firstName = fName;\n  this.lastName = lName;\n};\n\nNewUser.prototype.fullName = function() {\n  return `${this.firstName} ${this.lastName}`;\n};\n\n// Following technique repeated 100 times with different names and variables\nconst usr1 = new NewUser('Stan', 'Jones');",
+      explanation: "La opción correcta es la B: 'Technique A produces 100 versions and technique B produces 1 version.'.\n\n**Explicación detallada:**\n\n1. **Technique A:** El método 'fullName' se define dentro del constructor. Por lo tanto, cada vez que se crea un nuevo objeto usando el constructor, se crea una nueva copia del método 'fullName'. Esto genera 100 versiones del método.\n\n2. **Technique B:** El método 'fullName' se define en el prototipo de la función del constructor. Los objetos creados con esta técnica no contienen copias del método. Cuando el método se llama desde un objeto, se obtiene del prototipo compartido. Esto significa que solo se crea una versión del método.",
     },
     {
       id: "q46",
-      question:
-        "The following function has been set up to check an object. \n\nIf the value of results is greater than 80, a property named 'tested' should be added to the object before it is sent to the 'recordResults' function. However, the original object should not be changed in the process. Which of the following statements are correct about this function?",
+      question: "The following function has been set up to check an object. If the value of results is greater than 80, a property named 'tested' should be added to the object before it is sent to the 'recordResults' function. However, the original object should not be changed in the process. \n\nWhich of the following statements are correct about this function?",
       type: "multiple choice",
       correct_options: ["B", "D"],
       number_of_correct_answers: 2,
@@ -784,27 +690,25 @@ export default function questions2() {
         A: "The function will not change the original object as long as it is declared using const.",
         B: "Modifying a property of 'obj' will modify the original object.",
         C: "The function will not change the original object because it is assigned to a new variable.",
-        D: "The 'obj' variable refers to the original object because objects are passed by reference.",
+        D: "The 'obj' variable refers to the original object because objects are passed by reference."
       },
-      explanation:
-        "La opción B es correcta porque modificar una propiedad del objeto original modificará el objeto. La opción D también es correcta, ya que los objetos en JavaScript se pasan por referencia, lo que significa que cualquier cambio realizado en 'obj' afectará al objeto original.",
+      code: "function adjustObj(obj) {\n  if (obj.results > 80) {\n    obj.tested = true;\n  }\n  recordResults(obj);\n};",
+      explanation: "Las opciones correctas son B: 'Modifying a property of 'obj' will modify the original object.' y D: 'The 'obj' variable refers to the original object because objects are passed by reference.'.\n\n**Explicación detallada:**\n\n1. **Objetos pasados por referencia:** Cuando se pasa un objeto a una función, se pasa una referencia al objeto en memoria, no una copia del objeto. Por lo tanto, cualquier modificación a la referencia también afecta al objeto original.\n\n2. **Modificación de propiedades:** Cambiar una propiedad del objeto (como 'tested') dentro de la función también modifica el objeto original porque ambas variables (el objeto original y 'obj') apuntan al mismo objeto en memoria.",
     },
     {
       id: "q47",
-      question:
-        "Un desarrollador quiere implementar una clase Buyer que sea una clase hija de User. Las clases desarrolladas se muestran a continuación, pero no funcionan como se espera. \n\n¿Cuáles de las siguientes afirmaciones son verdaderas?",
+      question: "A developer wants to implement a Buyer class that is a child class of User. The developed classes are given below, but they do not work as intended. \n\nWhich of the following statements are true?",
       type: "multiple choice",
       correct_options: ["C", "D"],
       number_of_correct_answers: 2,
       options: {
-        A: "El constructor de la clase User espera 3 parámetros, pero la llamada a super en el constructor de la clase hija pasa 4 argumentos, lo que generaría un error.",
-        B: "El método 'addToPurchaseHistory' intenta acceder a la propiedad 'name' pero no existe en la clase Buyer.",
-        C: "Se debe usar la palabra clave 'super' para llamar al constructor de la clase padre antes de acceder a la propiedad 'this' en el constructor de la clase hija.",
-        D: "La clase hija siempre debe extender de la clase padre.",
+        A: "The User class constructor expects 3 parameters but the super call in the child class constructor passes 4 arguments, which would throw an error.",
+        B: "The 'addToPurchaseHistory' method tries to access the 'name' property but it does not exist in the Buyer class.",
+        C: "The 'super' keyword should be used to call the parent class constructor before accessing the 'this' property in the child constructor.",
+        D: "The child class should always extend the parent class."
       },
-      code: "class Buyer {\n\n     constructor(id, name, age) {\n\n          // implementación aquí\n\n     }\n\n}\n\nclass User extends Buyer {\n\n     constructor(id, name, age, purchaseHistory) {\n\n          this.purchaseHistory = purchaseHistory;\n\n          super(id, name, age, 25000);\n\n     }\n\n     addToPurchaseHistory(purchase) {\n\n          console.log(`User ${this.name} purchased ${purchase}`);\n\n          this.purchaseHistory.push(purchase);\n\n   }\n\n}",
-      explanation:
-        "En el código, se debe usar la palabra clave 'super' para invocar el constructor de la clase padre antes de acceder a 'this' en la clase hija. Además, la clase hija siempre debe extender de la clase padre. Aunque el constructor de la clase 'User' espera 3 parámetros, la clase 'Buyer' pasa 4 parámetros al constructor de la clase padre. Aunque esto no es ideal, JavaScript ignora los parámetros adicionales y las propiedades de la clase padre son heredadas por la clase hija, lo que permite que se acceda a la propiedad 'name' en el método 'addToPurchaseHistory'.",
-    },
-  ];
+      code: "class Buyer {\n  constructor(id, name, age) {\n    // implementation here\n  }\n}\n\nclass User extends Buyer {\n  constructor(id, name, age, purchaseHistory) {\n    this.purchaseHistory = purchaseHistory;\n    super(id, name, age, 25000);\n  }\n\n  addToPurchaseHistory(purchase) {\n    console.log(`User ${this.name} purchased ${purchase}`);\n    this.purchaseHistory.push(purchase);\n  }\n}",
+      explanation: "Las opciones correctas son C: 'The 'super' keyword should be used to call the parent class constructor before accessing the 'this' property in the child constructor.' y D: 'The child class should always extend the parent class.'.\n\n**Explicación detallada:**\n\n1. **Uso de 'super':** En JavaScript, el constructor del padre (llamado con 'super') debe ser invocado antes de acceder a 'this' en el constructor del hijo. En el código dado, 'this.purchaseHistory' se accede antes de llamar a 'super', lo que genera un error.\n\n2. **Relación padre-hijo:** En la herencia, siempre es el hijo (Buyer) quien extiende al padre (User), no al revés.\n\n**Corrección:**\n```javascript\nclass User {\n  constructor(id, name, age, purchaseHistory) {\n    this.id = id;\n    this.name = name;\n    this.age = age;\n    this.purchaseHistory = purchaseHistory || [];\n  }\n\n  addToPurchaseHistory(purchase) {\n    console.log(`User ${this.name} purchased ${purchase}`);\n    this.purchaseHistory.push(purchase);\n  }\n}\n\nclass Buyer extends User {\n  constructor(id, name, age) {\n    super(id, name, age);\n  }\n}\n```",
+    }                    
+    ];
 }
