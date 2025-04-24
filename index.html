@@ -9,8 +9,29 @@
   <body>
     <header>
       <div id="title">Test de JavaScript</div>
-      <div id="timer">Tiempo: 00:00</div>
+      <div style="display: flex; align-items: center; gap: 1rem">
+        <span id="timer-display">Time: 00:00</span>
+        <button id="config-btn" aria-label="Configuración">⚙️</button>
+      </div>
     </header>
+    <div id="config-modal" class="hidden">
+      <div class="modal-content">
+        <h2>Configuración del temporizador</h2>
+        <label>
+          <input type="radio" name="timer-mode" value="default" checked />
+          Temporizador normal (actual)
+        </label>
+        <label>
+          <input type="radio" name="timer-mode" value="105" />
+          Cuenta atrás de 105 minutos
+        </label>
+        <label>
+          <input type="radio" name="timer-mode" value="135" />
+          Cuenta atrás de 135 minutos
+        </label>
+        <button id="close-modal">Cerrar</button>
+      </div>
+    </div>
     <div id="quiz-container">
       <div id="question-container">
         <p id="question-text"></p>

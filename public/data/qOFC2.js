@@ -309,8 +309,7 @@ export default function questions2() {
     },
     {
       id: "q19",
-      question:
-        "A developer is gathering data from an API for a project she is working on. The API limits the number of records sent back as a part of the response to 50. However, the response contains a new URL as the value of the '_next' property if additional records are available. \n\nThe developer has set up a function that is successfully retrieving 50 records. She now needs to add code that will loop through and retrieve records until they have all been retrieved. Which code solves this problem?",
+      question: "A developer is gathering data from an API for a project she is working on. The API limits the number of records sent back as a part of the response to 50. However, the response contains a new URL as the value of the '_next' property if additional records are available. The developer has set up a function that is successfully retrieving 50 records. She now needs to add code that will loop through and retrieve records until they have all been retrieved. \n\nWhich code solves this problem?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -318,11 +317,11 @@ export default function questions2() {
         A: "if (response._next) { retrieveData(); }",
         B: "if (response._next) { retrieveData(response._next); }",
         C: "while (response._next) { retrieveData(response._next); }",
-        D: "if (response._next) { while(response._next){ retrieveData(); } }",
+        D: "if (response._next) { while(response._next) { retrieveData(); }}"
       },
-      explanation:
-        "La opción B es la correcta. Se debe verificar si existe un valor en 'response._next' y, en ese caso, llamar a 'retrieveData' pasando la nueva URL para seguir recuperando los registros. Las demás opciones contienen errores de lógica o sintaxis.",
-    },
+      code: "const finalResults = [];\n\nfunction retrieveData(url) {\n  fetch(url)\n    .then((resp) => resp.json())\n    .then(function (response) {\n      if (response.results) {\n        finalResults.push(response.results);\n      }\n\n      // Add code here to retrieve remaining records\n\n    })\n    .catch((issue) => console.log(`Couldn't retrieve records: ${issue}`));\n};",
+      explanation: "La opción correcta es la B: 'if (response._next) { retrieveData(response._next); }'. La recursión es una técnica para resolver problemas haciendo que una función se llame a sí misma. La función 'retrieveData' tiene todo lo necesario para recuperar registros. Simplemente necesita ser llamada de manera recursiva hasta que no haya más registros disponibles.\n\nEn este caso, la propiedad '_next' indica que hay más datos disponibles. Si existe esta propiedad en la respuesta, la función se llama nuevamente utilizando el nuevo URL como parámetro para seguir recuperando los registros restantes. Esto garantiza que todos los registros sean recuperados.",
+    },    
     {
       id: "q20",
       question:
@@ -534,20 +533,19 @@ export default function questions2() {
     },
     {
       id: "q31",
-      question:
-        "A developer working on an online quiz has imported two functions and a variable named 'questionCnt' from a module named 'question.js'. \n\nHowever, she receives an error when incrementing 'questionCnt'. What is causing the error and what code should she use?",
+      question: "A developer working on an online quiz has imported two functions and a variable named 'questionCnt' from a module named 'question.js'. However, she receives an error when incrementing 'questionCnt'. \n\nWhat is causing the error and what code should she use?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
       options: {
         A: "Changing the variable requires the use of a function instead of a statement. A function needs to be created and invoked.",
-        B: "In order to update a module variable, it must be imported as a default. This code should be used: import {questionCnt as default, updateQuestionCount, updateQuestions} from './questions.js';",
+        B: "In order to update a module variable, it must be imported as a default. This code should be used: import {questionCnt as default, update QuestionCount, updateQuestions} from './questions.js';",
         C: "A variable cannot be changed outside a module. The imported function named 'updateQuestionCount' should be used to change the value.",
-        D: "The increment operator cannot be used on imported variables. This code should be used: questionCnt = questionCnt + 1;",
+        D: "The increment operator cannot be used on imported variables. This code should be used: questionCnt = questionCnt + 1;"
       },
-      explanation:
-        "La opción C es correcta porque las variables importadas son de solo lectura, y no se pueden modificar directamente. Para cambiar el valor de 'questionCnt', debe utilizarse una función como 'updateQuestionCount' que realice el cambio en el módulo original.",
-    },
+      code: "import {questionCnt, updateQuestionCount, updateQuestions} from './question.js';\n\n// As she includes additional questions, she increments the question count using this code:\nquestionCnt++;",
+      explanation: "La opción correcta es la C: 'A variable cannot be changed outside a module. The imported function named 'updateQuestionCount' should be used to change the value.'. Cuando se importa una variable desde un módulo, es como si esa variable se definiera usando 'const'. No está permitido cambiar su valor fuera del módulo.\n\nCuando se proporciona una variable de este tipo, también debe proporcionarse una función para actualizar la variable si es necesario. En este caso, la función 'updateQuestionCount' puede utilizarse para realizar cambios en la variable 'questionCnt'. Esto asegura que los cambios en la variable se realicen correctamente sin violar las restricciones de los módulos.",
+    },    
     {
       id: "q32",
       question:
@@ -714,7 +712,7 @@ export default function questions2() {
     {
       id: "q42",
       question:
-        "A developer wants to implement a User class to ease the process of creating multiple user objects with similar properties. \n\nGiven below is the class implementation. However, the instantiation throws an error. Which of the following is the reason?",
+        "A developer wants to implement a User class to ease the process of creating multiple user objects with similar properties. Given below is the class implementation. However, the instantiation throws an error. \n\nWhich of the following is the reason?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,

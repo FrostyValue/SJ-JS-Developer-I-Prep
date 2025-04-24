@@ -476,8 +476,7 @@ export default function questions2() {
     },
     {
       id: "q29",
-      question:
-        " \n\nUsing the arrays in the first box, which statements would produce the array in the second box?",
+      question: "Using the arrays in the code box. \n\nWhich statements would produce the array in the second box?",
       type: "multiple choice",
       correct_options: ["B", "D", "E"],
       number_of_correct_answers: 3,
@@ -486,11 +485,11 @@ export default function questions2() {
         B: "[array1, array2].flat()",
         C: "[array1, array2]",
         D: "array1.concat(array2)",
-        E: "[ ... array1, ... array2]",
+        E: "[ ...array1, ...array2]"
       },
-      explanation:
-        "Las opciones B, D y E son formas válidas de fusionar dos arreglos en JavaScript. La opción A es incorrecta porque 'concat' es un método que debe ser llamado sobre el arreglo, no usado como una función. La opción C simplemente crea un arreglo de arreglos, en lugar de aplanarlos.",
-    },
+      code: "const array1 = ['a', 'b', 'c', 'd'];\nconst array2 = [1, 2, 3, 4, 5];\n\n['a', 'b', 'c', 'd', 1, 2, 3, 4, 5]",
+      explanation: "Las opciones correctas son B: '[array1, array2].flat()', D: 'array1.concat(array2)', y E: '[ ...array1, ...array2]'. Estas tres declaraciones utilizan el método 'flat()' de los arrays, el método 'concat()' de los arrays, y el operador de propagación para lograr los resultados deseados.\n\n**Método flat()**: Crea un nuevo array con todos los elementos de subarrays concatenados en ese array.\n\n**Método concat()**: Combina dos o más arrays. Este método es parte del prototipo del array, por lo que debe usarse como un método de uno de los arrays que se juntarán.\n\n**Operador de propagación**: Separa los elementos individuales de un array. Esos elementos pueden distribuirse y luego incluirse como parte de un nuevo array utilizando corchetes alrededor de la declaración.\n\nCombinar dos arrays dentro de los corchetes de un array simplemente creará un array de arrays, no un único array plano como en este caso.",
+    },    
     {
       id: "q30",
       question:

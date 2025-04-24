@@ -12,12 +12,16 @@ let selectedAnswers = [];
 let score = 0;
 let startTime;
 let timerInterval;
+let timerMode = 'default';
 
 const TOTAL_QUESTIONS = 60;
 
-document.getElementById("next-btn").style.display = "none";
-document.getElementById("explanation-container").style.display = "none";
-document.getElementById("confirm-btn").style.display = "block";
+// Inicialización de elementos del DOM
+const timerDisplay = document.getElementById('timer-display');
+const configBtn = document.getElementById('config-btn');
+const configModal = document.getElementById('config-modal');
+const closeModal = document.getElementById('close-modal');
+const radioButtons = document.querySelectorAll('input[name="timer-mode"]');
 
 const questionSources = [
   { questions: questions1(), percentage: 23 },
@@ -29,18 +33,19 @@ const questionSources = [
   { questions: questions7(), percentage: 7 }
 ];
 
-// Timer code
+// Función para iniciar el temporizador
 function startTimer() {
   startTime = Date.now();
   timerInterval = setInterval(() => {
     const elapsed = Date.now() - startTime;
     const seconds = Math.floor((elapsed / 1000) % 60);
     const minutes = Math.floor(elapsed / 60000);
-    document.getElementById('timer').textContent =
-      `Tiempo: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    timerDisplay.textContent =
+      `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
   }, 1000);
 }
 
+// Función para detener el temporizador
 function stopTimer() {
   clearInterval(timerInterval);
   const elapsed = Date.now() - startTime;
@@ -50,6 +55,48 @@ function stopTimer() {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
+// Mostrar el modal de configuración
+configBtn.addEventListener('click', () => {
+  configModal.classList.add('active');
+});
+
+closeModal.addEventListener('click', () => {
+  configModal.classList.remove('active');
+});
+
+// Manejar la selección del temporizador en el modal
+radioButtons.forEach(radio => {
+  radio.addEventListener('change', (e) => {
+    timerMode = e.target.value;
+    resetTimer();
+    configModal.style.display = 'none'; // Ocultar el modal al seleccionar una opción
+  });
+});
+
+// Función para reiniciar el temporizador con la opción seleccionada
+function resetTimer() {
+  clearInterval(timerInterval); 
+
+  if (timerMode === 'default') {
+    timerDisplay.textContent = '00:00'; 
+  } else {
+    let totalSeconds = timerMode === '105' ? 105 * 60 : 135 * 60;
+    
+    timerInterval = setInterval(() => {
+      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
+      const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+      timerDisplay.textContent = `Remaining time: ${minutes}:${seconds}`;
+      totalSeconds--;
+
+      if (totalSeconds < 0) {
+        clearInterval(timerInterval);
+        timerDisplay.textContent = '00:00';
+      }
+    }, 1000);
+  }
+}
+
+// Cargar las preguntas
 async function loadQuestions() {
   try {
     const loadedQuestions = [];
@@ -72,6 +119,7 @@ async function loadQuestions() {
   }
 }
 
+// Mostrar la pregunta en pantalla
 function showQuestion() {
   const question = questions[currentQuestionIndex];
 
@@ -107,8 +155,12 @@ function showQuestion() {
     instructionText.textContent = "";
     enableSingleSelection();
   }
+
+  document.getElementById("confirm-btn").style.display = "block";
+
 }
 
+// Función para manejar las opciones seleccionadas
 function handleOptionClick(optionKey) {
   const question = questions[currentQuestionIndex];
 
@@ -132,6 +184,7 @@ function handleOptionClick(optionKey) {
   });
 }
 
+// Función para habilitar la selección múltiple
 function enableMultipleSelection() {
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.querySelectorAll("button").forEach((button) => {
@@ -140,6 +193,7 @@ function enableMultipleSelection() {
   });
 }
 
+// Función para habilitar la selección simple
 function enableSingleSelection() {
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.querySelectorAll("button").forEach((button) => {
@@ -148,6 +202,7 @@ function enableSingleSelection() {
   });
 }
 
+// Función para comprobar la respuesta seleccionada
 document.getElementById("confirm-btn").onclick = checkAnswer;
 document.getElementById("next-btn").onclick = nextQuestion;
 
@@ -208,6 +263,7 @@ function checkAnswer() {
   });
 }
 
+// Función para pasar a la siguiente pregunta
 function nextQuestion() {
   currentQuestionIndex++;
   selectedAnswers = [];
@@ -232,9 +288,8 @@ function nextQuestion() {
   }
 }
 
-window.onload = loadQuestions;
-
-window.onload = () => {
+// Inicializar las preguntas y el temporizador
+document.addEventListener('DOMContentLoaded', () => {
   startTimer();
   loadQuestions();
-};
+});
