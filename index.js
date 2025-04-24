@@ -1,10 +1,10 @@
-import questions1 from './public/data/qVTC1.js';
-import questions2 from './public/data/qOFC2.js';
-import questions3 from './public/data/qBE3.js';
-import questions4 from './public/data/qDH4.js';
-import questions5 from './public/data/qAP5.js';
-import questions6 from './public/data/qSS6.js';
-import questions7 from './public/data/qTST7.js';
+import questions1 from "./public/data/qVTC1.js";
+import questions2 from "./public/data/qOFC2.js";
+import questions3 from "./public/data/qBE3.js";
+import questions4 from "./public/data/qDH4.js";
+import questions5 from "./public/data/qAP5.js";
+import questions6 from "./public/data/qSS6.js";
+import questions7 from "./public/data/qTST7.js";
 
 let currentQuestionIndex = 0;
 let questions = [];
@@ -12,15 +12,15 @@ let selectedAnswers = [];
 let score = 0;
 let startTime;
 let timerInterval;
-let timerMode = 'default';
+let timerMode = "default";
 
 const TOTAL_QUESTIONS = 60;
 
 // Inicialización de elementos del DOM
-const timerDisplay = document.getElementById('timer-display');
-const configBtn = document.getElementById('config-btn');
-const configModal = document.getElementById('config-modal');
-const closeModal = document.getElementById('close-modal');
+const timerDisplay = document.getElementById("timer-display");
+const configBtn = document.getElementById("config-btn");
+const configModal = document.getElementById("config-modal");
+const closeModal = document.getElementById("close-modal");
 const radioButtons = document.querySelectorAll('input[name="timer-mode"]');
 
 const questionSources = [
@@ -30,7 +30,7 @@ const questionSources = [
   { questions: questions4(), percentage: 7 },
   { questions: questions5(), percentage: 13 },
   { questions: questions6(), percentage: 8 },
-  { questions: questions7(), percentage: 7 }
+  { questions: questions7(), percentage: 7 },
 ];
 
 // Función para iniciar el temporizador
@@ -40,8 +40,10 @@ function startTimer() {
     const elapsed = Date.now() - startTime;
     const seconds = Math.floor((elapsed / 1000) % 60);
     const minutes = Math.floor(elapsed / 60000);
-    timerDisplay.textContent =
-      `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    timerDisplay.textContent = `Time: ${String(minutes).padStart(
+      2,
+      "0"
+    )}:${String(seconds).padStart(2, "0")}`;
   }, 1000);
 }
 
@@ -52,45 +54,50 @@ function stopTimer() {
   const totalSeconds = Math.floor(elapsed / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+    2,
+    "0"
+  )}`;
 }
 
 // Mostrar el modal de configuración
-configBtn.addEventListener('click', () => {
-  configModal.classList.add('active');
+configBtn.addEventListener("click", () => {
+  configModal.classList.add("active");
 });
 
-closeModal.addEventListener('click', () => {
-  configModal.classList.remove('active');
+closeModal.addEventListener("click", () => {
+  configModal.classList.remove("active");
 });
 
 // Manejar la selección del temporizador en el modal
-radioButtons.forEach(radio => {
-  radio.addEventListener('change', (e) => {
+radioButtons.forEach((radio) => {
+  radio.addEventListener("change", (e) => {
     timerMode = e.target.value;
     resetTimer();
-    configModal.style.display = 'none'; // Ocultar el modal al seleccionar una opción
+    configModal.style.display = "none"; // Ocultar el modal al seleccionar una opción
   });
 });
 
 // Función para reiniciar el temporizador con la opción seleccionada
 function resetTimer() {
-  clearInterval(timerInterval); 
+  clearInterval(timerInterval);
 
-  if (timerMode === 'default') {
-    timerDisplay.textContent = '00:00'; 
+  if (timerMode === "default") {
+    timerDisplay.textContent = "00:00";
   } else {
-    let totalSeconds = timerMode === '105' ? 105 * 60 : 135 * 60;
-    
+    let totalSeconds = timerMode === "105" ? 105 * 60 : 135 * 60;
+
     timerInterval = setInterval(() => {
-      const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
-      const seconds = (totalSeconds % 60).toString().padStart(2, '0');
+      const minutes = Math.floor(totalSeconds / 60)
+        .toString()
+        .padStart(2, "0");
+      const seconds = (totalSeconds % 60).toString().padStart(2, "0");
       timerDisplay.textContent = `Remaining time: ${minutes}:${seconds}`;
       totalSeconds--;
 
       if (totalSeconds < 0) {
         clearInterval(timerInterval);
-        timerDisplay.textContent = '00:00';
+        timerDisplay.textContent = "00:00";
       }
     }, 1000);
   }
@@ -157,7 +164,6 @@ function showQuestion() {
   }
 
   document.getElementById("confirm-btn").style.display = "block";
-
 }
 
 // Función para manejar las opciones seleccionadas
@@ -282,14 +288,14 @@ function nextQuestion() {
     const percentScore = Math.round((score / questions.length) * 100);
     alert(
       `¡Has completado el test!\n` +
-      `Puntuación final: ${score} de ${questions.length} (${percentScore}%)\n` +
-      `Tiempo total: ${finalTime}`
+        `Puntuación final: ${score} de ${questions.length} (${percentScore}%)\n` +
+        `Tiempo total: ${finalTime}`
     );
   }
 }
 
 // Inicializar las preguntas y el temporizador
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   startTimer();
   loadQuestions();
 });
