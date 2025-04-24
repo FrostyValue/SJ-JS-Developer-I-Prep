@@ -2,23 +2,53 @@ import questions1 from './public/data/qVTC1.js';
 import questions2 from './public/data/qOFC2.js';
 import questions3 from './public/data/qBE3.js';
 import questions4 from './public/data/qDH4.js';
+import questions5 from './public/data/qAP5.js';
+import questions6 from './public/data/qSS6.js';
+import questions7 from './public/data/qTST7.js';
 
 let currentQuestionIndex = 0;
 let questions = [];
 let selectedAnswers = [];
 let score = 0;
+let startTime;
+let timerInterval;
 
-const TOTAL_QUESTIONS = 75;
+const TOTAL_QUESTIONS = 60;
 
 document.getElementById("next-btn").style.display = "none";
 document.getElementById("explanation-container").style.display = "none";
 document.getElementById("confirm-btn").style.display = "block";
 
 const questionSources = [
-  { questions: questions1(), percentage: 50 },
-  { questions: questions2(), percentage: 50 },
-  { questions: questions4(), percentage: 0 },
+  { questions: questions1(), percentage: 23 },
+  { questions: questions2(), percentage: 25 },
+  { questions: questions3(), percentage: 17 },
+  { questions: questions4(), percentage: 7 },
+  { questions: questions5(), percentage: 13 },
+  { questions: questions6(), percentage: 8 },
+  { questions: questions7(), percentage: 7 }
 ];
+
+// Timer code
+function startTimer() {
+  startTime = Date.now();
+  timerInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+    const seconds = Math.floor((elapsed / 1000) % 60);
+    const minutes = Math.floor(elapsed / 60000);
+    document.getElementById('timer').textContent =
+      `Tiempo: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  const elapsed = Date.now() - startTime;
+  const totalSeconds = Math.floor(elapsed / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+}
 
 async function loadQuestions() {
   try {
@@ -192,10 +222,19 @@ function nextQuestion() {
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
+    const finalTime = stopTimer();
+    const percentScore = Math.round((score / questions.length) * 100);
     alert(
-      `¡Has completado el quiz!\nPuntuación final: ${score} de ${questions.length}`
+      `¡Has completado el test!\n` +
+      `Puntuación final: ${score} de ${questions.length} (${percentScore}%)\n` +
+      `Tiempo total: ${finalTime}`
     );
   }
 }
 
 window.onload = loadQuestions;
+
+window.onload = () => {
+  startTimer();
+  loadQuestions();
+};

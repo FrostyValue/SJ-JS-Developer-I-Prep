@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test JS</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header>
+      <div id="title">Test de JavaScript</div>
+      <div id="timer">Tiempo: 00:00</div>
+    </header>
     <div id="quiz-container">
-        <div id="question-container">
-            <p id="question-text"></p>
-            <p id="selection-instruction" style="font-weight: bold; color: #555;"></p>
-        </div>
-        <div id="code-container">
-            <pre id="code-snippet"></pre>
-        </div>
-        <div id="options-container">
-            <!-- Las opciones se generarán dinámicamente -->
-        </div>
-        <div id="explanation-container">
-            <p id="explanation-text"></p>
-        </div>
-        <div id="confirm-button-container">
-            <button id="confirm-btn" style="display: none;">Confirmar</button>
-        </div>
-        <div id="next-button-container">
-            <button id="next-btn" style="display: none;">Siguiente</button>
-        </div>
+      <div id="question-container">
+        <p id="question-text"></p>
+        <p
+          id="selection-instruction"
+          style="font-weight: bold; color: #555"
+        ></p>
+      </div>
+      <div id="code-container">
+        <pre id="code-snippet"></pre>
+      </div>
+      <div id="options-container">
+        <!-- Las opciones se generarán dinámicamente -->
+      </div>
+      <div id="explanation-container">
+        <p id="explanation-text"></p>
+      </div>
+      <div id="confirm-button-container">
+        <button id="confirm-btn" style="display: none">Confirmar</button>
+      </div>
+      <div id="next-button-container">
+        <button id="next-btn" style="display: none">Siguiente</button>
+      </div>
     </div>
     <script type="module" src="index.js"></script>
-</body>
+  </body>
 </html>
