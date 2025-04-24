@@ -1,4 +1,4 @@
-export default function questions2() {
+export default function questions1() {
   return [
     {
       id: "q1",
@@ -476,7 +476,8 @@ export default function questions2() {
     },
     {
       id: "q29",
-      question: "Using the arrays in the code box. \n\nWhich statements would produce the array in the second box?",
+      question:
+        "Using the arrays in the code box. \n\nWhich statements would produce the array in the second box?",
       type: "multiple choice",
       correct_options: ["B", "D", "E"],
       number_of_correct_answers: 3,
@@ -485,11 +486,12 @@ export default function questions2() {
         B: "[array1, array2].flat()",
         C: "[array1, array2]",
         D: "array1.concat(array2)",
-        E: "[ ...array1, ...array2]"
+        E: "[ ...array1, ...array2]",
       },
       code: "const array1 = ['a', 'b', 'c', 'd'];\nconst array2 = [1, 2, 3, 4, 5];\n\n['a', 'b', 'c', 'd', 1, 2, 3, 4, 5]",
-      explanation: "Las opciones correctas son B: '[array1, array2].flat()', D: 'array1.concat(array2)', y E: '[ ...array1, ...array2]'. Estas tres declaraciones utilizan el método 'flat()' de los arrays, el método 'concat()' de los arrays, y el operador de propagación para lograr los resultados deseados.\n\n**Método flat()**: Crea un nuevo array con todos los elementos de subarrays concatenados en ese array.\n\n**Método concat()**: Combina dos o más arrays. Este método es parte del prototipo del array, por lo que debe usarse como un método de uno de los arrays que se juntarán.\n\n**Operador de propagación**: Separa los elementos individuales de un array. Esos elementos pueden distribuirse y luego incluirse como parte de un nuevo array utilizando corchetes alrededor de la declaración.\n\nCombinar dos arrays dentro de los corchetes de un array simplemente creará un array de arrays, no un único array plano como en este caso.",
-    },    
+      explanation:
+        "Las opciones correctas son B: '[array1, array2].flat()', D: 'array1.concat(array2)', y E: '[ ...array1, ...array2]'. Estas tres declaraciones utilizan el método 'flat()' de los arrays, el método 'concat()' de los arrays, y el operador de propagación para lograr los resultados deseados.\n\n**Método flat()**: Crea un nuevo array con todos los elementos de subarrays concatenados en ese array.\n\n**Método concat()**: Combina dos o más arrays. Este método es parte del prototipo del array, por lo que debe usarse como un método de uno de los arrays que se juntarán.\n\n**Operador de propagación**: Separa los elementos individuales de un array. Esos elementos pueden distribuirse y luego incluirse como parte de un nuevo array utilizando corchetes alrededor de la declaración.\n\nCombinar dos arrays dentro de los corchetes de un array simplemente creará un array de arrays, no un único array plano como en este caso.",
+    },
     {
       id: "q30",
       question:
@@ -583,121 +585,152 @@ export default function questions2() {
     },
     {
       id: "q36",
-      question: "A senior developer has instructed her team to use strict mode when writing code. \n\nHow would the enabled feature have an effect on the following code?",
+      question:
+        "A senior developer has instructed her team to use strict mode when writing code. How would the enabled feature have an effect on the following code?",
       type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "An error will be thrown since accountName is assigned to a value but has not been declared.",
         B: "Strict mode prevents variable hoisting with default initialization, so accountType needs to be declared at the top.",
         C: "Strict mode forces variables to be declared using let or const keywords to avoid hoisting.",
-        D: "An error will be thrown since accountType is declared outside the function where it is used."
+        D: "An error will be thrown since accountType is declared outside the function where it is used.",
       },
-      correct_options: ["A"],
-      explanation: "En modo estricto, JavaScript lanzará un error si se asigna un valor a una variable que no ha sido previamente declarada. En este caso, 'accountName' no está declarada antes de su asignación, lo que provoca un error."
+      code: '"use strict"; // enable strict mode\n\ncreateAccount("ACME", "Partner");\n\nfunction createAccount(name, type) {\n  accountName = name;\n  accountType = type;\n  console.log(accountName + " is a " + accountType);\n}\n\nvar accountType;',
+      explanation:
+        "La opción correcta es la A: 'An error will be thrown since accountName is assigned to a value but has not been declared.'.\n\n**Explicación detallada:**\n\n1. **Strict Mode:** Al habilitar strict mode con 'use strict', las variables deben ser declaradas explícitamente antes de ser utilizadas o asignadas a un valor. De lo contrario, se lanza un error.\n\n2. **Error en accountName:** En este código, la variable 'accountName' se utiliza dentro de la función 'createAccount' sin haber sido declarada previamente. Esto hace que se lance un error en tiempo de ejecución bajo strict mode.\n\n3. **Hoisting y var:** Aunque el uso de 'var' permite que 'accountType' sea hoisted (declarado y almacenado en memoria antes de la ejecución), el strict mode no permite el uso de variables no declaradas, como es el caso de 'accountName'.\n\nPara corregir el error, 'accountName' debe ser declarado explícitamente, por ejemplo, usando 'let', 'const' o 'var':\n```javascript\nfunction createAccount(name, type) {\n  let accountName = name; // declaración explícita\n  accountType = type;\n  console.log(accountName + \" is a \" + accountType);\n}\n```",
     },
     {
       id: "q37",
-      question: "A developer is building a shopping cart page that will allow a customer to see the price and quantity of each item added to the cart as well as total price of the items. An array named 'items' has been defined to store the name, price, and quantity of each item. The following value has been assigned to the array for the purpose of testing. \n\nWhat code should be used to calculate the total price of the items?",
+      question:
+        "A developer is building a shopping cart page that will allow a customer to see the price and quantity of each item added to the cart as well as total price of the items. An array named 'items' has been defined to store the name, price, and quantity of each item. The following value has been assigned to the array for the purpose of testing. \n\nWhat code should be used to calculate the total price of the items?",
       type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "const total = items.reduce((accumulator, currentValue) => { return (accumulator + currentValue.price * currentValue.quantity) }, 0);",
         B: "const total = items.reduce((accumulator, currentValue, 0) => { return (accumulator + currentValue.price * currentValue.quantity) });",
         C: "const total = items.reduce((previousValue, currentValue) => { return (previousValue.price * previousValue.quantity + currentValue.price * currentValue.quantity) }, 0);",
-        D: "const total = items.reduce((previousValue, currentValue, 0) => { return (previousValue.price * previousValue.quantity + currentValue.price * currentValue.quantity) });"
+        D: "const total = items.reduce((previousValue, currentValue, 0) => { return (previousValue.price * previousValue.quantity + currentValue.price * currentValue.quantity) });",
       },
-      correct_options: ["A"],
-      explanation: "La opción A es correcta porque utiliza el método 'reduce' para acumular el precio total de los artículos. La clave está en multiplicar 'price' por 'quantity' y luego acumular el resultado en el acumulador."
+      code: 'let items = [\n  {name: "Laptop X1000", price: 999, quantity: 1},\n  {name: "Tablet P500", price: 799, quantity: 2},\n  {name: "Phone Z100", price: 499, quantity: 3}\n];',
+      explanation:
+        "La opción correcta es la A: 'const total = items.reduce((accumulator, currentValue) => { return (accumulator + currentValue.price * currentValue.quantity) }, 0);'.\n\n**Explicación detallada:**\n\n1. **Método reduce():** Este método permite reducir un array a un único valor al ejecutar una función callback en cada elemento del array. La función recibe dos argumentos clave: 'accumulator' (acumulador) y 'currentValue' (valor actual).\n\n2. **InitialValue:** Aquí el acumulador comienza con el valor 0 para asegurar que los cálculos sean precisos y no dependan del primer elemento del array (que es un objeto).\n\n**Ejemplo práctico:**\n```javascript\nconst total = items.reduce((accumulator, currentValue) => {\n  return accumulator + (currentValue.price * currentValue.quantity);\n}, 0);\nconsole.log(total); // Resultado esperado: 4993\n```",
     },
     {
       id: "q38",
-      question: "A junior software developer who is working on a task management app has written the JavaScript code below for the purpose of testing a functionality. \n\nWhat will be displayed in the console when this code is executed?",
+      question:
+        "A junior software developer who is working on a task management app has written the JavaScript code below for the purpose of testing a functionality. \n\nWhat will be displayed in the console when this code is executed?",
       type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "undefined true true",
         B: "0 undefined true",
         C: "0 true true",
-        D: "undefined undefined true"
+        D: "undefined undefined true",
       },
-      correct_options: ["A"],
-      explanation: "El primer 'console.log' imprimirá 'undefined' porque la variable 'task' no está definida. El segundo imprimirá 'true' porque la condición 'task !== null' es verdadera. El tercer 'console.log' imprimirá también 'true' porque la condición 'task === undefined' es verdadera."
+      code: "let numberOfTasks;\nlet taskRequired;\nlet taskEmpty;\nlet currentTask = null;\nlet tasks = ['Water the plants', 'Cook dinner'];\n\nif (tasks.length === 0) {\n  numberOfTasks = 0;\n}\n\nif (currentTask == undefined && currentTask == null) {\n  taskRequired = true;\n}\n\nif (currentTask == \"\" || currentTask == null) {\n  taskEmpty = true;\n}\n\nconsole.log(numberOfTasks, taskRequired, taskEmpty);",
+      explanation:
+        "La opción correcta es la A: 'undefined true true'.\n\n**Explicación detallada:**\n\n1. **Primera declaración if:** `tasks.length === 0` evalúa como false porque hay dos elementos en el array 'tasks'. Por lo tanto, 'numberOfTasks' no se modifica y permanece como 'undefined'.\n\n2. **Segunda declaración if:** `currentTask == undefined && currentTask == null` evalúa como true porque 'null' es igual a 'undefined' y también igual a 'null'. Esto establece 'taskRequired' como true.\n\n3. **Tercera declaración if:** `currentTask == \"\" || currentTask == null` evalúa como true debido a que 'currentTask' es null. Esto establece 'taskEmpty' como true.\n\n**Resultado final:** 'undefined true true' se registra en la consola.",
     },
     {
       id: "q39",
-      question: " \n\nOnce the code below has completed, what values and order would the array contain?",
-      code: "let array = ['one', 1, 'two', 2, 3, 4];\nfor (let val of array) {\n  if (val === 3) {\n    array.push('three');\n  }\n}\narray.splice(1, 1);\narray.splice(2, 3, 'four');",
+      question:
+        "Once the code below has completed, what values and order would the array contain?",
       type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
       options: {
         A: "['one', 'two', 'three', 'four']",
         B: "['one', 1, 4, 'three', 'four']",
         C: "['one', 'two', 'four', 'three']",
-        D: "['one', 1, 'two', 'four', 'three']"
+        D: "['one', 1, 'two', 'four', 'three']",
       },
-      correct_options: ["C"],
-      explanation: "El bucle 'for' recorre el array y cuando llega al valor 3, se agrega 'three'. Luego, 'splice' elimina el valor en la posición 1 (el número 1) y reemplaza los elementos desde la posición 2 por 'four'. El resultado es el array ['one', 'two', 'four', 'three']."
+      code: "let array = ['one', 1, 'two', 2, 3, 4];\n\nfor (let val of array) {\n  if (val === 3) {\n    array.push('three');\n  }\n}\n\narray.splice(1, 1);\narray.splice(2, 3, 'four');",
+      explanation:
+        "La opción correcta es la D: '['one', 1, 'two', 'four', 'three']'.\n\n**Explicación detallada:**\n\n1. **Push:** Se agrega 'three' al final del array. Ahora el array es `['one', 1, 'two', 2, 3, 4, 'three']`.\n\n2. **Primer splice:** `array.splice(1, 1)` elimina el segundo elemento del array (valor `1`). El array ahora es `['one', 'two', 2, 3, 4, 'three']`.\n\n3. **Segundo splice:** `array.splice(2, 3, 'four')` elimina tres elementos desde la posición 2 (`2, 3, 4`) y agrega 'four' en esa posición. El array final es `['one', 'two', 'four', 'three']`.",
     },
     {
       id: "q40",
-      question: "A developer needs to define a JavaScript variable named 'totalCost', which will be used to store the total cost of product items that are contained in a shopping cart. \n\nHow should this variable be declared and initialized?",
+      question:
+        "A developer needs to define a JavaScript variable named 'totalCost', which will be used to store the total cost of product items that are contained in a shopping cart. \n\nHow should this variable be declared and initialized?",
       type: "multiple choice",
       options: {
         A: "var totalCost = On;",
         B: "totalCost = new float(0.0);",
         C: "let totalCost = 0;",
-        D: "float totalCost = 0.0;"
+        D: "float totalCost = 0.0;",
       },
       correct_options: ["C"],
-      explanation: "La opción C es la correcta porque 'let' es la forma adecuada de declarar una variable en JavaScript. 'totalCost' debe inicializarse en 0 ya que se usará para almacenar el costo total de los productos."
-    },    
+      explanation:
+        "La opción C es la correcta porque 'let' es la forma adecuada de declarar una variable en JavaScript. 'totalCost' debe inicializarse en 0 ya que se usará para almacenar el costo total de los productos.",
+    },
     {
       id: "q41",
-      question: "A program contains two objects named userObj1 and userObj2, as shown below. What will be the output of the console. \n\nlog statements at the end of the loop?",
+      question:
+        "A program contains two objects named userObj1 and userObj2, as shown below. What will be the output of the console.log statements at the end of the loop?",
       type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "[index=0][User id:1][User name:Carlos] [index=1]2",
         B: "[index=0][User id:1][User name: Carlos] [index=1][User id:2][User name: Luis]",
         C: "[index=0]1 [index=1][User id:2][User name: Luis]",
-        D: "[index=0]1 [index=1]2"
+        D: "[index=0]1 [index=1]2",
       },
-      correct_options: ["A"],
-      explanation: "En este caso, el primer 'console.log' muestra los datos del primer objeto (userObj1), y el segundo muestra solo el valor de 2, que corresponde al segundo objeto. Esto es debido a que no se están accediendo correctamente a los valores del segundo objeto."
+      code: 'const userObj1 = {\n  id: 1,\n  name: "Carlos",\n  toString: function () {\n    return `[User id:${this.id}] [User name:${this.name}]`;\n  }\n};\n\nconst userObj2 = {\n  id: 2,\n  name: "Luis",\n  toString: function () {\n    return `[User id:${this.id}] [User name:${this.name}]`;\n  },\n  valueOf: function () {\n    return this.id;\n  }\n};\n\nlet userArray = new Array(userObj1, userObj2);\nuserArray.forEach((user, index) => {\n  console.log("[index=" + index + "]" + user);\n});',
+      explanation:
+        "La opción correcta es la A: '[index=0][User id:1][User name:Carlos] [index=1]2'.\n\n**Explicación detallada:**\n\n1. **Uso de toString():** Cuando un objeto se convierte implícitamente en cadena mediante el operador '+', primero intenta invocar el método `toString()` del objeto.\n\n2. **Uso de valueOf():** Para conversiones numéricas, el método `valueOf()` tiene prioridad sobre el método `toString()`. En este caso, para `userObj2`, el método `valueOf()` devuelve su `id` (2), lo que resulta en que se imprima '[index=1]2'.\n\n3. **Resultado:** Para `userObj1`, al no tener el método `valueOf()` pero sí un método `toString()`, se usa el método `toString()` y se imprime '[index=0][User id:1][User name:Carlos]'.",
     },
     {
       id: "q42",
-      question: "Which of the following operations would result in NaN being placed in variable 'num'?",
+      question:
+        "Which of the following operations would result in NaN being placed in variable 'num'?",
       type: "multiple choice",
       options: {
         A: "const num = 1/ Number('1000');",
         B: "const num = 1/ new Number(true);",
         C: "const num = 1/false;",
-        D: "const num = 1/ Number('true');"
+        D: "const num = 1/ Number('true');",
       },
       correct_options: ["D"],
-      explanation: "La opción D es correcta porque el intento de dividir 1 entre 'Number('true')' no dará un número válido, lo que resulta en NaN. 'true' no se puede convertir a un número válido, lo que da como resultado NaN."
+      explanation:
+        "La opción D es correcta porque el intento de dividir 1 entre 'Number('true')' no dará un número válido, lo que resulta en NaN. 'true' no se puede convertir a un número válido, lo que da como resultado NaN.",
     },
     {
       id: "q43",
-      question: "There is a requirement to add functionality in a web application that would allow a member to update their basic personal information. A frontend developer has written the following JavaScript code to check if a variable is properly assigned to a value. \n\nWhat will be the result when the printJobTitle() function is called?",
+      question:
+        "There is a requirement to add functionality in a web application that would allow a member to update their basic personal information. A frontend developer has written the following JavaScript code to check if a variable is properly assigned to a value. What will be the result when the printJobTitle() function is called?",
       type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
       options: {
         A: "Error will be thrown since the 'jobTitle' variable is declared twice.",
         B: "'I am an Engineer' will be logged in the debugging console.",
         C: "The printJobTitle() function will not be able to access the 'jobTitle' variable.",
-        D: "'I am an Architect' will be logged in the debugging console."
+        D: "'I am an Architect' will be logged in the debugging console.",
       },
-      correct_options: ["B"],
-      explanation: "En este caso, la variable 'jobTitle' es declarada y asignada correctamente, y la función 'printJobTitle()' muestra 'I am an Engineer'. No hay ningún error de declaración, y el acceso a la variable es correcto."
+      code: "let jobTitle = 'Engineer';\n\nfunction printJobTitle() {\n  changeJobTitle();\n  console.log('I am an ' + jobTitle);\n}\n\nfunction changeJobTitle() {\n  let jobTitle = 'Architect';\n}",
+      explanation:
+        "La opción correcta es la B: 'I am an Engineer' will be logged in the debugging console.\n\n**Explicación detallada:**\n\n1. **Ámbito de las variables:** La variable `jobTitle` declarada dentro de la función `changeJobTitle()` es local a esa función y no afecta la variable global `jobTitle`. Por lo tanto, cuando `printJobTitle()` intenta acceder a `jobTitle`, encuentra la variable global.\n\n2. **Búsqueda en la cadena de alcance:** Cuando la declaración `console.log` en `printJobTitle()` se ejecuta, el motor de JavaScript realiza una búsqueda de la variable `jobTitle`. Primero busca dentro de la función `printJobTitle()`. Cuando no encuentra una declaración allí, continúa subiendo por la cadena de alcance hasta encontrar la variable global `jobTitle`.\n\n**Resultado:** La variable global tiene el valor `'Engineer'`, que se registra en la consola.",
     },
     {
       id: "q44",
-      question: "A developer needs to convert customer data stored in a JavaScript object into JSON format and send it to a remote endpoint. \n\nWhich method of the JSON object should be used for the conversion?",
+      question:
+        "A developer needs to convert customer data stored in a JavaScript object into JSON format and send it to a remote endpoint. Which method of the JSON object should be used for the conversion?",
       type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "JSON.stringify()",
         B: "JSON.parse()",
         C: "JSON.serialize()",
-        D: "JSON.send()"
+        D: "JSON.send()",
       },
-      correct_options: ["A"],
-      explanation: "La opción A es correcta. 'JSON.stringify()' convierte un objeto JavaScript en una cadena JSON que puede enviarse a un servidor. 'JSON.parse()' hace lo contrario, es decir, convierte una cadena JSON en un objeto JavaScript."
-    }    
+      code: "const customer = {\n  firstName: 'Olivia',\n  lastName: 'Parker',\n};",
+      explanation:
+        "La opción correcta es la A: 'JSON.stringify()'.\n\n**Explicación detallada:**\n\n1. **Uso de JSON.stringify():** Este método se utiliza para convertir un objeto de JavaScript en una cadena JSON. Esto es útil para enviar datos a un servidor remoto mediante una solicitud HTTP.\n\n2. **JSON.parse():** Este método realiza el proceso inverso, deserializando una cadena JSON en un objeto de JavaScript.\n\n3. **Métodos inválidos:** Tanto `JSON.serialize()` como `JSON.send()` no son métodos válidos de la biblioteca JSON.",
+    },
   ];
-}
+};

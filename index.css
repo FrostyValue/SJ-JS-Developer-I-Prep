@@ -194,9 +194,9 @@ header {
 #explanation-container {
   font-size: 1rem;
   font-weight: bold;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: var(--border-radius);
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .green {
@@ -217,10 +217,11 @@ header {
 }
 
 #confirm-btn {
-  margin-top: 1rem;
+  margin-top: 0rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   display: block;
+  margin-left: 27vw;
 }
 
 #next-btn {
@@ -235,5 +236,5 @@ header {
 #next-button-container,
 #confirm-button-container {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
