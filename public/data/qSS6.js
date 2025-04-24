@@ -50,6 +50,375 @@ export default function questions6() {
       explanation:
         "La opción correcta es la A: 'node --inspect main.js'. Al iniciar una aplicación Node.js, se puede usar la bandera '-inspect' para habilitar el V8 Inspector para depuración. Esto permite que la instancia de Node.js escuche a un cliente de depuración en el host y puerto 127.0.0.1:9229 por defecto. También se le asigna un UUID único.\n\nCuando se utiliza este comando, se devuelve la URL completa que contiene estos tres componentes. Una persona puede navegar a la URL, iniciar el Inspector y hacer clic en un ícono para abrir 'DevTools for Node.js' y depurar la aplicación.\n\nLos otros comandos contienen banderas inválidas (-inspector, -debug y -debugger) y no pueden ser usados para depurar una aplicación Node.js.",
     },
-    
+    {
+      id: "q4",
+      question:
+        "A developer has created a Node.js web server and is trying to replace the query portion of a given web address with 'year=2019'. The following code has been written: \n\nWhich code statement can be added for this use case?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "url.search = 'year=2019';",
+        B: "url.queryParams = 'year=2019';",
+        C: "url.searchParams = 'year=2019';",
+        D: "url.query = 'year=2019';",
+      },
+      code: "// Value of webAddress: 'https://www.cosmicsolutionswebportal.com:8080/users?year=2020'\nconst url = new URL(webAddress);\n\n// Add code here",
+      explanation:
+        "La opción correcta es la A: 'url.search = 'year=2019';'. Al usar Node.js, el módulo 'url' proporciona dos APIs para trabajar con URLs: la API legacy URL y una API más reciente que implementa el WHATWG URL Standard. El código en este escenario usa la última.\n\nLas propiedades de un objeto URL pueden ser usadas para obtener y/o establecer las diferentes partes de una URL dada. La propiedad 'search' puede ser usada para obtener y establecer la porción de consulta serializada de la URL.\n\nLa propiedad 'searchParams' puede ser usada para obtener el objeto 'URLSearchParams' que representa los parámetros de consulta de la URL, pero es una propiedad de solo lectura.\n\nAunque el objeto URLSearchParams puede ser usado para mutar la instancia de URL, se recomienda usar la propiedad 'search' para reemplazar la totalidad de los parámetros de consulta. La API WHATWG URL no tiene propiedades llamadas 'query' y 'queryParams'. La API legacy URL permite usar la propiedad 'query' del urlObject.",
+    },
+    {
+      id: "q5",
+      question:
+        "A team of front-end web developers is tasked to build a feature-rich web application that will be accessed by a large number of concurrent users and allow them to perform different types of requests such as asynchronous operations, messaging services, and more. \n\nWhy would a Node.js implementation be a recommended solution in this scenario?",
+      type: "multiple choice",
+      correct_options: ["A", "B", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "The development team does not need to learn a new programming language.",
+        B: "The developers can take advantage of the available packages in the npm registry.",
+        C: "Node.js is much simpler than JavaScript, which would help speed up development.",
+        D: "Node.js is capable of handling multiple concurrent requests efficiently.",
+        E: "Node.js is exclusively used for building web apps and dominates this sector.",
+      },
+      explanation:
+        "Las opciones correctas son A: 'The development team does not need to learn a new programming language.', B: 'The developers can take advantage of the available packages in the npm registry.', y D: 'Node.js is capable of handling multiple concurrent requests efficiently.'.\n\nJavaScript es el lenguaje de la web y es comúnmente usado en el desarrollo web front-end o lógica de aplicaciones del lado del cliente. Node.js no es un lenguaje de programación. Node.js es un motor de tiempo de ejecución de JavaScript de código abierto impulsado por V8, que se utiliza en Google Chrome y otros navegadores.\n\nEl motor de tiempo de ejecución V8 viene acompañado de bibliotecas para realizar operaciones de I/O y redes de manera eficiente, lo que permite usar JavaScript no solo para el desarrollo de aplicaciones web, sino también para implementar lógica del lado del servidor o construir software de escritorio como Visual Studio Code. Además, Node.js utiliza npm, una base de datos en línea de más de 1 millón de paquetes, que los desarrolladores pueden aprovechar para construir aplicaciones.",
+    },
+    {
+      id: "q6",
+      question:
+        'A developer wants to evaluate a block of JavaScript code that has been written to test the explicit Boolean coercion of certain values. The minified code is given below. \n\nIf "script" denotes the given code, which Node.js command can be used to evaluate it?',
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: 'node-e “script"',
+        B: 'npm -c "script"',
+        C: 'npm-r "script"',
+        D: 'node-c “script"',
+      },
+      code: "let arr = new Array(null, undefined, 0, '', 'sample', NaN, 23, -12);\narr.forEach(a => { console.log(a + '=' + Boolean(a)); });",
+      explanation:
+        "La opción correcta es la A: 'node-e “script\"'. La bandera node -e se usa para evaluar el argumento pasado como JavaScript.\n\nLa bandera node -c verifica la sintaxis del código sin ejecutarlo. Los otros dos comandos de npm no existen.",
+    },
+    {
+      id: "q7",
+      question:
+        "A developer is building a Node.js app locally. The main JavaScript file of the application package is 'main.js'. A testing framework called 'jest' has been installed as a development dependency in order to execute tests. The package.json file of the app contains the 'scripts' object given below. \n\nWhich two npm commands can be used to run the app and test it?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "npm run, npm run test",
+        B: "npm start, npm run test",
+        C: "npm run main.js, npm test",
+        D: "npm run, npm test",
+      },
+      code: '"scripts": {\n  "start": "node main.js",\n  "test": "jest"\n}',
+      explanation:
+        "La opción correcta es la B: 'npm start, npm run test'. El comando 'npm start' se usa para ejecutar un comando especificado en la propiedad 'start' del objeto 'scripts' en el archivo package.json.\n\nEn este caso, el comando 'node main.js' se ha especificado como el valor de la propiedad 'start', y ejecuta el archivo main.js de la aplicación.\n\nEl comando 'npm run <command>' se usa para ejecutar el comando especificado que se ha agregado como propiedad en el objeto 'scripts'. En este caso, se puede usar el comando 'npm run test' en la terminal para ejecutar el comando 'jest' que se ha agregado como valor de la propiedad 'test' en el objeto 'scripts'.\n\nCuando el comando 'npm run' se usa solo sin especificar el comando, lista todos los comandos disponibles. También es posible omitir 'run' del comando y simplemente ingresar 'npm start' o 'npm test'.",
+    },
+    {
+      id: "q8",
+      question:
+        "A developer has written the code below in a Node.js app. It retrieves data from an external database and stores it in a constant named 'dbContent'. She would like to read a file named 'user.json' and replace the content of another file named 'employee.json' in the application directory based on the data received from the database and the content of 'user.json'. These two operations should be performed synchronously. \n\nWhich two code statements can be added for this use case?",
+      type: "multiple choice",
+      correct_options: ["B", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "fs.replaceFileSync(file2Path, JSON.stringify(dbContent));",
+        B: "const fileContent = fs.readFileSync(file1Path, 'utf-8');",
+        C: "fs.writeFileSync(file2Path, JSON.stringify(dbContent));",
+        D: "const fileContent = fs.readFile(file1Path, 'utf-8');",
+      },
+      code: "const fs = require('fs');\nconst helper = require('./helper.js');\nconst file1Path = './user.json';\nconst file2Path = './employee.json';\n\nconst readAndWrite = async () => {\n  const dbContent = await helper.getContent();\n  try {\n    // Add code to read the file named 'user.json'\n    const fileContentObj = JSON.parse(fileContent);\n    dbContent.location = fileContentObj.location;\n    dbContent.salary = fileContentObj.salary;\n\n    // Add code to replace the content of the file named 'employee.json'\n  } catch (error) {\n    console.error(error);\n  }\n};\n\nreadAndWrite();",
+      explanation:
+        "Las opciones correctas son B: 'const fileContent = fs.readFileSync(file1Path, 'utf-8');' y C: 'fs.writeFileSync(file2Path, JSON.stringify(dbContent));'.\n\nEl método fs.readFileSync() es un método bloqueante en Node.js que permite leer un archivo de forma síncrona. Requiere especificar la ruta del archivo como parámetro. Opcionalmente, se puede especificar la codificación. Si se especifica la codificación, devuelve el contenido del archivo como una cadena.\n\nEl método fs.readFile() es un método no bloqueante que permite leer un archivo de forma asincrónica. Sin embargo, en este caso, el archivo debe ser leído de forma síncrona.\n\nDe manera similar, el método fs.writeFileSync() se usa para escribir datos en el archivo especificado de manera síncrona. Requiere especificar el archivo y los datos que deben escribirse. Reemplaza el contenido existente del archivo. No existe un método llamado fs.replaceFileSync().",
+    },
+    {
+      id: "q11",
+      question:
+        "A developer wishes to debug the index.js file of an app as shown below. \n\nWhich command can be used with a debugger statement to debug the index.js file in the latest version of Node.js?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "node -i index.js",
+        B: "node -d index.js",
+        C: "node inspect index.js",
+        D: "node -- debug index.js",
+      },
+      code: "// ------ index.js\nvar http = require('http'),\nexpress = require('express'),\nbodyParser = require('body-parser'),\ncors = require('cors'),\nfs = require('fs');\n\nvar app = express();\nvar pagingNum = 0;\nvar returnArray;\n\napp.use(bodyParser.urlencoded({\n  extended: true\n}),\ncors({\n  origin: true\n}),\nbodyParser.json()\n);\n\nvar server = http.createServer(app);\nserver.listen(process.env.PORT || 5000, function (err) {\n  console.info('listening on http://localhost:5000 | ' + process.env.PORT);\n});",
+      explanation:
+        "La opción correcta es la C: 'node inspect index.js'. El comando 'node -debug index.js' solo se puede usar en versiones más antiguas de Node. La última versión acepta el comando 'node inspect index.js'. Los otros comandos no existen en la CLI de Node.",
+    },
+    {
+      id: "q12",
+      question:
+        "A developer would like to use the 'path' module in Node.js to retrieve the directory of a .txt file that exists in the local file system. The code below has been written. \n\nWhich of the following are valid ways of retrieving only the directory of the given file?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "path.normalize(file).dir;",
+        B: "path.dir(file);",
+        C: "path.dirname(file);",
+        D: "path.parse(file).dir;",
+      },
+      code: "const path = require('path');\nconst file = '/users/employees/james.txt';",
+      explanation:
+        "Las opciones correctas son C: 'path.dirname(file);' y D: 'path.parse(file).dir;'.\n\nEl método path.parse() puede usarse para obtener un objeto cuyas propiedades son dir, root, base, name y ext. La propiedad 'dir' puede accederse para obtener el nombre del directorio, que es '/users/employees'.\n\nEl método path.dirname() también puede usarse para obtener el nombre del directorio de la ruta especificada. El método path.normalize() se usa para calcular la ruta real cuando contiene especificadores relativos (como ., .. , o //). No existe un método llamado path.dir().",
+    },
+    {
+      id: "q13",
+      question:
+        "A web developer is building a Node.js app and would like to use the built-in debugger to debug the code in the main JavaScript file. She has used the 'node inspect main.js' command to use the debugging client. \n\nWhich commands can be used in the terminal to set a breakpoint on line 3, watch the variable named 'user', and step to the next line of code?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "setBreakpoint(3), watch(user), and step",
+        B: "breakpoint(3), watch('user'), and next",
+        C: "setBreakpoint(3), watch('user'), and next",
+        D: "breakpoint(3), watch(user), and cont",
+      },
+      explanation:
+        "La opción correcta es la C: 'setBreakpoint(3), watch('user'), and next'. Al usar la utilidad de depuración integrada en Node.js, el comando setBreakpoint(line) o sb(line) puede usarse para establecer un punto de interrupción en una línea específica del código. El comando watch('variable') puede usarse para observar la variable especificada.\n\nEl comando next se usa para avanzar a la siguiente línea de código. Por otro lado, el comando cont se utiliza para continuar la ejecución del código, y el comando step se utiliza para ingresar a una llamada de función.",
+    },
+    {
+      id: "q14",
+      question:
+        "A developer has installed a JavaScript library in a Node.js application. She would like to ensure that the application accepts a version of the library that is greater than or equal to 3.1.0 but less than 4.0.0. For example, versions such as 3.1.1, 3.2.0, and 3.3.1 should be accepted but 4.0.0 and 4.1.0 should not be accepted. \n\nWhich of the following represents the correct ways of using the semantic versioning syntax in the package.json file for this use case?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "3.1.x",
+        B: "~3.1.0",
+        C: "^3.1.0",
+        D: ">=3.1.0<4.0.0",
+      },
+      explanation:
+        "Las opciones correctas son C: '^3.1.0' y D: '>=3.1.0<4.0.0'. En el archivo package.json, el símbolo de intercalación (^) puede usarse antes de un número de versión para permitir una actualización con ese número de versión o una versión mayor pero dentro del mismo rango principal. Por ejemplo, ^3.1.0 puede usarse para permitir 3.1.0, 3.1.1, 3.2.0 y 3.3.1, pero no 4.0.0 ya que tiene un rango principal diferente.\n\nLos operadores de comparación (>, <, =, >=, <= o -) también pueden usarse para especificar un rango inclusivo, como mayor o igual a 3.1.0 (>=3.1.0) y menor que 4.0.0 (<4.0.0).\n\nEl símbolo de tilde (~) se utiliza para incluir todo lo que sea mayor o igual a la versión especificada pero en el mismo rango menor. Usar ~3.1.0 permitiría que la aplicación acepte 3.1.0 y 3.1.1, pero no 3.2.0 y 3.3.1 porque no están en el mismo rango menor.\n\nUsar 3.1.x permitiría que la aplicación acepte solo una versión que comience con 3.1, lo que significa que 3.2.0 y 3.3.1 no serían aceptadas.",
+    },
+    {
+      id: "q15",
+      question:
+        "A developer who is working on a Node.js app is looking for a library available via npm that makes it easier to iterate arrays and test the values of objects used in the code. For example, as shown below, she needs to perform a deep comparison between two objects to determine if they are equivalent. \n\nWhich library should be installed for this use case?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Axios",
+        B: "Express",
+        C: "React",
+        D: "Lodash",
+      },
+      code: "const populateData = async (id) => {\n  let response = await getData(id);\n  let data = await response.json();\n  let obj = { role: 'NA Sales Rep', department: 'Sales' };\n\n  // check if the value of 'obj' is equal to the value of 'data.employee'\n  // call other functions\n}",
+      explanation:
+        "La opción correcta es la D: 'Lodash'. Lodash es una biblioteca que puede instalarse para este caso de uso. Proporciona métodos modulares que facilitan la iteración de arrays, objetos y cadenas, manipular y probar valores, y crear funciones compuestas.\n\nPara este caso de uso en particular, puede realizarse una comparación profunda entre dos objetos utilizando el método _.isEqual() de la biblioteca.\n\n```javascript\nconst isEqual = _.isEqual(obj, data.employee.position);\n```\n\nReact es una biblioteca que se utiliza para construir interfaces de usuario. Axios es un cliente HTTP basado en promesas para el navegador y Node.js. Express es un framework de back-end para Node.js que se utiliza típicamente para manejar solicitudes HTTP entrantes.",
+    },
+    {
+      id: "q16",
+      question:
+        "A developer is working on a Node.js application. This particular application will use custom events to respond to different states of the application. The code below was written for a custom event. \n\nWhich statement will correctly respond to this custom event?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "events.on(Event, 'started', function(data) {// implementation});",
+        B: "appEvents.on('started', function(data) {// implementation};",
+        C: "appEvents.on(Event, 'started', function(data) {// implementation});",
+        D: "events.on('started', function(data) {// implementation}",
+      },
+      code: "const events = require('events');\nconst appEvents = new events.EventEmitter();\n\n// Implementation of application\n\n// Send custom event.\nappEvents.emit('started', 'App has started.');",
+      explanation:
+        "La opción correcta es la B: 'appEvents.on('started', function(data) {// implementation};'. El módulo de eventos de Node.js permite la creación y manejo de eventos personalizados. Una vez que el módulo es requerido, la clase EventEmitter se utiliza para crear y manejar eventos.\n\nEl método 'on' se usa para responder a eventos pasando el string del evento y una función de callback.\n\nEn el código de ejemplo, EventEmitter es instanciado en appEvents. Por lo tanto, appEvents se usa para responder al evento utilizando el método 'on', que recibe el string del evento ('started') y una función de callback.",
+    },
+    {
+      id: "q17",
+      question:
+        "Which of the following is a core Node.js module that provides methods for debugging and viewing code results?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "stream",
+        B: "debug",
+        C: "console",
+        D: "util",
+      },
+      explanation:
+        "La opción correcta es la C: 'console'. El módulo 'console' es un módulo principal de Node.js que proporciona una consola de depuración similar a la funcionalidad de consola de JavaScript que ofrecen los navegadores web como Google Chrome. Su clase Console proporciona métodos como console.log(), console.error() y console.warn() que pueden usarse para escribir en cualquier stream de Node.js con fines de depuración.\n\nAunque tanto 'stream' como 'util' son módulos principales de Node.js, se utilizan para propósitos diferentes. El módulo 'stream' proporciona una API para implementar la interfaz de stream. El módulo 'util' proporciona varias utilidades que se usan para apoyar las APIs internas de Node.js. No existe un módulo principal llamado 'debug'.",
+    },
+    {
+      id: "q18",
+      question:
+        "A developer who is working on a Node.js app would like to ensure that using the 'npm install' command does not install any development dependencies in the production mode. She would like to use an environment variable to set the mode to 'production' when the app is ready for production. If it's set to 'production', then the 'npm install' command shouldn't install any development dependencies without the '--dev' flag. \n\nWhich environment variable should be utilized for this use case?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "NODE_E",
+        B: "NODE_ENV",
+        C: "NODE_ENVIRONMENT",
+        D: "NODE_PROD",
+      },
+      explanation:
+        "La opción correcta es la B: 'NODE_ENV'. La variable de entorno llamada NODE_ENV se usa para establecer el modo de la aplicación que determina qué funciones deben habilitarse o deshabilitarse. Si se establece en 'production', usar el comando 'npm install' no instala dependencias de desarrollo sin la bandera '--dev'.\n\nEn Linux o Mac OS, se puede usar el siguiente comando para establecer el valor de la variable en 'production':\n\n```bash\nexport NODE_ENV=production\n```\n\nEn Windows OS, se puede usar el siguiente comando:\n\n```powershell\n$env:NODE_ENV = 'production'\n```\n\nEn el código de Node.js, se puede acceder al valor de la variable utilizando 'process.env.NODE_ENV'.",
+    },
+    {
+      id: "q19",
+      question:
+        "A JavaScript developer needs to send JSON data to a third-party server using Node.js. The third-party server will access the file at the provided URL, upload it, and then send a response containing the link to the uploaded resource. The following code has been written.\n\nThe new URL received from the server needs to be processed using a function. \n\nWhich code statement is missing in the callback function used by the POST request?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "response.data(urlData => {",
+        B: "response.data('body', urlData => {",
+        C: "response.on('data', urlData => {",
+        D: "response.on(urlData => {",
+      },
+      code: "const https = require('https');\n\nconst data = JSON.stringify({\n  url: // URL of a file that needs to be uploaded\n});\n\nconst options = {\n  hostname: 'uploadifyservice.com',\n  port: 443,\n  path: '/api/v3',\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json'\n  }\n};\n\nconst request = https.request(options, response => {\n  // missing code\n  processUrl(urlData);\n});\n\nrequest.on('error', error => {\n  console.error(error);\n});\n\nrequest.write(data);\nrequest.end();",
+      explanation:
+        "La opción correcta es la C: 'response.on('data', urlData => {'. Una solicitud puede enviarse a un servidor usando el método https.request(). Este método acepta una función de callback como parámetro. La función de callback recibe el objeto 'response' como parámetro, que puede accederse para obtener los datos enviados en la respuesta del servidor.\n\nPara acceder a los datos cuando se reciben, se puede usar 'response.on('data', callback)'.",
+    },
+    {
+      id: "q20",
+      question:
+        "A developer is building an app using Node.js for user management. The 'main.js' file needs to utilize a function in a local module named 'helper.js' and a class named 'User' in 'user.js'. She would like to use the named export syntax to export the function in 'helper.js' and the default export syntax to export the class in 'user.js'. As shown below, the require() function has been used in 'main.js' to use the exported class and function. \n\nWhich code statements should be used to export them using the CommonJS specification?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "helper.js: export getUsername; user.js: module.exports = User;",
+        B: "helper.js: export getUsername; user.js: export default User;",
+        C: "helper.js: module.exports.getUsername = getUsername; user.js: module.exports = User;",
+        D: "helper.js: module.exports.getUsername = getUsername; user.js: export default User;",
+      },
+      code: "const helper = require('./helper');\nconst User = require('./user.js');\n\nconst userObj = new User('Mark Parker', 'IT Analyst', 70000);\nconst username = helper.getUsername(userObj.name);\n\n// additional code",
+      explanation:
+        "La opción correcta es la C: 'helper.js: module.exports.getUsername = getUsername; user.js: module.exports = User;'. Aunque Node.js admite módulos ECMAScript, el formato original de módulos de Node.js es CommonJS. El estándar CommonJS para la gestión de módulos requiere el uso del objeto especial 'exports' para exportar funciones, objetos o clases.\n\nPara exportar una función, puede agregarse como una propiedad adicional al objeto 'exports'. Por ejemplo, module.exports.getUsername = getUsername; o exports.getUsername = getUsername; pueden usarse para la exportación nombrada de una función llamada getUsername() en helper.js.\n\nCuando se utiliza la sintaxis de exportación predeterminada, se debe asignar un nuevo valor al objeto 'exports'. Por ejemplo, module.exports = User; puede usarse para la exportación predeterminada de la clase User en user.js.\n\nLos keywords 'export' y 'export default' se usan para exportar características cuando se utiliza el estándar ECMAScript. También requiere el uso de la declaración 'import' en lugar de la función require() para utilizar las características exportadas.",
+    },
+    {
+      id: "q21",
+      question:
+        "A junior developer of Cosmic Innovation has started working on an application that will be used by the HR users of the company for employee management. Node.js needs to be used for handling server-side operations of the application. She recently created a package.json file in the project directory. She then installed the 'express' framework by using the 'npm i express' command. \n\nWhich of the following are important considerations related to using the package.json file?",
+      type: "multiple choice",
+      correct_options: ["A", "B", "C"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "The file contains 'express' and its version because the application depends on it.",
+        B: "Other developers will be able to install 'express' by using the 'npm install' command.",
+        C: "The file must always contain the name and version of the application.",
+        D: "The email must be specified when the name of the author is included in the file.",
+        E: "Packages that are needed for local development and testing should be listed as 'devPackages'.",
+      },
+      code: '{\n  "name": "employee-app",\n  "version": "1.0.0",\n  "description": "",\n  "main": "index.js",\n  "scripts": {\n    "test": "echo \\"Error: no test specified\\" && exit 1"\n  },\n  "keywords": [],\n  "author": "Jane Smith",\n  "license": "ISC",\n  "dependencies": {\n    "express": "^4.17.1"\n  }\n}',
+      explanation:
+        "Las opciones correctas son A: 'The file contains 'express' and its version because the application depends on it.', B: 'Other developers will be able to install 'express' by using the 'npm install' command.' y C: 'The file must always contain the name and version of the application.'.\n\nEl archivo package.json se agrega a una aplicación para facilitar que otros administren e instalen la aplicación. Siempre debe contener el nombre y la versión de la aplicación. La dirección de correo electrónico no es obligatoria cuando se especifica el autor en el archivo.\n\nEl archivo lista cada paquete del que depende la aplicación bajo 'dependencies'. También incluye la versión de cada paquete. Cualquier paquete que se instale para desarrollo local y pruebas utilizando '-save-dev' se lista como 'devDependencies'. Si otro desarrollador desea instalar la aplicación en su sistema, puede usar el comando 'npm install', que instala automáticamente los paquetes de los que depende la aplicación.",
+    },
+    {
+      id: "q22",
+      question:
+        "The development team of Cosmic Gemina is building an app that will be used for organizing the inbound and outbound transportation of goods that are used by the company. It has the following development requirements:\n\n1) Create reusable UI components that can be utilized in a dynamic single-page application (SPA).\n2) Easily parse and format dates, such as shipment dates, to display them in the user interface.\n3) Bundle JavaScript modules, images, fonts, and stylesheets for usage in the browser.\n\nWhich Node.js package management solutions can be installed to meet these requirements?",
+      type: "multiple choice",
+      correct_options: ["A", "D", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "Moment",
+        B: "Chalk",
+        C: "Express",
+        D: "Webpack",
+        E: "React",
+      },
+      explanation:
+        "Las opciones correctas son A: 'Moment', D: 'Webpack', y E: 'React'.\n\nReact es una biblioteca que puede instalarse para construir componentes reutilizables de UI que pueden utilizarse para crear una aplicación de una sola página dinámica. Webpack se utiliza para empaquetar archivos JavaScript para su uso en el navegador, pero también puede transformar, empaquetar y empaquetar imágenes, fuentes y hojas de estilo. La biblioteca moment.js puede usarse para analizar, validar, manipular y formatear fechas.\n\nChalk es una biblioteca que se utiliza para el estilo de cadenas en la terminal. Por ejemplo, puede usarse para mostrar mensajes informativos en color en la consola para facilitar la depuración. Express es un framework de back-end para Node.js que se utiliza típicamente para manejar solicitudes HTTP entrantes, como GET y POST.",
+    },
+    {
+      id: "q23",
+      question:
+        "A developer of Cosmic Forex is creating an API using Node.js which should accept GET requests from users. It should send the current exchange rate associated with the currency pair that is specified by the user in the request endpoint. The 'express' framework is being utilized for this use case. If the endpoint should be '/rates/currencyPair', where 'currencyPair' refers to the currency pair specified by the user (for example, 'usd-eur'). \n\nWhich code statement should be used to set up a route for it?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "app.get('/rates/currencyPair', (req, res) =>",
+        B: "app.get('/rates/:currencyPair', (req, res) =>",
+        C: "app.get('/rates/:currencyPair', async (req, res) =>",
+        D: "app.get('/rates/currencyPair', async (req, res) =>",
+      },
+      code: "const express = require('express');\n\nconst app = express();\n\n/* Add code here */ {\n  const pair = req.params.currencyPair;\n  try {\n    const rate = await getRate(pair); // Function that gets the rate\n    if (!rate) {\n      return res.status(404).send();\n    }\n  } catch (error) {\n    console.error(error);\n  }\n}\n\napp.listen(8080, () => {\n  console.log('App listening at 8080.');\n});",
+      explanation:
+        "La opción correcta es la C: 'app.get('/rates/:currencyPair', async (req, res) =>'. El framework 'express' puede instalarse para configurar rutas en Node.js para solicitudes HTTP entrantes. Las rutas se definen usando métodos del objeto 'app'. Por ejemplo, app.get() se utiliza para manejar solicitudes GET entrantes.\n\nSi una ruta incluye uno o más parámetros especificados por el usuario, como 'currencyPair' en '/rates/currencyPair', entonces debe definirse en la ruta utilizando dos puntos (:). Los parámetros capturados de la ruta se pueblan en el objeto 'req.params'. En este caso, la ruta debería ser '/rates/:currencyPair', y el parámetro 'currencyPair' puede ser accedido usando 'req.params.currencyPair'. Dado que la función de callback que recupera el tipo de cambio actual contiene una llamada de función que utiliza la palabra clave 'await', debe definirse como una función 'async'.",
+    },
+    {
+      id: "q24",
+      question:
+        "A developer has written the following code in a Node.js app to repeatedly execute a function that sends data to an external system after the specified time delay in milliseconds. Two constants named 'time' and 'limit' have been declared and initialized. They should be accessible by any file in the application. However, the code is not working as expected. The console.log() statement does not display any output in the terminal. \n\nHow can the code be modified to make it functional while meeting the requirement?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Use 'limit' instead of 'global.limit' and 'time' instead of 'global.time' to access the variables.",
+        B: "Use the 'global' object to declare and initialize 'time' and 'limit'.",
+        C: "Use the 'window' object to declare and initialize 'time' and 'limit'.",
+        D: "Use the global.get() method to retrieve the value of 'time' and 'limit'.",
+      },
+      code: "let counter = 0;\n\nconst time = 5000;\nconst limit = 5;\n\nsetInterval(async () => {\n  counter++;\n  if (counter <= global.limit) {\n    const data = await sendLatestData();\n    console.log(data);\n  }\n}, global.time);",
+      explanation:
+        "La opción correcta es la B: 'Use the 'global' object to declare and initialize 'time' and 'limit'.'. Para declarar una variable global en una aplicación Node.js, la variable puede definirse como una propiedad en el objeto 'global'. Por ejemplo, global.time = 5000 puede usarse para declarar e inicializar una variable global llamada 'time'.\n\nEn Node.js no existe el objeto window. El objeto global almacena métodos y propiedades globales. Cuando se usa el keyword 'let', 'const' o 'var' para declarar una variable, esta se limita al módulo y no se declara como una variable global. En este caso, dado que 'time' y 'limit' deben ser accesibles por cualquier archivo en la aplicación, primero deben declararse como variables globales.\n\nUna variable global puede ser accedida sin usar el keyword 'global'. Por ejemplo, 'time' puede ser usado en lugar de 'global.time', pero este enfoque no puede usarse para acceder a las variables en otros archivos sin declararlas como globales. Además, no existe un método llamado global.get() que pueda usarse para obtener el valor de una variable global.",
+    },
+    {
+      id: "q25",
+      question:
+        "A developer who is building a Node.js application would like to read data from a file named 'customers.json' and send this data to a remote server. She has written the code below to emit an event when the file has been read. \n\nWhich two approaches can be used to handle the emitted event and invoke a function named 'sendData' that sends the data in the file to the remote server?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "eventEmitter.addListener('fileRead', async (data) => {await sendData(data);});",
+        B: "eventEmitter.addEventListener('fileRead', async (data) => {await sendData(data);});",
+        C: "eventEmitter.on('fileRead', async (data) => {await sendData(data);});",
+        D: "eventEmitter.on('fileRead', async (err, data) => {await sendData(data);});",
+      },
+      code: "const fs = require('fs');\nconst EventEmitter = require('events');\nconst filePath = './customers.json';\nconst eventEmitter = new EventEmitter();\n\n// Add code here\n\nfs.readFile(filePath, 'utf-8', (err, data) => {\n  if (err) {\n    console.error(err);\n    return;\n  }\n  eventEmitter.emit('fileRead', data);\n});",
+      explanation:
+        "Las opciones correctas son A: 'eventEmitter.addListener('fileRead', async (data) => {await sendData(data);});' y C: 'eventEmitter.on('fileRead', async (data) => {await sendData(data);});'. El método eventEmitter.emit() se usa para emitir un evento. Acepta el nombre del evento y cualquier parámetro adicional como argumentos. En este caso, 'data' se pasa como un argumento cuando el evento 'fileRead' es emitido.\n\nEl método eventEmitter.on() puede usarse para adjuntar un controlador de eventos para manejar el evento especificado. Acepta el nombre del evento y una función de callback como argumentos. La función de callback recibe los argumentos que son pasados al evento. Dado que 'data' es pasado cuando el evento es emitido, la función de callback lo recibe como el único argumento.\n\nOtro método que puede usarse para adjuntar un controlador de eventos es eventEmitter.addListener(). Es un alias para el método eventEmitter.on(). Node.js no tiene un método llamado eventEmitter.addEventListener().",
+    },
+    {
+      id: "q26",
+      question:
+        "Which of the following commands can be used to install just the necessary Node.js packages to run the code snippet below?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "npm up lodash",
+        B: "npm up fs lodash",
+        C: "npm i fs lodash",
+        D: "npm i lodash",
+      },
+      code: "const fs = require('fs');\nconst _ = require('lodash');",
+      explanation:
+        "La opción correcta es la D: 'npm i lodash'. El módulo fs no necesita ser instalado ya que viene incluido en el núcleo de Node.js. El comando 'npm i' instala el paquete especificado. El comando 'npm up' actualiza los paquetes existentes.",
+    },
+    {
+      id: "q27",
+      question:
+        "A developer has written a simple JavaScript file to be used in node (app.js). However, there seems to be an issue and the developer wants to identify the problem. \n\nWhat two commands can the developer use to enter the debugger and advance to line 2 in the code execution?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "node app.js, debug next",
+        B: "node debug app.js, n",
+        C: "node app.js, debug",
+        D: "node inspect app.js, next",
+      },
+      explanation:
+        "La opción correcta es la D: 'node inspect app.js, next'. Node.js incluye un depurador de línea de comandos. Para acceder al depurador, se debe usar el argumento 'inspect' con el comando 'node', seguido de la ruta al archivo.\n\nUna vez dentro del depurador, hay numerosos comandos disponibles para trabajar con el código. El comando 'next' o 'n' se utiliza para avanzar a la siguiente línea de ejecución del código.",
+    },
   ];
-}
+};
