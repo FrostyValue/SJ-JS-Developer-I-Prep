@@ -166,7 +166,6 @@ function showQuestion() {
   document.getElementById("confirm-btn").style.display = "block";
 }
 
-// Función para manejar las opciones seleccionadas
 function handleOptionClick(optionKey) {
   const question = questions[currentQuestionIndex];
 
@@ -188,7 +187,14 @@ function handleOptionClick(optionKey) {
       button.style.backgroundColor = "";
     }
   });
+
+  if (currentQuestionIndex === 0) {
+    configBtn.disabled = true;
+    configBtn.style.opacity = "0.5";
+    configBtn.style.cursor = "not-allowed";
+  }
 }
+
 
 // Función para habilitar la selección múltiple
 function enableMultipleSelection() {
