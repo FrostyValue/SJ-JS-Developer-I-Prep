@@ -1,28 +1,118 @@
+import questions1 from "./public/data/qVTC1.js";
+import questions2 from "./public/data/qOFC2.js";
+import questions3 from "./public/data/qBE3.js";
+import questions4 from "./public/data/qDH4.js";
+import questions5 from "./public/data/qAP5.js";
+import questions6 from "./public/data/qSS6.js";
+import questions7 from "./public/data/qTST7.js";
+
 let currentQuestionIndex = 0;
 let questions = [];
 let selectedAnswers = [];
 let score = 0;
+let startTime;
+let timerInterval;
+let timerMode = "default";
 
-const TOTAL_QUESTIONS = 75;
+const TOTAL_QUESTIONS = 60;
+
+// Inicialización de elementos del DOM
+const timerDisplay = document.getElementById("timer-display");
+const configBtn = document.getElementById("config-btn");
+const configModal = document.getElementById("config-modal");
+const closeModal = document.getElementById("close-modal");
+const radioButtons = document.querySelectorAll('input[name="timer-mode"]');
 
 const questionSources = [
-  { file: "./data/questions1.json", percentage: 100 },
-  { file: "./data/questions2.json", percentage: 0 },
-  { file: "./data/questions4.json", percentage: 0 },
+  { questions: questions1(), percentage: 23 },
+  { questions: questions2(), percentage: 25 },
+  { questions: questions3(), percentage: 17 },
+  { questions: questions4(), percentage: 7 },
+  { questions: questions5(), percentage: 13 },
+  { questions: questions6(), percentage: 8 },
+  { questions: questions7(), percentage: 7 },
 ];
 
+// Función para iniciar el temporizador
+function startTimer() {
+  startTime = Date.now();
+  timerInterval = setInterval(() => {
+    const elapsed = Date.now() - startTime;
+    const seconds = Math.floor((elapsed / 1000) % 60);
+    const minutes = Math.floor(elapsed / 60000);
+    timerDisplay.textContent = `Time: ${String(minutes).padStart(
+      2,
+      "0"
+    )}:${String(seconds).padStart(2, "0")}`;
+  }, 1000);
+}
+
+// Función para detener el temporizador
+function stopTimer() {
+  clearInterval(timerInterval);
+  const elapsed = Date.now() - startTime;
+  const totalSeconds = Math.floor(elapsed / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+    2,
+    "0"
+  )}`;
+}
+
+// Mostrar el modal de configuración
+configBtn.addEventListener("click", () => {
+  configModal.classList.add("active");
+});
+
+closeModal.addEventListener("click", () => {
+  configModal.classList.remove("active");
+});
+
+// Manejar la selección del temporizador en el modal
+radioButtons.forEach((radio) => {
+  radio.addEventListener("change", (e) => {
+    timerMode = e.target.value;
+    resetTimer();
+    configModal.style.display = "none"; // Ocultar el modal al seleccionar una opción
+  });
+});
+
+// Función para reiniciar el temporizador con la opción seleccionada
+function resetTimer() {
+  clearInterval(timerInterval);
+
+  if (timerMode === "default") {
+    timerDisplay.textContent = "00:00";
+  } else {
+    let totalSeconds = timerMode === "105" ? 105 * 60 : 135 * 60;
+
+    timerInterval = setInterval(() => {
+      const minutes = Math.floor(totalSeconds / 60)
+        .toString()
+        .padStart(2, "0");
+      const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+      timerDisplay.textContent = `Remaining time: ${minutes}:${seconds}`;
+      totalSeconds--;
+
+      if (totalSeconds < 0) {
+        clearInterval(timerInterval);
+        timerDisplay.textContent = "00:00";
+      }
+    }, 1000);
+  }
+}
+
+// Cargar las preguntas
 async function loadQuestions() {
   try {
     const loadedQuestions = [];
 
     for (const source of questionSources) {
-      const response = await fetch(source.file);
-      const data = await response.json();
-
       const numberToTake = Math.round(
         (source.percentage / 100) * TOTAL_QUESTIONS
       );
-      const shuffled = data.sort(() => 0.5 - Math.random());
+      const shuffled = source.questions.sort(() => 0.5 - Math.random());
       loadedQuestions.push(...shuffled.slice(0, numberToTake));
     }
 
@@ -36,6 +126,7 @@ async function loadQuestions() {
   }
 }
 
+// Mostrar la pregunta en pantalla
 function showQuestion() {
   const question = questions[currentQuestionIndex];
 
@@ -63,10 +154,6 @@ function showQuestion() {
 
   selectedAnswers = [];
 
-  document.getElementById("next-btn").style.display = "none";
-  document.getElementById("explanation-container").style.display = "none";
-  document.getElementById("confirm-btn").style.display = "block";
-
   const instructionText = document.getElementById("selection-instruction");
   if (question.number_of_correct_answers > 1) {
     instructionText.textContent = `Selecciona exactamente ${question.number_of_correct_answers} opciones.`;
@@ -75,6 +162,8 @@ function showQuestion() {
     instructionText.textContent = "";
     enableSingleSelection();
   }
+
+  document.getElementById("confirm-btn").style.display = "block";
 }
 
 function handleOptionClick(optionKey) {
@@ -98,8 +187,16 @@ function handleOptionClick(optionKey) {
       button.style.backgroundColor = "";
     }
   });
+
+  if (currentQuestionIndex === 0) {
+    configBtn.disabled = true;
+    configBtn.style.opacity = "0.5";
+    configBtn.style.cursor = "not-allowed";
+  }
 }
 
+
+// Función para habilitar la selección múltiple
 function enableMultipleSelection() {
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.querySelectorAll("button").forEach((button) => {
@@ -108,6 +205,7 @@ function enableMultipleSelection() {
   });
 }
 
+// Función para habilitar la selección simple
 function enableSingleSelection() {
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.querySelectorAll("button").forEach((button) => {
@@ -115,6 +213,10 @@ function enableSingleSelection() {
     button.disabled = false;
   });
 }
+
+// Función para comprobar la respuesta seleccionada
+document.getElementById("confirm-btn").onclick = checkAnswer;
+document.getElementById("next-btn").onclick = nextQuestion;
 
 function checkAnswer() {
   const question = questions[currentQuestionIndex];
@@ -173,16 +275,33 @@ function checkAnswer() {
   });
 }
 
+// Función para pasar a la siguiente pregunta
 function nextQuestion() {
   currentQuestionIndex++;
   selectedAnswers = [];
+
+  // Ocultar la explicación y el botón "Siguiente"
+  document.getElementById("explanation-container").style.display = "none";
+  document.getElementById("next-btn").style.display = "none";
+
+  // Mostrar el botón "Confirmar"
+  document.getElementById("confirm-btn").style.display = "block";
+
   if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
+    const finalTime = stopTimer();
+    const percentScore = Math.round((score / questions.length) * 100);
     alert(
-      `¡Has completado el quiz!\nPuntuación final: ${score} de ${questions.length}`
+      `¡Has completado el test!\n` +
+        `Puntuación final: ${score} de ${questions.length} (${percentScore}%)\n` +
+        `Tiempo total: ${finalTime}`
     );
   }
 }
 
-window.onload = loadQuestions;
+// Inicializar las preguntas y el temporizador
+document.addEventListener("DOMContentLoaded", () => {
+  startTimer();
+  loadQuestions();
+});
