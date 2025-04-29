@@ -195,7 +195,6 @@ function handleOptionClick(optionKey) {
   }
 }
 
-
 // Función para habilitar la selección múltiple
 function enableMultipleSelection() {
   const optionsContainer = document.getElementById("options-container");
@@ -256,7 +255,11 @@ function checkAnswer() {
     explanationContainer.style.color = "green";
     score++;
   } else {
-    explanationText.textContent = question.explanation;
+    if (timerMode === "105" || timerMode === "135") {
+      explanationText.textContent = "¡Respuesta incorrecta!";
+    } else {
+      explanationText.textContent = question.explanation;
+    }
     explanationContainer.style.color = "red";
   }
 
@@ -292,10 +295,16 @@ function nextQuestion() {
   } else {
     const finalTime = stopTimer();
     const percentScore = Math.round((score / questions.length) * 100);
+    const resultado =
+      percentScore >= 65
+        ? "¡Has aprobado! 🎉"
+        : "Has suspendido, vuelve a intentarlo.";
+
     alert(
       `¡Has completado el test!\n` +
         `Puntuación final: ${score} de ${questions.length} (${percentScore}%)\n` +
-        `Tiempo total: ${finalTime}`
+        `Tiempo total: ${finalTime}\n\n` +
+        `${resultado}`
     );
   }
 }
