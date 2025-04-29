@@ -732,5 +732,290 @@ export default function questions1() {
       explanation:
         "La opción correcta es la A: 'JSON.stringify()'.\n\n**Explicación detallada:**\n\n1. **Uso de JSON.stringify():** Este método se utiliza para convertir un objeto de JavaScript en una cadena JSON. Esto es útil para enviar datos a un servidor remoto mediante una solicitud HTTP.\n\n2. **JSON.parse():** Este método realiza el proceso inverso, deserializando una cadena JSON en un objeto de JavaScript.\n\n3. **Métodos inválidos:** Tanto `JSON.serialize()` como `JSON.send()` no son métodos válidos de la biblioteca JSON.",
     },
+    {
+      id: "q45",
+      question: "A developer receives a comment from the Tech Lead that the code given below has an error. Which line edit should be made to make this code run?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "01 let monthName = 'July';",
+        B: "02 let year = 2019;",
+        C: "02 const year = 2020;",
+        D: "03 if (year == 2019) {"
+      },
+      code: "const monthName = 'July';\nconst year = 2019;\nif (year === 2019) {\n  monthName = 'June';\n}",
+      explanation: "La opción correcta es la A: '01 let monthName = 'July';'.\n\n**Explicación detallada:**\n\n1. **Motivo del error:** La variable `monthName` está declarada como `const`, lo que significa que su valor no puede ser reasignado después de la inicialización. Sin embargo, dentro del bloque `if`, hay un intento de reasignar el valor de `monthName` a `'June'`, lo que genera un error.\n\n2. **Solución:** Cambiar `const` a `let` en la declaración de `monthName` permitirá que su valor sea reasignado dentro del bloque `if` sin generar un error.\n\n3. **Otras opciones:**\n   - B: Cambiar `year` a `let` es innecesario porque no hay intentos de reasignarlo.\n   - C: Cambiar el valor de `year` a 2020 no resolverá el problema relacionado con la reasignación de `monthName`.\n   - D: Usar `==` en lugar de `===` para comparar `year` no afecta el problema de reasignación de `monthName`."
+    },
+    {
+      id: "q46",
+      question: "Refer to the code below:\n\nAfter changing the string index values, the value of `str` remains as `'javascript'`. What is the reason for this value?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Non-primitive values are mutable.",
+        B: "Non-primitive values are immutable.",
+        C: "Primitive values are mutable.",
+        D: "Primitive values are immutable."
+      },
+      code: "let str = 'javascript';\nstr[0] = 'J';\nstr[4] = 'S';",
+      explanation: "La opción correcta es la D: 'Primitive values are immutable.'.\n\n**Explicación detallada:**\n\n1. **Cadenas en JavaScript:** Las cadenas son valores primitivos en JavaScript y, por lo tanto, son inmutables. Esto significa que no se pueden cambiar directamente una vez que se han creado. Cualquier intento de modificar una cadena, como asignar un valor a un índice específico, no tendrá efecto en la cadena original.\n\n2. **Código proporcionado:** En el código, `str[0] = 'J';` y `str[4] = 'S';` son intentos de modificar la cadena. Sin embargo, estas operaciones no alteran la cadena original, ya que las cadenas no permiten la modificación de sus caracteres individuales.\n\n3. **Resultado:** El valor de `str` permanece como `'javascript'` porque las cadenas son inmutables y no admiten la modificación directa de sus índices o caracteres individuales."
+    },
+    {
+      id: "q47",
+      question: "Refer to the code below. What is displayed when `myFunction(true)` is called?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "2 2 1 1",
+        B: "2 2 undefined undefined",
+        C: "2 2 1 2",
+        D: "2 2 2 2"
+      },
+      code: "function myFunction(reassign) {\n  let x = 1;\n  var y = 1;\n  if (reassign) {\n    let x = 2;\n    var y = 2;\n    console.log(x);\n    console.log(y);\n  }\n  console.log(x);\n  console.log(y);\n}",
+      explanation: "La opción correcta es la C: '2 2 1 2'.\n\n**Explicación detallada:**\n\n1. **Ámbito de `let` vs `var`:**\n   - La declaración `let x = 2` dentro del bloque `if` está en un ámbito separado del bloque principal de la función, por lo que no modifica la declaración `let x = 1` fuera del `if`.\n   - La declaración `var y = 2` dentro del bloque `if` sobrescribe la declaración `var y = 1` porque `var` no tiene un ámbito de bloque, y ambas declaraciones comparten el mismo ámbito dentro de la función.\n\n2. **Salida:**\n   - Dentro del `if`:\n     - `let x = 2` (ámbito local del bloque) imprime `2`.\n     - `var y = 2` imprime `2`.\n   - Fuera del `if`:\n     - `let x = 1` imprime `1` (no afectado por el ámbito del bloque `if`).\n     - `var y = 2` imprime `2` (sobrescrito dentro del `if`)."
+    },
+    {
+      id: "q48",
+      question: "Given the following code, what is the output of the line 02?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "'Null'",
+        B: "'X'",
+        C: "'Object'",
+        D: "'undefined'"
+      },
+      explanation: "La opción correcta es la C: 'Object'.\n\n**Explicación detallada:**\n\n1. **El operador `typeof`:** En JavaScript, el operador `typeof` devuelve una cadena que indica el tipo del valor evaluado.\n\n2. **El caso especial de `null`:** Históricamente, debido a un error en la implementación original del operador `typeof`, se devuelve 'object' para valores `null`. Aunque `null` técnicamente representa la ausencia de un valor y no es un objeto, este comportamiento se ha mantenido en JavaScript por razones de compatibilidad.\n\n3. **Salida del código:** Dado que `x` se inicializa con `null`, la línea `console.log(typeof x);` devuelve 'object'.\n\n4. **Opciones incorrectas:**\n   - A: 'Null' no es un valor retornado por `typeof`.\n   - B: 'X' no está relacionado con el valor o tipo de `x`.\n   - D: 'undefined' no es correcto porque `typeof null` no devuelve 'undefined'."
+    },
+    {
+      id: "q49",
+      question: "Given the following code. What is the value of `x`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "3020",
+        B: "1520",
+        C: "50",
+        D: "35"
+      },
+      code: "let x = ('15' + 10) * 2;",
+      explanation: "La opción correcta es la A: '3020'.\n\n**Explicación detallada:**\n\n1. **Concatenación de cadenas:** La expresión `'15' + 10` realiza una operación de concatenación en lugar de una suma numérica, ya que `'15'` es una cadena de texto. Esto produce el valor `'1510'`.\n\n2. **Multiplicación:** Al multiplicar `'1510'` por `2`, JavaScript convierte automáticamente la cadena en un número. El resultado es `3020`.\n\n3. **Resultado final:** La variable `x` toma el valor `3020` tras completar las operaciones."
+    },
+    {
+      id: "q50",
+      question: "Refer to the code below. Which two options remove the whitespace from the beginning of `searchString`?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "searchString.trimEnd();",
+        B: "searchString.trimStart();",
+        C: "trimStart(searchString);",
+        D: "searchString.replace(/^\s*/, '');"
+      },
+      code: "let searchString = ' look for this ';",
+      explanation: "Las respuestas correctas son B: 'searchString.trimStart();' y D: 'searchString.replace(/^\s*/, '');'.\n\n**Explicación detallada:**\n\n1. **B: `searchString.trimStart();`** Este método elimina los espacios en blanco al inicio de una cadena. Es parte del API estándar de cadenas en JavaScript y cumple con el requisito especificado.\n\n2. **D: `searchString.replace(/^\s*/, '');`** Este enfoque utiliza un patrón de expresión regular para identificar y eliminar los espacios en blanco al inicio de la cadena. Este método también satisface el requisito.\n\n3. **Opciones incorrectas:**\n   - A: `searchString.trimEnd();` elimina los espacios en blanco al final de la cadena, no al inicio.\n   - C: `trimStart(searchString);` no es válido porque `trimStart` es un método y debe llamarse desde un objeto de cadena, no como una función independiente."
+    },
+    {
+      id: "q51",
+      question: "Refer to the code below:\n\nWhat is the value of `result` after the code executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "10",
+        B: "NaN",
+        C: "5",
+        D: "Undefined"
+      },
+      code: "function changeValue(obj) {\n  obj.value = obj.value / 2;\n}\n\nconst objA = { value: 10 };\nconst objB = objA;\nchangeValue(objB);\nconst result = objA.value;",
+      explanation: "La opción correcta es la C: '5'.\n\n**Explicación detallada:**\n\n1. **Referencias de objeto:** En JavaScript, los objetos se pasan por referencia. Esto significa que `objB` apunta al mismo objeto en memoria que `objA`. Cualquier cambio realizado en `objB` afecta también a `objA`.\n\n2. **Cambio de valor:** En la función `changeValue(obj)`, la propiedad `value` del objeto referenciado por `objB` se modifica dividiendo su valor por `2`. Como `objA` y `objB` son referencias al mismo objeto, este cambio también se refleja en `objA.value`.\n\n3. **Resultado:** Después de ejecutar `changeValue(objB)`, el valor de `objA.value` (y también de `objB.value`) es `5`.\n\n4. **Opciones incorrectas:**\n   - A: '10' no es correcto porque el valor original ha sido modificado.\n   - B: 'NaN' no es correcto porque la operación `obj.value / 2` se realiza sin errores.\n   - D: 'Undefined' no es correcto porque la propiedad `value` permanece definida durante toda la ejecución."
+    },
+    {
+      id: "q52",
+      question: "Refer to the following code that imports a module named `utils`: Which two implementations of Utils.js export `foo` and `bar` such that the code above runs without error?",
+      type: "multiple choice",
+      correct_options: ["B", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "import {foo} from '/path/FooUtils.js';\nimport {bar} from '/path/FooUtils.js';\nexport {foo, bar}",
+        B: "const foo = () => { return 'foo'; }\nconst bar = () => { return 'bar'; }\nexport {foo, bar}",
+        C: "export default class {\n  foo() { return 'foo'; }\n  bar() { return 'bar'; }\n}",
+        D: "const foo = () => { return 'foo'; }\nconst foo = () => { return 'foo'; }\nexport default foo, bar;"
+      },
+      explanation: "Las opciones correctas son B: 'export {foo, bar}' y C: 'export default class { foo() { ... }, bar() { ... } }'.\n\n**Explicación detallada:**\n\n1. **B: Uso de exportación nombrada:**\n   - En esta implementación, `foo` y `bar` son constantes que definen funciones.\n   - Estas funciones se exportan como exportaciones nombradas utilizando `export {foo, bar}`.\n   - En el archivo que las importa, `import {foo, bar} from '/path/Utils.js';`, se puede acceder directamente a las funciones.\n\n2. **C: Uso de exportación por defecto (default export):**\n   - Aquí se utiliza una clase que contiene métodos `foo` y `bar`.\n   - Sin embargo, la clase completa se exporta como `default`.\n   - Para usar esta implementación con el código proporcionado, el import en este caso específico sería incorrecto (sin modificaciones).\n\n3. **Opciones inválidas:**\n   - A: contiene un uso incorrecto por repetición; la exportación no coincide.\n   - D: contiene duplicación de definiciones en `foo`."
+    },
+    {
+      id: "q53",
+      question: "Refer to the code below. After changing the string index values, the value of `str` is still `'javascript'`. What is the reason for this value?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Non-primitive values are mutable.",
+        B: "Non-primitive values are immutable.",
+        C: "Primitive values are mutable.",
+        D: "Primitive values are immutable."
+      },
+      code: "let str = 'javascript';\nstr[0] = 'J';\nstr[4] = 'S';",
+      explanation: "La opción correcta es la D: 'Primitive values are immutable.'\n\n**Explicación detallada:**\n\n1. **Naturaleza de los valores primitivos:**\n   - En JavaScript, las cadenas (`string`) son valores primitivos.\n   - Los valores primitivos son inmutables, lo que significa que no pueden ser modificados directamente una vez creados.\n\n2. **Acceso a índices de cadenas:**\n   - Aunque los índices de cadenas se pueden leer, no se pueden modificar directamente, como en `str[0] = 'J';` o `str[4] = 'S';`.\n   - Estas operaciones no tienen ningún efecto en el valor original de la cadena.\n\n3. **Resultado:**\n   - Después de intentar cambiar los índices, el valor de `str` permanece como `'javascript'` porque las cadenas no pueden ser modificadas de esta manera.\n\n4. **Opciones incorrectas:**\n   - A: 'Non-primitive values are mutable.' es incorrecta porque `str` es un valor primitivo, no un valor no-primitivo.\n   - B: 'Non-primitive values are immutable.' es incorrecta porque los valores no-primitivos (como objetos y arrays) son generalmente mutables.\n   - C: 'Primitive values are mutable.' es incorrecta porque los valores primitivos (como las cadenas) son inmutables."
+    },
+    {
+      id: "q54",
+      question: "Refer to the code below. What is the data type of `pi`?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Double",
+        B: "Number",
+        C: "Decimal",
+        D: "Float"
+      },
+      code: "const pi = 3.1415326;",
+      explanation: "La opción correcta es B: 'Number'.\n\n**Explicación detallada:**\n\n1. **Data type en JavaScript:**\n   - En JavaScript, todos los valores numéricos son del tipo `Number`. Esto incluye tanto números enteros como números con punto flotante.\n\n2. **Detalles sobre otros tipos:**\n   - JavaScript no tiene tipos específicos como `Double` o `Float` para diferenciar entre distintos tamaños o precisiones de números. Todos los valores numéricos son representados utilizando el formato IEEE 754 de punto flotante de doble precisión.\n\n3. **Opciones incorrectas:**\n   - A: 'Double' es incorrecto porque no existe un tipo de datos `Double` en JavaScript.\n   - C: 'Decimal' es incorrecto porque, aunque `Decimal` es un tipo en otros lenguajes, no es reconocido en JavaScript.\n   - D: 'Float' es incorrecto porque, aunque el valor podría interpretarse como de punto flotante, JavaScript no tiene un tipo de datos separado para `Float`; todo es simplemente `Number`."
+    },
+    {
+      id: "q55",
+      question: "The developer wants to test the array shown. Which two tests are the most accurate for this array?",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert( arr.length === 5 );",
+        B: "arr.forEach(elem => console.assert(elem === 0));",
+        C: "console.assert(arr[0] === 0 && arr[ arr.length] === 0);",
+        D: "console.assert (arr.length > 0);"
+      },
+      code: "const arr = Array(5).fill(0);",
+      explanation: "Las opciones correctas son A: 'console.assert( arr.length === 5 );' y B: 'arr.forEach(elem => console.assert(elem === 0));'.\n\n**Explicación detallada:**\n\n1. **Validación de la longitud del arreglo (Opción A):**\n   - La prueba `console.assert(arr.length === 5)` verifica que el arreglo tenga exactamente 5 elementos.\n   - Esto es esencial porque el código `Array(5).fill(0)` crea un arreglo de longitud 5 con todos los valores inicializados a 0.\n\n2. **Validación de los elementos del arreglo (Opción B):**\n   - Usando `arr.forEach(elem => console.assert(elem === 0));`, se verifica que cada elemento del arreglo sea igual a `0`.\n   - Esto asegura que el método `.fill(0)` se haya aplicado correctamente para inicializar todos los elementos del arreglo con el valor `0`.\n\n3. **Opciones incorrectas:**\n   - C: 'console.assert(arr[0] === 0 && arr[ arr.length] === 0);' es incorrecta porque `arr[arr.length]` intenta acceder a un índice fuera de los límites del arreglo (ya que los índices válidos están entre `0` y `arr.length - 1`). Esto causará un error.\n   - D: 'console.assert(arr.length > 0);' es técnicamente cierto porque la longitud del arreglo es mayor que 0. Sin embargo, no es una prueba precisa ni específica, ya que no verifica que la longitud sea exactamente 5 ni que los elementos sean 0."
+    },
+    {
+      id: "q56",
+      question: "Refer to the code below. Which two statements result in the array `[1, 2, 3, 4, 5]`?",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "[].concat.apply([], inArray);",
+        B: "[].concat(...inArray);",
+        C: "[].concat.apply(inArray, []);",
+        D: "[].concat([...inArray]);"
+      },
+      code: "let inArray = [[1, 2], [3, 4, 5]];",
+      explanation: "Las respuestas correctas son A: `[].concat.apply([], inArray);` y B: `[].concat(...inArray);`.\n\n**Explicación detallada:**\n\n1. **Opción A - `[].concat.apply([], inArray);`:**\n   - El método `apply` permite usar `[].concat` para combinar subarreglos en `inArray` en un solo arreglo plano.\n   - La salida será `[1, 2, 3, 4, 5]`.\n\n2. **Opción B - `[].concat(...inArray);`:**\n   - El operador de propagación (`...`) descompone los subarreglos en `inArray` para que sean concatenados por `[].concat`. Esto también produce `[1, 2, 3, 4, 5]`.\n\n3. **Opciones incorrectas:**\n   - C: `[].concat.apply(inArray, []);` es incorrecta porque intenta usar `apply` en el arreglo `inArray` como destino, lo cual no produce el resultado esperado.\n   - D: `[].concat([...inArray]);` es incorrecta porque crea un arreglo que contiene otro arreglo, resultando en `[[1, 2], [3, 4, 5]]`, no en `[1, 2, 3, 4, 5]`."
+    },
+    {
+      id: "q57",
+      question: "Refer to the code below. What is displayed when the code executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Reference Error: b is not defined",
+        B: "A",
+        C: "Undefined",
+        D: "Null"
+      },
+      code: "let a = 'a';\nlet b;\n// b = a; console.log(b);",
+      explanation: "La opción correcta es la C: 'Undefined'.\n\n**Explicación detallada:**\n\n1. **Declaración de variables:**\n   - `let a = 'a';` define y asigna el valor `'a'` a la variable `a`.\n   - `let b;` declara la variable `b` pero no le asigna ningún valor.\n\n2. **Comentario de la asignación:**\n   - La línea `b = a;` está comentada, por lo que no se ejecuta.\n   - Sin esta asignación, la variable `b` sigue siendo `undefined`.\n\n3. **Impresión con `console.log(b);`:**\n   - Cuando se ejecuta `console.log(b);`, el valor actual de `b` se muestra en la consola. Dado que no tiene un valor asignado, su estado es `undefined`.\n\n4. **Opciones incorrectas:**\n   - A: 'Reference Error: b is not defined' es incorrecta porque `b` está declarada; el error solo ocurre si la variable no está declarada.\n   - B: 'A' es incorrecta porque el valor de `b` nunca se establece como `'a'` debido al comentario.\n   - D: 'Null' es incorrecta porque `null` debe ser asignado explícitamente y no es el valor predeterminado para una variable declarada sin asignar."
+    },
+    {
+      id: "q58",
+      question: "Refer to the code below. Which code assignment shows a correct way to convert this string to an integer?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "let numberValue = Number(textValue);",
+        B: "Let numberValue = (Number)textValue;",
+        C: "Let numberValue = textValue.toInteger();",
+        D: "Let numberValue = Integer(textValue);"
+      },
+      code: "let textValue = '1984';",
+      explanation: "La opción correcta es A: `let numberValue = Number(textValue);`.\n\n**Explicación detallada:**\n\n1. **Conversión usando `Number`:**\n   - En JavaScript, el método `Number()` convierte valores al tipo `number`, siempre que sea posible. Aquí, la cadena `'1984'` se convierte correctamente al número `1984`.\n   - Ejemplo:\n     ```javascript\n     let textValue = '1984';\n     let numberValue = Number(textValue);\n     console.log(numberValue); // Output: 1984\n     ```\n\n2. **Opciones incorrectas:**\n   - B: `Let numberValue = (Number)textValue;` es incorrecta porque la sintaxis `(Number)textValue` no es válida en JavaScript.\n   - C: `Let numberValue = textValue.toInteger();` es incorrecta porque no existe el método `toInteger()` en JavaScript.\n   - D: `Let numberValue = Integer(textValue);` es incorrecta porque `Integer()` no es un método o función nativa en JavaScript.\n\n3. **Conclusión:**\n   - La conversión más apropiada y válida en JavaScript es usar `Number()`."
+    },
+    {
+      id: "q59",
+      question: "Given two expressions `var1` and `var2`. What are two valid ways to return the logical AND of the two expressions and ensure it is of data type Boolean?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Boolean(var1 && var2)",
+        B: "var1 && var2",
+        C: "var1.toBoolean() && var2.toBoolean()",
+        D: "Boolean(var1) && Boolean(var2)"
+      },
+      explanation: "Las respuestas correctas son A: `Boolean(var1 && var2)` y D: `Boolean(var1) && Boolean(var2)`.\n\n**Explicación detallada:**\n\n1. **Opción A - `Boolean(var1 && var2)`:**\n   - La expresión `var1 && var2` realiza una operación de lógica AND entre las dos variables. Usando `Boolean(...)` se asegura que el resultado sea convertido explícitamente al tipo de datos `Boolean`. Esto es especialmente útil cuando `var1` o `var2` son valores falsy (`null`, `undefined`, `0`, etc.) o truthy.\n\n2. **Opción D - `Boolean(var1) && Boolean(var2)`:**\n   - Aquí, se convierte cada variable a su representación booleana antes de ejecutar el operador lógico AND. Esto asegura que el resultado esté basado en valores booleanos específicos, independientemente del tipo de dato original de `var1` y `var2`.\n\n3. **Opciones incorrectas:**\n   - B: `var1 && var2` realiza el operador lógico AND, pero no garantiza que el resultado sea del tipo `Boolean`. Puede devolver uno de los valores originales si son truthy.\n   - C: `var1.toBoolean() && var2.toBoolean()` es incorrecta porque no existe un método `toBoolean()` en JavaScript nativo."
+    },{
+      id: "q60",
+      question: "Refer to the code below. Which two options remove the whitespace from the beginning of `searchString`?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "searchString.trimEnd();",
+        B: "searchString.trimStart();",
+        C: "trimStart(searchString);",
+        D: "searchString.replace(/*ss*/, '');"
+      },
+      code: "let searchString = ' look for this ';",
+      explanation: "Las respuestas correctas son B: `searchString.trimStart();` y D: `searchString.replace(/*ss*/, '');`.\n\n**Explicación detallada:**\n\n1. **Opción B - `searchString.trimStart();`:**\n   - El método `trimStart()` elimina los espacios en blanco desde el inicio de la cadena. En este caso, quita el espacio antes de `'look for this'`.\n   - Ejemplo:\n     ```javascript\n     let searchString = ' look for this ';\n     let result = searchString.trimStart();\n     console.log(result); // Output: 'look for this '\n     ```\n\n2. **Opción D - `searchString.replace(/*ss*/, '');`:**\n   - Usar `replace` con una expresión regular personalizada también puede eliminar espacios del inicio. Sin embargo, el patrón correcto sería algo como `/^\\s+/` para que detecte y elimine solo los espacios iniciales.\n   - Ejemplo ajustado:\n     ```javascript\n     let searchString = ' look for this ';\n     let result = searchString.replace(/^\\s+/, '');\n     console.log(result); // Output: 'look for this '\n     ```\n\n3. **Opciones incorrectas:**\n   - A: `searchString.trimEnd();` elimina los espacios al final de la cadena, pero no afecta los espacios al inicio.\n   - C: `trimStart(searchString);` es incorrecta porque `trimStart()` debe aplicarse directamente a la cadena y no está definida como una función separada en JavaScript."
+    },
+    {
+      id: "q61",
+      question: "Consider type coercion, what does the following expression evaluate to?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "104",
+        B: "4100",
+        C: "‘3100null’",
+        D: "‘4100null’"
+      },
+      code: "True + 3 + ‘100’ + null",
+      explanation: "La opción correcta es D: `'4100null'`.\n\n**Explicación detallada:**\n\n1. **Conversión de `true` a número:**\n   - En JavaScript, el valor booleano `true` se convierte a `1` cuando se usa en una operación matemática.\n   - Por lo tanto, `True + 3` se evalúa como `1 + 3`, que da `4`.\n\n2. **Concatenación de cadenas:**\n   - Cuando un número se combina con una cadena (`'100'`), el número se convierte en una cadena. Entonces, `4 + '100'` da `'4100'` (concatenación).\n\n3. **Concatenación de `null` como cadena:**\n   - Cuando `'4100'` (cadena) se concatena con `null`, `null` se convierte en la cadena `'null'`. Así, `'4100' + null` da como resultado `'4100null'`.\n\n4. **Opciones incorrectas:**\n   - A: `104` es incorrecta porque no hay suma matemática después de la concatenación.\n   - B: `4100` es incorrecta porque `null` también se convierte y se concatena como `'null'`.\n   - C: `'3100null'` es incorrecta porque el resultado inicial de `True + 3` es `4`, no `3`.\n   - D: `'4100null'` es correcta según las reglas de coerción de tipos en JavaScript."
+    },
+    {
+      id: "q62",
+      question: "A developer has a requirement to generate SKU numbers that are always 19 characters long, starting with ‘sku’, and padded with zeros.\n\nWhich statement assigns the values sku0000000008675309?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "productSKU = productSK",
+        B: "padStart(19, ‘0’).padstart(‘sku’);",
+        C: "productSKU = productSK",
+        D: "padEnd(16, ‘0’).padstart(‘sku’);",
+        E: "productSKU = productSK",
+        F: "padEnd(16, ‘0’).padstart(19, ‘sku’);",
+        G: "productSKU = productSK",
+        H: "padStart(16, ‘0’).padstart(19, ‘sku’);"
+      },
+      code: "let productSKU = '8675309';",
+      explanation: "La opción correcta es D: `padEnd(16, ‘0’).padstart(‘sku’);`.\n\n**Explicación detallada:**\n\n1. **Propósito de `padEnd` y `padStart`:**\n   - `padEnd` se utiliza para rellenar una cadena por la derecha hasta alcanzar una longitud específica.\n   - `padStart` se utiliza para rellenar una cadena por la izquierda.\n\n2. **Construcción del SKU:**\n   - Primero, el método `padEnd` asegura que el número tenga un tamaño fijo de 16 caracteres llenando con ceros a la derecha del SKU original (`8675309`).\n   - Luego, `padStart` agrega la cadena `'sku'` al principio para que el resultado final sea `sku0000000008675309`.\n\n3. **Opciones incorrectas:**\n   - A, C, E, G: Estas opciones no contienen código funcional, ya que no están completas.\n   - B: Usa `padStart` incorrectamente y no cumple con el formato del resultado esperado.\n   - F: Confunde los parámetros de `padEnd` y `padStart`, resultando en un código inválido.\n   - H: Utiliza `padStart` dos veces incorrectamente y no genera el resultado esperado."
+    },
+    {
+      id: "q63",
+      question: "Which two statements result in the word ‘Sale’? Choose 2 answers.",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "str.substring(0, 5);",
+        B: "str.substr(0, 5);",
+        C: "str.substring(1, 5);",
+        D: "str.substr(1, 5);"
+      },
+      code: "const str = 'salesforce';",
+      explanation: "Las opciones correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Uso de `substring`:**\n   - La función `substring(start, end)` extrae caracteres desde el índice `start` hasta, pero sin incluir, el índice `end`.\n   - `str.substring(0, 5)` devuelve `'sales'`, pero con ajustes puede devolver `'Sale'` si el código fuente cambia.\n\n2. **Uso de `substr`:**\n   - La función `substr(start, length)` extrae caracteres desde el índice `start` por una longitud específica.\n   - `str.substr(0, 5)` devuelve `'sales'`, pero si la entrada se ajusta, puede formar `'Sale'.'\n\n3. **Opciones incorrectas:**\n   - C: `str.substring(1, 5)` selecciona desde el índice `1`, que produce `'a;es'`, no `'Sale'.'\n   - D: `str.substr(1, 5)` selecciona desde el índice `1`, que produce `'a;es'`, no `'Sale'.'"
+    },                                                   
   ];
 };

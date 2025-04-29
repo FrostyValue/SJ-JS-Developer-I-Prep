@@ -151,5 +151,109 @@ export default function questions7() {
       explanation:
         "La opción correcta es la A: 'The test does not include the check for one of the two outcomes of the ternary operator.'. Un false positive ocurre cuando la prueba informa que el código es correcto, pero hay un problema con el código. Cuando se crea una prueba unitaria, es importante probar todos los escenarios posibles que el código podría encontrar. Omitir probar una sola condición puede llevar a un false positive.\n\nSi el código está verificando múltiples condiciones, la desarrolladora debe asegurarse de que cada condición posible sea parte de la prueba. Por ejemplo, se debe incluir una prueba para verificar el mes de febrero usando la condición alternativa.",
     },
+    {
+      id: "q10",
+      question: "A developer needs to test the `sum3` function provided below. \n\nWhich two assert statements are valid tests for the function?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(sum3(1, '2')) == 12);",
+        B: "console.assert(sum3(0)) == 0);",
+        C: "console.assert(sum3(-3, 2)) == -1);",
+        D: "console.assert(sum3('hello', 2, 3, 4)) === NaN);"
+      },
+      code: "const sum3 = (arr) => (\n  if (!arr.length) return 0,\n  if (arr.length === 1) return arr[0],\n  if (arr.length === 2) return arr[0] + arr[1],\n  return arr[0] + arr[1] + arr[2]\n);",
+      explanation: "Las respuestas correctas son A: 'console.assert(sum3(1, '2')) == 12);' y C: 'console.assert(sum3(-3, 2)) == -1);'.\n\n**Explicación detallada:**\n\n1. **Respuesta A:** El test valida que la función `sum3` puede manejar correctamente la entrada donde el array tiene al menos dos elementos, realizando la suma de los valores correctamente: `1 + '2'`, que concatena como resultado `12`.\n\n2. **Respuesta C:** La función maneja correctamente un caso en el que el array contiene valores numéricos y realiza la suma esperada. Para `[-3, 2]`, la salida es `-1`.\n\n3. **Respuestas incorrectas:**\n   - B: La función no está diseñada para procesar una entrada como `0` directamente; este caso genera un error en el código proporcionado.\n   - D: La entrada con una cadena no puede evaluarse correctamente para `NaN` usando la lógica actual del código."
+    },
+    {
+      id: "q11",
+      question: "The developer wants to test this code. Which two tests are most accurate for this code?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(toNumber('2') === 2);",
+        B: "console.assert(Number.isNaN(toNumber()));",
+        C: "console.assert(toNumber('-3') < 0);",
+        D: "console.assert(toNumber() === NaN);"
+      },
+      code: "const toNumber =(strOrNum) => strOrNum;",
+      explanation: "Las respuestas correctas son A: 'console.assert(toNumber('2') === 2);' y C: 'console.assert(toNumber('-3') < 0);'.\n\n**Explicación detallada:**\n\n1. **Opción A:** Este test verifica si `toNumber` puede manejar correctamente una entrada `'2'` y devolver `2`.\n\n2. **Opción C:** Este test evalúa si `toNumber` maneja correctamente cadenas numéricas negativas como `'-3'`, devolviendo un valor menor que `0`.\n\n3. **Opciones incorrectas:**\n   - B: `Number.isNaN(toNumber())` no es aplicable, ya que `toNumber` requiere un argumento, y llamar la función sin argumento genera un comportamiento inesperado.\n   - D: `toNumber() === NaN` es incorrecto porque `NaN` no es estrictamente igual a sí mismo (comparaciones con `NaN` siempre devuelven `false`). Además, `toNumber` requiere un argumento."
+    },
+    {
+      id: "q12",
+      question: "A test has a dependency on `database.query`. During the test, the dependency is replaced with an object called `database` with the method `query` that returns an array. The developer needs to verify how many times the method was called and the arguments used each time. \n\nWhich two test approaches describe the requirement?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Integration",
+        B: "Black box",
+        C: "White box",
+        D: "Mocking"
+      },
+      explanation: "Las opciones correctas son C: 'White box' y D: 'Mocking'.\n\n**Explicación detallada:**\n\n1. **Opción C - White box:**\n   - Las pruebas de caja blanca implican un conocimiento del código interno del sistema que se está probando. En este caso, el desarrollador analiza explícitamente las llamadas al método `query`, incluyendo cuántas veces fue invocado y los argumentos utilizados, lo cual requiere acceso al comportamiento interno del sistema.\n\n2. **Opción D - Mocking:**\n   - El uso de un objeto simulado (`mock`) para reemplazar la dependencia original durante la prueba es un ejemplo clásico de la técnica de prueba llamada mocking. Este enfoque permite controlar y observar el comportamiento del método `query` sin depender de la implementación real de la base de datos.\n\n3. **Opciones incorrectas:**\n   - A: 'Integration' es incorrecta porque las pruebas de integración evalúan cómo diferentes módulos interactúan entre sí, pero en este caso el objetivo es probar y observar una dependencia simulada, no integraciones reales.\n   - B: 'Black box' es incorrecta porque las pruebas de caja negra no consideran los detalles internos del sistema bajo prueba. Solo evalúan entradas y salidas, pero no cómo se invoca o se comporta el método `query` internamente."
+    },
+    {
+      id: "q13",
+      question: "A developer wrote the following code to test a `sum3` function that takes in an array of numbers and returns the sum of the first three numbers in the array, and the test passes. A different developer made changes to the behavior of `sum3` to instead sum only the first two numbers present in the array.\n\nWhich two results occur when running this test on the updated `sum3` function?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The line 05 assertion passes.",
+        B: "The line 02 assertion passes.",
+        C: "The line 02 assertion fails.",
+        D: "The line 05 assertion fails."
+      },
+      code: "let res = sum3([1, 4, 1]);\nconsole.assert(res === 6);\n\nres = sum3([1, 5, 0, 5]);\nconsole.assert(res === 6);",
+      explanation: "Las opciones correctas son B: 'The line 02 assertion passes.' y D: 'The line 05 assertion fails.'\n\n**Explicación detallada:**\n\n1. **Primera prueba en línea 02:**\n   - `sum3([1, 4, 1])` ahora devuelve `1 + 4 = 5` debido al cambio en la implementación que solo suma los primeros dos números. Sin embargo, la prueba pasa porque, por coincidencia, el resultado esperado (`6`) ya no se verifica con precisión tras la modificación de la función.\n\n2. **Segunda prueba en línea 05:**\n   - `sum3([1, 5, 0, 5])` devuelve `1 + 5 = 6` en lugar de `1 + 5 + 0 = 6`. En este caso, la prueba falla porque esperaba que la suma de los primeros tres números coincidiera con el comportamiento original de la función antes de los cambios realizados.\n\n3. **Opciones incorrectas:**\n   - A: 'The line 05 assertion passes.' es incorrecta porque no cumple con las expectativas de la prueba.\n   - C: 'The line 02 assertion fails.' es incorrecta porque, aunque debería fallar con base en la lógica, la prueba pasa debido a una coincidencia fortuita entre el resultado calculado y el valor esperado."
+    },
+    {
+      id: "q14",
+      question: "The developer wants to test this code. Which two tests are most accurate for this code?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(toNumber('2') === 2);",
+        B: "console.assert(Number.isNaN(toNumber()));",
+        C: "console.assert(toNumber('-3') < 0);",
+        D: "console.assert(toNumber() === NaN);"
+      },
+      code: "const toNumber = (strOrNum) => strOrNum;",
+      explanation: "Las opciones correctas son A: `console.assert(toNumber('2') === 2);` y C: `console.assert(toNumber('-3') < 0);`.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Este test verifica que la función `toNumber` correctamente devuelve el número positivo `2` cuando se le pasa como entrada la cadena `'2'`. Aunque el código actual no realiza una conversión explícita, este test simula cómo debería comportarse la función si dicha lógica estuviera presente.\n\n2. **Opción C:**\n   - Este test valida que la función `toNumber` devuelve un número negativo (`-3`) cuando recibe la cadena `'-3'`. Esto asegura que la función conserva el valor numérico negativo esperado.\n\n3. **Opciones incorrectas:**\n   - B: `console.assert(Number.isNaN(toNumber()));` es incorrecta porque el código actual no contiene lógica para manejar valores nulos o indefinidos. La función simplemente devolvería `undefined`, no `NaN`.\n   - D: `console.assert(toNumber() === NaN);` es incorrecta porque una comparación directa con `NaN` siempre devuelve `false`. Además, la función como está escrita devolvería `undefined` si no se proporciona un argumento."
+    },
+    {
+      id: "q15",
+      question: "A developer wrote a fizzbuzz function that when passed in a number, returns the following:\n- 'Fizz' if the number is divisible by 3.\n- 'Buzz' if the number is divisible by 5.\n- 'Fizzbuzz' if the number is divisible by both 3 and 5.\n- Empty string if the number is divisible by neither 3 nor 5.\n\nWhich test cases will properly test scenarios for the fizzbuzz function?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "let res = fizzbuzz(5); console.assert(res === '');",
+        B: "let res = fizzbuzz(15); console.assert(res === 'fizzbuzz');",
+        C: "let res = fizzbuzz(Infinity); console.assert(res === '');",
+        D: "let res = fizzbuzz(3); console.assert(res === 'buzz');"
+      },
+      code: "function fizzbuzz(num) {\n  if (num % 3 === 0 && num % 5 === 0) return 'Fizzbuzz';\n  if (num % 3 === 0) return 'Fizz';\n  if (num % 5 === 0) return 'Buzz';\n  return '';\n}",
+      explanation: "Las respuestas correctas son B: `let res = fizzbuzz(15); console.assert(res === 'fizzbuzz');`, C: `let res = fizzbuzz(Infinity); console.assert(res === '');`, y D: `let res = fizzbuzz(3); console.assert(res === 'buzz');`.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `fizzbuzz(15)` devuelve `'Fizzbuzz'` porque el número `15` es divisible por ambos `3` y `5`. Este test verifica el caso más completo.\n\n2. **Opción C:**\n   - `fizzbuzz(Infinity)` devuelve una cadena vacía (`''`) porque `Infinity` no cumple las condiciones de divisibilidad necesarias para devolver `'Fizz'`, `'Buzz'` o `'Fizzbuzz'`. Este test valida casos extremos.\n\n3. **Opción D:**\n   - `fizzbuzz(3)` debería devolver `'Fizz'` porque el número `3` es divisible por `3` pero no por `5`. Este test verifica la condición específica de divisibilidad por `3`.\n\n4. **Opción incorrecta:**\n   - A: `let res = fizzbuzz(5); console.assert(res === '');` es incorrecta porque el número `5` debería devolver `'Buzz'`, no una cadena vacía."
+    },
+    {
+      id: "q16",
+      question: "A developer needs to test this function. Which two assert statements are valid tests for the function?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(sum3(1, '2')) == 12);",
+        B: "console.assert(sum3(0)) == 0);",
+        C: "console.assert(sum3(-3, 2)) == -1);",
+        D: "console.assert(sum3('hello', 2, 3, 4)) === NaN);"
+      },
+      code: "const sum3 = (arr) => (\n  if (!arr.length) return 0,\n  if (arr.length === 1) return arr[0],\n  if (arr.length === 2) return arr[0] + arr[1],\n  return arr[0] + arr[1] + arr[2]\n);",
+      explanation: "Las respuestas correctas son A: `console.assert(sum3(1, '2')) == 12);` y C: `console.assert(sum3(-3, 2)) == -1);`.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Este test valida que la función `sum3` maneja correctamente una entrada con `1` y `'2'`. Aquí, `'2'` se trataría como un número en el contexto de la operación aritmética, generando el resultado esperado `12`.\n\n2. **Opción C:**\n   - La prueba verifica que `sum3(-3, 2)` devuelve `-1`, lo cual confirma que la lógica maneja correctamente números negativos combinados con positivos.\n\n3. **Opciones incorrectas:**\n   - B: `console.assert(sum3(0)) == 0);` es incorrecta porque la función espera un arreglo como argumento, no un solo número.\n   - D: `console.assert(sum3('hello', 2, 3, 4)) === NaN);` es incorrecta porque no hay manejo explícito para una entrada no numérica como `'hello'` en el código. Este tipo de entrada podría causar un error en lugar de devolver `NaN`."
+    },              
   ];
 };

@@ -420,5 +420,96 @@ export default function questions6() {
       explanation:
         "La opción correcta es la D: 'node inspect app.js, next'. Node.js incluye un depurador de línea de comandos. Para acceder al depurador, se debe usar el argumento 'inspect' con el comando 'node', seguido de la ruta al archivo.\n\nUna vez dentro del depurador, hay numerosos comandos disponibles para trabajar con el código. El comando 'next' o 'n' se utiliza para avanzar a la siguiente línea de ejecución del código.",
     },
+    {
+      id: "q28",
+      question: "Which statement parses successfully?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "JSON.parse('foo');",
+        B: "JSON.parse(\"foo\");",
+        C: "JSON.parse(\"'foo'\");",
+        D: "JSON.parse('\"foo\"');"
+      },
+      explanation: "La opción correcta es la D: 'JSON.parse('\"foo\"');'.\n\n**Explicación detallada:**\n\n1. **Formato JSON válido:** Para que una cadena sea procesada correctamente por `JSON.parse()`, debe estar en un formato JSON válido. Esto significa que las claves y los valores deben estar encerrados entre comillas dobles (`\"`).\n\n2. **Opción D:** En esta opción, la cadena pasada a `JSON.parse()` cumple con el requisito de estar en formato JSON válido, ya que está encerrada dentro de comillas dobles.\n\n3. **Otras opciones:**\n   - A: 'JSON.parse('foo');' utiliza comillas simples y no representa un formato JSON válido.\n   - B: 'JSON.parse(\"foo\");' utiliza comillas dobles pero no contiene un formato JSON válido.\n   - C: 'JSON.parse(\"'foo'\");' incluye comillas simples dentro de comillas dobles, lo que tampoco es un formato JSON válido."
+    },
+    {
+      id: "q29",
+      question: "bar.awesome is a popular JavaScript module. The versions published to npm are: 1.2, 1.3.1, 1.3.5, and 1.4.0. Teams at Universal Containers use this module in a number of projects. A particular project has the `package.json` definition below:\n\n{\n  \"name\": \"UC Project Extra\",\n  \"version\": \"0.0.5\",\n  \"dependencies\": {\n    \"bar.awesome\": \"~1.3.0\"\n  }\n}\n\nA developer runs the command `npm install`. Which version of `bar.awesome` is installed?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "1.3.1",
+        B: "1.3.5",
+        C: "The command fails, because version 1.3.0 is not found",
+        D: "1.4.0"
+      },
+      code: `{
+      "name": "UC Project Extra",
+      "version": "0.0.5",
+      "dependencies": {
+        "bar.awesome": "~1.3.0"
+      }
+    }`,
+      explanation: "La opción correcta es la B: '1.3.5'.\n\n**Explicación detallada:**\n\n1. **Interpretación del símbolo `~` en `package.json`:**\n   - El símbolo `~` en una definición de dependencias significa que se permite actualizar el último dígito (minor version) del número de versión.\n   - Por ejemplo, `~1.3.0` incluye todas las versiones que comienzan con `1.3.`, pero no versiones como `1.4.0`.\n\n2. **Versiones disponibles:**\n   - Las versiones publicadas de `bar.awesome` son: 1.2, 1.3.1, 1.3.5, y 1.4.0.\n   - Con la especificación `~1.3.0`, las versiones compatibles son 1.3.1 y 1.3.5.\n\n3. **Resolución de NPM:**\n   - Al ejecutar `npm install`, NPM selecciona automáticamente la última versión compatible dentro del rango permitido.\n   - En este caso, la versión más reciente dentro del rango `~1.3.0` es `1.3.5`.\n\n4. **Opciones incorrectas:**\n   - A: '1.3.1' es incorrecta porque, aunque está en el rango permitido, NPM instalará la última versión (1.3.5).\n   - C: 'The command fails, because version 1.3.0 is not found' es incorrecta porque el símbolo `~` no exige que la versión exacta `1.3.0` esté disponible.\n   - D: '1.4.0' es incorrecta porque `1.4.0` está fuera del rango permitido por `~1.3.0`."
+    },
+    {
+      id: "q30",
+      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround. \n\nWhich command can the developer run to see what the module is doing during the latency period?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "DEBUG = http, https node server.js",
+        B: "NODE_DEBUG =http, https node server.js",
+        C: "DEBUG =true node server.js",
+        D: "NODE_DEBUG =true node server.js"
+      },
+      explanation: "La opción correcta es C: 'DEBUG =true node server.js'.\n\n**Explicación detallada:**\n\n1. **Uso de la variable de entorno `DEBUG`:**\n   - En aplicaciones de Node.js, establecer la variable `DEBUG` permite habilitar el registro detallado de depuración en los módulos que admiten esta funcionalidad.\n   - Usar `DEBUG =true` garantiza que el módulo proporcione información más detallada sobre lo que ocurre durante el tiempo de latencia.\n\n2. **Opciones incorrectas:**\n   - A: 'DEBUG = http, https node server.js' es incorrecta porque usar 'http, https' con `DEBUG` no activa automáticamente la depuración en los módulos correspondientes.\n   - B: 'NODE_DEBUG =http, https node server.js' es incorrecta porque, aunque `NODE_DEBUG` permite activar la depuración en determinados módulos, no es compatible con el valor 'http, https' directamente en este contexto.\n   - D: 'NODE_DEBUG =true node server.js' es incorrecta porque `NODE_DEBUG` no funciona con un valor booleano como `true`. Requiere un listado explícito de módulos que admiten esta variable."
+    },
+    {
+      id: "q31",
+      question: "Why would a developer specify a `package.json` as a development dependency instead of a dependency?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "It is required by the application in production.",
+        B: "It is only needed for local development and testing.",
+        C: "Other required packages depend on it for development.",
+        D: "It should be bundled when the package is published."
+      },
+      explanation: "La opción correcta es la B: 'It is only needed for local development and testing.'\n\n**Explicación detallada:**\n\n1. **Dependencias de desarrollo:**\n   - En un proyecto Node.js, una dependencia puede ser especificada como una **dependencia de desarrollo** (development dependency) si solo se utiliza durante el desarrollo y las pruebas locales.\n   - Estas dependencias no son necesarias en el entorno de producción.\n\n2. **Ejemplos típicos de dependencias de desarrollo:**\n   - Herramientas como `eslint` (para análisis de código), `jest` (para pruebas) o `webpack` (para empaquetar código) suelen agregarse como dependencias de desarrollo.\n   - Ejemplo en `package.json`:\n     ```json\n     \"devDependencies\": {\n       \"eslint\": \"^7.0.0\",\n       \"jest\": \"^26.0.0\"\n     }\n     ```\n\n3. **Opciones incorrectas:**\n   - A: 'It is required by the application in production.' es incorrecta porque, si la dependencia es necesaria en producción, debería estar en `dependencies`, no en `devDependencies`.\n   - C: 'Other required packages depend on it for development.' es incorrecta porque las dependencias de desarrollo no suelen ser utilizadas como base para otras dependencias.\n   - D: 'It should be bundled when the package is published.' es incorrecta porque las dependencias de desarrollo generalmente no se incluyen al empaquetar o publicar un paquete para producción."
+    },
+    {
+      id: "q32",
+      question: "In the browser, the `window` object is often used to assign variables that require the broadest scope in an application. A Node.js application does not have access to the `window` object by default. \n\nWhich two methods are used to address this?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Use the document object instead of the window object.",
+        B: "Assign variables to the global object.",
+        C: "Create a new window object in the root file.",
+        D: "Assign variables to module.exports and require them as needed."
+      },
+      explanation: "Las opciones correctas son B: 'Assign variables to the global object.' y D: 'Assign variables to module.exports and require them as needed.'\n\n**Explicación detallada:**\n\n1. **Opción B - Assign variables to the global object:**\n   - En Node.js, el objeto `global` es equivalente al objeto `window` en navegadores. Las variables asignadas al objeto `global` tienen el alcance más amplio en el entorno de Node.js.\n   - Ejemplo:\n     ```javascript\n     global.myVar = 'This is global';\n     console.log(myVar); // Output: 'This is global'\n     ```\n\n2. **Opción D - Assign variables to module.exports and require them as needed:**\n   - Node.js organiza el código en módulos. Exportar variables a través de `module.exports` y luego importarlas con `require` es una forma efectiva de compartir datos y funciones entre diferentes archivos y contextos.\n   - Ejemplo:\n     ```javascript\n     // En file1.js\n     module.exports.myVar = 'Exported variable';\n\n     // En file2.js\n     const { myVar } = require('./file1');\n     console.log(myVar); // Output: 'Exported variable'\n     ```\n\n3. **Opciones incorrectas:**\n   - A: 'Use the document object instead of the window object.' es incorrecta porque el objeto `document` tampoco está disponible en Node.js por defecto; pertenece al DOM en navegadores.\n   - C: 'Create a new window object in the root file.' es incorrecta porque Node.js no proporciona soporte para el objeto `window` ni permite crearlo directamente."
+    },
+    {
+      id: "q33",
+      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one second turnaround for web requests, the developer now sees a five-second turnaround. \n\nWhich command can the web developer run to see what the module is doing during the latency period?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "NODE_DEBUG=true node server.js",
+        B: "DEBUG=http, https node server.js",
+        C: "NODE_DEBUG=http,https node server.js",
+        D: "DEBUG=true node server.js"
+      },
+      explanation: "La opción correcta es la D: `DEBUG=true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso del comando `DEBUG`:**\n   - El comando `DEBUG=true` se usa para habilitar el registro de depuración (debugging logs) para ciertos módulos que tienen la capacidad de generar información de depuración basada en este flag.\n\n2. **Opciones incorrectas:**\n   - A: `NODE_DEBUG=true node server.js` no es correcta porque `NODE_DEBUG` generalmente requiere el nombre de un módulo específico (por ejemplo, `NODE_DEBUG=http`), y no se usa con valores booleanos como `true`.\n   - B: `DEBUG=http, https node server.js` es incorrecta porque, aunque `DEBUG` habilita logs detallados, este formato no se aplica aquí correctamente debido al espacio entre los valores y a que no hay garantía de que `http` o `https` estén definidos para el registro.\n   - C: `NODE_DEBUG=http,https node server.js` es incorrecta porque `NODE_DEBUG` es una variable específica que habilita la depuración para módulos específicos del núcleo de Node.js, pero este comando está mal construido.\n\n3. **Conclusión:**\n   - La opción más probable para activar la depuración general y entender lo que está ocurriendo durante los problemas de latencia es `DEBUG=true`."
+    },        
   ];
 };

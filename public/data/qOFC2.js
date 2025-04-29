@@ -799,5 +799,360 @@ export default function questions2() {
       explanation:
         "Las opciones correctas son C: 'The 'super' keyword should be used to call the parent class constructor before accessing the 'this' property in the child constructor.' y D: 'The child class should always extend the parent class.'.\n\n**Explicación detallada:**\n\n1. **Uso de 'super':** En JavaScript, el constructor del padre (llamado con 'super') debe ser invocado antes de acceder a 'this' en el constructor del hijo. En el código dado, 'this.purchaseHistory' se accede antes de llamar a 'super', lo que genera un error.\n\n2. **Relación padre-hijo:** En la herencia, siempre es el hijo (Buyer) quien extiende al padre (User), no al revés.\n\n**Corrección:**\n```javascript\nclass User {\n  constructor(id, name, age, purchaseHistory) {\n    this.id = id;\n    this.name = name;\n    this.age = age;\n    this.purchaseHistory = purchaseHistory || [];\n  }\n\n  addToPurchaseHistory(purchase) {\n    console.log(`User ${this.name} purchased ${purchase}`);\n    this.purchaseHistory.push(purchase);\n  }\n}\n\nclass Buyer extends User {\n  constructor(id, name, age) {\n    super(id, name, age);\n  }\n}\n```",
     },
+    {
+      id: "q48",
+      question: "Refer to the code below:\n\nWhat value can a developer expect when referencing `o.js.secondCity`?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Undefined",
+        B: "'new york'",
+        C: "'New York'",
+        D: "An error"
+      },
+      code: "let o = {\n  get js() {\n    let city1 = String('St. Louis');\n    let city2 = String('New York');\n    return {\n      firstCity: city1.toLowerCase(),\n      secondCity: city2.toLowerCase(),\n    };\n  }\n};",
+      explanation: "La opción correcta es la B: `'new york'`.\n\n**Explicación detallada:**\n\n1. **Uso del getter `js`:** Al acceder a `o.js`, el getter devuelve un objeto con las propiedades `firstCity` y `secondCity`. Estas propiedades son cadenas convertidas a minúsculas utilizando el método `.toLowerCase()`.\n\n2. **Acceso a `secondCity`:** Cuando se accede a `o.js.secondCity`, se evalúa la propiedad `secondCity` del objeto retornado por el getter. En este caso, `secondCity` contiene el valor `'new york'`, ya que la cadena original `'New York'` fue convertida a minúsculas.\n\n3. **Opciones incorrectas:**\n   - A: `Undefined` no es correcto porque `o.js.secondCity` se evalúa a un valor definido.\n   - C: `'New York'` no es correcto porque el método `.toLowerCase()` convierte la cadena a minúsculas.\n   - D: No se genera ningún error en la ejecución del código."
+    },
+    {
+      id: "q49",
+      question: "A developer creates an object where its properties should be immutable and prevent properties from being added or modified. \n\nWhich method should be used to execute this business requirement?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Object.const()",
+        B: "Object.eval()",
+        C: "Object.lock()",
+        D: "Object.freeze()"
+      },
+      explanation: "La opción correcta es la D: 'Object.freeze()'.\n\n**Explicación detallada:**\n\n1. **Object.freeze():** Este método se utiliza para hacer un objeto inmutable. Cuando se aplica a un objeto, el objeto resultante no permite la adición, eliminación ni modificación de sus propiedades. También evita cambiar las propiedades existentes, incluyendo sus valores y descriptores.\n\n2. **Opciones incorrectas:**\n   - A: 'Object.const()' no es un método válido en JavaScript.\n   - B: 'Object.eval()' tampoco es un método válido y `eval` se utiliza para ejecutar cadenas de código, lo cual no cumple con el requisito de inmutabilidad.\n   - C: 'Object.lock()' no existe en JavaScript.\n\n3. **Conclusión:** Usar `Object.freeze()` cumple con el requerimiento de prevenir modificaciones en las propiedades del objeto."
+    },
+    {
+      id: "q50",
+      question: "Refer to the code below:\n\nWhich two functions can replace line 01 and return 58 to `sum`?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "const addBy = function(num1) { return function(num2) { return num1 + num2; }; };",
+        B: "const addBy = function(num1) { return num1 + num2; };",
+        C: "const addBy = (num1) => num1 + num2;",
+        D: "const addBy = (num1) => (num2) => num1 + num2;"
+      },
+      explanation: "Las respuestas correctas son A: 'const addBy = function(num1) { return function(num2) { return num1 + num2; }; };' y D: 'const addBy = (num1) => (num2) => num1 + num2;'.\n\n**Explicación detallada:**\n\n1. **Currying:** Las funciones en las opciones A y D son ejemplos de currying, donde una función principal devuelve otra función para operar sobre un nuevo argumento. Esto permite usar `addBy` para crear funciones específicas como `addByEight`.\n\n2. **Por qué A y D funcionan:**\n   - En la opción A, `addBy` es una función que toma un argumento (`num1`) y devuelve otra función. Esta segunda función toma el segundo argumento (`num2`) y retorna la suma de ambos.\n   - En la opción D, se utiliza una sintaxis de función flecha (`=>`) para lograr el mismo comportamiento, con el mismo resultado.\n\n3. **Opciones incorrectas:**\n   - B y C intentan sumar directamente dentro de la primera función, pero no proporcionan una segunda función que tome el siguiente argumento. Esto rompe la lógica requerida para asignar `addBy(8)` a `addByEight` y luego usarlo con un segundo valor."
+    },
+    {
+      id: "q51",
+      question: "Refer to the code below. What are the values of `objBook` and `newObjBook` respectively?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "[title: 'javaScript'] [title: 'javaScript']",
+        B: "{author: 'Robert', title: 'javaScript'} Undefined",
+        C: "{author: 'Robert', title: 'javaScript'} {author: 'Robert', title: 'javaScript'}",
+        D: "{author: 'Robert'} {author: 'Robert', title: 'javaScript'}"
+      },
+      code: "const objBook = { title: 'JavaScript' };\nObject.preventExtensions(objBook);\nconst newObjBook = objBook;\nnewObjBook.author = 'Robert';",
+      explanation: "La opción correcta es la A: '[title: 'javaScript'] [title: 'javaScript']'.\n\n**Explicación detallada:**\n\n1. **Uso de Object.preventExtensions():** Este método impide que se agreguen nuevas propiedades a un objeto existente. Sin embargo, las propiedades existentes pueden modificarse o eliminarse.\n\n2. **Asignación de `newObjBook`:** En JavaScript, la asignación de objetos no crea una copia independiente del objeto. Tanto `objBook` como `newObjBook` hacen referencia al mismo objeto en memoria.\n\n3. **Intento de agregar propiedades:** La línea `newObjBook.author = 'Robert';` intenta agregar una nueva propiedad al objeto. Sin embargo, debido al uso de `Object.preventExtensions(objBook)`, esta operación falla silenciosamente y no genera un error en modo normal (aunque en modo estricto podría generar un error).\n\n4. **Resultado final:** Ninguna nueva propiedad se agrega al objeto. Tanto `objBook` como `newObjBook` conservan únicamente la propiedad `title` con el valor `'javaScript'`."
+    },
+    {
+      id: "q52",
+      question: "Refer to the code below. What is the value of the `result` after line 10 executes?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Error: myFather.job is not a function",
+        B: "Undefined Developer",
+        C: "John undefined",
+        D: "John Developer"
+      },
+      code: "function Person() {\n  this.firstName = 'John';\n}\n\nPerson.prototype = {\n  job: x => 'Developer'\n};\n\nconst myFather = new Person();\nconst result = myFather.firstName + '' + myFather.job();",
+      explanation: "La opción correcta es la D: 'John Developer'.\n\n**Explicación detallada:**\n\n1. **Objeto y prototipos:** La función constructora `Person` inicializa el objeto `myFather` con la propiedad `firstName` establecida en `'John'`.\n\n2. **Prototipo modificado:** `Person.prototype` ha sido sobrescrito con un nuevo objeto que contiene el método `job`. Este método utiliza una función flecha que devuelve la cadena `'Developer'`.\n\n3. **Acceso al prototipo:** Cuando se llama a `myFather.job()`, se busca el método `job` en la cadena de prototipos y lo encuentra en `Person.prototype`. La función flecha devuelve `'Developer'`.\n\n4. **Construcción del resultado:** La línea `const result = myFather.firstName + '' + myFather.job();` concatena el valor de `firstName` ('John') y el valor devuelto por `job()` ('Developer'), produciendo `'John Developer'`.\n\n5. **Opciones incorrectas:**\n   - A: No se genera un error, ya que `job` es accesible desde el prototipo.\n   - B: `'Undefined Developer'` no es correcto porque `firstName` tiene un valor definido.\n   - C: `'John undefined'` no es correcto porque `job()` devuelve un valor definido ('Developer')."
+    },
+    {
+      id: "q53",
+      question: "At Universal Containers, every team has its own way of copying JavaScript objects. The code snippet shows an implementation from one team. What is the output of the code execution?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Hello Dan Doe",
+        B: "Hello John Doe",
+        C: "TypeError: dan.name is not a function",
+        D: "TypeError: Assignment to constant variable."
+      },
+      code: "function Person() {\n  this.firstName = \"John\";\n  this.lastName = \"Doe\";\n  this.name = () => {\n    console.log(`Hello ${this.firstName} ${this.lastName}`);\n  };\n}\n\nconst john = new Person();\nconst dan = JSON.parse(JSON.stringify(john));\ndan.firstName = 'Dan';\ndan.name();",
+      explanation: "La opción correcta es la C: 'TypeError: dan.name is not a function'.\n\n**Explicación detallada:**\n\n1. **Uso de JSON.stringify y JSON.parse:** Estos métodos convierten un objeto en una cadena JSON y luego lo reconstruyen como un nuevo objeto. Sin embargo, las funciones no se incluyen en la cadena JSON resultante.\n\n2. **Resultado:** Al convertir el objeto `john` en JSON, la propiedad `name` (que es una función) se elimina. Como resultado, el objeto reconstruido `dan` no tiene la propiedad `name`.\n\n3. **Intento de ejecución:** Cuando se llama a `dan.name()`, se genera un error porque `name` no existe en el objeto `dan`, ni como función ni como propiedad.\n\n4. **Otras opciones:**\n   - A y B: No son correctas porque la ejecución no puede completar con éxito la llamada a `dan.name()`.\n   - D: La declaración no intenta reasignar una constante, por lo que no ocurre este error."
+    },
+    {
+      id: "q54",
+      question: "Refer to the following object. How can a developer access the `fullName` property for `cat`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "cat.fullName",
+        B: "cat.fullName()",
+        C: "cat.get.fullName",
+        D: "cat.function.fullName()"
+      },
+      code: "const cat = {\n  firstName: 'Fancy',\n  lastName: 'Whiskers',\n  get fullName() {\n    return this.firstName + ' ' + this.lastName;\n  }\n};",
+      explanation: "La opción correcta es la A: 'cat.fullName'.\n\n**Explicación detallada:**\n\n1. **Uso de la propiedad `get`:** El objeto `cat` define un método de acceso (`getter`) llamado `fullName`. Los métodos de acceso se invocan como propiedades, sin paréntesis.\n\n2. **Acceso a `fullName`:** La forma correcta de acceder al valor calculado por el método de acceso es usando `cat.fullName`, ya que este es un getter.\n\n3. **Opciones incorrectas:**\n   - B: 'cat.fullName()' no es válido porque los getters no se llaman como funciones.\n   - C: 'cat.get.fullName' no es válido porque `get` no es una propiedad en el objeto `cat`.\n   - D: 'cat.function.fullName()' tampoco es válido porque `function` no es un método o propiedad definida en el objeto `cat`."
+    },
+    {
+      id: "q55",
+      question: "Refer to the code below. What is the output of this function when called with an empty array?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Returns 0",
+        B: "Throws an error",
+        C: "Returns 10",
+        D: "Returns NaN"
+      },
+      code: "const myFunction = arr => {\n  return arr.reduce((result, current) => {\n    return result + current;\n  }, 10);\n};",
+      explanation: "La opción correcta es la C: 'Returns 10'.\n\n**Explicación detallada:**\n\n1. **Método `reduce`:** El método `reduce` toma un acumulador (`result`) y el valor actual (`current`) y aplica una operación para transformar los valores en un único resultado.\n\n2. **Valor inicial:** En el código proporcionado, el valor inicial del acumulador se establece como `10` en el segundo argumento de `reduce`. Si el array proporcionado está vacío, el `reduce` simplemente devuelve este valor inicial.\n\n3. **Resultado:** Como el array está vacío, no hay elementos para iterar, y el valor inicial `10` se devuelve directamente.\n\n4. **Opciones incorrectas:**\n   - A: No se devuelve `0` porque el valor inicial definido es `10`.\n   - B: No se genera un error, ya que el método `reduce` maneja correctamente los arrays vacíos cuando se proporciona un valor inicial.\n   - D: No se devuelve `NaN` porque el valor inicial definido es un número válido (`10`)."
+    },
+    {
+      id: "q56",
+      question: "A developer creates a class that represents a blog post with specific requirements. Which statement should be inserted in the placeholder on line 02 to allow for a variable to be set to a new instance of a `Post` with the three attributes correctly populated?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "super(body, author, viewCount) {",
+        B: "function Post(body, author, viewCount) {",
+        C: "constructor(body, author, viewCount) {",
+        D: "constructor() {"
+      },
+      code: "class Post {\n  // Insert code here\n  this.body = body;\n  this.author = author;\n  this.viewCount = viewCount;\n}",
+      explanation: "La opción correcta es la C: 'constructor(body, author, viewCount) {'.\n\n**Explicación detallada:**\n\n1. **Uso del constructor:** En una clase de JavaScript, el método `constructor` se utiliza para inicializar un objeto cuando se crea una nueva instancia de la clase. Los argumentos proporcionados a `constructor` permiten inicializar las propiedades del objeto.\n\n2. **Implementación:** La línea `constructor(body, author, viewCount) {` asegura que los valores de `body`, `author` y `viewCount` puedan ser asignados a las propiedades de la instancia usando `this.body`, `this.author` y `this.viewCount`, respectivamente.\n\n3. **Opciones incorrectas:**\n   - A: 'super(body, author, viewCount) {' solo es válido si `Post` extiende otra clase. Como no se menciona una clase padre aquí, no es aplicable.\n   - B: 'function Post(body, author, viewCount) {' es un método de creación de funciones heredado y no es parte de la sintaxis moderna de clases.\n   - D: 'constructor() {' no es correcto porque no define parámetros necesarios para inicializar las propiedades requeridas."
+    },
+    {
+      id: "q57",
+      question: "Refer to the code below. Why does the function `bar` have access to variable `a`?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Inner function’s scope",
+        B: "Hoisting",
+        C: "Outer function’s scope",
+        D: "Prototype chain"
+      },
+      code: "function foo() {\n  const a = 2;\n  function bar() {\n    console.log(a);\n  }\n  return bar;\n}",
+      explanation: "La opción correcta es la C: 'Outer function’s scope'.\n\n**Explicación detallada:**\n\n1. **Closure:** La función `bar` tiene acceso a la variable `a` debido a que es parte de una clausura. Cuando `bar` es definida dentro de la función `foo`, se 'recuerda' el ámbito de `foo`, incluyendo sus variables y constantes, incluso después de que la ejecución de `foo` haya finalizado.\n\n2. **Outer function’s scope:** La variable `a` está en el ámbito de la función `foo` (el ámbito externo de `bar`). Dado que JavaScript permite que las funciones internas accedan a las variables de su función contenedora, `bar` puede acceder a `a`.\n\n3. **Opciones incorrectas:**\n   - A: 'Inner function’s scope' es incorrecto porque `a` no está definida dentro del ámbito de `bar`, sino en el ámbito de la función contenedora `foo`.\n   - B: 'Hoisting' describe cómo las declaraciones se mueven al inicio de su ámbito, pero no explica el acceso de las funciones internas a las variables externas.\n   - D: 'Prototype chain' no está relacionado con el acceso de las funciones a las variables externas, sino con la herencia en objetos."
+    },
+    {
+      id: "q58",
+      question: "The developer has a function that prints 'Hello' to an input name. To test this, the developer created a function that returns 'World.' However, the provided snippet does not print 'Hello World.' \n\nWhat can the developer do to fix this?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Change line 7 to ) ();",
+        B: "Change line 2 to console.log('Hello', name());",
+        C: "Change line 9 to sayHello(world) ();",
+        D: "Change line 5 to function world () {"
+      },
+      code: "const sayHello = (name) => {\n  console.log('Hello', name);\n};\n\nconst world = () => {\n  return 'world';\n};\n\nsayHello(world);",
+      explanation: "La opción correcta es la B: 'Change line 2 to console.log('Hello', name());'.\n\n**Explicación detallada:**\n\n1. **Razón del problema:** En el código actual, en `console.log('Hello', name);`, `name` se pasa como una referencia a la función `world`, pero no se está invocando. Como resultado, lo que se imprime es 'Hello [Function: world]' en lugar de 'Hello World'.\n\n2. **Solución:** Cambiar la línea 2 a `console.log('Hello', name());` invoca la función `name` (que apunta a `world`) y permite que retorne 'world'. Esto asegura que la salida correcta sea 'Hello World'.\n\n3. **Opciones incorrectas:**\n   - A: 'Change line 7 to ) ();' no tiene sentido en este contexto y es una sintaxis inválida.\n   - C: 'Change line 9 to sayHello(world) ();' es incorrecto porque `sayHello` ya está correctamente invocado.\n   - D: 'Change line 5 to function world () {' no aborda el problema, ya que la definición de `world` ya está correctamente escrita como una función."
+    },
+    {
+      id: "q59",
+      question: "What happens due to the lack of the new keyword on line 02 in the code?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "The z variable is assigned the correct object.",
+        B: "The z variable is assigned the correct object but this.name remains undefined.",
+        C: "Window.name is assigned to 'hello' and the variable z remains undefined.",
+        D: "Window.m is assigned the correct object."
+      },
+      code: "function Monster() {\n  this.name = 'hello';\n};\nconst z = Monster();",
+      explanation: "La opción correcta es la C: 'Window.name is assigned to 'hello' and the variable z remains undefined.'\n\n**Explicación detallada:**\n\n1. **Uso de `this` sin `new`:**\n   - Cuando una función constructora como `Monster` se llama sin el operador `new`, el contexto de `this` dentro de la función pasa a ser el objeto global (`window` en un navegador).\n   - Esto significa que en lugar de asignar `this.name` a un nuevo objeto, se asigna como una propiedad al objeto global (`window.name`).\n\n2. **El valor de `z`:**\n   - La función `Monster()` no devuelve explícitamente un valor. Como resultado, `z` se asigna a `undefined`.\n\n3. **Opciones incorrectas:**\n   - A: Es incorrecta porque no se crea un objeto ni se asigna a `z` correctamente.\n   - B: No es correcta porque `z` no recibe un objeto y `this.name` no permanece undefined; más bien, se asigna al objeto global.\n   - D: No hay mención de `Window.m` en el código, lo que hace que esta opción sea inválida."
+    },
+    {
+      id: "q60",
+      question: "Refer to the following code. What is returned by the function call on line 13?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Undefined",
+        B: "Line 13 throws an error.",
+        C: "‘Undefined value!’",
+        D: "‘Null value!’"
+      },
+      code: "function test(val) {\n  if(val === undefined) {\n    return 'Undefined value!';\n  }\n  if(val === null) {\n    return 'Null value!';\n  }\n  return val;\n}\n\nlet x;\n\ntest(x);",
+      explanation: "La opción correcta es la A: 'Undefined'.\n\n**Explicación detallada:**\n\n1. **Declaración de la variable `x`:** En el código, `let x;` declara la variable `x` pero no le asigna un valor. Por lo tanto, su valor predeterminado es `undefined`.\n\n2. **Llamada a la función:** Cuando se llama a `test(x)`, la variable `x` (que tiene el valor `undefined`) se pasa como argumento.\n\n3. **Ejecución de la función:**\n   - La primera condición en la función, `if(val === undefined)`, es verdadera porque el argumento `val` es igual a `undefined`.\n   - Por lo tanto, se devuelve la cadena `'Undefined value!'`.\n\n4. **Opciones incorrectas:**\n   - B: La línea 13 no genera un error porque la función maneja correctamente el caso cuando el argumento es `undefined`.\n   - C: Aunque se evalúa `val === undefined` como verdadero, la función devuelve una cadena específica ('Undefined value!'), no el literal `undefined`.\n   - D: No se devuelve `'Null value!'` porque el valor de `x` no es `null`."
+    },
+    {
+      id: "q61",
+      question: "Refer to the code below. Which assertion accurately tests the above code?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Console.assert (await functionUnderTest(true), ' OK ')",
+        B: "Console.assert (await functionUnderTest(true), ' not OK ')",
+        C: "Console.assert (awaitfunctionUnderTest(true), ' not OK ')",
+        D: "Console.assert (await functionUnderTest(true), 'OK')"
+      },
+      code: "async function functionUnderTest(isOK) {\n  if (isOK) return 'OK';\n  throw new Error('not OK');\n}",
+      explanation: "La opción correcta es la D: 'Console.assert(await functionUnderTest(true), 'OK')'.\n\n**Explicación detallada:**\n\n1. **Evaluación de la función:**\n   - La función `functionUnderTest` verifica si el parámetro `isOK` es verdadero.\n   - Si es `true`, retorna la cadena `'OK'`.\n   - Si es `false`, lanza un error con el mensaje `'not OK'`.\n\n2. **Uso de `Console.assert`:**\n   - La declaración `Console.assert(condition, message)` valida que la `condition` sea `true`. Si la condición es falsa, se registra el `message` en la consola como error.\n   - En este caso, `await functionUnderTest(true)` retorna `'OK'`, lo cual hace que la condición en `Console.assert` sea verdadera y no se registre ningún error.\n\n3. **Opciones incorrectas:**\n   - A: Incorrecto debido al espacio innecesario en `' OK '`, lo cual rompe la comparación.\n   - B: Incorrecto porque la condición no es `'not OK'` cuando `isOK` es verdadero.\n   - C: Incorrecto porque contiene un error de sintaxis en `awaitfunctionUnderTest(true)` debido a la falta de espacios."
+    },
+    {
+      id: "q62",
+      question: "What is the result of the code block?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "The console logs only ‘flag’.",
+        B: "The console logs ‘flag’ and another flag.",
+        C: "An error is thrown.",
+        D: "The console logs ‘flag’ and then an error is thrown."
+      },
+      code: "flag();\nanotherFlag();\n\nfunction flag() {\n  console.log('flag');\n}\n\nconst anotherFlag = () => {\n  console.log('another flag');\n};",
+      explanation: "The correct answer is **D: 'The console logs ‘flag’ and then an error is thrown.'**\n\n**Explanation:**\n\n1. **Function Declaration for `flag`:**\n   - The function `flag` is a function declaration, which means it is hoisted to the top of its scope. As a result, `flag()` can be called before its definition in the code.\n   - When `flag()` is called, it executes without issue, logging `'flag'` to the console.\n\n2. **Const Declaration for `anotherFlag`:**\n   - The variable `anotherFlag` is declared using `const`, which is not hoisted in the same way as function declarations. While the variable name is hoisted to the top of its scope, it remains in the temporal dead zone (TDZ) until the line of code where it is defined.\n   - When `anotherFlag()` is called before its definition, an error is thrown because `anotherFlag` has not been initialized yet.\n\n3. **Result:**\n   - The first log statement, `flag()`, executes successfully, logging `'flag'`.\n   - The second call to `anotherFlag()` throws a `ReferenceError` because `anotherFlag` is accessed before it is initialized.\n\n4. **Options Analysis:**\n   - A: Incorrect. The code does not just log `'flag'`; it throws an error after logging.\n   - B: Incorrect. The code does not log `'another flag'` because `anotherFlag()` throws an error before it can be executed.\n   - C: Incorrect. While an error is thrown, `'flag'` is logged first.\n   - D: Correct. The code logs `'flag'` and then throws an error."
+    },
+    {
+      id: "q63",
+      question: "Which statement should be added to line 09 for the code to correctly display 'The truck 123AB has a weight of 5000 lb.'?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Super.plate =plate;",
+        B: "super(plate);",
+        C: "This.plate =plate;",
+        D: "Vehicle.plate = plate;"
+      },
+      code: "class Vehicle {\n  constructor(plate) {\n    this.plate = plate;\n  }\n}\n\nclass Truck extends Vehicle {\n  constructor(plate, weight) {\n    // Missing code\n    this.weight = weight;\n  }\n  displayWeight() {\n    console.log(`The truck ${this.plate} has a weight of ${this.weight} lb.`);\n  }\n}\n\nlet myTruck = new Truck('123AB', 5000);\nmyTruck.displayWeight();",
+      explanation: "La opción correcta es la B: 'super(plate);'.\n\n**Explicación detallada:**\n\n1. **Uso del operador `super`:**\n   - En una clase que extiende otra, como `Truck` que extiende `Vehicle`, el constructor de la clase hija necesita llamar al constructor de la clase padre utilizando `super()`.\n   - En este caso, `super(plate);` llama al constructor de `Vehicle` y le pasa el valor `plate`, permitiendo inicializar la propiedad `this.plate` en la instancia de la clase `Truck`.\n\n2. **Llamada al constructor:**\n   - Cuando se instancia un objeto de la clase `Truck`, como en `new Truck('123AB', 5000)`, se ejecuta el constructor de `Truck`, que a su vez llama al constructor de `Vehicle` mediante `super(plate);` para inicializar `this.plate`.\n   - Luego, `this.weight` se asigna directamente en el constructor de `Truck`.\n\n3. **Opciones incorrectas:**\n   - A: `'Super.plate = plate;'` es incorrecta porque no es la sintaxis válida para llamar al constructor de la clase padre.\n   - C: `'This.plate = plate;'` es incorrecta porque inicializa `this.plate` directamente en la clase hija sin llamar al constructor de la clase padre, lo que genera un error cuando se extiende otra clase.\n   - D: `'Vehicle.plate = plate;'` es incorrecta porque intenta acceder al constructor de `Vehicle` de manera estática, lo cual no es válido aquí."
+    },
+    {
+      id: "q64",
+      question: "How can a developer access the `fullName` property for the `cat` object?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "cat.fullName",
+        B: "cat.fullName()",
+        C: "cat.get.fullName",
+        D: "cat.function.fullName()"
+      },
+      code: "const cat = {\n  firstName: 'Fancy',\n  lastName: 'Whiskers',\n  get fullName() {\n    return this.firstName + ' ' + this.lastName;\n  }\n};",
+      explanation: "La opción correcta es la A: 'cat.fullName'.\n\n**Explicación detallada:**\n\n1. **Propiedades `get`:**\n   - En JavaScript, las propiedades definidas con `get` son accesibles como si fueran propiedades normales, es decir, sin usar paréntesis.\n   - En este caso, `fullName` está definido con el accesor `get`, lo que significa que se puede acceder usando `cat.fullName` y no `cat.fullName()`.\n\n2. **Opciones incorrectas:**\n   - B: `'cat.fullName()'` es incorrecta porque no es necesario llamar a la propiedad `get` como función.\n   - C: `'cat.get.fullName'` es incorrecta porque no hay ninguna propiedad `get` en el objeto que pueda ser usada de esa forma.\n   - D: `'cat.function.fullName()'` es incorrecta porque no existe ninguna propiedad `function` definida en el objeto."
+    },
+    {
+      id: "q65",
+      question: "What is the value of the result after line 10 executes?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Error: myFather.job is not a function",
+        B: "Undefined Developer",
+        C: "John undefined",
+        D: "John Developer"
+      },
+      code: "function Person() {\n  this.firstName = 'John';\n}\nPerson.prototype = {\n  Job: x => 'Developer'\n};\nconst myFather = new Person();\nconst result = myFather.firstName + ' ' + myFather.job();",
+      explanation: "La opción correcta es la A: 'Error: myFather.job is not a function'.\n\n**Explicación detallada:**\n\n1. **Definición de `Person.prototype`:**\n   - El objeto `Person.prototype` se sobrescribe con un nuevo objeto que contiene una propiedad `Job`.\n   - Sin embargo, el método `job` no está definido como una función en el prototipo, sino como una propiedad (`Job`) con una función de flecha.\n   - En JavaScript, las propiedades definidas en el prototipo no están disponibles directamente como métodos invocables si no se definen explícitamente como funciones.\n\n2. **Referencia a `job`:**\n   - En el código, `myFather.job()` intenta invocar `job` como una función, pero no existe una propiedad `job` en el prototipo o en la instancia de `Person`.\n   - Esto genera un error `TypeError: myFather.job is not a function`.\n\n3. **Opciones incorrectas:**\n   - B: 'Undefined Developer' es incorrecta porque no se puede acceder correctamente a `job` como una función.\n   - C: 'John undefined' es incorrecta porque el error ocurre antes de que el código pueda acceder a `job`.\n   - D: 'John Developer' es incorrecta porque el método `job()` no existe en el objeto `myFather`."
+    },
+    {
+      id: "q66",
+      question: "A developer has an `ErrorHandler` module that contains multiple functions. What kind of export should be leveraged so that multiple functions can be used?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Named",
+        B: "All",
+        C: "Multi",
+        D: "Default"
+      },
+      explanation: "La opción correcta es la A: 'Named'.\n\n**Explicación detallada:**\n\n1. **Exportación nombrada (Named):**\n   - Una exportación nombrada permite exportar múltiples funciones, variables u objetos desde un módulo para que puedan ser importados selectivamente en otros módulos.\n   - En este caso, dado que el módulo `ErrorHandler` contiene varias funciones, usar exportaciones nombradas permite que cada función sea exportada con su propio nombre.\n   - Ejemplo:\n     ```javascript\n     // ErrorHandler.js\n     export function logError() {\n       // Código para registrar errores\n     }\n     export function displayError() {\n       // Código para mostrar errores\n     }\n     ```\n     Luego, otro archivo puede importar las funciones de esta manera:\n     ```javascript\n     import { logError, displayError } from './ErrorHandler.js';\n     ```\n\n2. **Opciones incorrectas:**\n   - B: 'All' no es un tipo de exportación válida en JavaScript.\n   - C: 'Multi' no es un término reconocido para la exportación en JavaScript.\n   - D: 'Default' permite exportar solo un valor por módulo, lo que no es ideal si hay múltiples funciones que deben ser exportadas del módulo."
+    },
+    {
+      id: "q67",
+      question: "A developer wants to leverage a module to print a price in pretty format, and has imported a method as shown below. Based on the code. \n\nWhat must be true about the `printPrice` function of the `PricePrettyPrint` module for this import to work?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "printPrice must be a named export",
+        B: "printPrice must be an all export",
+        C: "printPrice must be the default export",
+        D: "printPrice must be a multi export"
+      },
+      code: "import printPrice from '/path/PricePrettyPrint.js';",
+      explanation: "La opción correcta es la C: 'printPrice must be the default export.'\n\n**Explicación detallada:**\n\n1. **Importaciones en JavaScript:**\n   - Cuando se utiliza la sintaxis `import printPrice from '/path/PricePrettyPrint.js';`, se está importando el **valor de exportación por defecto** del módulo `PricePrettyPrint.js`. Solo las exportaciones por defecto son compatibles con esta forma de importación.\n\n2. **Exportación por defecto:**\n   - Una exportación por defecto es un valor único que un módulo puede exportar. Esta exportación se realiza usando la palabra clave `default`, como se muestra:\n     ```javascript\n     // PricePrettyPrint.js\n     export default function printPrice(price) {\n       // Código para formatear el precio\n       console.log(`Price: ${price}`);\n     }\n     ```\n\n3. **Opciones incorrectas:**\n   - A: 'printPrice must be a named export' es incorrecta porque una exportación nombrada requiere que se importe usando llaves (`{}`) como en `import { printPrice } from '/path/PricePrettyPrint.js';`.\n   - B: 'printPrice must be an all export' es incorrecta porque 'all export' no es una terminología reconocida en JavaScript.\n   - D: 'printPrice must be a multi export' es incorrecta porque 'multi export' tampoco es un término válido en JavaScript."
+    },
+    {
+      id: "q68",
+      question: "A developer creates an object where its properties should be immutable and prevent properties from being added or modified. Which method should be used to execute this business requirement?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Object.const()",
+        B: "Object.eval()",
+        C: "Object.lock()",
+        D: "Object.freeze()"
+      },
+      explanation: "La opción correcta es la D: 'Object.freeze()'.\n\n**Explicación detallada:**\n\n1. **Object.freeze():**\n   - El método `Object.freeze()` congela un objeto, lo que significa que sus propiedades no pueden ser añadidas, eliminadas o modificadas.\n   - Este método hace que el objeto sea completamente inmutable, cumpliendo con el requisito de prevenir cualquier cambio.\n   - Ejemplo:\n     ```javascript\n     const obj = { name: 'John' };\n     Object.freeze(obj);\n     obj.name = 'Jane'; // No tiene efecto, el objeto permanece igual.\n     obj.age = 30; // Tampoco tiene efecto, no se pueden añadir nuevas propiedades.\n     ```\n\n2. **Opciones incorrectas:**\n   - A: 'Object.const()' es incorrecta porque no existe un método `Object.const()` en JavaScript.\n   - B: 'Object.eval()' es incorrecta porque `eval` no tiene relación con la inmovilización de objetos.\n   - C: 'Object.lock()' es incorrecta porque `Object.lock()` no es un método reconocido en JavaScript.\n\n3. **Conclusión:**\n   - `Object.freeze()` es el método adecuado para garantizar que las propiedades del objeto sean inmutables y no se puedan modificar o agregar nuevas."
+    },
+    {
+      id: "q69",
+      question: "Which three options show valid methods for creating a fat arrow function?",
+      type: "multiple choice",
+      correct_options: ["A", "E", "C"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "x => (console.log('executed');)",
+        B: "[] => (console.log('executed');)",
+        C: "() => (console.log('executed');)",
+        D: "X,y,z => (console.log('executed');)",
+        E: "(x, y, z) => (console.log('executed');)"
+      },
+      explanation: "Las opciones correctas son A: `x => (console.log('executed');)`, C: `() => (console.log('executed');)`, y E: `(x, y, z) => (console.log('executed');)`.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - La sintaxis `x => (console.log('executed');)` es válida para una función de flecha que recibe un único parámetro `x`.\n   - No requiere paréntesis alrededor de `x` cuando hay un solo parámetro.\n\n2. **Opción C:**\n   - La sintaxis `() => (console.log('executed');)` es válida para una función de flecha que no toma parámetros.\n   - Los paréntesis son obligatorios cuando no se pasan parámetros.\n\n3. **Opción E:**\n   - La sintaxis `(x, y, z) => (console.log('executed');)` es válida para una función de flecha que toma múltiples parámetros, como `x`, `y`, y `z`.\n   - Los paréntesis son obligatorios para múltiples parámetros.\n\n4. **Opciones incorrectas:**\n   - B: `[] => (console.log('executed');)` es incorrecta porque `[]` no es una forma válida de declarar parámetros.\n   - D: `X,y,z => (console.log('executed');)` es incorrecta porque los múltiples parámetros deben estar entre paréntesis, como en `(x, y, z)`."
+    },
+    {
+      id: "q70",
+      question: "Refer to the code below:\n\nWhich value can a developer expect when referencing `country.capital.cityString`?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "‘London’",
+        B: "undefined",
+        C: "An error",
+        D: "‘NaN’"
+      },
+      code: "let country = {\n  get capital() {\n    let city = Number(\"London\");\n    return {\n      cityString: city.toString()\n    };\n  }\n};",
+      explanation: "La opción correcta es D: `'NaN'`.\n\n**Explicación detallada:**\n\n1. **Conversión de cadena a número:**\n   - La línea `let city = Number(\"London\");` intenta convertir la cadena `'London'` en un número.\n   - Como `'London'` no se puede interpretar como un número válido, la función `Number()` devuelve `NaN` (Not a Number).\n\n2. **Uso de `toString()` en `NaN`:**\n   - El valor `NaN` es un número especial en JavaScript y tiene un método `.toString()`. Este método devuelve la cadena `'NaN'`.\n   - Por lo tanto, `city.toString()` retorna `'NaN'`.\n\n3. **Acceso a `country.capital.cityString`:**\n   - Cuando el getter `capital` es llamado, devuelve un objeto con la propiedad `cityString`.\n   - Dado que `city` es `NaN`, `city.toString()` resulta en `'NaN'`.\n\n4. **Opciones incorrectas:**\n   - A: `'London'` es incorrecta porque `Number(\"London\")` no produce `'London'`, sino `NaN`.\n   - B: `undefined` es incorrecta porque `cityString` es definido como `'NaN'`.\n   - C: `An error` es incorrecta porque no se lanza ningún error en este código."
+    },
+    {
+      id: "q71",
+      question: "What are two unique features of functions defined with a fat arrow as compared to normal function definition?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The function generates its own this making it useful for separating the function’s scope from its enclosing scope.",
+        B: "The function receives an argument that is always in scope, called parent This, which is the enclosing lexical scope.",
+        C: "If the function has a single expression in the function body, the expression will be evaluated and implicit returned.",
+        D: "The function uses the this from the enclosing scope."
+      },
+      explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Uso del `this` en funciones flecha:**\n   - Contrariamente a lo mencionado en la opción A, las funciones flecha no generan su propio `this`. En cambio, heredan el `this` del ámbito léxico circundante. Esto las hace especialmente útiles en situaciones donde se necesita preservar el contexto del ámbito exterior, como en métodos de clases o en funciones de callback.\n\n2. **Retorno implícito:**\n   - Una característica única de las funciones flecha es que, cuando su cuerpo contiene una sola expresión, esa expresión es evaluada y devuelta implícitamente sin necesidad de usar la palabra clave `return`. Por ejemplo:\n     ```javascript\n     const add = (a, b) => a + b;\n     console.log(add(2, 3)); // Resultado: 5\n     ```\n\n3. **Opciones incorrectas:**\n   - B: Es incorrecta porque las funciones flecha no reciben explícitamente un argumento llamado `parent This`. Heredan el `this` del ámbito circundante léxico.\n   - D: Aunque se menciona el uso del `this` del ámbito circundante, este comportamiento no es único de las funciones flecha. Lo que las distingue es precisamente su falta de un propio `this`."
+    },                                        
   ];
 };

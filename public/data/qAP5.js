@@ -377,5 +377,258 @@ export default function questions5() {
       explanation:
         "La opción correcta es la B: '650'. Esto se debe a que:\n\n1. 'num1' se resuelve usando 'await timer(500)', lo que devuelve 500.\n2. 'num2' se resuelve usando 'await getNum()', lo que devuelve 50.\n3. 'num3' se establece dentro de un 'then()' y, aunque la promesa se resuelve, la asignación ocurre asíncronamente, después de que se ejecuta el 'console.log'. Por lo tanto, 'num3' permanece en su valor inicial de 0.\n4. La suma de 'num', 'num1', 'num2' y 'num3' produce 650 (100 + 500 + 50 + 0).\n\nLas otras opciones son incorrectas porque no consideran correctamente cómo se manejan las promesas y las funciones asíncronas.",
     },
+    {
+      id: "q23",
+      question: "Refer to the code below:\n\nWhich two statements correctly execute the `runParallel()` function?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Async runParallel().then(data);",
+        B: "runParallel().done(function(data) { return data; });",
+        C: "runParallel().then(data);",
+        D: "runParallel().then(function(data) { return data; });"
+      },
+      code: "const exec = (item, delay) => {\n  new Promise(resolve => setTimeout(() => resolve(item), delay));\n};\n\nasync function runParallel() {\n  const (result1, result2, result3) = await Promise.all([\n    exec('x', 100), exec('y', 500), exec('z', 100)\n  ]);\n  return `parallel is done: ${result1} ${result2} ${result3}`;\n}",
+      explanation: "Las respuestas correctas son B: 'runParallel().done(function(data) { return data; });' y D: 'runParallel().then(function(data) { return data; });'.\n\n**Explicación detallada:**\n\n1. **Uso de métodos en Promesas:** La función `runParallel()` devuelve una Promesa, que puede ser manejada con métodos específicos. Aunque `.done()` no es un método estándar de Promesas en JavaScript, en ciertos entornos se utiliza para manejar la finalización de Promesas (como jQuery).\n\n2. **Respuestas A y C:** Estas opciones son incorrectas porque:\n   - A: 'Async runParallel().then(data);' contiene un error de sintaxis, ya que `async` no puede prefijar directamente una llamada a función.\n   - C: Aunque `runParallel().then(data);` es válido, no utiliza una función explícita para manejar el resultado devuelto.\n\n3. **Respuestas B y D:**\n   - B: Utiliza `.done()` para manejar la Promesa con una función que retorna datos (entorno específico).\n   - D: Utiliza correctamente `.then()` con una función explícita para manejar el resultado."
+    },
+    {
+      id: "q24",
+      question: "Refer to the code below:\n\nWhat is the value of `result` when `Promise.race` executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Car3 completed the race.",
+        B: "Car1 crashed in the race.",
+        C: "Car2 completed the race.",
+        D: "Race is cancelled."
+      },
+      code: "let car1 = new Promise((_, reject) =>\n  setTimeout(reject, 2000, \"Car 1 crashed in\")\n);\n\nlet car2 = new Promise(resolve =>\n  setTimeout(resolve, 1500, \"Car 2 completed\")\n);\n\nlet car3 = new Promise(resolve =>\n  setTimeout(resolve, 3000, \"Car 3 completed\")\n);\n\nPromise.race([car1, car2, car3])\n  .then(value => {\n    let result = `${value} the race.`;\n  })\n  .catch(err => {\n    console.log(\"Race is cancelled.\", err);\n  });",
+      explanation: "La opción correcta es la C: 'Car2 completed the race.'.\n\n**Explicación detallada:**\n\n1. **Uso de Promise.race():** Este método devuelve una Promesa que se resuelve o rechaza tan pronto como una de las Promesas en el array de entrada lo haga.\n\n2. **Resolución de las promesas:**\n   - `car1` se rechaza después de 2000 ms con el mensaje 'Car 1 crashed in'.\n   - `car2` se resuelve después de 1500 ms con el mensaje 'Car 2 completed'.\n   - `car3` se resuelve después de 3000 ms con el mensaje 'Car 3 completed'.\n\n3. **Primera promesa completada:** Como `car2` se resuelve antes que las otras promesas (1500 ms), el valor de `result` será 'Car 2 completed the race.'.\n\n4. **Descartar errores:** La sección `catch` no se ejecutará porque la primera Promesa resuelta con éxito es `car2`."
+    },
+    {
+      id: "q25",
+      question: "Which function should a developer use to repeatedly execute code at a fixed interval?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "setInterval",
+        B: "setTimeout",
+        C: "setPeriod",
+        D: "setInteria"
+      },
+      explanation: "La opción correcta es la A: 'setInterval'.\n\n**Explicación detallada:**\n\n1. **setInterval():** Este método permite ejecutar una función repetidamente en un intervalo fijo especificado en milisegundos. Por ejemplo, `setInterval(myFunction, 1000)` ejecutará `myFunction` cada segundo.\n\n2. **Otras opciones:**\n   - B: 'setTimeout' solo ejecuta una función después de un retraso especificado, pero no de manera repetitiva.\n   - C: 'setPeriod' no es un método válido en JavaScript.\n   - D: 'setInteria' tampoco existe en JavaScript.\n\n3. **Conclusión:** Usar `setInterval` es la forma adecuada de ejecutar código en intervalos regulares."
+    },
+    {
+      id: "q26",
+      question: "Refer to the code below. What is the value of `result` when `Promise.race` executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Car 3 completed the race.",
+        B: "Car 1 crashed in the race.",
+        C: "Car 2 completed the race.",
+        D: "Race is cancelled."
+      },
+      explanation: "La opción correcta es la C: 'Car 2 completed the race.'.\n\n**Explicación detallada:**\n\n1. **Promise.race():** Este método devuelve la primera Promesa que se resuelve o se rechaza dentro del array de Promesas proporcionado.\n\n2. **Resolución de las Promesas:**\n   - `car1` se rechaza después de 2000 ms con el mensaje 'Car 1 crashed in'.\n   - `car2` se resuelve después de 1500 ms con el mensaje 'Car 2 completed'.\n   - `car3` se resuelve después de 3000 ms con el mensaje 'Car 3 completed'.\n\n3. **Primera Promesa completada:** Como `car2` es la primera en completarse (en 1500 ms), el valor de `result` será 'Car 2 completed the race.'.\n\n4. **Otras opciones:**\n   - A y B: Estas opciones no son correctas porque `car3` y `car1` no son las primeras Promesas en completarse.\n   - D: El bloque `catch` no se ejecutará porque la primera Promesa en completarse es exitosa (`car2`)."
+    },
+    {
+      id: "q27",
+      question: "Refer to the code below. Which two statements correctly execute the `runParallel()` function?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Async runParallel().then(data);",
+        B: "runParallel().done(function(data) { return data; });",
+        C: "runParallel().then(data);",
+        D: "runParallel().then(function(data) { return data; });"
+      },
+      code: "const exec = (item, delay) =>\n  new Promise(resolve => setTimeout(() => resolve(item), delay));\n\nasync function runParallel() {\n  const [result1, result2, result3] = await Promise.all([\n    exec('x', '100'), exec('y', '500'), exec('z', '100')\n  ]);\n  return `parallel is done: ${result1}${result2}${result3}`;\n}",
+      explanation: "Las respuestas correctas son B: 'runParallel().done(function(data) { return data; });' y D: 'runParallel().then(function(data) { return data; });'.\n\n**Explicación detallada:**\n\n1. **Uso de métodos en Promesas:** La función `runParallel()` devuelve una Promesa que puede ser manejada con métodos específicos como `.then()` y `.done()`.\n\n2. **Respuestas B y D:**\n   - B: Utiliza `.done()` correctamente para manejar el resultado de la Promesa y retornar los datos en la función proporcionada. Aunque `.done()` es menos común en JavaScript moderno, puede usarse en ciertos entornos específicos.\n   - D: Utiliza `.then()` correctamente con una función explícita para manejar el resultado devuelto por la Promesa.\n\n3. **Respuestas incorrectas:**\n   - A: 'Async runParallel().then(data);' contiene un error de sintaxis, ya que `async` no puede prefijar directamente una llamada a función.\n   - C: Aunque la opción usa `.then()` correctamente, no proporciona una función explícita para manejar los datos."
+    },
+    {
+      id: "q28",
+      question: "A developer creates a new web server using Node.js, and imports a server library that uses events and callbacks for handling server functionality. \n\nGiven the code and information. Which code logs an error at boot with an event?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Server.catch((server) => { console.log('ERROR', error); });",
+        B: "Server.error((server) => { console.log('ERROR', error); });",
+        C: "Server.on('error', (error) => { console.log('ERROR', error); });",
+        D: "try { server.start(); } catch (error) { console.log('ERROR', error); }"
+      },
+      explanation: "La opción correcta es la C: 'Server.on('error', (error) => { console.log('ERROR', error); });'.\n\n**Explicación detallada:**\n\n1. **Eventos en Node.js:** Node.js utiliza un modelo basado en eventos para manejar errores y otros estados. En este caso, el evento `error` puede ser capturado usando el método `on` del servidor.\n\n2. **Por qué C es correcta:**\n   - `Server.on('error', (error) => { ... });` escucha el evento `error` emitido por el servidor y ejecuta la función proporcionada para manejar ese error.\n   - Esto permite registrar mensajes de error cuando ocurren problemas durante el inicio del servidor.\n\n3. **Opciones incorrectas:**\n   - A: `Server.catch` no es un método válido en Node.js para manejar eventos o errores.\n   - B: `Server.error` no es válido ya que `error` no es un método en Node.js.\n   - D: La construcción `try...catch` maneja errores síncronos durante la ejecución de `server.start()` pero no captura eventos emitidos por el servidor."
+    },
+    {
+      id: "q29",
+      question: "Refer to the code below. In which sequence will the numbers be logged?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "01234",
+        B: "02431",
+        C: "02413",
+        D: "13024"
+      },
+      code: "console.log(0);\nsetTimeout(() => {\n  console.log(1);\n});\nconsole.log(2);\nsetTimeout(() => {\n  console.log(3);\n}, 0);\nconsole.log(4);",
+      explanation: "La opción correcta es la C: '02413'.\n\n**Explicación detallada:**\n\n1. **Ejecución síncrona:** El código ejecuta primero las operaciones síncronas en el orden en que aparecen:\n   - `console.log(0);` imprime `0`.\n   - `console.log(2);` imprime `2`.\n   - `console.log(4);` imprime `4`.\n\n2. **Ejecución asíncrona con `setTimeout`:** Las funciones pasadas a `setTimeout` se colocan en la cola de tareas y se ejecutan después de que el hilo principal haya completado la ejecución del código síncrono.\n   - La primera llamada a `setTimeout(() => { console.log(1); });` coloca `console.log(1)` en la cola de tareas.\n   - La segunda llamada a `setTimeout(() => { console.log(3); }, 0);` coloca `console.log(3)` en la cola de tareas.\n\n3. **Orden de ejecución en la cola de tareas:** Ambas llamadas a `setTimeout` tienen un retraso mínimo, pero son procesadas en el orden en que se encuentran en la cola:\n   - Primero se ejecuta `console.log(1)`.\n   - Luego se ejecuta `console.log(3)`.\n\n4. **Secuencia de salida:** La secuencia completa de salida es `0`, `2`, `4`, `1`, `3`."
+    },
+    {
+      id: "q30",
+      question: "Refer to the code below. Which code should be inserted at line 03 to set up an event and start the web server?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Server.start();",
+        B: "server.on('connect', (port) => { console.log('Listening on', port); });",
+        C: "server()",
+        D: "serve((port) => (",
+        E: "console.log('Listening on', port);"
+      },
+      code: "const server = require('server');\n/* Insert code here */",
+      explanation: "La opción correcta es la B: 'server.on('connect', (port) => { console.log('Listening on', port); });'.\n\n**Explicación detallada:**\n\n1. **Uso de eventos en Node.js:** Las bibliotecas que manejan servidores en Node.js usualmente emiten eventos como 'connect', 'error', etc. Estos eventos se capturan con el método `on`.\n\n2. **Configuración del evento:**\n   - La línea `server.on('connect', (port) => { console.log('Listening on', port); });` configura un listener para el evento 'connect'.\n   - Cuando el servidor se conecta y emite este evento, la función de callback proporcionada registra un mensaje en la consola con el puerto.\n\n3. **Opciones incorrectas:**\n   - A: 'Server.start();' no es válido porque `server` es un objeto, y este método no está definido en este contexto.\n   - C: 'server()' sugiere que `server` es una función, lo cual no es correcto según el contexto proporcionado.\n   - D: 'serve((port) => (' no es una construcción válida de JavaScript.\n   - E: 'console.log('Listening on', port);' imprime algo en la consola, pero no configura el evento necesario para el servidor."
+    },
+    {
+      id: "q31",
+      question: "Refer to the code below. What is the result of running line 05?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "aPromise and bPromise run sequentially.",
+        B: "Neither aPromise or bPromise runs.",
+        C: "aPromise and bPromise run in parallel.",
+        D: "Only aPromise runs."
+      },
+      code: "const resolveAfterMilliseconds = (ms) => Promise.resolve(setTimeout(() => console.log(ms), ms));\nconst aPromise = await resolveAfterMilliseconds(500);\nconst bPromise = await resolveAfterMilliseconds(500);\nawait aPromise, await bPromise;",
+      explanation: "La opción correcta es la B: 'Neither aPromise or bPromise runs.'\n\n**Explicación detallada:**\n\n1. **Uso incorrecto de `Promise.resolve`:** En este código, la función `resolveAfterMilliseconds` utiliza `Promise.resolve`, pero envuelve la llamada a `setTimeout`. Esto es problemático porque `setTimeout` no devuelve una promesa; simplemente programa una función para ejecutarse más tarde. Como resultado, el valor de retorno no está vinculado a ninguna acción asincrónica.\n\n2. **Impacto en `await`:** Las llamadas a `await resolveAfterMilliseconds(500)` no esperan nada útil porque `resolveAfterMilliseconds` devuelve una promesa ya resuelta inmediatamente, sin ningún retraso real. Además, `setTimeout` ejecuta su callback separadamente del flujo de promesas.\n\n3. **Resultado:**\n   - Aunque el código registra '500' en la consola debido a `setTimeout`, `aPromise` y `bPromise` no cumplen con el comportamiento esperado de manejar promesas de forma efectiva.\n   - Como resultado, ninguna de las promesas se ejecuta de manera útil en línea 05.\n\n4. **Opciones incorrectas:**\n   - A: 'aPromise and bPromise run sequentially.' es incorrecta porque `resolveAfterMilliseconds` no introduce comportamiento secuencial entre las promesas.\n   - C: 'aPromise and bPromise run in parallel.' es incorrecta porque el código no ejecuta realmente promesas de forma paralela.\n   - D: 'Only aPromise runs.' también es incorrecta porque `aPromise` no tiene ningún efecto útil asociado."
+    },
+    {
+      id: "q32",
+      question: "Given the code below, what is logged by the first four log statements?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "0 0 1 2",
+        B: "0 1 2 3",
+        C: "0 1 1 2",
+        D: "0 1 2 2"
+      },
+      code: "counter = 0;\nconst logCounter = () => { console.log(counter); };\nlogCounter();\nsetTimeout(logCounter, 1100);\nsetInterval(() => {\n  counter++;\n  logCounter();\n}, 1000);",
+      explanation: "La opción correcta es la C: '0 1 1 2'.\n\n**Explicación detallada:**\n\n1. **Primera ejecución de `logCounter`:**\n   - La función `logCounter` se llama inmediatamente después de su declaración, y como el valor inicial de `counter` es `0`, el primer mensaje registrado en la consola será `0`.\n\n2. **`setInterval` ejecuta después de 1000 ms:**\n   - Después de 1000 ms, `counter++` incrementa el valor de `counter` de `0` a `1`, y `logCounter` imprime `1`.\n\n3. **`setTimeout` ejecuta después de 1100 ms:**\n   - `logCounter` es llamado por `setTimeout` después de 1100 ms. El valor de `counter` sigue siendo `1` en este punto (ya que el incremento ocurre cada 1000 ms y solo ha ocurrido una vez). Por lo tanto, imprime `1` nuevamente.\n\n4. **Segunda ejecución de `setInterval`:**\n   - El intervalo de 1000 ms transcurre nuevamente, y `counter` es incrementado de `1` a `2`. Luego, `logCounter` imprime `2`.\n\n**Secuencia de salida en consola:**\n- `0` (primera llamada inmediata a `logCounter`).\n- `1` (primera ejecución del intervalo).\n- `1` (ejecución del `setTimeout`).\n- `2` (segunda ejecución del intervalo)."
+    },
+    {
+      id: "q33",
+      question: "Universal Containers (UC) notices that its application, which allows users to search for accounts, makes a network request each time a key is pressed. This results in too many requests for the server to handle. Addressing this issue, UC decides to implement a debounce function on the string change handler. What are three key steps to implement this debounce function?",
+      type: "multiple choice",
+      correct_options: ["B", "D", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "If there is an existing setTimeout and the search string changes, allow the existing setTimeout to finish, and do not enqueue a new setTimeout.",
+        B: "When the search string changes, enqueue the request within a setTimeout.",
+        C: "Ensure that the network request has the property debounce set to true.",
+        D: "If there is an existing setTimeout and the search string changes, cancel the existing setTimeout using the persisted timerId and replace it with a new setTimeout.",
+        E: "Store the timerId of the setTimeout last enqueued by the search string change handler."
+      },
+      explanation: "Las opciones correctas son B: 'When the search string changes, enqueue the request within a setTimeout.', D: 'If there is an existing setTimeout and the search string changes, cancel the existing setTimeout using the persisted timerId and replace it with a new setTimeout.', y E: 'Store the timerId of the setTimeout last enqueued by the search string change handler.'\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Cuando cambia el texto de búsqueda, se debe programar el envío de la solicitud dentro de un `setTimeout` para esperar un intervalo definido antes de realizar la solicitud.\n\n2. **Opción D:**\n   - Si hay un `setTimeout` existente y el texto de búsqueda cambia, el `setTimeout` anterior debe ser cancelado utilizando el `timerId` persistente. Esto asegura que solo se envíe la solicitud más relevante y se evite hacer solicitudes redundantes.\n\n3. **Opción E:**\n   - Es necesario almacenar el `timerId` del último `setTimeout` programado para poder cancelarlo cuando se detecta un cambio adicional en el texto de búsqueda.\n\n**Opciones incorrectas:**\n   - A: 'If there is an existing setTimeout and the search string changes, allow the existing setTimeout to finish...' va en contra del propósito de debounce, ya que debe evitar solicitudes obsoletas cancelando el temporizador existente.\n   - C: 'Ensure that the network request has the property debounce set to true.' no es una opción válida, ya que no existe una propiedad de red llamada 'debounce'."
+    },
+    {
+      id: "q34",
+      question: "Which two promises are rejected when determining whether to use `Promise.then` or `Promise.catch`, especially when a Promise throws an error?",
+      type: "multiple choice",
+      correct_options: ["B", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Promise.reject('cool error here').then(error => console.error(error));",
+        B: "Promise.reject('cool error here').catch(error => console.error(error));",
+        C: "new Promise((resolve, reject) => { throw 'cool error here'; }).catch(error => console.error(error));",
+        D: "new Promise(() => { throw 'cool error here'; }).then(null, error => console.error(error));"
+      },
+      explanation: "Las opciones correctas son B: 'Promise.reject('cool error here').catch(error => console.error(error));' y C: 'new Promise((resolve, reject) => { throw 'cool error here'; }).catch(error => console.error(error));'.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `Promise.reject('cool error here')` crea una promesa rechazada inmediatamente con el error `'cool error here'`.\n   - La llamada a `.catch()` maneja este error, por lo que el `console.error(error)` se ejecuta y muestra `'cool error here'` en la consola.\n\n2. **Opción C:**\n   - El constructor `new Promise((resolve, reject) => { throw 'cool error here'; })` lanza un error directamente dentro del ejecutor de la promesa.\n   - Este error se captura en el bloque `.catch(error => console.error(error))`, lo que también muestra `'cool error here'` en la consola.\n\n3. **Opciones incorrectas:**\n   - A: `Promise.reject` genera una promesa rechazada, pero al usar `.then()`, no se proporciona un manejador de rechazo. Por lo tanto, no maneja el error y no imprime nada.\n   - D: Aunque `throw 'cool error here';` ocurre, se usa `.then(null, error => console.error(error));`. Esto puede manejar el error, pero no es una solución estándar en comparación con `.catch()`. Además, es una práctica menos común para el manejo de errores."
+    },
+    {
+      id: "q35",
+      question: "A developer is trying to convince management that their team will benefit from using Node.js for a backend server that they are going to create. The server will be a web server that handles API requests from a website that the team has already built using HTML, CSS, and JavaScript. \n\nWhich three benefits of Node.js can the developer use to persuade their manager?",
+      type: "multiple choice",
+      correct_options: ["A", "D", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "Installs with its own package manager to install and manage third-party libraries.",
+        B: "Ensures stability with one major release every few years.",
+        C: "Performs a static analysis on code before execution to look for runtime errors.",
+        D: "Executes server-side JavaScript code to avoid learning a new language.",
+        E: "Uses non-blocking functionality for performant request handling."
+      },
+      explanation: "Las opciones correctas son A: 'Installs with its own package manager to install and manage third-party libraries.', D: 'Executes server-side JavaScript code to avoid learning a new language.', y E: 'Uses non-blocking functionality for performant request handling.'\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Node.js incluye el Administrador de Paquetes de Node (NPM), que permite instalar y gestionar bibliotecas de terceros de manera fácil y eficiente. Esto agiliza el desarrollo al proporcionar acceso a una amplia gama de herramientas y frameworks.\n\n2. **Opción D:**\n   - Node.js permite ejecutar código JavaScript en el servidor, lo que evita la necesidad de aprender un nuevo lenguaje para el backend, especialmente cuando el frontend ya está construido en JavaScript. Esto aumenta la productividad del equipo.\n\n3. **Opción E:**\n   - Node.js utiliza un modelo de E/S no bloqueante, basado en eventos, que es ideal para manejar múltiples solicitudes simultáneamente sin afectar el rendimiento. Esto lo hace excelente para aplicaciones de alto rendimiento como servidores web y APIs.\n\n**Opciones incorrectas:**\n   - B: 'Ensures stability with one major release every few years.' no es precisa, ya que Node.js sigue un ciclo de versiones más frecuente (semver).\n   - C: 'Performs a static analysis on code before execution to look for runtime errors.' no es una funcionalidad nativa de Node.js; esta tarea generalmente requiere herramientas adicionales como linters o TypeScript."
+    },
+    {
+      id: "q36",
+      question: "Refer to the code below. What is the output after the code executes successfully?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "EndStartSuccess",
+        B: "StartSuccessEnd",
+        C: "StartEndSuccess",
+        D: "SuccessStartEnd"
+      },
+      code: "console.log('Start');\nPromise.resolve('Success').then(function(value) {\n  console.log('Success');\n});\nconsole.log('End');",
+      explanation: "La opción correcta es la C: 'StartEndSuccess'.\n\n**Explicación detallada:**\n\n1. **Orden de ejecución en JavaScript:**\n   - Las promesas son manejadas de forma asincrónica en JavaScript y se colocan en la cola de tareas para ser ejecutadas después de que el código síncrono haya terminado.\n\n2. **Flujo del código:**\n   - `console.log('Start');` se ejecuta primero y muestra `'Start'` en la consola.\n   - A continuación, la promesa `Promise.resolve('Success')` es creada y su `.then()` registra el manejador que imprimirá `'Success'`. Sin embargo, la ejecución de este manejador se pospone hasta que el código síncrono haya finalizado.\n   - Después, `console.log('End');` se ejecuta inmediatamente, mostrando `'End'` en la consola.\n   - Finalmente, el manejador de la promesa en `.then()` se ejecuta, mostrando `'Success'`.\n\n3. **Secuencia de salida:**\n   - El orden en que los mensajes aparecen en la consola es `'Start'`, `'End'`, y luego `'Success'`, que corresponde a la opción C.\n\n4. **Opciones incorrectas:**\n   - A: 'EndStartSuccess' es incorrecta porque el orden de ejecución pone `'Start'` antes de `'End'`.\n   - B: 'StartSuccessEnd' es incorrecta porque `'Success'` no se imprime antes de `'End'` debido a la naturaleza asincrónica de las promesas.\n   - D: 'SuccessStartEnd' es incorrecta porque `'Success'` se imprime después del código síncrono."
+    },
+    {
+      id: "q37",
+      question: "Which three statements are true about promises?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "The executor of a new Promise runs automatically.",
+        B: "A Promise has a .then() method.",
+        C: "A fulfilled or rejected promise will not change states.",
+        D: "A settled promise can become resolved.",
+        E: "A pending promise can become fulfilled, settled, or rejected."
+      },
+      explanation: "Las opciones correctas son B: 'A Promise has a .then() method.', C: 'A fulfilled or rejected promise will not change states.', y E: 'A pending promise can become fulfilled, settled, or rejected.'\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Promesas en JavaScript tienen un método `.then()` que se utiliza para registrar funciones que manejarán la resolución exitosa de la promesa.\n\n2. **Opción C:**\n   - Una vez que una promesa es cumplida (fulfilled) o rechazada (rejected), su estado no puede cambiar. Esto significa que las promesas son inmutables después de ser resueltas o rechazadas.\n\n3. **Opción E:**\n   - Una promesa pendiente (pending) puede llegar a ser cumplida (fulfilled) o rechazada (rejected), y en ese punto, se convierte en una promesa resuelta (settled).\n\n**Opciones incorrectas:**\n   - A: 'The executor of a new Promise runs automatically.' es falso porque el ejecutor de una nueva promesa no siempre se ejecuta automáticamente; depende de cómo se cree la promesa.\n   - D: 'A settled promise can become resolved.' es incorrecto porque una promesa ya resuelta no puede cambiar de estado nuevamente."
+    },
+    {
+      id: "q38",
+      question: "Given the code below. What is logged to the console?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "2 1 4 3 5",
+        B: "2 5 1 3 4",
+        C: "1 2 4 3 5",
+        D: "1 2 5 3 4"
+      },
+      code: "setTimeout(() => {\n  console.log(1);\n}, 0);\n\nconsole.log(2);\n\nnew Promise((resolve, reject) => {\n  setTimeout(() => {\n    reject(console.log(3));\n  }, 1000);\n}).catch(() => {\n  console.log(4);\n});\n\nconsole.log(5);",
+      explanation: "La opción correcta es la B: '2 5 1 3 4'.\n\n**Explicación detallada:**\n\n1. **Flujo de ejecución:**\n   - El código ejecuta las acciones de forma síncrona y asíncrona. Es importante entender el orden en que se ejecutan las tareas en la pila de llamadas (`call stack`) y la cola de tareas (`event queue`).\n\n2. **Síncrono:**\n   - `console.log(2)` es ejecutado inmediatamente, imprimiendo `2`.\n   - `console.log(5)` se ejecuta después de `console.log(2)` porque también es una operación síncrona, imprimiendo `5`.\n\n3. **Asíncrono (setTimeout):**\n   - La función pasada a `setTimeout(() => { console.log(1); }, 0);` se coloca en la cola de tareas y se ejecuta después de que el código síncrono haya terminado, imprimiendo `1`.\n\n4. **Asíncrono (Promesa):**\n   - El `setTimeout(() => { reject(console.log(3)); }, 1000);` coloca su tarea en la cola de tareas. Después de 1 segundo, imprime `3` primero (debido a `console.log(3)` dentro del `reject`) y luego maneja el rechazo con el bloque `catch`, que imprime `4`.\n\n5. **Orden final:**\n   - Síncrono: `2`, `5`.\n   - Asíncrono: `1`, `3`, `4`.\n   - Resultado: `2 5 1 3 4`.\n\n6. **Opciones incorrectas:**\n   - A: '2 1 4 3 5' es incorrecta porque `5` se imprime antes de cualquier tarea asíncrona.\n   - C: '1 2 4 3 5' y D: '1 2 5 3 4' son incorrectas porque colocan las tareas asíncronas en posiciones equivocadas."
+    },
+    {
+      id: "q39",
+      question: "Universal Containers (UC) notices that its application that allows users to search for accounts makes a network request each time a key is pressed. This results in too many requests for the server to handle.UC decides to implement a debounce function on the string change handler.\n\nWhat are three key steps to implement this debounce function?",
+      type: "multiple choice",
+      correct_options: ["A", "B", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "If there is an existing setTimeout and the search string change, allow the existing setTimeout to finish, and do not enqueue a new setTimeout.",
+        B: "When the search string changes, enqueue the request within a setTimeout.",
+        C: "Ensure that the network request has the property debounce set to true.",
+        D: "If there is an existing setTimeout and the search string changes, cancel the existing setTimeout using the persisted timerId and replace it with a new setTimeout.",
+        E: "Store the timerId of the setTimeout last enqueued by the search string change handler."
+      },
+      code: "function debounce(func, delay) {\n  let timerId;\n  return function(...args) {\n    if (timerId) {\n      clearTimeout(timerId);\n    }\n    timerId = setTimeout(() => func.apply(this, args), delay);\n  };\n}",
+      explanation: "Las respuestas correctas son A, B y D.\n\n**Explicación detallada:**\n\n1. **Monitorear el cambio de la cadena de búsqueda:**\n   - La función debounce asegura que las solicitudes de red solo se ejecuten después de un retraso y no inmediatamente después de cada pulsación de tecla.\n\n2. **Cancelar el setTimeout existente:**\n   - Si un `setTimeout` existente ya está en cola y la cadena de búsqueda cambia, este `setTimeout` debe ser cancelado usando `clearTimeout(timerId)` antes de crear uno nuevo.\n\n3. **Encolar una nueva solicitud:**\n   - Cuando la cadena de búsqueda cambia, una nueva solicitud se encola dentro de un `setTimeout` para que la función se ejecute después de un retraso específico.\n\n4. **Opciones incorrectas:**\n   - C: `Ensure that the network request has the property debounce set to true` es incorrecta porque la implementación de debounce no depende de esta propiedad.\n   - E: Aunque es útil guardar el `timerId`, no es un paso clave para implementar la funcionalidad debounce."
+    },                     
   ];
 };

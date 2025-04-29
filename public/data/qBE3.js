@@ -706,6 +706,139 @@ export default function questions3() {
       code: "const results=[];\nconst survey=document.getElementById('survey');\n\nfunction recordResults(evt){\nconst checkbox=evt.target;\nif(checkbox.checked){\nresults.push(checkbox.value);\n}\n};\n\nsurvey.addEventListener('click',recordResults);",
       explanation:
         "La opción correcta es la B: 'survey.addEventListener('click', recordResults, {once: true});'. Esto se debe a que la propiedad 'once: true' en el objeto de opciones del método 'addEventListener' asegura que el manejador de eventos se invoque solo la primera vez y luego se elimine automáticamente.\n\nLas otras opciones son incorrectas:\n\n- **A**: 'capture: true' configura el listener para la fase de captura, pero no limita el evento a una sola invocación.\n- **C**: '{true}' no es una sintaxis válida para un objeto de opciones.\n- **D**: 'capture: \"once\"' tiene una sintaxis incorrecta y mezcla valores que no son compatibles.",
-    }
+    },
+    {
+      id: "q43",
+      question: "A developer at Universal Containers creates a new landing page based on HTML, CSS, and JavaScript. To ensure that visitors have a good experience, a script named `personalizeWebsiteContent` needs to be executed when the webpage is fully loaded (HTML content and all related files). \n\nWhich statement should be used to call `personalizeWebsiteContent` based on the above business requirement?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.addEventListener('onDOMContextLoaded', personalizeWebsiteContext);",
+        B: "window.addEventListener('load', personalizeWebsiteContext);",
+        C: "window.addEventListener('onload', personalizeWebsiteContext);",
+        D: "document.addEventListener('DOMContextLoaded', personalizeWebsiteContext);"
+      },
+      explanation: "La opción correcta es la B: 'window.addEventListener('load', personalizeWebsiteContext);'.\n\n**Explicación detallada:**\n\n1. **load event:** El evento `load` del objeto `window` se activa cuando todo el contenido de la página (incluyendo HTML, CSS, JavaScript y archivos dependientes como imágenes) se ha cargado completamente. Esto hace que sea ideal para inicializar scripts personalizados después de que todos los recursos estén disponibles.\n\n2. **Opciones incorrectas:**\n   - A: 'document.addEventListener('onDOMContextLoaded', ...)' no es válido porque `onDOMContextLoaded` no es un evento estándar en JavaScript.\n   - C: 'window.addEventListener('onload', ...)' no es válido porque `onload` no es un nombre de evento estándar.\n   - D: 'document.addEventListener('DOMContextLoaded', ...)' no es válido. El evento `DOMContentLoaded` se activa antes de que los recursos como imágenes hayan terminado de cargar, lo que no cumple con el requisito de esperar la carga completa de la página.\n\n3. **Conclusión:** Usar `window.addEventListener('load', ...)` asegura que el script se ejecute después de que todos los recursos se hayan cargado por completo, lo que cumple con los requisitos del negocio."
+    },
+    {
+      id: "q44",
+      question: "Refer to the HTML below. Which JavaScript statement changes the text 'In Progress' to 'Completed'?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.getElementById('status').Value = 'Completed';",
+        B: "document.getElementById('#status').innerHTML = 'Completed';",
+        C: "document.getElementById('status').innerHTML = 'Completed';",
+        D: "document.getElementById('.status').innerHTML = 'Completed';"
+      },
+      explanation: "La opción correcta es la C: 'document.getElementById('status').innerHTML = 'Completed';'.\n\n**Explicación detallada:**\n\n1. **document.getElementById:** Este método selecciona el elemento con el `id` especificado. En este caso, selecciona el `<span>` con `id='status'`.\n\n2. **innerHTML:** Este atributo permite modificar el contenido HTML del elemento seleccionado. Usar `innerHTML = 'Completed'` cambia el contenido del `<span>` de 'In Progress' a 'Completed'.\n\n3. **Opciones incorrectas:**\n   - A: `Value` no es un atributo válido para cambiar el contenido de un elemento que no sea un campo de formulario.\n   - B: `#status` no es válido porque `getElementById` solo requiere el nombre del ID, sin el prefijo `#`.\n   - D: `.status` no es válido porque `getElementById` no utiliza prefijos de clase (como `.status`)."
+    },
+    {
+      id: "q45",
+      question: "In lines 04 and 08, which code allows the user to select an image from their local computer and display the image in the browser?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "04 const reader = new File(); 08 if (file) URL.createObjectURL(file);",
+        B: "04 const reader = new FileReader(); 08 if (file) URL.createObjectURL(file);",
+        C: "04 const reader = new File(); 08 if (file) reader.readAsDataURL(file);",
+        D: "04 const reader = new FileReader(); 08 if (file) reader.readAsDataURL(file);"
+      },
+      code: "<input type='file' onchange='previewFile()'>\n<img src='' height='200' alt='Image Preview...'>\n\nfunction previewFile(){\n  const preview = document.querySelector('img');\n  const file = document.querySelector('input[type=file]').files[0];\n  const reader = new FileReader();\n\n  reader.addEventListener('load', () => {\n    preview.src = reader.result;\n  }, false);\n\n  if (file) reader.readAsDataURL(file);\n}",
+      explanation: "La opción correcta es la D: '04 const reader = new FileReader(); 08 if (file) reader.readAsDataURL(file);'.\n\n**Explicación detallada:**\n\n1. **Uso de `FileReader`:** El objeto `FileReader` permite leer el contenido de un archivo seleccionado por el usuario. En este caso, se utiliza para convertir el archivo en un formato adecuado (`Data URL`) que puede ser utilizado como fuente (`src`) para la imagen en el navegador.\n\n2. **reader.readAsDataURL(file):** Este método convierte el archivo seleccionado (`file`) en una URL codificada en base64 que puede asignarse a la propiedad `src` de la imagen.\n\n3. **Opciones incorrectas:**\n   - A: `new File()` no es un objeto válido en este contexto para crear un lector de archivos.\n   - B: Aunque `new FileReader()` es correcto, `URL.createObjectURL(file)` devuelve una URL de objeto para el archivo, pero no es lo que se necesita aquí para asignar al atributo `src`.\n   - C: `new File()` no es válido y no puede leer o convertir el archivo."
+    },
+    {
+      id: "q46",
+      question: "Which code should replace the placeholder comment on line 05 to hide accounts that do not match the search string?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "'name' : 'block'",
+        B: "'block' : 'none'",
+        C: "'visible' : 'hidden'",
+        D: "'hidden' : 'visible'"
+      },
+      code: "function filterDOM(searchString) {\n  const parsedSearchString = searchString && searchString.toLowerCase();\n  document.querySelectorAll('.account').forEach(account => {\n    const accountName = account.innerHTML.toLowerCase();\n    account.style.display = accountName.includes(parsedSearchString) ? /*Insert code*/;\n  });\n}",
+      explanation: "La opción correcta es la B: `'block' : 'none'`.\n\n**Explicación detallada:**\n\n1. **Función `filterDOM`:**\n   - Esta función filtra elementos DOM con la clase `.account`, y decide si se deben mostrar u ocultar en función de si el texto de los elementos coincide con el texto de búsqueda proporcionado (`searchString`).\n\n2. **Propiedad `style.display`:**\n   - La propiedad `style.display` controla la visibilidad de los elementos en la interfaz. Los valores `'block'` y `'none'` son comunes para mostrar y ocultar elementos respectivamente.\n   - En este caso, el operador ternario decide si se debe establecer el estilo como `'block'` (para mostrar el elemento) o `'none'` (para ocultarlo).\n\n3. **Opciones incorrectas:**\n   - A: `'name' : 'block'` no es válido, ya que `'name'` no es un valor apropiado para `style.display`.\n   - C: `'visible' : 'hidden'` controla la visibilidad de los elementos pero no los elimina del flujo del documento, por lo que no es adecuado en este caso.\n   - D: `'hidden' : 'visible'` tiene el mismo problema que la opción C, además de que no es coherente con el propósito de mostrar u ocultar elementos completamente."
+    },
+    {
+      id: "q47",
+      question: "Refer to the HTML below. Which expression outputs the screen width of the element with the ID `card-01`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.getElementById('card-01').getBoundingClientRect().width",
+        B: "document.getElementById('card-01').style.width",
+        C: "document.getElementById('card-01').width",
+        D: "document.getElementById('card-01').innerHTML.length * e"
+      },
+      code: "<div id='card-01' style='padding: 10px; border: 1px solid black;'>\n  This card is smaller.\n  The width and height of this card is determined by its contents.\n</div>",
+      explanation: "La opción correcta es la A: `document.getElementById('card-01').getBoundingClientRect().width`.\n\n**Explicación detallada:**\n\n1. **Uso de `getBoundingClientRect`:**\n   - La función `getBoundingClientRect()` devuelve un objeto con las dimensiones (anchura, altura, etc.) del elemento en el viewport. Esto incluye el ancho exacto que ocupa el elemento, incluyendo cualquier relleno (`padding`) y borde.\n\n2. **Opciones incorrectas:**\n   - B: `document.getElementById('card-01').style.width` devuelve el valor de la propiedad `width` en los estilos en línea del elemento. Si el ancho no está definido explícitamente como parte de `style`, este valor será una cadena vacía.\n   - C: `document.getElementById('card-01').width` no es un método válido en el DOM, por lo que lanzaría un error.\n   - D: `document.getElementById('card-01').innerHTML.length * e` intenta multiplicar la longitud del contenido HTML del elemento por una variable `e`, que no está definida, lo que genera un error."
+    },
+    {
+      id: "q48",
+      question: "Refer to the HTML below:\n\nWhich JavaScript statement changes the text 'In Progress' to 'Completed'?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.getElementById(\"status\").Value = 'Completed';",
+        B: "document.getElementById(\"#status\").innerHTML = 'Completed';",
+        C: "document.getElementById(\"status\").innerHTML = 'Completed';",
+        D: "document.getElementById(\".status\").innerHTML = 'Completed';"
+      },
+      code: "<p>The current status of an Order: <span id=\"status\">In Progress</span></p>",
+      explanation: "La opción correcta es C: 'document.getElementById(\"status\").innerHTML = 'Completed';'.\n\n**Explicación detallada:**\n\n1. **Uso de `getElementById`:**\n   - El método `document.getElementById(\"status\")` selecciona el elemento HTML con el atributo `id='status'`. Este es el método correcto para acceder al contenido de un elemento específico basado en su `id`.\n\n2. **Modificación del contenido con `innerHTML`:**\n   - La propiedad `innerHTML` permite leer o escribir el contenido HTML interno de un elemento. En este caso, asignar `'Completed'` a `innerHTML` reemplaza el texto actual `'In Progress'` dentro del elemento `<span>`.\n\n3. **Opciones incorrectas:**\n   - A: 'document.getElementById(\"status\").Value = 'Completed';' es incorrecta porque la propiedad `Value` no es válida para un elemento `<span>`.\n   - B: 'document.getElementById(\"#status\").innerHTML = 'Completed';' es incorrecta porque el uso de `#` en el `id` no es válido en JavaScript; se utiliza únicamente en selectores CSS.\n   - D: 'document.getElementById(\".status\").innerHTML = 'Completed';' es incorrecta porque `.status` sugiere un selector de clase, pero el elemento tiene un `id`, no una clase."
+    },
+    {
+      id: "q49",
+      question: "Refer to the HTML below. Which expression outputs the screen width of the element with the ID `card-01`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.getElementById('card-01').getBoundingClientRect().width",
+        B: "document.getElementById('card-01').style.width",
+        C: "document.getElementById('card-01').width",
+        D: "document.getElementById('card-01').innerHTML.length * e",
+        E: "length * e"
+      },
+      code: "<div id='main'>\n  <div id='card-00'>This card is smaller.</div>\n  <div id='card-01'>The width and height of this card is determined by its contents.</div>\n</div>",
+      explanation: "La opción correcta es la A: `document.getElementById('card-01').getBoundingClientRect().width`.\n\n**Explicación detallada:**\n\n1. **Uso de `getBoundingClientRect`:**\n   - El método `getBoundingClientRect()` devuelve un objeto que contiene las dimensiones del elemento en la pantalla, como su ancho (`width`), alto (`height`), y su posición relativa en el viewport.\n   - `width` proporciona el ancho visual en píxeles del elemento.\n\n2. **Opciones incorrectas:**\n   - B: `document.getElementById('card-01').style.width` devuelve el ancho definido directamente en el estilo en línea del elemento, pero no incluye márgenes, rellenos, ni dimensiones calculadas dinámicamente.\n   - C: `document.getElementById('card-01').width` no es una propiedad válida en JavaScript para elementos HTML.\n   - D: `document.getElementById('card-01').innerHTML.length * e` es incorrecta porque intenta acceder a la longitud del contenido HTML del elemento, pero `e` no está definido y produce un error.\n   - E: `length * e` es inválido y carece de contexto adecuado en este escenario."
+    },
+    {
+      id: "q50",
+      question: "Which three browser-specific APIs are available for developers to persist data between page loads?",
+      type: "multiple choice",
+      correct_options: ["B", "D", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "IIFEs",
+        B: "indexedDB",
+        C: "Global variables",
+        D: "Cookies",
+        E: "localStorage"
+      },
+      explanation: "Las respuestas correctas son B, D y E.\n\n**Explicación detallada:**\n\n1. **indexedDB:**\n   - `indexedDB` es una API poderosa que permite almacenar grandes cantidades de datos estructurados en el navegador. Es útil para aplicaciones que requieren datos persistentes más complejos.\n\n2. **Cookies:**\n   - Las cookies son una API tradicional para almacenar pequeñas cantidades de datos en el navegador que pueden ser enviadas con cada solicitud al servidor. Aunque tienen limitaciones en tamaño y seguridad, son útiles para persistir información entre cargas de página.\n\n3. **localStorage:**\n   - `localStorage` permite almacenar datos en forma de clave-valor en el navegador. Los datos persisten incluso cuando la página o el navegador se recarga.\n\n4. **Opciones incorrectas:**\n   - A: `IIFEs` (Immediately Invoked Function Expressions) no están relacionadas con la persistencia de datos, ya que son un patrón de programación utilizado para encapsular variables.\n   - C: `Global variables` no persisten entre cargas de página, ya que sólo existen en el contexto de ejecución actual del navegador."
+    },
+    {
+      id: "q51",
+      question: "Which statement adds the priority-account CSS class to the Universal Containers row?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.querySelector('#row-uc').classes.push('priority-account');",
+        B: "document.queryElementById('row-uc').addclass('priority-account');",
+        C: "document.querySelector('#row-uc').classList.add('priority-account');",
+        D: "document.querySelectorAll('#row-uc').classList.add('priority-account');"
+      },
+      explanation: "La opción correcta es C: `document.querySelector('#row-uc').classList.add('priority-account');`.\n\n**Explicación detallada:**\n\n1. **Uso de `querySelector`:**\n   - `document.querySelector('#row-uc')` selecciona el elemento con el ID `row-uc` en el DOM.\n\n2. **Uso de `classList.add`:**\n   - El método `classList.add` agrega la clase `priority-account` al elemento seleccionado.\n\n3. **Opciones incorrectas:**\n   - A: `classes.push` no es un método válido; la manipulación de clases se realiza mediante `classList`.\n   - B: `queryElementById` no es un método válido; el correcto es `getElementById`.\n   - D: `querySelectorAll` devuelve una lista de nodos, no un único elemento. Por lo tanto, `classList.add` no puede aplicarse directamente."
+    },    
   ];
 }
