@@ -1,10 +1,10 @@
-import questions1 from "./public/data/qVTC1.js";
-import questions2 from "./public/data/qOFC2.js";
-import questions3 from "./public/data/qBE3.js";
-import questions4 from "./public/data/qDEH4.js";
-import questions5 from "./public/data/qAP5.js";
-import questions6 from "./public/data/qSS6.js";
-import questions7 from "./public/data/qTST7.js";
+import questions1 from "../../public/data/qVTC1.js";
+import questions2 from "../../public/data/qOFC2.js";
+import questions3 from "../../public/data/qBE3.js";
+import questions4 from "../../public/data/qDEH4.js";
+import questions5 from "../../public/data/qAP5.js";
+import questions6 from "../../public/data/qSS6.js";
+import questions7 from "../../public/data/qTST7.js";
 
 let currentQuestionIndex = 0;
 let questions = [];
@@ -13,15 +13,17 @@ let score = 0;
 let startTime;
 let timerInterval;
 let timerMode = "default";
-
-const TOTAL_QUESTIONS = 60;
+let questionAmount = 60;
 
 // Inicialización de elementos del DOM
 const timerDisplay = document.getElementById("timer-display");
 const configBtn = document.getElementById("config-btn");
+const questionAmountRadios = document.querySelectorAll('input[name="question-amount"]');
 const configModal = document.getElementById("config-modal");
 const closeModal = document.getElementById("close-modal");
 const radioButtons = document.querySelectorAll('input[name="timer-mode"]');
+const questionCounter = document.getElementById("question-counter");
+const allQuestionsToggle = document.getElementById("all-questions-toggle");
 
 const questionSources = [
   { questions: questions1(), percentage: 23 },
@@ -33,6 +35,16 @@ const questionSources = [
   { questions: questions7(), percentage: 7 },
 ];
 
+// Manejar el cambio de la cantidad de preguntas
+questionAmountRadios.forEach(radio => {
+  radio.addEventListener("change", (e) => {
+    questionAmount = e.target.value === "all" ? "all" : parseInt(e.target.value);
+    console.log("Pregunta cantidad seleccionada:", questionAmount); // Para verificar
+    loadQuestions();  // Cargar las preguntas cuando cambie el valor
+    configModal.classList.add("hidden"); // Cerrar modal
+  });
+});
+
 // Función para iniciar el temporizador
 function startTimer() {
   startTime = Date.now();
@@ -40,10 +52,7 @@ function startTimer() {
     const elapsed = Date.now() - startTime;
     const seconds = Math.floor((elapsed / 1000) % 60);
     const minutes = Math.floor(elapsed / 60000);
-    timerDisplay.textContent = `Time: ${String(minutes).padStart(
-      2,
-      "0"
-    )}:${String(seconds).padStart(2, "0")}`;
+    timerDisplay.textContent = `Time: ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
   }, 1000);
 }
 
@@ -54,10 +63,7 @@ function stopTimer() {
   const totalSeconds = Math.floor(elapsed / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
-    2,
-    "0"
-  )}`;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
 // Mostrar el modal de configuración
@@ -107,18 +113,34 @@ function resetTimer() {
 async function loadQuestions() {
   try {
     const loadedQuestions = [];
+    const useAllQuestions = questionAmount === "all"; // Verificar si se deben cargar todas las preguntas
+    const totalQuestions = useAllQuestions
+      ? questionSources.reduce((sum, src) => sum + src.questions.length, 0) // Calcular total de preguntas si se seleccionan todas
+      : questionAmount;
+
+    console.log("Total de preguntas a cargar:", totalQuestions); // Para verificar
 
     for (const source of questionSources) {
-      const numberToTake = Math.round(
-        (source.percentage / 100) * TOTAL_QUESTIONS
-      );
-      const shuffled = source.questions.sort(() => 0.5 - Math.random());
-      loadedQuestions.push(...shuffled.slice(0, numberToTake));
+      const sourceQuestions = source.questions;
+
+      if (useAllQuestions) {
+        loadedQuestions.push(...sourceQuestions);
+      } else {
+        const numberToTake = Math.round(
+          (source.percentage / 100) * totalQuestions
+        );
+        const shuffled = sourceQuestions.sort(() => 0.5 - Math.random());
+        loadedQuestions.push(...shuffled.slice(0, numberToTake));
+      }
     }
 
-    questions = loadedQuestions
-      .sort(() => 0.5 - Math.random())
-      .slice(0, TOTAL_QUESTIONS);
+    // Mezclar las preguntas finales
+    questions = loadedQuestions.sort(() => 0.5 - Math.random());
+
+    // En caso de que se hayan añadido más de la cuenta por redondeos
+    if (!useAllQuestions) {
+      questions = questions.slice(0, totalQuestions);
+    }
 
     showQuestion();
   } catch (error) {
@@ -129,6 +151,8 @@ async function loadQuestions() {
 // Mostrar la pregunta en pantalla
 function showQuestion() {
   const question = questions[currentQuestionIndex];
+
+  questionCounter.textContent = `${currentQuestionIndex + 1} of ${questions.length}`;
 
   document.getElementById("question-text").textContent = question.question;
 
@@ -193,6 +217,8 @@ function handleOptionClick(optionKey) {
     configBtn.style.opacity = "0.5";
     configBtn.style.cursor = "not-allowed";
   }
+
+  document.getElementById("question-counter").textContent = `${currentQuestionIndex + 1} of ${questions.length}`;
 }
 
 // Función para habilitar la selección múltiple

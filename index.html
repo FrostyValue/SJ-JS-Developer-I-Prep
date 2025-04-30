@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test JS</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./src/styles/index.css" />
   </head>
   <body>
     <header>
       <div id="title">Test de JavaScript</div>
+      <div id="question-counter" style="margin: 0 auto">1 of 60</div>
       <div style="display: flex; align-items: center; gap: 1rem">
         <span id="timer-display">Time: 00:00</span>
         <button id="config-btn" aria-label="Configuración">⚙️</button>
@@ -16,18 +17,22 @@
     </header>
     <div id="config-modal" class="hidden">
       <div class="modal-content">
-        <h2>Configuración del temporizador</h2>
+        <h2>Configuración del test</h2>
         <label>
-          <input type="radio" name="timer-mode" value="default" checked />
-          Temporizador normal (actual)
+          <input type="radio" name="question-amount" value="60" checked />
+          60 preguntas (por defecto).
+        </label>
+        <label>
+          <input type="radio" name="question-amount" value="all" />
+          Todas las preguntas disponibles (426).
         </label>
         <label>
           <input type="radio" name="timer-mode" value="105" />
-          Cuenta atrás de 105 minutos
+          Cuenta atrás de 105 minutos.
         </label>
         <label>
           <input type="radio" name="timer-mode" value="135" />
-          Cuenta atrás de 135 minutos
+          Cuenta atrás de 135 minutos.
         </label>
         <button id="close-modal">Cerrar</button>
       </div>
@@ -56,6 +61,6 @@
         <button id="next-btn" style="display: none">Siguiente</button>
       </div>
     </div>
-    <script type="module" src="index.js"></script>
+    <script type="module" src="./src/scripts/index.js"></script>
   </body>
 </html>

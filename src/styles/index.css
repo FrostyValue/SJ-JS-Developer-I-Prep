@@ -27,7 +27,7 @@ body {
 }
 
 header {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
@@ -40,8 +40,8 @@ header {
   font-size: 1.125rem;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  height: 8vh;
+  z-index: 100;
+  height: auto;
 }
 
 #config-btn {
@@ -141,7 +141,7 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 1200px;
-  margin: 9vh auto;
+  margin: 6rem auto 2rem;
 }
 
 #question-container {
