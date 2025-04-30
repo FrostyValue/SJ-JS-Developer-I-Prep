@@ -1153,6 +1153,277 @@ export default function questions2() {
         D: "The function uses the this from the enclosing scope."
       },
       explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Uso del `this` en funciones flecha:**\n   - Contrariamente a lo mencionado en la opción A, las funciones flecha no generan su propio `this`. En cambio, heredan el `this` del ámbito léxico circundante. Esto las hace especialmente útiles en situaciones donde se necesita preservar el contexto del ámbito exterior, como en métodos de clases o en funciones de callback.\n\n2. **Retorno implícito:**\n   - Una característica única de las funciones flecha es que, cuando su cuerpo contiene una sola expresión, esa expresión es evaluada y devuelta implícitamente sin necesidad de usar la palabra clave `return`. Por ejemplo:\n     ```javascript\n     const add = (a, b) => a + b;\n     console.log(add(2, 3)); // Resultado: 5\n     ```\n\n3. **Opciones incorrectas:**\n   - B: Es incorrecta porque las funciones flecha no reciben explícitamente un argumento llamado `parent This`. Heredan el `this` del ámbito circundante léxico.\n   - D: Aunque se menciona el uso del `this` del ámbito circundante, este comportamiento no es único de las funciones flecha. Lo que las distingue es precisamente su falta de un propio `this`."
-    },                                        
+    },
+    {
+      id: "q72",
+      question: "Refer to the code below. Which three properties are set on `pet1`?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "Name",
+        B: "canTalk",
+        C: "Type",
+        D: "Owner",
+        E: "Size"
+      },
+      code: "function Animal(size, type) {\n  this.size = size || 'small';\n  this.type = type || 'Animal';\n  this.canTalk = false;\n}\n\nlet Pet = function(size, type, name, owner) {\n  Animal.call(this, size, type);\n  this.name = name;\n  this.owner = owner;\n};\n\nPet.prototype = Object.create(Animal.prototype);\nlet pet1 = new Pet();\nconsole.log(pet1);",
+      explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Propiedad `canTalk` (B):**\n   - La propiedad `canTalk` se establece en el constructor `Animal` y se hereda por `pet1`. Por defecto, su valor es `false`.\n\n2. **Propiedad `Type` (C):**\n   - La propiedad `type` también se inicializa en el constructor `Animal`. Por defecto, si no se pasa ningún valor, se asigna el valor `'Animal'`.\n\n3. **Propiedad `Size` (E):**\n   - Similar a `type`, la propiedad `size` se establece en el constructor `Animal` con el valor predeterminado `'small'` si no se proporciona ningún valor.\n\n4. **Opciones incorrectas:**\n   - A: `name` no se establece porque no se pasó ningún valor al crear `pet1`. Por lo tanto, permanece como `undefined`.\n   - D: `owner` tampoco se establece, ya que no se pasó ningún valor en la instancia `pet1`."
+    },
+    {
+      id: "q73",
+      question: "A class was written to represent items for purchase in an online store, and a second class represents items that are on sale at a discounted price. The constructor sets the name to the first value passed in. Below are two code sections.\n\n1. The first block demonstrates the definition of `Item` and `SaleItem` classes and their constructors.\n2. The second block contains the implementation of the `description` method and the creation of instances. \n\nWhat is the output when executing the code?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "This is a ScarfUncaught TypeError:saleItem.description is not a function This is a ScarfThis is a discounted Shirt",
+        B: "This is a Scarf This is a Shirt This is a ScarfThis is a discounted Shirt",
+        C: "This is a Scarf This is a ShirtThis is a discounted Scarf This is a discounted Shirt",
+        D: "This is a ScarfUncaught TypeError: saleItem.description is not a function This is a ShirtThis is a discounted Shirt"
+      },
+      code: "/* Block 1: Class Definitions */\nclass Item {\n  constructor(name, price) {\n    this.name = name;\n    this.price = price;\n  }\n}\n\nclass SaleItem extends Item {\n  constructor(name, price, discount) {\n    super(name, price);\n    this.discount = discount;\n  }\n}\n\n/* Block 2: Implementation and Output */\nlet regItem = new Item('Scarf', 55);\nlet saleItem = new SaleItem('Shirt', 80, 0.1);\n\nItem.prototype.description = function() {\n  return 'This is a ' + this.name;\n};\nconsole.log(regItem.description());\nconsole.log(saleItem.description());\n\nSaleItem.prototype.description = function() {\n  return 'This is a discounted ' + this.name;\n};\nconsole.log(regItem.description());\nconsole.log(saleItem.description());",
+      explanation: "La opción correcta es B: `This is a Scarf This is a Shirt This is a ScarfThis is a discounted Shirt`.\n\n**Explicación detallada:**\n\n1. **Primera llamada a `regItem.description`:**\n   - Se ejecuta el método definido en `Item.prototype`, devolviendo `'This is a Scarf'`.\n\n2. **Primera llamada a `saleItem.description`:**\n   - Antes de sobrescribir el método, `saleItem` usa el mismo método de `Item.prototype`, devolviendo `'This is a Shirt'`.\n\n3. **Reescritura de `SaleItem.prototype.description`:**\n   - Este método se sobrescribe para los objetos creados con `SaleItem`. Ahora devuelve `'This is a discounted Shirt'` para `saleItem`.\n\n4. **Resultados posteriores:**\n   - `regItem.description()` sigue devolviendo `'This is a Scarf'` porque no se afecta la implementación en `Item.prototype`.\n   - `saleItem.description()` ahora usa su propia implementación, devolviendo `'This is a discounted Shirt'`.\n\nPor lo tanto, el resultado en consola es:\n```\nThis is a Scarf\nThis is a Shirt\nThis is a Scarf\nThis is a discounted Shirt\n```"
+    },
+    {
+      id: "q74",
+      question: "Refer to the code below. What is the output after the code executes?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "ReferenceError: eyeColor is not defined",
+        B: "ReferenceError: assignment to undeclared variable 'Person'",
+        C: "Developer",
+        D: "Undefined"
+      },
+      code: "function Person(firstName, lastName, eyeColor) {\n  this.firstName = firstName;\n  this.lastName = lastName;\n  this.eyeColor = eyeColor;\n}\n\nPerson.job = 'Developer';\n\nconst myFather = new Person('John', 'Doe');\nconsole.log(myFather.job);",
+      explanation: "La opción correcta es D: `Undefined`.\n\n**Explicación detallada:**\n\n1. **Métodos y propiedades de constructor:**\n   - La propiedad `Person.job` se asigna directamente al constructor `Person`, lo que la convierte en una propiedad estática.\n   - Los objetos instanciados (`myFather`) no tienen acceso a propiedades estáticas.\n\n2. **Opciones incorrectas:**\n   - A: `eyeColor` sí está definido como parte del constructor.\n   - B: La variable `Person` está correctamente declarada.\n   - C: La propiedad `job` no está definida en la instancia `myFather`."
+    },
+    {
+      id: "q75",
+      question: "Refer to the following code. Which statement should be added to line 09 for the code to display ‘The truck 123AB has a weight of 5000 lb.’?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Super.plate = plate;",
+        B: "super(plate);",
+        C: "this.plate = plate;",
+        D: "Vehicle.plate = plate;"
+      },
+      code: "class Vehicle {\n  constructor(plate) {\n    this.plate = plate;\n  }\n}\n\nclass Truck extends Vehicle {\n  constructor(plate, weight) {\n    // Missing code\n    this.weight = weight;\n  }\n\n  displayWeight() {\n    console.log(`The truck ${this.plate} has a weight of ${this.weight} lb.`);\n  }\n}\n\nlet myTruck = new Truck('123AB', 5000);\nmyTruck.displayWeight();",
+      explanation: "La opción correcta es B: `super(plate);`.\n\n**Explicación detallada:**\n\n1. **Uso de `super`:**\n   - El método `super` llama al constructor de la clase padre (`Vehicle`) y pasa el valor del parámetro `plate` para inicializar correctamente la propiedad heredada.\n\n2. **Errores en opciones:**\n   - A: `Super.plate` es una sintaxis inválida.\n   - C: `this.plate = plate` sobrescribiría la lógica del constructor del padre y no utiliza correctamente la herencia.\n   - D: `Vehicle.plate = plate` no inicializa la propiedad en la instancia de la clase hija."
+    },
+    {
+      id: "q76",
+      question: "A developer creates a class that represents a blog post. Which statement should be inserted in the placeholder on line 02 to allow for a variable to be set to a new instance of a `Post` with the three attributes correctly populated?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "super(body, author, viewCount) {",
+        B: "function Post(body, author, viewCount) {",
+        C: "constructor(body, author, viewCount) {",
+        D: "constructor() {"
+      },
+      code: "class Post {\n  // Insert code here\n  this.body = body;\n  this.author = author;\n  this.viewCount = viewCount;\n}",
+      explanation: "La opción correcta es C: `constructor(body, author, viewCount) {`.\n\n**Explicación detallada:**\n\n1. **Uso del constructor:**\n   - En una clase de JavaScript, el método `constructor` se utiliza para inicializar las propiedades de una instancia cuando se crea un nuevo objeto.\n   - `constructor(body, author, viewCount)` permite pasar valores iniciales para las propiedades `body`, `author`, y `viewCount`.\n\n2. **Errores en opciones:**\n   - A: `super` no aplica aquí ya que la clase `Post` no está extendiendo de otra clase.\n   - B: `function Post` sería válido en una definición de función, pero no en el contexto de una clase.\n   - D: `constructor()` no inicializaría correctamente las propiedades requeridas, ya que no recibe parámetros."
+    }, 
+    {
+      id: "q77",
+      question: "Refer to the code below. Which three properties are set on `pet1`?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "Name",
+        B: "canTalk",
+        C: "Type",
+        D: "Owner",
+        E: "Size"
+      },
+      code: "function Animal(size, type) {\n  this.size = size || 'small';\n  this.type = type || 'Animal';\n  this.canTalk = false;\n}\n\nlet Pet = function(size, type, name, owner) {\n  Animal.call(this, size, type);\n  this.name = name;\n  this.owner = owner;\n};\n\nPet.prototype = Object.create(Animal.prototype);\nlet pet1 = new Pet();",
+      explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Propiedad `canTalk` (B):**\n   - Definida en el constructor `Animal`, su valor por defecto es `false`. Esto se aplica al objeto `pet1`.\n\n2. **Propiedad `Type` (C):**\n   - También definida en el constructor `Animal`. Si no se pasa un valor, su valor predeterminado es `'Animal'`.\n\n3. **Propiedad `Size` (E):**\n   - Similar a `Type`, se define en el constructor `Animal` con valor predeterminado `'small'` si no se especifica.\n\n4. **Opciones incorrectas:**\n   - A: `Name` no se establece porque no se pasa un valor al crear `pet1`, por lo que queda como `undefined`.\n   - D: `Owner` tampoco se establece para la misma razón que `Name`."
+    },
+    {
+      id: "q78",
+      question: "Which three options show valid methods for creating a fat arrow function?",
+      type: "multiple choice",
+      correct_options: ["A", "E"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "x => (console.log('executed');)",
+        B: "[ ] => (console.log('executed');)",
+        C: "() => (console.log('executed');)",
+        D: "x, y, z => (console.log('executed');)",
+        E: "(x, y, z) => (console.log('executed');)"
+      },
+      explanation: "Las respuestas correctas son A y E.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Es una función flecha válida con un parámetro (`x`) y un cuerpo que incluye una llamada a `console.log`.\n\n2. **Opción E:**\n   - Es una función flecha válida con múltiples parámetros (`x`, `y`, `z`) encerrados en paréntesis.\n\n3. **Opciones incorrectas:**\n   - B: `[]` no es una sintaxis válida para parámetros en una función flecha.\n   - C: Aunque es válida como función flecha, la opción no está seleccionada en el contexto de esta pregunta.\n   - D: Falta encapsulación para múltiples parámetros."
+    },
+    {
+      id: "q79",
+      question: "What are two unique features of functions defined with a fat arrow as compared to normal function definition?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The function generated its own this making it useful for separating the function’s scope from its enclosing scope.",
+        B: "The function receives an argument that is always in scope, called parentThis, which is the enclosing lexical scope.",
+        C: "If the function has a single expression in the function body, the expression will be evaluated and implicitly returned.",
+        D: "The function uses the this from the enclosing scope."
+      },
+      explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Las funciones flecha no generan su propio `this`. Usan el `this` del contexto léxico que las rodea.\n\n2. **Opción C:**\n   - Si una función flecha tiene un solo cuerpo de expresión, el valor de esa expresión se retorna implícitamente.\n\n3. **Opciones incorrectas:**\n   - B: No existe el argumento `parentThis` en funciones flecha.\n   - D: Aunque las funciones flecha heredan el `this` de su contexto léxico, esta opción no aplica específicamente a funciones flecha como una característica única."
+    },
+    {
+      id: "q80",
+      question: "A developer has two ways to write a function. After deciding on an option, the developer creates 1000 monster objects. \n\nHow many growl methods are created with Option A or Option B?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "1 growl method is created for Option A.",
+        B: "1000 growl methods are created for Option A.",
+        C: "1000 growl methods are created for Option B.",
+        D: "1 growl method is created for Option B.",
+        E: "1000 growl methods are created regardless of which option is used.",
+        F: "1 growl method is created regardless of which option is used."
+      },
+      code: "// Option A\nfunction Monster() {\n  this.growl = () => {\n    console.log('Grr!');\n  };\n}\n\n// Option B\nfunction Monster() {}\nMonster.prototype.growl = () => {\n  console.log('Grr!');\n};",
+      explanation: "La opción correcta es B: `1000 growl methods are created for Option A`.\n\n**Explicación detallada:**\n\n1. **Option A:**\n   - En este caso, `growl` es un método definido como parte de cada instancia.\n   - Por lo tanto, al crear 1000 objetos, se crearán 1000 instancias únicas de `growl`.\n\n2. **Option B:**\n   - Aquí, `growl` se define en el prototipo (`Monster.prototype`), lo que significa que todas las instancias comparten el mismo método `growl`.\n   - Solo se crea un método `growl`, independientemente del número de instancias creadas.\n\n3. **Opciones incorrectas:**\n   - A y D son incorrectas porque reflejan el comportamiento de la opción contraria.\n   - E y F no diferencian adecuadamente entre las opciones de implementación."
+    },
+    {
+      id: "q81",
+      question: "Which two code snippets show working examples of a recursive function?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Let countingDown = function(startNumber) { if (startNumber > 0) { console.log(startNumber); return countingDown(startNumber - 1); } else { return startNumber; }};",
+        B: "Function factorial(numVar) { if (numVar < 0) return; if (numVar === 0) return 1; return numVar - 1; };",
+        C: "Const sumToTen = numVar => { if (numVar < 0) return; return sumToTen(numVar + 1); };",
+        D: "Const factorial = numVar => { if (numVar < 0) return; if (numVar === 0) return 1; return numVar * factorial(numVar - 1); };"
+      },
+      explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Esta función recursiva decrementa el valor `startNumber` hasta que alcanza `0`, momento en el que devuelve `startNumber`.\n\n2. **Opción D:**\n   - Esta función calcula el factorial de un número utilizando recursión, multiplicando el número por el resultado de la llamada a sí misma con `numVar - 1`.\n\n3. **Opciones incorrectas:**\n   - B: No implementa recursión correctamente.\n   - C: Intenta usar recursión pero no tiene un caso base válido para detener la función."
+    },
+    {
+      id: "q82",
+      question: "A developer wants to define a function `log` to be used a few times on a single-file JavaScript script. Which two options can correctly replace line 01 and declare the function for use?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "function log(logInput) {",
+        B: "const log(logInput) {",
+        C: "const log = (logInput) => {",
+        D: "function log = (logInput) {"
+      },
+      code: "// Replace Line 1\nconsole.log('LOG:', logInput);\n}",
+      explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Define una función normal usando la sintaxis estándar de `function`. Es válida para ser llamada múltiples veces.\n\n2. **Opción C:**\n   - Usa una función flecha (`arrow function`), que es válida y efectiva para definiciones funcionales en un archivo único.\n\n3. **Opciones incorrectas:**\n   - B: Contiene un error de sintaxis al intentar usar `const` junto con un nombre de función.\n   - D: Es sintácticamente inválido en JavaScript."
+    },
+    {
+      id: "q83",
+      question: "Cloud Kicks has a class to represent items for sale in an online store, as shown below. A new business requirement comes in that requests a ClothingItem class that should have all of the properties and methods of the Item class but will also have properties that are specific to clothes.\n\nWhich line of code properly declares the ClothingItem class such that it inherits from Item?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Class ClothingItem implements Item {",
+        B: "Class ClothingItem {",
+        C: "Class ClothingItem super Item {",
+        D: "Class ClothingItem extends Item {"
+      },
+      code: "class Item{\nconstructor (name, price){\nthis.name = name;\nthis.price = price;\n}\nformattedPrice(){\nreturn 's' + String(this.price);\n}}\n\nclass ClothingItem extends Item { }",
+      explanation: "La opción correcta es D: **Class ClothingItem extends Item { }**.\n\n**Explicación detallada:**\n\n1. **Uso de 'extends':**\n   - La palabra clave `extends` se utiliza para declarar una subclase que hereda las propiedades y métodos de una clase padre.\n\n2. **Corrección de otras opciones:**\n   - Opción A: `implements` no es adecuado para heredar clases; se utiliza con interfaces.\n   - Opción B: No declara relación alguna con la clase padre.\n   - Opción C: `super` se utiliza dentro del constructor, no para declarar la clase."
+    },
+    {
+      id: "q84",
+      question: "What is the value of result after the code executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "10",
+        B: "NaN",
+        C: "5",
+        D: "Undefined"
+      },
+      code: "function changeValue(obj) {\n  obj.value = obj.value / 2;\n}\nconst objA = { value: 10 };\nconst objB = objA;\nchangeValue(objB);\nconst result = objA.value;",
+      explanation: "La opción correcta es C: **5**.\n\n**Explicación detallada:**\n\n1. **Referencia compartida en objetos:**\n   - `objA` y `objB` apuntan al mismo objeto en memoria. Esto significa que cualquier cambio hecho a `objB` también afecta a `objA`.\n\n2. **División del valor:**\n   - `changeValue` divide el valor de la propiedad `value` del objeto por 2. Después de llamar a la función, el valor de `objA.value` y `objB.value` es 5.\n\n3. **Conclusión:**\n   - `result` toma el valor de `objA.value`, que es 5."
+    },
+    {
+      id: "q85",
+      question: "Which three options show valid methods for creating a fat arrow function?",
+      type: "multiple choice",
+      correct_options: ["C", "D", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "x => ( console.log('executed') ; )",
+        B: "[ ] => ( console.log('executed') ; )",
+        C: "() => ( console.log('executed') ; )",
+        D: "x,y,z => ( console.log('executed') ; )",
+        E: "(x,y,z) => ( console.log('executed') ; )"
+      },
+      code: "// Ejemplos válidos de funciones flecha\nconst example1 = () => (console.log('executed'));\nconst example2 = (x, y, z) => (console.log('executed'));\nconst example3 = x => (console.log('executed'));",
+      explanation: "Las opciones correctas son C, D y E:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - Uso correcto de paréntesis para una función sin argumentos.\n\n2. **Opción D:**\n   - Una lista de argumentos separada por comas (sin paréntesis si es un argumento único).\n\n3. **Opción E:**\n   - Los paréntesis son necesarios para múltiples argumentos.\n\n4. **Errores en otras opciones:**\n   - Opción A: Falta un punto y coma válido fuera del bloque.\n   - Opción B: Los corchetes `[]` no son identificadores válidos para funciones flecha."
+    },
+    {
+      id: "q86",
+      question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace line 1 and declare the function for use?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "function log(logInput) {",
+        B: "const log(logInput) {",
+        C: "const log = (logInput) => {",
+        D: "function log = (logInput) {"
+      },
+      explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Declara la función usando el método tradicional `function log(logInput)`.\n\n2. **Opción C:**\n   - Utiliza la sintaxis moderna de funciones flecha con `const log = (logInput) => {`.\n\n3. **Errores en otras opciones:**\n   - Opción B: No es una sintaxis válida para declarar una función.\n   - Opción D: `function log =` no es una declaración válida en JavaScript."
+    },
+    {
+      id: "q87",
+      question: "A developer has an ErrorHandler module that contains multiple functions. What kind of export should be leveraged so that multiple functions can be used?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Named",
+        B: "All",
+        C: "Multi",
+        D: "Default"
+      },
+      explanation: "La opción correcta es A: **Named.**\n\n**Explicación detallada:**\n\n1. **Exportación nombrada:**\n   - Permite exportar varias funciones del mismo módulo utilizando sus nombres específicos.\n   - Esto facilita el acceso selectivo a las funciones según sus necesidades.\n\n2. **Errores en otras opciones:**\n   - Opción B: 'All' no es una forma válida de exportar.\n   - Opción C: 'Multi' tampoco es una opción válida en JavaScript.\n   - Opción D: `Default` exporta solo un valor o función por módulo, lo cual no es aplicable aquí."
+    },
+    {
+      id: "q88",
+      question: "Refer to the code below. What is the value of result after the code executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "10",
+        B: "NaN",
+        C: "5",
+        D: "Undefined"
+      },
+      code: "function changeValue(obj) {\n  obj.value = obj.value / 2;\n}\nconst objA = { value: 10 };\nconst objB = objA;\nchangeValue(objB);\nconst result = objA.value;",
+      explanation: "La opción correcta es C: **5.**\n\n**Explicación detallada:**\n\n1. **Referencia compartida en objetos:**\n   - `objA` y `objB` apuntan al mismo objeto en memoria. Esto significa que cualquier cambio realizado en `objB` también afecta a `objA`.\n\n2. **División del valor:**\n   - La función `changeValue` divide el valor de la propiedad `value` entre 2. Por lo tanto, `objA.value` se actualiza a `5`.\n\n3. **Errores en otras opciones:**\n   - Opción A: Incorrecta porque el valor de `objA.value` sí cambia.\n   - Opción B: `NaN` solo aparecería si el valor original no fuese numérico.\n   - Opción D: `undefined` no aplica porque `objA.value` está definido."
+    },
+    {
+      id: "q89",
+      question: "Refer to the following code. Which two statements could be inserted at line 17 to enable the function call on the last line?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "leo.roar = () => { console.log('They\\'re pretty good:'); };",
+        B: "Object.assign(leo, Tiger);",
+        C: "Object.assign(leo, tony);",
+        D: "Leo.prototype.roar = () => { console.log('They\\'re pretty good:'); };"
+      },
+      code: "function Tiger() {\n  this.Type = 'Cat';\n  this.size = 'large';\n}\n\nlet tony = new Tiger();\ntony.roar = () => {\n  console.log('They\\'re great!');\n};\n\nfunction Lion() {\n  this.type = 'Cat';\n  this.size = 'large';\n}\n\nlet leo = new Lion();\n// Insert code here\nleo.roar();",
+      explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Asigna una función `roar` directamente al objeto `leo`, permitiendo que se llame en la última línea.\n\n2. **Opción C:**\n   - Usa `Object.assign` para copiar las propiedades y métodos de `tony` (incluida la función `roar`) al objeto `leo`.\n\n3. **Errores en otras opciones:**\n   - Opción B: `Tiger` es una función constructora y no un objeto; no es válido para `Object.assign`.\n   - Opción D: Modificar `Leo.prototype` no tiene efecto en el objeto `leo` porque ya fue creado."
+    },                                                                                                                      
   ];
 };

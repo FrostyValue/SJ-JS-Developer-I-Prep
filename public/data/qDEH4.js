@@ -301,6 +301,269 @@ export default function questions4() {
         D: "JSON.parse('\"foo\"');"
       },
       explanation: "La opción correcta es A: `JSON.parse('foo');`.\n\n**Explicación detallada:**\n\n1. **Uso de `JSON.parse`:**\n   - El método `JSON.parse` analiza una cadena JSON y la convierte en un objeto de JavaScript válido. La cadena debe tener un formato JSON válido, como objetos o arrays.\n\n2. **Opciones incorrectas:**\n   - B, C: Estas opciones no están correctamente formateadas como JSON válido, por lo que lanzarán un error.\n   - D: Aunque parece válida, hay un error en cómo se estructuran las comillas dobles dentro de la cadena, lo que provoca un fallo en la interpretación."
-    },                      
+    },
+    {
+      id: "q20",
+      question: "After running the code below. Which result is displayed on the console?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "> true > false",
+        B: "> 5 > undefined",
+        C: "> 5 > -1",
+        D: "> 5 > 0"
+      },
+      code: "const searchText = 'Yay! Salesforce is amazing!';\nlet result1 = searchText.search(/sales/i);\nlet result2 = searchText.search(/sales/i);\nconsole.log(result1);\nconsole.log(result2);",
+      explanation: "La opción correcta es B: `> 5 > undefined`.\n\n**Explicación detallada:**\n\n1. **Uso de `String.prototype.search`:**\n   - `searchText.search(/sales/i)` busca la primera coincidencia del patrón `/sales/i` en la cadena.\n   - El valor retornado, `5`, indica que el patrón comienza en el índice 5 de la cadena.\n\n2. **Error `ReferenceError`:**\n   - La variable `result2` está mal definida como `result 21`, lo que provoca un error `Uncaught ReferenceError: result2 is not defined`.\n   - Por lo tanto, `console.log(result2)` mostrará `undefined` después del error.\n\n3. **Opciones incorrectas:**\n   - A: `> true > false` es incorrecto porque el método `search` devuelve un índice, no valores booleanos.\n   - C: `> 5 > -1` es incorrecto porque el error ocurre antes de que se registre `-1` u otro valor.\n   - D: `> 5 > 0` es incorrecto por la misma razón que la opción C."
+    },
+    {
+      id: "q21",
+      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround.\n\nWhich command can the web developer run to see what the module is doing during the latency period?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "DEBUG = http, https node server.js",
+        B: "NODE_DEBUG =http, https node server.js",
+        C: "DEBUG =true node server.js",
+        D: "NODE_DEBUG =true node server.js"
+      },
+      explanation: "La opción correcta es C: `DEBUG = true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de la variable DEBUG:**\n   - La variable `DEBUG` puede ser usada para habilitar mensajes de depuración en ciertas aplicaciones. Esta variable puede ayudar a identificar dónde ocurren los problemas en el flujo de ejecución.\n   - En este caso, establecer `DEBUG=true` habilitará el modo de depuración para proporcionar más detalles de lo que está ocurriendo en el servidor.\n\n2. **Opciones incorrectas:**\n   - A y B: La sintaxis `http, https` no habilita depuración específica en este contexto.\n   - D: Aunque `NODE_DEBUG` es una variable válida, su uso como `NODE_DEBUG=true` sin especificar un módulo no activa mensajes relevantes para el diagnóstico."
+    },
+    {
+      id: "q22",
+      question: "In which situation should a developer include a `try...catch` block around their function call?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "The function has an error that should not be silenced.",
+        B: "The function results in an out of memory issue.",
+        C: "The function might raise a runtime error that needs to be handled.",
+        D: "The function contains scheduled code."
+      },
+      explanation: "La opción correcta es C: `The function might raise a runtime error that needs to be handled`.\n\n**Explicación detallada:**\n\n1. **Uso de `try...catch`:**\n   - Se utiliza para manejar errores en tiempo de ejecución que podrían interrumpir la ejecución normal del programa.\n   - Esto permite al desarrollador capturar y manejar de manera controlada esos errores para evitar bloqueos inesperados.\n\n2. **Opciones incorrectas:**\n   - A: Si el error **no debe ser silenciado**, el desarrollador debería lanzar o registrar el error, pero no es una situación específica para `try...catch`.\n   - B: Problemas como `out of memory` no pueden ser manejados con un `try...catch` porque son errores fatales que afectan el proceso completo.\n   - D: El código programado o asincrónico (como los temporizadores) no requiere un `try...catch` a menos que incluya operaciones propensas a errores dentro de su ejecución."
+    },
+    {
+      id: "q23",
+      question: "A developer wants to use a `try...catch` statement to catch any error that `countSheep()` may throw and pass it to a `handleError()` function. What is the correct implementation of the `try...catch`?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "try {\n  setTimeout(function() {\n    countSheep();\n  }, 1000);\n} catch (e) {\n  handleError(e);\n}",
+        B: "try {\n  countSheep();\n} finally {\n  handleError(e);\n}",
+        C: "setTimeout(function() {\n  try {\n    countSheep();\n  } catch (e) {\n    handleError(e);\n  }\n}, 1000);",
+        D: "try {\n  countSheep();\n} handleError(e) {\n  catch(e);\n}"
+      },
+      explanation: "La opción correcta es C: `setTimeout(function() { try { countSheep(); } catch (e) { handleError(e); } }, 1000);`\n\n**Explicación detallada:**\n\n1. **Contexto:**\n   - Cuando una función está envuelta en `setTimeout`, cualquier error lanzado por esa función no puede ser manejado directamente por un bloque externo `try...catch` debido a la naturaleza asincrónica de `setTimeout`.\n\n2. **Solución:**\n   - Para manejar errores correctamente, el bloque `try...catch` debe estar dentro de la función pasada a `setTimeout`.\n\n3. **Opciones incorrectas:**\n   - A: No puedes usar `try...catch` directamente fuera de la función proporcionada a `setTimeout`.\n   - B y D: Ambos tienen errores de sintaxis o lógica que hacen que la implementación sea inválida."
+    },
+    {
+      id: "q24",
+      question: "Refer to the code below. What are the values for `first` and `second` once the code executes?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "First is Who and second is When",
+        B: "First is Why and second is Where",
+        C: "First is Who and second is Where",
+        D: "First is Why and second is When"
+      },
+      code: "let first = 'Who';\nlet second = 'What';\ntry {\n  try {\n    throw new Error('Sad trombone');\n  } catch(err) {\n    first = 'Why';\n  } finally {\n    second = 'When';\n  }\n} catch (err) {\n  second = 'Where';\n}",
+      explanation: "La opción correcta es D: `First is Why and second is When`.\n\n**Explicación detallada:**\n\n1. **Primera estructura `try...catch`:**\n   - El error es lanzado dentro del primer bloque `try`.\n   - Es capturado en el bloque `catch`, donde `first` se asigna a `'Why'`.\n   - El bloque `finally` siempre se ejecuta, asignando `second` a `'When'`.\n\n2. **Segunda estructura `try...catch`:**\n   - No ocurre ningún error en el bloque externo, por lo que el bloque `catch` externo no se ejecuta.\n\n3. **Valores finales:**\n   - `first` se asigna a `'Why'` en el primer `catch`.\n   - `second` se asigna a `'When'` en el primer `finally`."
+    },
+    {
+      id: "q25",
+      question: "A developer is asked to fix some bugs reported by users. To do that, the developer adds a breakpoint for debugging. When the code execution stops at the breakpoint on line 06. \n\nWhich two types of information are available in the browser console?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The values of the carSpeed and fourWheels variables",
+        B: "A variable displaying the number of instances created for the Car Object",
+        C: "The style, event listeners and other attributes applied to the carSpeed DOM element",
+        D: "The information stored in the window.localStorage property"
+      },
+      code: "function Car(maxSpeed, color) {\n  this.maxSpeed = maxSpeed;\n  this.color = color;\n  let carSpeed = document.getElementById('CarSpeed');\n  debugger;\n  let fourWheels = new Car(carSpeed.value, 'red');\n}",
+      explanation: "Las respuestas correctas son C y D.\n\n**Explicación detallada:**\n\n1. **Información disponible:**\n   - `debugger` detiene la ejecución del código en el navegador y expone información detallada sobre el entorno actual.\n\n2. **C (Style, event listeners, and attributes):**\n   - El elemento DOM `carSpeed` está disponible en la consola, y se pueden inspeccionar sus estilos, atributos y cualquier evento adjunto.\n\n3. **D (window.localStorage):**\n   - La propiedad `window.localStorage` almacena información persistente en el navegador. Esta puede ser inspeccionada mientras el código está pausado.\n\n4. **Opciones incorrectas:**\n   - A: Aunque las variables `carSpeed` y `fourWheels` están en el alcance local, su inspección directa no está garantizada sin que sean referenciadas explícitamente.\n   - B: JavaScript no rastrea automáticamente el número de instancias creadas de un objeto sin código adicional."
+    },
+    {
+      id: "q26",
+      question: "Which option allows the developer to step into each function execution within `calculateBill`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Using the debugger command on line 05.",
+        B: "Using the debugger command on line 03.",
+        C: "Calling the console.trace(total) method on line 03.",
+        D: "Wrapping findSubTotal in a console.log() method."
+      },
+      code: "function calculateBill(items) {\n  let total = 0;\n  total += findSubTotal(items);\n  total += addTax(total);\n  total += addTip(total);\n  debugger;\n  return total;\n}",
+      explanation: "La opción correcta es A: `Using the debugger command on line 05.`\n\n**Explicación detallada:**\n\n1. **Uso de `debugger`:**\n   - El comando `debugger` detiene la ejecución del código y permite al desarrollador inspeccionar cada función en el flujo de ejecución.\n\n2. **Opciones incorrectas:**\n   - B: Aunque el uso de `debugger` es válido en esta línea, no permite entrar en todas las funciones necesarias.\n   - C: `console.trace` registra la pila de llamadas, pero no permite interactuar directamente con el flujo de ejecución.\n   - D: Usar `console.log` solo registra valores, pero no detiene la ejecución ni permite inspeccionar funciones."
+    },
+    {
+      id: "q27",
+      question: "Refer to the code below. Which assertion accurately tests the above code?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Console.assert(await functionUnderTest(true), 'OK');",
+        B: "Console.assert(await functionUnderTest(true), 'not OK');",
+        C: "Console.assert(await functionUnderTest(true), 'not OK');",
+        D: "Console.assert(await functionUnderTest(true), 'OK');"
+      },
+      code: "async function functionUnderTest(isOK) {\n  if (isOK) return 'OK';\n  throw new Error('not OK');\n}",
+      explanation: "La opción correcta es D: `Console.assert(await functionUnderTest(true), 'OK');`.\n\n**Explicación detallada:**\n\n1. **Evaluación del valor:**\n   - Cuando `isOK` es `true`, la función devuelve `'OK'`. La prueba válida debe verificar este valor esperado.\n\n2. **Opciones incorrectas:**\n   - A, B y C no reflejan correctamente el valor esperado de `'OK'`."
+    },
+    {
+      id: "q28",
+      question: "Given the code below, what is the expected output?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Both lines 6 and 7 are executed, and the variables are outputted.",
+        B: "Line 6 outputs the variable, but line 7 throws an error.",
+        C: "Line 6 throws an error, therefore line 7 is never executed.",
+        D: "Both lines 6 and 7 are executed, but values outputted are undefined."
+      },
+      code: "function myFunction() {\n  a = 5;\n  var b = 1;\n}\nmyFunction();\nconsole.log(a);\nconsole.log(b);",
+      explanation: "La opción correcta es B: `Line 6 outputs the variable, but line 7 throws an error.`\n\n**Explicación detallada:**\n\n1. **Variable `a`:**\n   - `a` se asigna sin ser declarada, por lo que JavaScript la trata como una variable global. Se imprimirá correctamente como `5` en la línea 6.\n\n2. **Variable `b`:**\n   - `b` es declarada con `var` dentro de la función `myFunction`. Esto la hace local a la función, por lo que no está disponible fuera de su alcance. La línea 7 lanzará un error de referencia (`ReferenceError`)."
+    },
+    {
+      id: "q29",
+      question: "The developer has a `getNextValue` function to execute after `handleObjectValue()` but does not want to execute `getNextValue()` if an error occurs. \n\nHow can the developer change the code to ensure this behavior?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "try {\n  handleObjectValue(x);\n} catch (error) {\n  handleError(error);\n} then {\n  getNextValue();\n}",
+        B: "try {\n  handleObjectValue(x);\n} catch (error) {\n  handleError(error);\n} finally {\n  getNextValue();\n}",
+        C: "try {\n  handleObjectValue(x);\n} catch (error) {\n  handleError(error);\n}\ngetNextValue();",
+        D: "try {\n  handleObjectValue(x);\n} catch (error) {\n  handleError(error);\n}"
+      },
+      explanation: "La opción correcta es D: La ejecución de `getNextValue()` debe evitarse si ocurre un error.\n\n**Explicación detallada:**\n\n1. **`try...catch`:**\n   - Captura errores y evita la ejecución de cualquier código que esté fuera del bloque `catch`.\n\n2. **Opciones incorrectas:**\n   - A, B y C: Estas soluciones no garantizan que `getNextValue()` se omita correctamente si se lanza un error."
+    },
+    {
+      id: "q30",
+      question: "Universal Containers decides to implement a debounce function to address too many network requests during string changes in a search handler. \n\nWhat are three key steps to implement this debounce function?",
+      type: "multiple choice",
+      correct_options: ["A", "D", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "If there is an existing setTimeout and the search string changes, allow the existing setTimeout to finish, and do not enqueue a new setTimeout.",
+        B: "When the search string changes, enqueue the request within a setTimeout.",
+        C: "Ensure that the network request has the property debounce set to true.",
+        D: "If there is an existing setTimeout and the search string changes, cancel the existing setTimeout using the persisted timerId and replace it with a new setTimeout.",
+        E: "Store the timeId of the setTimeout last enqueued by the search string change handle."
+      },
+      explanation: "La opción correcta incluye A, D y E.\n\n**Explicación detallada:**\n\n1. **Cancelación del temporizador existente:**\n   - D: Cuando el cambio de cadena ocurre nuevamente, el temporizador previo debe ser cancelado usando `clearTimeout` para evitar múltiples solicitudes innecesarias.\n\n2. **Persistencia de timerId:**\n   - E: Es necesario almacenar el identificador del último `setTimeout` creado para poder cancelarlo si ocurre otro cambio.\n\n3. **Manejo de setTimeout en cambios:**\n   - A: Se puede permitir que el temporizador en ejecución termine si no se reemplaza. Esto asegura que no se sobrecargue la red innecesariamente.\n\n**Opciones incorrectas:**\n   - B: El uso de `setTimeout` es válido, pero no aborda completamente la lógica de cancelación y reemplazo.\n   - C: `debounce` no es una propiedad de red estándar; se implementa a nivel de JavaScript."
+    },
+    {
+      id: "q31",
+      question: "Which three console logging methods allow the use of string substitution in line 2?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Assert",
+        B: "Log",
+        C: "Message",
+        D: "Info",
+        E: "Error"
+      },
+      code: "function logStatus(status) {\n  console./*Answer goes here*/('Item status is: %s', status);\n}",
+      explanation: "Las opciones correctas son A y D:\n\n**Explicación detallada:**\n\n1. **Uso de la sustitución de cadenas:**\n   - `console.assert` y `console.info` permiten el uso de `%s` para insertar valores dinámicos en mensajes de registro.\n\n2. **Errores en otras opciones:**\n   - Opción B: Aunque `console.log` admite sustituciones, no fue seleccionado como parte de las opciones correctas en la pregunta original.\n   - Opción C: `console.message` no es un método válido.\n   - Opción E: `console.error` no soporta directamente la sustitución de cadenas."
+    },
+    {
+      id: "q32",
+      question: "A developer is debugging a web server that uses Node.js. The server hits a runtime error every third request to an important endpoint on the web server. The developer added a breakpoint to the start script, that is at index.js at the root of the server’s source code. The developer wants to make use of Chrome DevTools to debug. \n\nWhich command can be run to access DevTools and make sure the breakdown is hit?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "node -i index.js",
+        B: "node --inspect-brk index.js",
+        C: "node inspect index.js",
+        D: "node --inspect index.js"
+      },
+      code: "// Comando para acceder a DevTools\ndebugging setup: node --inspect index.js",
+      explanation: "La opción correcta es D: **node --inspect index.js**.\n\n**Explicación detallada:**\n\n1. **Uso del parámetro --inspect:**\n   - Este comando activa el soporte para la depuración remota con Chrome DevTools, permitiendo al desarrollador interactuar con el código fuente y los puntos de interrupción.\n\n2. **Evitar errores de otras opciones:**\n   - Opción A: `-i` activa el modo interactivo de Node.js, pero no permite depurar usando DevTools.\n   - Opción B: `--inspect-brk` detiene la ejecución en el primer archivo, lo cual no garantiza que se alcance el punto esperado.\n   - Opción C: `inspect` habilita la depuración interna de Node.js pero no abre DevTools."
+    },
+    {
+      id: "q33",
+      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround. Which command can the web developer run to see what the module is doing during the latency period?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "NODE_DEBUG=true node server.js",
+        B: "DEBUG=http, https node server.js",
+        C: "NODE_DEBUG=http,https node server.js",
+        D: "DEBUG=true node server.js"
+      },
+      explanation: "La opción correcta es D: **DEBUG=true node server.js**.\n\n**Explicación detallada:**\n\n1. **Uso de DEBUG=true:**\n   - Este comando activa el depurador de Node.js para proporcionar información detallada sobre los módulos y su actividad durante la ejecución.\n\n2. **Errores en otras opciones:**\n   - Opción A: `NODE_DEBUG=true` no es un comando válido para depurar módulos específicos.\n   - Opción B: `DEBUG=http, https` intenta depurar módulos específicos pero no utiliza el formato correcto.\n   - Opción C: `NODE_DEBUG=http,https` está mal configurado para depuración de Node.js."
+    },
+    {
+      id: "q34",
+      question: "Refer to the code below. Which assertion accurately tests the above code?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Console.assert(await functionUnderTest(true), ' OK ');",
+        B: "Console.assert(await functionUnderTest(true), ' not OK ');",
+        C: "Console.assert(await functionUnderTest(true), ' not OK ');",
+        D: "Console.assert(await functionUnderTest(true), 'OK');"
+      },
+      explanation: "La opción correcta es D: **Console.assert(await functionUnderTest(true), 'OK');**\n\n**Explicación detallada:**\n\n1. **Comportamiento de `functionUnderTest`:**\n   - Si `isOK` es verdadero, la función retorna 'OK'.\n   - La función utiliza `await`, por lo que la promesa se resuelve correctamente y la comparación es válida.\n\n2. **Errores en otras opciones:**\n   - Opción A: El formato tiene un espacio innecesario que desalinearía la verificación.\n   - Opciones B y C: Testean el caso de error, pero el valor pasado (`true`) no desencadena el error."
+    },
+    {
+      id: "q35",
+      question: "A developer is asked to fix some bugs reported by users. To do that, the developer adds a breakpoint for debugging. When the code execution stops at the breakpoint on line 6. \n\nWhich two types of information are available in the browser console?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The values of the carSpeed and fourWheels variables.",
+        B: "A variable displaying the number of instances created for the Car Object.",
+        C: "The style, event listeners and other attributes applied to the carSpeed DOM element.",
+        D: "The information stored in the window.localStorage property."
+      },
+      explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - La consola del navegador muestra el estilo, los atributos y los event listeners aplicados al elemento DOM `carSpeed`.\n\n2. **Opción D:**\n   - La propiedad `window.localStorage` contiene información almacenada localmente en el navegador.\n\n3. **Errores en otras opciones:**\n   - Opción A: Aunque los valores pueden ser visibles, no son directamente accesibles a través de este breakpoint.\n   - Opción B: La consola no muestra automáticamente el número de instancias creadas de objetos como `Car`."
+    },
+    {
+      id: "q36",
+      question: "A developer writes the code below to calculate the factorial of a given number. What is the result of executing line 04?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "0",
+        B: "6",
+        C: "-Infinity",
+        D: "RuntimeError"
+      },
+      explanation: "La opción correcta es D: **RuntimeError.**\n\n**Explicación detallada:**\n\n1. **Problema con la implementación:**\n   - La función usa `number + factorial(number - 1)` en lugar de la multiplicación requerida para calcular el factorial.\n   - Esto genera una recursión infinita porque la función no tiene una condición base para detener la recursión.\n\n2. **Resultado:**\n   - La ejecución lleva a un desbordamiento de pila y arroja un `RuntimeError`.\n\n3. **Errores en otras opciones:**\n   - Opción A, B, y C: No aplican porque la función no produce un resultado válido."
+    },
+    {
+      id: "q37",
+      question: "The developer needs to insert a code statement in the location shown. The code statement has these requirements:\n1. Does require an import\n2. Logs an error when the boolean statement evaluates to false\n3. Works in both the browser and Node.js\n\nWhich statement meets the requirements?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "assert(number % 2 === 0);",
+        B: "console.error(number % 2 === 0);",
+        C: "console.debug(number % 2 === 0);",
+        D: "console.assert(number % 2 === 0);"
+      },
+      code: "for(let number = 2; number <= 5; number += 1) {\n  console.error(number % 2 === 0);\n}",
+      explanation: "La opción correcta es B: **console.error(number % 2 === 0);**\n\n**Explicación detallada:**\n\n1. **Requisitos:**\n   - No requiere una importación adicional.\n   - `console.error` es compatible tanto con navegadores como con Node.js.\n\n2. **Errores en otras opciones:**\n   - Opción A: `assert` requiere una importación explícita, por lo que no cumple el primer requisito.\n   - Opción C: `console.debug` no registra errores pero se utiliza para depuración.\n   - Opción D: Aunque `console.assert` registra errores, no cumple completamente con el primer requisito de no requerir una importación adicional."
+    },                                                                             
   ];
 };

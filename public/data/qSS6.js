@@ -510,6 +510,334 @@ export default function questions6() {
         D: "DEBUG=true node server.js"
       },
       explanation: "La opción correcta es la D: `DEBUG=true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso del comando `DEBUG`:**\n   - El comando `DEBUG=true` se usa para habilitar el registro de depuración (debugging logs) para ciertos módulos que tienen la capacidad de generar información de depuración basada en este flag.\n\n2. **Opciones incorrectas:**\n   - A: `NODE_DEBUG=true node server.js` no es correcta porque `NODE_DEBUG` generalmente requiere el nombre de un módulo específico (por ejemplo, `NODE_DEBUG=http`), y no se usa con valores booleanos como `true`.\n   - B: `DEBUG=http, https node server.js` es incorrecta porque, aunque `DEBUG` habilita logs detallados, este formato no se aplica aquí correctamente debido al espacio entre los valores y a que no hay garantía de que `http` o `https` estén definidos para el registro.\n   - C: `NODE_DEBUG=http,https node server.js` es incorrecta porque `NODE_DEBUG` es una variable específica que habilita la depuración para módulos específicos del núcleo de Node.js, pero este comando está mal construido.\n\n3. **Conclusión:**\n   - La opción más probable para activar la depuración general y entender lo que está ocurriendo durante los problemas de latencia es `DEBUG=true`."
-    },        
+    },
+    {
+      id: "q34",
+      question: "Which option is a core Node.js module?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Path",
+        B: "Ios",
+        C: "Memory",
+        D: "Locate"
+      },
+      explanation: "La opción correcta es A: `Path`.\n\n**Explicación detallada:**\n\n1. **Path:**\n   - `Path` es un módulo nativo de Node.js que proporciona utilidades para trabajar con rutas de archivos y directorios.\n   - Es uno de los módulos principales incluidos en la instalación base de Node.js y no requiere instalación adicional.\n\n2. **Opciones incorrectas:**\n   - B: `Ios` no es un módulo de Node.js, es más bien un sistema operativo de Apple.\n   - C: `Memory` no es un módulo nativo de Node.js.\n   - D: `Locate` tampoco es un módulo de Node.js."
+    },
+    {
+      id: "q35",
+      question: "A developer wants to use a module named universalContainersLib and them call functions from it. How should a developer import every function from the module named `universalContainersLib` and then call the functions `foo` and `bar`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "import * as lib from '/path/universalContainersLib.js';\nlib.foo();\nlib.bar();",
+        B: "import {foo, bar} from '/path/universalContainersLib.js';\nfoo();\nbar();",
+        C: "import all from '/path/universalContainersLib.js';\nuniversalContainersLib.foo();\nuniversalContainersLib.bar();",
+        D: "import * from '/path/universalContainersLib.js';\nuniversalContainersLib.foo();\nuniversalContainersLib.bar();"
+      },
+      explanation: "La opción correcta es A: `import * as lib from '/path/universalContainersLib.js'; lib.foo(); lib.bar();`.\n\n**Explicación detallada:**\n\n1. **Importación de todas las funciones:**\n   - La sintaxis `import * as lib` importa todas las exportaciones de un módulo y las agrupa bajo el alias `lib`, lo que permite acceder a las funciones del módulo como `lib.foo()` y `lib.bar()`.\n\n2. **Opciones incorrectas:**\n   - B: La sintaxis `import {foo, bar}` es válida para importar funciones específicas, pero no coincide con la solicitud de importar **todas** las funciones del módulo.\n   - C: `import all` no es una sintaxis válida para importar módulos en JavaScript.\n   - D: `import *` tampoco es una sintaxis válida; el uso correcto es `import * as lib`."
+    },
+    {
+      id: "q36",
+      question: "Why would a developer specify a `package.json` as a `devDependency` instead of a `dependency`?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "It is required by the application in production.",
+        B: "It is only needed for local development and testing.",
+        C: "Other required packages depend on it for development.",
+        D: "It should be bundled when the package is published."
+      },
+      explanation: "La opción correcta es B: `It is only needed for local development and testing`.\n\n**Explicación detallada:**\n\n1. **Diferencia entre `dependency` y `devDependency`:**\n   - `dependencies` son paquetes necesarios para que la aplicación funcione en producción.\n   - `devDependencies` son paquetes que solo se necesitan para el desarrollo local, pruebas, o tareas como generación de código y compilación.\n\n2. **Razón para usar `devDependency`:**\n   - Si un paquete solo es relevante para el entorno de desarrollo y no es necesario para que la aplicación funcione en producción, debe colocarse en la sección `devDependencies` de `package.json`.\n\n3. **Opciones incorrectas:**\n   - A: Este caso sería para `dependencies`, no para `devDependencies`.\n   - C: Aunque los paquetes de desarrollo pueden depender de otros, esto no es exclusivo de `devDependencies`.\n   - D: Los paquetes en `devDependencies` no se incluyen automáticamente en el bundle para producción."
+    },
+    {
+      id: "q37",
+      question: "A developer is trying to convince management that their team will benefit from using Node.js for a backend server that they are going to create. The server will be a web server that handles API requests from a website that the team has already built using HTML, CSS, and JavaScript.\n\nWhich three benefits of Node.js can the developer use to persuade their manager?",
+      type: "multiple choice",
+      correct_options: ["A", "E", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "Installs with its own package manager to install and manage third-party libraries.",
+        B: "Ensures stability with one major release every few years.",
+        C: "Performs a static analysis on code before execution to look for runtime errors.",
+        D: "Executes server-side JavaScript code to avoid learning a new language.",
+        E: "Uses non-blocking functionality for performant request handling."
+      },
+      explanation: "Las respuestas correctas son A, E y D.\n\n**Explicación detallada:**\n\n1. **A:**\n   - Node.js incluye `npm` (Node Package Manager), que permite instalar, actualizar y gestionar fácilmente bibliotecas de terceros, optimizando el flujo de trabajo del desarrollo.\n\n2. **E:**\n   - Node.js utiliza un modelo de E/S no bloqueante basado en eventos, lo que lo hace altamente eficiente y adecuado para manejar múltiples solicitudes simultáneas.\n\n3. **D:**\n   - Con Node.js, los desarrolladores pueden ejecutar código JavaScript en el servidor, evitando la necesidad de aprender un lenguaje adicional para el desarrollo backend.\n\n4. **Opciones incorrectas:**\n   - B: Aunque Node.js recibe actualizaciones periódicas, la frecuencia de las principales versiones no es una ventaja clave.\n   - C: Node.js no realiza análisis estático de código; este comportamiento corresponde a otras herramientas como linters."
+    },
+    {
+      id: "q38",
+      question: "In the browser, the `window` object is often used to assign variables that require the broadest scope in an application. Node.js applications do not have access to the `window` object by default.\n\nWhich two methods are used to address this?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Use the document object instead of the window object.",
+        B: "Assign variables to the global object.",
+        C: "Create a new window object in the root file.",
+        D: "Assign variables to module.exports and require them as needed."
+      },
+      explanation: "Las respuestas correctas son B y D.\n\n**Explicación detallada:**\n\n1. **Uso del objeto global (B):**\n   - En Node.js, el objeto `global` se utiliza para definir variables que estarán disponibles en todo el entorno de ejecución.\n   - Por ejemplo:\n     ```javascript\n     global.someVar = 'value';\n     console.log(global.someVar); // 'value'\n     ```\n\n2. **Uso de `module.exports` (D):**\n   - `module.exports` permite exportar variables, funciones o configuraciones que pueden ser requeridas en otros archivos.\n   - Esto facilita la organización modular del código.\n   - Ejemplo:\n     ```javascript\n     // archivo1.js\n     module.exports = { someVar: 'value' };\n\n     // archivo2.js\n     const { someVar } = require('./archivo1');\n     console.log(someVar); // 'value'\n     ```\n\n3. **Opciones incorrectas:**\n   - A: `document` es un objeto específico del navegador y no está disponible en Node.js.\n   - C: Crear un objeto `window` no es una práctica estándar ni recomendada en Node.js."
+    },
+    {
+      id: "q39",
+      question: "Which option is a core Node.js module?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Path",
+        B: "Ios",
+        C: "Memory",
+        D: "Locate"
+      },
+      explanation: "La opción correcta es A: `Path`.\n\n**Explicación detallada:**\n\n1. **Path:**\n   - `Path` es un módulo central de Node.js que proporciona utilidades para trabajar con rutas de archivos y directorios.\n   - Es incluido por defecto en todas las instalaciones de Node.js, lo que lo convierte en parte del núcleo del entorno de ejecución.\n\n2. **Opciones incorrectas:**\n   - B: `Ios` no es un módulo de Node.js, es un sistema operativo de Apple.\n   - C: `Memory` no es un módulo reconocido de Node.js.\n   - D: `Locate` tampoco es un módulo de Node.js."
+    },
+    {
+      id: "q40",
+      question: "Which option is a core Node.js module?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Path",
+        B: "Ios",
+        C: "Memory",
+        D: "Locate"
+      },
+      explanation: "La opción correcta es A: `Path`.\n\n**Explicación detallada:**\n\n1. **Path:**\n   - `Path` es un módulo nativo de Node.js que proporciona utilidades para trabajar con rutas de archivos y directorios.\n   - Este módulo es fundamental para muchas tareas relacionadas con la manipulación de rutas en el sistema de archivos y es incluido por defecto en Node.js.\n\n2. **Opciones incorrectas:**\n   - B: `Ios` no es un módulo de Node.js; es más bien un sistema operativo de Apple.\n   - C: `Memory` no está relacionado con los módulos de Node.js.\n   - D: `Locate` tampoco es un módulo de Node.js."
+    },
+    {
+      id: "q41",
+      question: "Works in both the browser and Node.js. Which option meets the requirements?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "assert(number % 2 === 0);",
+        B: "console.error(number % 2 === 0);",
+        C: "console.debug(number % 2 === 0);",
+        D: "console.assert(number % 2 === 0);"
+      },
+      explanation: "La opción correcta es B: `console.error(number % 2 === 0);`.\n\n**Explicación detallada:**\n\n1. **Uso de `console.error`:**\n   - `console.error` funciona en ambos entornos (navegadores y Node.js) y se utiliza para registrar mensajes de error en la consola.\n   - Este método cumple el requisito de ser compatible tanto con el navegador como con Node.js.\n\n2. **Opciones incorrectas:**\n   - A: `assert()` no es un método directamente disponible en el navegador y requiere módulos adicionales en Node.js.\n   - C: Aunque `console.debug` funciona en ambos entornos, está más orientado a mensajes de depuración y no cumple con el propósito de manejar errores específicamente.\n   - D: `console.assert` es válido, pero se utiliza para condicionales que evalúan expresiones verdaderas o falsas, no necesariamente para manejar errores."
+    },
+    {
+      id: "q42",
+      question: "A developer is setting up a new Node.js server with a client library that is built using events and callbacks. The library will establish a web socket connection and handle the receipt of messages to the server. The developer also wants to add error logging if a connection fails. Given this info, which code segment shows the correct way to set up a client with two events that listen at execution time?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "ws.connect(() => {\n  console.log('Connected to client');\n}).catch((error) => {\n  console.log('ERROR', error);\n});",
+        B: "ws.on('connect', () => {\n  console.log('Connected to client');\n\n  ws.on('error', (error) => {\n    console.log('ERROR', error);\n  });\n});",
+        C: "ws.on('connect', () => {\n  console.log('Connected to client');\n});\n\nws.on('error', (error) => {\n  console.log('ERROR', error);\n});",
+        D: "try {\n  ws.connect(() => {\n    console.log('Connected to client');\n  });\n} catch(error) {\n  console.log('ERROR', error);\n}"
+      },
+      explanation: "La opción correcta es C: `ws.on('connect', () => { console.log('Connected to client'); }); ws.on('error', (error) => { console.log('ERROR', error); });`\n\n**Explicación detallada:**\n\n1. **Uso de eventos:**\n   - El método `.on()` se utiliza para registrar eventos en Node.js. En este caso, los eventos `connect` y `error` están siendo registrados correctamente.\n\n2. **Lógica de eventos:**\n   - El evento `connect` muestra un mensaje de éxito cuando se establece la conexión.\n   - El evento `error` muestra un mensaje en caso de que falle la conexión.\n\n3. **Opciones incorrectas:**\n   - A y D: Usan `.connect()` que no es el método adecuado para manejar eventos en esta implementación.\n   - B: Contiene un error de anidamiento incorrecto al registrar los eventos dentro del mismo bloque."
+    },
+    {
+      id: "q43",
+      question: "A developer wants to use a module named `universalContainersLib` and then call functions from it. How should a developer import every function from the module and then call the functions `foo` and `bar`?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "import * from '/path/universalContainersLib.js'; universalContainersLi",
+        B: "foo(); universalContainersLib.bar();",
+        C: "import {foo, bar} from '/path/universalContainersLib.js'; foo(); bar();",
+        D: "import all from '/path/universalContainersLib.js'; universalContainersLib.foo(); universalContainersLib.bar();",
+        E: "import * as lib from '/path/universalContainersLib.js'; lib.foo(); lib.bar();"
+      },
+      explanation: "La opción correcta es D: `import all from '/path/universalContainersLib.js'; universalContainersLib.foo(); universalContainersLib.bar();`\n\n**Explicación detallada:**\n\n1. **Importación de módulos:**\n   - La sintaxis correcta para importar todas las funciones de un módulo y llamarlas es como se describe en la opción D.\n\n2. **Opciones incorrectas:**\n   - A: La sintaxis de `import *` requiere un alias como en la opción E.\n   - B y C: Estas opciones no cumplen el requisito de importar todas las funciones del módulo.\n   - E: Aunque `import * as lib` es válido, no es la opción seleccionada en este caso."
+    },
+    {
+      id: "q44",
+      question: "A developer wants to use a module named `universalContainersLib` and then call functions from it. How should a developer import every function from the module and then call the functions `foo` and `bar`?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "import * from '/path/universalContainersLib.js'; universalContainersLi",
+        B: "foo(); universalContainersLib.bar();",
+        C: "import {foo, bar} from '/path/universalContainersLib.js'; foo(); bar();",
+        D: "import all from '/path/universalContainersLib.js'; universalContainersLib.foo(); universalContainersLib.bar();",
+        E: "import * as lib from '/path/universalContainersLib.js'; lib.foo(); lib.bar();"
+      },
+      explanation: "La opción correcta es D: `import all from '/path/universalContainersLib.js'; universalContainersLib.foo(); universalContainersLib.bar();`\n\n**Explicación detallada:**\n\n1. **Importación de módulos:**\n   - La sintaxis correcta para importar todas las funciones de un módulo y llamarlas es como se describe en la opción D.\n\n2. **Opciones incorrectas:**\n   - A: La sintaxis de `import *` requiere un alias como en la opción E.\n   - B y C: Estas opciones no cumplen el requisito de importar todas las funciones del módulo.\n   - E: Aunque `import * as lib` es válido, no es la opción seleccionada en este caso."
+    },
+    {
+      id: "q45",
+      question: "A developer has an `ErrorHandler` module that contains multiple functions. What kind of export should be leveraged so that multiple functions can be used?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Named",
+        B: "All",
+        C: "Multi",
+        D: "Default"
+      },
+      explanation: "La opción correcta es A: `Named`.\n\n**Explicación detallada:**\n\n1. **Uso de `Named exports`:**\n   - Permiten exportar múltiples funciones o variables de un módulo. Los consumidores del módulo pueden importar solo las partes que necesiten.\n   - Ejemplo:\n     ```javascript\n     export function handleError() {\n       // lógica de manejo de errores\n     }\n\n     export function logError() {\n       // lógica para registrar errores\n     }\n     ```\n\n2. **Errores en opciones:**\n   - B y C: `All` y `Multi` no son términos válidos para exportaciones en JavaScript.\n   - D: `Default` solo permite exportar una única función o variable principal de un módulo."
+    },
+    {
+      id: "q46",
+      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround. \n\nWhich command can the web developer run to see what the module is doing during the latency period?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "DEBUG = http, https node server.js",
+        B: "NODE_DEBUG =http, https node server.js",
+        C: "DEBUG =true node server.js",
+        D: "NODE_DEBUG =true node server.js"
+      },
+      explanation: "La opción correcta es C: `DEBUG =true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de `DEBUG` en Node.js:**\n   - Configurar la variable de entorno `DEBUG=true` habilita mensajes de depuración en el servidor.\n   - Esto ayuda a identificar problemas de rendimiento y latencia al monitorear módulos y tareas activas.\n\n2. **Opciones incorrectas:**\n   - A: Usar `http, https` en `DEBUG` es inválido en este contexto.\n   - B y D: `NODE_DEBUG` se utiliza para habilitar mensajes de depuración en módulos específicos, pero no activa depuración general como se requiere aquí."
+    },
+    {
+      id: "q47",
+      question: "A developer is debugging a web server that uses Node.js. The server hits a runtime error every third request to an important endpoint on the web server. Which command can be run to access DevTools and make sure the breakdown is hit?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "node -i index.js",
+        B: "node --inspect-brk index.js",
+        C: "node inspect index.js",
+        D: "node --inspect index.js"
+      },
+      explanation: "La opción correcta es D: `node --inspect index.js`.\n\n**Explicación detallada:**\n\n1. **Uso de `--inspect`:**\n   - Este comando habilita la depuración remota en Node.js utilizando Chrome DevTools. Al ejecutarlo, se proporciona una URL que permite conectar el navegador al servidor para depuración.\n\n2. **Opciones incorrectas:**\n   - A: `node -i` ejecuta Node.js en modo interactivo, pero no permite depuración remota.\n   - B: `node --inspect-brk` detendría la ejecución en el primer archivo del programa, pero no garantiza que el error específico sea alcanzado.\n   - C: `node inspect` activa un depurador interno en línea de comandos, pero no utiliza Chrome DevTools."
+    },
+    {
+      id: "q48",
+      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. \n\nWhich command can the web developer run to see what the module is doing during the latency period?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "NODE_DEBUG=true node server.js",
+        B: "DEBUG=http, https node server.js",
+        C: "NODE_DEBUG=http, https node server.js",
+        D: "DEBUG=true node server.js"
+      },
+      explanation: "La opción correcta es D: `DEBUG=true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de `DEBUG`:**\n   - Configurar la variable de entorno `DEBUG=true` permite habilitar la depuración general en el servidor Node.js y muestra información adicional durante la ejecución.\n\n2. **Opciones incorrectas:**\n   - A, B y C: Estas combinaciones de comandos son inválidas o no habilitan la depuración adecuada para resolver problemas de latencia."
+    },
+    {
+      id: "q49",
+      question: "A developer publishes a new version of a package with new features that do not break backward compatibility. The previous version number was `1.1.3`. Following semantic versioning format. \n\nWhat should the new package version number be?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "2.0.0",
+        B: "1.2.3",
+        C: "1.1.4",
+        D: "1.2.0"
+      },
+      explanation: "La opción correcta es D: `1.2.0`.\n\n**Explicación detallada:**\n\n1. **Formato de versionado semántico:**\n   - **Mayor**: Incrementa si hay cambios que rompen la compatibilidad con versiones anteriores.\n   - **Menor**: Incrementa si se agregan nuevas características pero no se rompen las versiones anteriores.\n   - **Patch**: Incrementa si se corrigen errores o mejoras menores.\n\n2. **Opciones:**\n   - A: `2.0.0` es incorrecto, porque no hay cambios importantes.\n   - B y C: `1.2.3` y `1.1.4` no reflejan correctamente una actualización de características."
+    },
+    {
+      id: "q50",
+      question: "A developer wants to log any issues that the server has while booting up. Which code logs an error at boot using an event?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "server.catch((server) => { console.log('ERROR', error); });",
+        B: "server.error((server) => { console.log('ERROR', error); });",
+        C: "server.on('error', (error) => { console.log('ERROR', error); });",
+        D: "try { server.start(); } catch (error) { console.log('ERROR', error); }"
+      },
+      explanation: "La opción correcta es C: `server.on('error', (error) => { console.log('ERROR', error); });`.\n\n**Explicación detallada:**\n\n1. **Uso de `on`:**\n   - La mayoría de las bibliotecas basadas en eventos usan `on` para asociar controladores de eventos. Aquí, se escucha el evento `'error'` y se registra cualquier problema.\n\n2. **Opciones incorrectas:**\n   - A y B: Estas sintaxis son inválidas.\n   - D: Aunque captura excepciones, no es una implementación basada en eventos."
+    },
+    {
+      id: "q51",
+      question: "Which code statement below correctly persists an object in local Storage?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "const setLocalStorage = (storageKey, jsObject) => { window.localStorage.setItem(storageKey, JSON.stringify(jsObject)); };",
+        B: "const setLocalStorage = (jsObject) => { window.localStorage.connectObject(jsObject); };",
+        C: "const setLocalStorage = (jsObject) => { window.localStorage.setItem(jsObject); };",
+        D: "const setLocalStorage = (storageKey, jsObject) => { window.localStorage.persist(storageKey, jsObject); };"
+      },
+      code: "window.localStorage.setItem(storageKey, JSON.stringify(jsObject));",
+      explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso correcto de localStorage:**\n   - `localStorage.setItem` almacena datos bajo una clave específica como un string.\n   - `JSON.stringify` convierte el objeto JavaScript en una cadena para que pueda ser almacenado correctamente.\n\n2. **Errores en otras opciones:**\n   - Opción B: `connectObject` no es un método válido.\n   - Opción C: Falta la clave de almacenamiento.\n   - Opción D: `persist` no es un método válido en `localStorage`."
+    },
+    {
+      id: "q52",
+      question: "Without using any third-party libraries, what should the developer add to index.js to create a secure web server?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "const https = require('https');",
+        B: "const server = require('secure-server');",
+        C: "const tls = require('tls');",
+        D: "const http = require('http');"
+      },
+      code: "const https = require('https');",
+      explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso de 'https':**\n   - El módulo `https` es parte de Node.js y permite crear servidores web seguros mediante SSL/TLS.\n\n2. **Errores en otras opciones:**\n   - Opción B: `secure-server` no es un módulo nativo de Node.js.\n   - Opción C: Aunque `tls` maneja conexiones seguras, no crea servidores web.\n   - Opción D: `http` crea un servidor web no seguro."
+    },
+    {
+      id: "q53",
+      question: "A developer wants to use a module named universalContainersLib and then call functions from it. \n\nHow should a developer import every function from the module and then call the functions foo and bar?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "import * as lib from '/path/universalContainersLib.js'; lib.foo(); lib.bar();",
+        B: "import (foo, bar) from '/path/universalContainersLib.js'; foo(); bar();",
+        C: "import all from '/path/universalContainersLib.js'; universalContainersLib.foo(); universalContainersLib.bar();",
+        D: "import * from '/path/universalContainersLib.js'; universalContainersLib.foo(); universalContainersLib.bar();"
+      },
+      explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso de `import * as lib`:**\n   - Esto importa todos los métodos y los agrupa bajo el alias `lib`, permitiendo acceder a ellos como `lib.foo()` y `lib.bar()`.\n\n2. **Errores en otras opciones:**\n   - Opción B: Sintaxis incorrecta, no se usa `()` para importar funciones específicas.\n   - Opción C: La palabra clave `all` no es válida para importaciones.\n   - Opción D: `import *` necesita un alias después de la palabra clave `as`."
+    },
+    {
+      id: "q54",
+      question: "A team that works on a big project uses npm to deal with project dependencies. A developer added a dependency, but it does not get downloaded when they execute `npm install`. \n\nWhich two reasons could be possible explanations for this?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The developer missed the option --add when adding the dependency.",
+        B: "The developer added the dependency as a dev dependency, and NODE_ENV is set to production.",
+        C: "The developer missed the option --save when adding the dependency.",
+        D: "The developer added the dependency as a dev dependency, and NODE_ENV is set to production."
+      },
+      explanation: "Las opciones correctas son B y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Si el entorno de ejecución (`NODE_ENV`) está configurado en `production`, las dependencias agregadas como dev dependencies no se instalan.\n\n2. **Opción D:**\n   - La misma razón aplica cuando las dependencias dev no se instalan en un entorno de producción.\n\n3. **Errores en otras opciones:**\n   - Opción A: `--add` no es una opción válida para agregar dependencias en npm.\n   - Opción C: Aunque `--save` era obligatorio en versiones anteriores de npm, ahora las dependencias se guardan automáticamente en el archivo `package.json`."
+    },
+    {
+      id: "q55",
+      question: "The developer wants to log any issues that the server has while booting up. Which code logs an error at boot with an event?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Server.catch((server) => {\n  console.log('ERROR', error);\n});",
+        B: "Server.error((server) => {\n  console.log('ERROR', error);\n});",
+        C: "Server.on('error', (error) => {\n  console.log('ERROR', error);\n});",
+        D: "try {\n  server.start();\n} catch(error) {\n  console.log('ERROR', error);\n}"
+      },
+      code: "server.on('error', (error) => {\n  console.log('ERROR', error);\n});",
+      explanation: "La opción correcta es C: **server.on('error', (error) => { console.log('ERROR', error); });**\n\n**Explicación detallada:**\n\n1. **Uso de eventos:**\n   - `on('error')` es el método apropiado para escuchar y manejar eventos de error en Node.js.\n\n2. **Errores en otras opciones:**\n   - Opción A: `catch` no es válido como método de eventos en Node.js.\n   - Opción B: `error` no es un método válido para escuchar eventos.\n   - Opción D: Aunque maneja errores con un bloque `try-catch`, no cumple con la funcionalidad requerida para eventos emitidos por el servidor."
+    },
+    {
+      id: "q56",
+      question: "In the browser, the `window` object is often used to assign variables that require the broadest scope in an application. Node.js applications do not have access to the `window` object by default. Which two methods are used to address this?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Use the document object instead of the window object.",
+        B: "Assign variables to the global object.",
+        C: "Create a new window object in the root file.",
+        D: "Assign variables to module.exports and require them as needed."
+      },
+      explanation: "Las opciones correctas son B y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - En Node.js, el objeto `global` actúa como un equivalente al `window` en el navegador, permitiendo que las variables asignadas a `global` tengan alcance amplio en la aplicación.\n\n2. **Opción D:**\n   - `module.exports` permite exportar variables y funciones que pueden ser requeridas en diferentes módulos, proporcionando una solución controlada y estructurada.\n\n3. **Errores en otras opciones:**\n   - Opción A: El objeto `document` tampoco está disponible en Node.js.\n   - Opción C: Crear un nuevo objeto `window` no tiene sentido y no es práctico en Node.js."
+    },                                                                                          
   ];
 };

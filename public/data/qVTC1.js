@@ -1016,6 +1016,469 @@ export default function questions1() {
       },
       code: "const str = 'salesforce';",
       explanation: "Las opciones correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Uso de `substring`:**\n   - La función `substring(start, end)` extrae caracteres desde el índice `start` hasta, pero sin incluir, el índice `end`.\n   - `str.substring(0, 5)` devuelve `'sales'`, pero con ajustes puede devolver `'Sale'` si el código fuente cambia.\n\n2. **Uso de `substr`:**\n   - La función `substr(start, length)` extrae caracteres desde el índice `start` por una longitud específica.\n   - `str.substr(0, 5)` devuelve `'sales'`, pero si la entrada se ajusta, puede formar `'Sale'.'\n\n3. **Opciones incorrectas:**\n   - C: `str.substring(1, 5)` selecciona desde el índice `1`, que produce `'a;es'`, no `'Sale'.'\n   - D: `str.substr(1, 5)` selecciona desde el índice `1`, que produce `'a;es'`, no `'Sale'.'"
-    },                                                   
+    },
+    {
+      id: "q64",
+      question: "Which JavaScript methods can be used to serialize an object into a string and deserialize a JSON string into an object, respectively?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "JSON.stringify and JSON.parse",
+        B: "stringify and JSON.parse",
+        C: "parse",
+        D: "JSON",
+        E: "serialize and JSON.parse",
+        F: "deserialize",
+        G: "JSON",
+        H: "encode and JSON.parse"
+      },
+      explanation: "La opción correcta es B: `JSON.stringify` y `JSON.parse`.\n\n**Explicación detallada:**\n\n1. **Serialización de objetos con `JSON.stringify`:**\n   - El método `JSON.stringify` convierte un objeto en una cadena JSON que puede ser almacenada o transmitida.\n   - Ejemplo:\n     ```javascript\n     const obj = { name: 'Alice', age: 25 };\n     const jsonStr = JSON.stringify(obj);\n     console.log(jsonStr); // '{\"name\":\"Alice\",\"age\":25}'\n     ```\n\n2. **Deserialización con `JSON.parse`:**\n   - El método `JSON.parse` convierte una cadena JSON en un objeto JavaScript.\n   - Ejemplo:\n     ```javascript\n     const jsonStr = '{\"name\":\"Alice\",\"age\":25}';\n     const obj = JSON.parse(jsonStr);\n     console.log(obj); // { name: 'Alice', age: 25 }\n     ```\n\n3. **Opciones incorrectas:**\n   - A, D, G: `JSON` es el objeto global que contiene los métodos, no un método en sí.\n   - E: `serialize` no es un método de JavaScript.\n   - F: `deserialize` tampoco es un método válido de JavaScript.\n   - H: `encode` y `decode` no están relacionados con la serialización JSON en este contexto."
+    },
+    {
+      id: "q65",
+      question: "Refer to the expression below. How should this expression be modified to ensure that it evaluates to `false`?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "let x = ('1' + '2') == (6 * 2);",
+        B: "let x = ('1' + 2) == (6 * 2);",
+        C: "let x = (1 + 2) == ('6' / 2);",
+        D: "let x = (1 + 2) == (6 / 2);"
+      },
+      code: "let x = ('1' + 2) == (6 * 2);",
+      explanation: "La opción correcta es B: `let x = ('1' + 2) == (6 * 2);`.\n\n**Explicación detallada:**\n\n1. **Evaluación de la expresión original:**\n   - `('1' + 2)` realiza concatenación de cadenas, convirtiendo `2` en una cadena y resultando en `'12'`.\n   - `(6 * 2)` evalúa a `12` como un número.\n   - Comparar `'12'` (cadena) con `12` (número) devuelve `false`.\n\n2. **Modificación para garantizar `false`:**\n   - Manteniendo la opción B sin cambios, se asegura la evaluación de `false` porque la expresión original ya cumple esa condición.\n\n3. **Opciones incorrectas:**\n   - A: Cambiar `('1' + 2)` por `('1' + '2')` produce `'12' == 12`, lo que podría evaluarse a `true` con coerción.\n   - C y D: Cambiar las operaciones altera la lógica original y puede no garantizar que se evalúe consistentemente a `false`."
+    },
+    {
+      id: "q66",
+      question: "What is the value of `x` in the following code?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "3020",
+        B: "1520",
+        C: "50",
+        D: "35"
+      },
+      code: "let x = ('15' + 10) * 2;",
+      explanation: "La opción correcta es A: `3020`.\n\n**Explicación detallada:**\n\n1. **Evaluación de la expresión:**\n   - La operación `('15' + 10)` realiza concatenación, ya que `'15'` es una cadena y `10` es un número.\n   - El resultado es `'1510'` (una cadena).\n\n2. **Multiplicación por 2:**\n   - Cuando se multiplica `'1510'` por `2`, la cadena se convierte implícitamente en un número.\n   - El cálculo es `1510 * 2`, que da como resultado `3020`.\n\n3. **Opciones incorrectas:**\n   - B: `1520` sería incorrecto porque no refleja la operación adecuada.\n   - C: `50` y D: `35` son irrelevantes porque no corresponden a la lógica de concatenación y multiplicación descrita."
+    },
+    {
+      id: "q67",
+      question: "A developer creates an object where its properties should be immutable and prevent properties from being added or modified. Which method should be used to execute this business requirement?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Object.const()",
+        B: "Object.eval()",
+        C: "Object.lock()",
+        D: "Object.freeze()"
+      },
+      explanation: "La opción correcta es D: `Object.freeze()`.\n\n**Explicación detallada:**\n\n1. **Uso de `Object.freeze`:**\n   - El método `Object.freeze` hace que un objeto sea inmutable. Esto significa que no se pueden añadir nuevas propiedades, modificar las existentes ni eliminar propiedades del objeto.\n   - Ejemplo:\n     ```javascript\n     const obj = { name: 'Alice' };\n     Object.freeze(obj);\n     obj.name = 'Bob'; // No tendrá efecto\n     obj.age = 25; // No se añadirá\n     console.log(obj); // { name: 'Alice' }\n     ```\n\n2. **Opciones incorrectas:**\n   - A: `Object.const()` no es un método válido en JavaScript.\n   - B: `Object.eval()` no existe. `eval()` es una función global separada.\n   - C: `Object.lock()` tampoco es un método reconocido en JavaScript."
+    },
+    {
+      id: "q68",
+      question: "A developer has the following array of student test grades.The teacher wants to double each score and then see an array of the students who scored more than 15 points. \n\nHow should the developer implement the request?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "let arr1 = arr.filter((val) => (return val > 15)).map((num) => (return num * 2));",
+        B: "let arr1 = arr.mapBy((num) => (return num * 2)).filterBy((val) => return val > 15));",
+        C: "let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);",
+        D: "let arr1 = arr.map((num) => (num * 2)).filterBy((val) => (val > 15));"
+      },
+      code: "let arr = [7, 8, 5, 8, 9];",
+      explanation: "La opción correcta es C: `let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);`.\n\n**Explicación detallada:**\n\n1. **Uso de `.map()` y `.filter()`:**\n   - El método `.map()` se utiliza para transformar cada elemento de un array, en este caso, duplicando los valores.\n   - El método `.filter()` se utiliza para seleccionar los elementos que cumplen una condición, en este caso, los valores mayores a 15.\n   - Ejemplo:\n     ```javascript\n     let arr = [7, 8, 5, 8, 9];\n     let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);\n     console.log(arr1); // [16, 18]\n     ```\n\n2. **Opciones incorrectas:**\n   - A: Intenta usar `.filter()` antes de `.map()`, lo cual no cumple el requisito de duplicar primero los valores.\n   - B y D: Los métodos `.mapBy` y `.filterBy` no existen en JavaScript, por lo que estas opciones son inválidas."
+    },
+    {
+      id: "q69",
+      question: "After changing the string index values, the value of `str` is 'javascript'. What is the reason for this value?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Non-primitive values are mutable.",
+        B: "Non-primitive values are immutable.",
+        C: "Primitive values are mutable.",
+        D: "Primitive values are immutable."
+      },
+      code: "let str = 'javascript';\nstr[0] = 'J';\nstr[4] = 'S';\nconsole.log(str); // 'javascript'",
+      explanation: "La opción correcta es D: `Primitive values are immutable.`\n\n**Explicación detallada:**\n\n1. **Inmutabilidad de cadenas:**\n   - En JavaScript, las cadenas son valores primitivos y no pueden ser modificadas directamente. Esto significa que intentar cambiar un carácter específico de una cadena no alterará la cadena original.\n\n2. **Ejemplo:**\n   - Aunque `str[0] = 'J';` y `str[4] = 'S';` parecen modificar la cadena, estas operaciones no tienen efecto porque las cadenas son inmutables.\n   - El valor de `str` permanece como `'javascript'`.\n\n3. **Opciones incorrectas:**\n   - A y B: Los valores no primitivos (objetos, arrays) son mutables, pero esta pregunta trata sobre un valor primitivo.\n   - C: Los valores primitivos no son mutables; esta opción contradice la naturaleza de las cadenas en JavaScript."
+    },
+    {
+      id: "q70",
+      question: "A developer has the following array of student test grades:\n\n`let arr = [7, 8, 5, 8, 9];`\n\nThe teacher wants to double each score and then see an array of the students who scored more than 15 points. How should the developer implement the request?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "let arr1 = arr.filter((val) => (return val > 15)).map((num) => (return num * 2));",
+        B: "let arr1 = arr.mapBy((num) => (return num * 2)).filterBy((val) => return val > 15));",
+        C: "let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);",
+        D: "let arr1 = arr.map((num) => (num * 2)).filterBy((val) => (val > 15));"
+      },
+      explanation: "La opción correcta es C: `let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);`\n\n**Explicación detallada:**\n\n1. **Uso de `map` y `filter`:**\n   - `.map()` transforma cada elemento del array, en este caso, duplicando su valor.\n   - `.filter()` selecciona los elementos que cumplen la condición de ser mayores a 15.\n\n2. **Ejemplo actualizado:**\n   ```javascript\n   let arr = [7, 8, 5, 8, 9];\n   let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);\n   console.log(arr1); // [16, 18]\n   ```\n\n3. **Opciones incorrectas:**\n   - A: Utiliza `.filter` antes de `.map`, lo cual contradice la secuencia lógica requerida.\n   - B y D: `.mapBy` y `.filterBy` no son métodos válidos en JavaScript."
+    },
+    {
+      id: "q71",
+      question: "Refer to the code below. What is displayed when `myFunction(true)` is called?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "2 2 1 1",
+        B: "2 2 undefined undefined",
+        C: "2 2 1 2",
+        D: "2 2 2 2"
+      },
+      code: "function myFunction(reassign) {\n  let x = 1;\n  var y = 1;\n  if (reassign) {\n    let x = 2;\n    var y = 2;\n    console.log(x);\n    console.log(y);\n  }\n  console.log(x);\n  console.log(y);\n}",
+      explanation: "La opción correcta es C: `2 2 1 2`.\n\n**Explicación detallada:**\n\n1. **Scope de `let` y `var`:**\n   - La variable `x` declarada con `let` dentro del bloque `if` tiene un alcance limitado a ese bloque.\n   - La variable `y` declarada con `var` dentro del bloque `if` sobrescribe la variable `y` declarada fuera del bloque.\n\n2. **Output detallado:**\n   - Dentro del bloque `if`, `x` es `2` y `y` es `2`. Ambos valores se registran con `console.log(x)` y `console.log(y)`.\n   - Fuera del bloque `if`, `x` mantiene su valor original `1` porque está declarado con `let`, mientras que `y` conserva el valor sobrescrito `2` porque está declarado con `var`."
+    },
+    {
+      id: "q72",
+      question: "Given the following code. What is the output of line 02?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "'Null'",
+        B: "'X'",
+        C: "'Object'",
+        D: "'Undefined'"
+      },
+      code: "let x = null; console.log(typeof x);",
+      explanation: "La opción correcta es C: `'Object'`.\n\n**Explicación detallada:**\n\n1. **Comportamiento de `typeof`:**\n   - Aunque `null` representa la ausencia intencionada de un objeto, el operador `typeof` devuelve `'object'` debido a un error histórico en la implementación original de JavaScript.\n\n2. **Opciones incorrectas:**\n   - A: `'Null'` no es un resultado válido de `typeof`.\n   - B: `'X'` no tiene relación con el comportamiento de `typeof`.\n   - D: `'Undefined'` no aplica, ya que `null` es un valor definido intencionadamente."
+    },
+    {
+      id: "q73",
+      question: "Refer to the code below. What is the value of `result` when the code executes?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "10 - 10",
+        B: "5 - 5",
+        C: "5 - 10",
+        D: "10 - 5"
+      },
+      code: "function changeValue(param) {\n  param = 5;\n}\nlet a = 10;\nlet b = 5;\nchangeValue(b);\nconst result = a + ' - ' + b;",
+      explanation: "La opción correcta es A: `10 - 10`.\n\n**Explicación detallada:**\n\n1. **Alcance de las variables:**\n   - Dentro de la función `changeValue`, el parámetro `param` se reasigna localmente a `5`, pero esto no afecta el valor original de `b`. Por lo tanto, `b` sigue siendo `5` fuera de la función.\n\n2. **Cálculo de `result`:**\n   - Al concatenar los valores de `a` y `b`, el resultado es `'10 - 5'`.\n\n3. **Errores en opciones:**\n   - A: Correcta.\n   - B, C, y D: No reflejan el comportamiento correcto del alcance de las variables en JavaScript."
+    },
+    {
+      id: "q74",
+      question: "A developer uses a parsed JSON string to work with user information. Which two options access the `email` attribute in the object?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "userInformation(\"email\")",
+        B: "userInformation.get(\"email\")",
+        C: "userInformation.email",
+        D: "userInformation(email)"
+      },
+      code: "const userInformation = {\n  \"id\": \"user-01\",\n  \"email\": \"user01@universalcontainers.demo\",\n  \"age\": 25\n};",
+      explanation: "La opción correcta es C: `userInformation.email`.\n\n**Explicación detallada:**\n\n1. **Acceso a propiedades:**\n   - En JavaScript, las propiedades de los objetos se acceden directamente con el operador de punto (`.`) como en `userInformation.email`.\n\n2. **Errores en opciones:**\n   - A: No es una sintaxis válida en JavaScript para acceder a propiedades.\n   - B: `.get()` no aplica, ya que no es un método estándar para objetos en JavaScript.\n   - D: Similar al error de sintaxis de A."
+    },
+    {
+      id: "q75",
+      question: "Refer to the code snippet below. What is the value of the array after the code executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "[1, 2, 3, 4, 5, 4, 4]",
+        B: "[1, 2, 3, 4, 4, 5, 4]",
+        C: "[1, 2, 3, 4, 5, 4]",
+        D: "[1, 2, 3, 5]"
+      },
+      code: "let array = [1, 2, 3, 4, 4, 5, 4, 4];\nfor (let i = 0; i < array.length; i++) {\n  if (array[i] === 4) {\n    array.splice(i, 1);\n  }\n}",
+      explanation: "La opción correcta es C: `[1, 2, 3, 4, 5, 4]`.\n\n**Explicación detallada:**\n\n1. **Uso de `splice`:**\n   - Al eliminar un elemento con `splice`, los índices del array cambian dinámicamente. Esto provoca que se salten algunas ocurrencias del número `4`.\n\n2. **Operación:**\n   - Después de ejecutar el código, el array resultante contiene: `[1, 2, 3, 4, 5, 4]`.\n\n3. **Opciones incorrectas:**\n   - A, B y D: No reflejan correctamente el comportamiento de `splice` y los cambios en los índices del array durante el bucle."
+    },
+    {
+      id: "q76",
+      question: "Refer to the code below. Which two statements result in the array `[1, 2, 3, 4, 5]`?",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "[].concat.apply([], inArray);",
+        B: "[].concat(...inArray);",
+        C: "[].concat.apply(inArray, []);",
+        D: "[].concat([ ...inArray ]);"
+      },
+      code: "let inArray = [[1, 2], [3, 4, 5]];",
+      explanation: "Las respuestas correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - `[].concat.apply([], inArray)` utiliza el método `apply` para fusionar las submatrices en `inArray` dentro de un nuevo array. Esto devuelve `[1, 2, 3, 4, 5]`.\n\n2. **Opción B:**\n   - `[].concat(...inArray)` usa el operador de expansión (`spread`) para descomponer las submatrices y fusionarlas directamente en un array. Esto también devuelve `[1, 2, 3, 4, 5]`.\n\n3. **Opciones incorrectas:**\n   - C: Esta sintaxis es inválida porque intenta fusionar el array `inArray` en una forma que no concatena correctamente las submatrices.\n   - D: Esta opción crea un array con una estructura adicional, dejando las submatrices como elementos anidados en lugar de fusionarlos."
+    },
+    {
+      id: "q77",
+      question: "A developer is working on an ecommerce website where the delivery date is dynamically calculated based on the current day. The delivery date must now be today's date + 9 days. \n\nWhich code meets this new requirement?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "deliveryDate.setDate((new Date()).getDate() + 9);",
+        B: "deliveryDate.setDate(Date.current() + 9);",
+        C: "deliveryDate.date = new Date(+9);",
+        D: "deliveryDate.date = Date.current() + 9;"
+      },
+      code: "const deliveryDate = new Date();\ndeliveryDate.setDate((new Date()).getDate() + 9);",
+      explanation: "La opción correcta es A: `deliveryDate.setDate((new Date()).getDate() + 9);`.\n\n**Explicación detallada:**\n\n1. **Uso de `setDate`:**\n   - El método `setDate` ajusta el día de un objeto `Date` al valor especificado. En este caso, el día actual más 9 días.\n\n2. **Opciones incorrectas:**\n   - B: `Date.current()` no es un método válido.\n   - C y D: `date` no es una propiedad válida de un objeto `Date`."
+    },
+    {
+      id: "q78",
+      question: "Which two console logs output `NaN`?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.log(10 / Number('5'))",
+        B: "console.log(parseInt('two'))",
+        C: "console.log(10 / 0)",
+        D: "console.log(10 / 'five')"
+      },
+      code: "// Sample code:\nconsole.log(10 / Number('5'));\nconsole.log(parseInt('two'));\nconsole.log(10 / 0);\nconsole.log(10 / 'five');",
+      explanation: "Las respuestas correctas son B y D.\n\n**Explicación detallada:**\n\n1. **Opción B (parseInt('two')):**\n   - `parseInt('two')` intenta convertir la cadena `'two'` en un número. Como no puede, devuelve `NaN`.\n\n2. **Opción D (10 / 'five'):**\n   - Intentar dividir un número por una cadena no convertible (`'five'`) produce `NaN`.\n\n3. **Opciones incorrectas:**\n   - A: `Number('5')` convierte la cadena `'5'` en el número `5`, por lo que `10 / 5` es válido y produce `2`.\n   - C: `10 / 0` produce `Infinity`, no `NaN`."
+    },
+    {
+      id: "q79",
+      question: "How should line 02 be written to ensure that `x` evaluates to `6` in the line below?\n`let x = calculate(8);`",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Return Number((num + 10) / 3);",
+        B: "Return (Number(num + 10) / 3);",
+        C: "Return Integer(num + 10) / 3;",
+        D: "Return Number(num + 10) / 3;"
+      },
+      code: "function calculate(num) {\n  return (num + 10) / 3;\n}",
+      explanation: "La opción correcta es B: `Return (Number(num + 10) / 3);`.\n\n**Explicación detallada:**\n\n1. **Cálculo esperado:**\n   - Para que `calculate(8)` devuelva `6`, el cálculo correcto es `(8 + 10) / 3`, que resulta en `6`.\n\n2. **Opción B:**\n   - Encierra la conversión de `num` en `Number` antes de realizar la operación matemática.\n\n3. **Opciones incorrectas:**\n   - A: La sintaxis con `Number` carece de paréntesis correctamente aplicados.\n   - C: `Integer` no es un método válido en JavaScript.\n   - D: Aunque funcional, esta opción no tiene paréntesis, lo cual puede causar confusión de precedencia."
+    },
+    {
+      id: "q80",
+      question: "Refer to the code below. What is the value of `result` when the code executes?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "10-10",
+        B: "5-5",
+        C: "10-5",
+        D: "5-10"
+      },
+      code: "function changeValue(param) {\n  param = 5;\n}\nlet a = 10;\nlet b = a;\nchangeValue(b);\nconst result = a + ' - ' + b;",
+      explanation: "La opción correcta es A: `10-10`.\n\n**Explicación detallada:**\n\n1. **Scope de las variables:**\n   - Dentro de la función `changeValue`, el parámetro `param` se reasigna localmente a `5`, pero esto no afecta el valor original de `b`. Por lo tanto, `b` sigue siendo igual a `10`.\n\n2. **Cálculo de `result`:**\n   - Al concatenar los valores de `a` y `b`, el resultado es `'10-10'`."
+    },
+    {
+      id: "q81",
+      question: "Consider type coercion, what does the following expression evaluate to?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "104",
+        B: "4100",
+        C: "'3100null'",
+        D: "'4100null'"
+      },
+      code: "true + 3 + '100' + null",
+      explanation: "La opción correcta es D: `'4100null'`.\n\n**Explicación detallada:**\n\n1. **Coerción de tipos:**\n   - `true` se convierte en `1` cuando se utiliza en una operación matemática.\n   - `1 + 3` resulta en `4`.\n   - `4 + '100'` concatena el número `4` con la cadena `'100'`, dando `'4100'`.\n   - `'4100' + null` concatena `'4100'` con la cadena `'null'`, dando como resultado `'4100null'."
+    },
+    {
+      id: "q82",
+      question: "Which two console logs outputs `NaN`?",
+      type: "multiple choice",
+      correct_options: ["B", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.log(10 / Number('5'));",
+        B: "console.log(parseInt('two'));",
+        C: "console.log(10 / 'five');",
+        D: "console.log(10 / 0);"
+      },
+      code: "// Sample code:\nconsole.log(10 / Number('5'));\nconsole.log(parseInt('two'));\nconsole.log(10 / 'five');\nconsole.log(10 / 0);",
+      explanation: "Las respuestas correctas son B y C.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `parseInt('two')` intenta convertir la cadena `'two'` en un número. Esto no es posible, por lo que devuelve `NaN`.\n\n2. **Opción C:**\n   - Dividir `10` por una cadena no convertible (`'five'`) genera `NaN` porque la operación matemática no puede completarse.\n\n3. **Opciones incorrectas:**\n   - A: `Number('5')` convierte la cadena `'5'` en el número `5`, por lo que `10 / 5` resulta en `2`.\n   - D: Aunque dividir por `0` es indefinido matemáticamente, en JavaScript esto produce `Infinity`, no `NaN`."
+    },
+    {
+      id: "q83",
+      question: "Which statement phrases successfully?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "JSON.parse('foo');",
+        B: "JSON.parse('\"foo\"');",
+        C: "JSON.parse('\" 'foo' \"');",
+        D: "JSON.parse('\"foo\"');"
+      },
+      explanation: "La opción correcta es D: `JSON.parse('\"foo\"');`.\n\n**Explicación detallada:**\n\n1. **Sintaxis válida:**\n   - `JSON.parse('\"foo\"')` evalúa correctamente la cadena JSON, porque incluye comillas dobles escapadas dentro de las comillas simples.\n\n2. **Opciones incorrectas:**\n   - A: Falta la estructura JSON válida (comillas dobles).\n   - B y C: La estructura de comillas dobles está incorrecta o mal escapada, lo que genera errores de sintaxis."
+    },
+    {
+      id: "q84",
+      question: "Refer to the following array. Which two lines of code result in a second array, `arr2`, being created such that `arr2` is not a reference to `arr1`?",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "let arr2 = arr1.slice(0, 5);",
+        B: "let arr2 = Array.from(arr1);",
+        C: "let arr2 = arr1;",
+        D: "let arr2 = arr1.sort();"
+      },
+      code: "let arr1 = [1, 2, 3, 4, 5];\nlet arr2 = arr1.slice(0, 5);\nconsole.log(arr2);\n\nlet arr1 = [1, 2, 3, 4, 5];\nlet arr2 = Array.from(arr1);\nconsole.log(arr2);",
+      explanation: "Las respuestas correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - `slice` crea una copia superficial de una porción del array original. Al usar `slice(0, 5)`, se genera un nuevo array con los mismos elementos que `arr1`.\n\n2. **Opción B:**\n   - `Array.from` genera un nuevo array copiando todos los elementos de `arr1`.\n\n3. **Opciones incorrectas:**\n   - C: `arr2` es simplemente una referencia a `arr1`.\n   - D: `sort` modifica `arr1` directamente, y `arr2` será una referencia a este array modificado."
+    },
+    {
+      id: "q85",
+      question: "Refer to the code below. What value can a developer expect when referencing `o.js.secondCity`?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Undefined",
+        B: "'new york'",
+        C: "'New York'",
+        D: "An error"
+      },
+      code: "let o = {\n  get js() {\n    let city1 = String('St. Louis');\n    let city2 = String('New York');\n\n    return {\n      firstCity: city1.toLowerCase(),\n      secondCity: city2.toLowerCase(),\n    };\n  }\n};",
+      explanation: "La opción correcta es B: `'new york'`.\n\n**Explicación detallada:**\n\n1. **Propiedad `get`:**\n   - La propiedad `js` de `o` es un getter que devuelve un objeto con las ciudades convertidas a minúsculas.\n\n2. **`secondCity`:**\n   - `city2.toLowerCase()` convierte `'New York'` a `'new york'` y es la propiedad que se devuelve en `secondCity`.\n\n3. **Opciones incorrectas:**\n   - A: `undefined` no es correcto porque `secondCity` se define explícitamente.\n   - C: `'New York'` no se devuelve en mayúsculas porque se aplica `.toLowerCase()`.\n   - D: No hay errores en la sintaxis o ejecución."
+    },
+    {
+      id: "q86",
+      question: "Given the following code. What is the output of line 02?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "'Null'",
+        B: "'X'",
+        C: "'Object'",
+        D: "'Undefined'"
+      },
+      code: "let x = null;\nconsole.log(typeof x);",
+      explanation: "La opción correcta es C: `'Object'`.\n\n**Explicación detallada:**\n\n1. **Uso de `typeof`:**\n   - El operador `typeof` devuelve `'object'` para valores `null`. Este comportamiento se debe a un error histórico en la implementación de JavaScript.\n\n2. **Opciones incorrectas:**\n   - A y D: `Null` y `Undefined` no son valores que `typeof` devuelva para `null`.\n   - B: `'X'` no es relevante aquí."
+    },
+    {
+      id: "q87",
+      question: "Given the following code. What is the output of line 02?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "'x'",
+        B: "'null'",
+        C: "'object'",
+        D: "'undefined'"
+      },
+      code: "let x = null;\nconsole.log(typeof x);",
+      explanation: "La opción correcta es C: `'object'`.\n\n**Explicación detallada:**\n\n1. **Uso de `typeof`:**\n   - Aunque `null` representa la ausencia de un valor, el operador `typeof` devuelve `'object'`. Este comportamiento es un error histórico en JavaScript.\n\n2. **Opciones incorrectas:**\n   - A y B: `'x'` y `'null'` no son valores devueltos por `typeof`.\n   - D: `'undefined'` no aplica porque `null` es un valor definido intencionadamente."
+    },
+    {
+      id: "q88",
+      question: "Refer to the code below. What is the value of `result` when the code executes?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "10 - 10",
+        B: "5 - 5",
+        C: "5 - 10",
+        D: "10 - 5"
+      },
+      code: "function changeValue(param) {\n  param = 5;\n}\nlet a = 10;\nlet b = 5;\nchangeValue(b);\nconst result = a + ' - ' + b;",
+      explanation: "La opción correcta es A: `10 - 10`.\n\n**Explicación detallada:**\n\n1. **Scope de las variables:**\n   - Dentro de `changeValue`, el parámetro `param` se cambia localmente, pero esto no afecta el valor de `b` fuera de la función.\n\n2. **Cálculo del resultado:**\n   - `a` permanece como `10`, y `b` sigue siendo `5`, lo que produce `'10 - 5'` como resultado esperado."
+    },
+    {
+      id: "q89",
+      question: "Refer to the code below. What is the value of `foodMenu1` after the code executes?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "['pizza', 'burger', 'French fries', 'Garlic bread']",
+        B: "['pizza', 'burger', 'French fries']",
+        C: "['Garlic bread', 'pizza', 'burger', 'French fries']",
+        D: "['Garlic bread']"
+      },
+      code: "let foodMenu1 = ['pizza', 'burger', 'French fries'];\nlet finalMenu = foodMenu1;\nfinalMenu.push('Garlic bread');",
+      explanation: "La opción correcta es A: `['pizza', 'burger', 'French fries', 'Garlic bread']`.\n\n**Explicación detallada:**\n\n1. **Referencias compartidas:**\n   - `finalMenu` apunta al mismo array que `foodMenu1`, ya que no se creó una copia. Cualquier modificación en `finalMenu` afecta directamente a `foodMenu1`.\n\n2. **Efecto de `push`:**\n   - Al agregar `'Garlic bread'` con `push`, el nuevo elemento se añade al final de ambos, ya que comparten referencia."
+    },
+    {
+      id: "q90",
+      question: "What is returned by the function call on the last line?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Undefined",
+        B: "Last line throws an error.",
+        C: "'Undefined values!'",
+        D: "'Null value!'"
+      },
+      code: "function test(val) {\n  if (val === undefined) {\n    return 'Undefined value!';\n  }\n  if (val === null) {\n    return 'Null value!';\n  }\n  return val;\n}\n\nlet x;\ntest(x);",
+      explanation: "La opción correcta es A: **Undefined.**\n\n**Explicación detallada:**\n\n1. **Valor de `x`:**\n   - `x` se declara, pero no se inicializa, lo cual le asigna el valor predeterminado `undefined`.\n\n2. **Condiciones en `test`:**\n   - La primera condición `if (val === undefined)` es verdadera, por lo que la función devuelve `'Undefined value!'`.\n\n3. **Conclusión:**\n   - Aunque en la pregunta original la opción A está ligeramente desalineada ('Undefined' en vez de 'Undefined value!'), parece indicar la elección correcta."
+    },
+    {
+      id: "q91",
+      question: "A developer is required to write a function that calculates the sum of elements in an array but is getting `undefined` every time the code is executed. \n\nThe developer needs to find what is missing in the code.",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Replace line 2 with return arr.map((result, current) => (",
+        B: "Replace line 4 with result = result + current;",
+        C: "Replace line 3 with if(arr.length == 0) { return 0; }",
+        D: "Replace line 5 with return result;"
+      },
+      explanation: "La opción correcta es D: **Replace line 5 with `return result;`.**\n\n**Explicación detallada:**\n\n1. **Falta de retorno:**\n   - En la implementación actual, el valor `result` nunca se devuelve al final de la función, lo que causa que se obtenga `undefined`.\n\n2. **Correcciones necesarias:**\n   - Reemplazar la línea 5 con `return result;` asegura que el valor calculado se devuelva correctamente.\n\n3. **Errores en otras opciones:**\n   - Opción A: `.map()` no es adecuado para sumar elementos.\n   - Opción B: La corrección sugerida no resuelve el problema principal (falta de retorno).\n   - Opción C: Aunque maneja arrays vacíos, no aborda el problema específico de esta implementación."
+    },
+    {
+      id: "q92",
+      question: "At Universal Containers, every team has its own way of copying JavaScript objects. The code snippet shows an implementation from one team. What is the output of the code execution?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Hello Dan Doe",
+        B: "Hello John Doe",
+        C: "TypeError: dan.name is not a function",
+        D: "TypeError: Assignment to constant variable."
+      },
+      explanation: "La opción correcta es C: **TypeError: dan.name is not a function.**\n\n**Explicación detallada:**\n\n1. **Uso de JSON.stringify:**\n   - `JSON.stringify` solo copia los valores de las propiedades, no las funciones. Por lo tanto, `dan.name` no se copia como método.\n\n2. **Resultado:**\n   - Cuando se intenta llamar a `dan.name()`, JavaScript arroja un `TypeError` porque `dan.name` no es una función.\n\n3. **Errores en otras opciones:**\n   - Opción A y B: Incorrectas porque `dan.name()` nunca se ejecutará como función.\n   - Opción D: No aplica aquí; el problema no está relacionado con la asignación de constantes."
+    },
+    {
+      id: "q93",
+      question: "Refer to the code below. Which code assignment shows a correct way to convert this string to an integer?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "let numberValue = Number(textValue);",
+        B: "let numberValue = (Number)textValue;",
+        C: "let numberValue = textValue.toInteger();",
+        D: "let numberValue = Integer(textValue);"
+      },
+      explanation: "La opción correcta es A: **let numberValue = Number(textValue);**\n\n**Explicación detallada:**\n\n1. **Uso de `Number`:**\n   - `Number(textValue)` convierte correctamente una cadena en un número entero.\n\n2. **Errores en otras opciones:**\n   - Opción B: Sintaxis incorrecta.\n   - Opción C: `toInteger` no es un método válido de cadenas en JavaScript.\n   - Opción D: `Integer` no es una función nativa de JavaScript."
+    },
+    {
+      id: "q94",
+      question: "Refer to the following array. Which three options result in `x` evaluating as `[3, 4, 5]`?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "let x = arr.filter((a) => (a < 2));",
+        B: "let x = arr.splice(2, 3);",
+        C: "let x = arr.slice(2);",
+        D: "let x = arr.filter((a) => { return a > 2 });",
+        E: "let x = arr.slice(2, 3);"
+      },
+      code: "let arr = [1, 2, 3, 4, 5];",
+      explanation: "Las opciones correctas son B, C y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `arr.splice(2, 3)` elimina tres elementos comenzando desde el índice 2 (incluido), devolviendo `[3, 4, 5]`.\n\n2. **Opción C:**\n   - `arr.slice(2)` devuelve una copia desde el índice 2 hasta el final del array, es decir, `[3, 4, 5]`.\n\n3. **Opción D:**\n   - `arr.filter((a) => { return a > 2 })` devuelve una nueva matriz con elementos que cumplen la condición, `[3, 4, 5]`.\n\n4. **Errores en otras opciones:**\n   - Opción A: Devuelve un array vacío porque no hay elementos menores que 2.\n   - Opción E: `slice(2, 3)` devuelve solo `[3]`, ya que incluye solo el índice 2."
+    },                                                                                                                                                        
   ];
 };

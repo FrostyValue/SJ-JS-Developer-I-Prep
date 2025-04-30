@@ -629,6 +629,227 @@ export default function questions5() {
       },
       code: "function debounce(func, delay) {\n  let timerId;\n  return function(...args) {\n    if (timerId) {\n      clearTimeout(timerId);\n    }\n    timerId = setTimeout(() => func.apply(this, args), delay);\n  };\n}",
       explanation: "Las respuestas correctas son A, B y D.\n\n**Explicación detallada:**\n\n1. **Monitorear el cambio de la cadena de búsqueda:**\n   - La función debounce asegura que las solicitudes de red solo se ejecuten después de un retraso y no inmediatamente después de cada pulsación de tecla.\n\n2. **Cancelar el setTimeout existente:**\n   - Si un `setTimeout` existente ya está en cola y la cadena de búsqueda cambia, este `setTimeout` debe ser cancelado usando `clearTimeout(timerId)` antes de crear uno nuevo.\n\n3. **Encolar una nueva solicitud:**\n   - Cuando la cadena de búsqueda cambia, una nueva solicitud se encola dentro de un `setTimeout` para que la función se ejecute después de un retraso específico.\n\n4. **Opciones incorrectas:**\n   - C: `Ensure that the network request has the property debounce set to true` es incorrecta porque la implementación de debounce no depende de esta propiedad.\n   - E: Aunque es útil guardar el `timerId`, no es un paso clave para implementar la funcionalidad debounce."
-    },                     
+    },
+    {
+      id: "q40",
+      question: "A developer is wondering whether to use `Promise.then` or `Promise.catch`, especially when a Promise throws an error. Which two promises are rejected?",
+      type: "multiple choice",
+      correct_options: ["B", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Promise.reject('cool error here').then(error => console.error(error));",
+        B: "Promise.reject('cool error here').catch(error => console.error(error));",
+        C: "new Promise((resolve, reject) => {throw 'cool error here';}).catch(error => console.error(error));",
+        D: "new Promise(() => {throw 'cool error here';}).then(null, error => console.error(error));"
+      },
+      explanation: "Las respuestas correctas son B y C.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `Promise.reject('cool error here')` crea una Promesa rechazada inmediatamente.\n   - Al usar `.catch()`, se maneja el rechazo correctamente, mostrando el error en la consola con `console.error(error)`.\n\n2. **Opción C:**\n   - `new Promise((resolve, reject) => {throw 'cool error here';})` lanza un error dentro de la función del constructor de la Promesa.\n   - Este error es capturado por `.catch()`, lo cual lo hace una implementación válida para manejar errores.\n\n3. **Opciones incorrectas:**\n   - A: Aunque `Promise.reject('cool error here')` crea una Promesa rechazada, el uso de `.then(error => console.error(error))` no maneja el error, ya que `.then()` solo maneja resoluciones exitosas por defecto.\n   - D: `new Promise(() => {throw 'cool error here';})` lanza un error, pero al usar `.then(null, error => console.error(error))`, el manejo es poco convencional y no recomendado como práctica estándar."
+    },
+    {
+      id: "q41",
+      question: "Which three statements are true about promises?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "The executor of a new Promise runs automatically.",
+        B: "A Promise has a .then() method.",
+        C: "A fulfilled or rejected promise will not change states.",
+        D: "A settled promise can become resolved.",
+        E: "A pending promise can become fulfilled, settled, or rejected."
+      },
+      explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Las promesas tienen un método `.then()` que se utiliza para manejar el resultado cuando la promesa se resuelve (fulfilled).\n\n2. **Opción C:**\n   - Una vez que una promesa cambia a estado `fulfilled` o `rejected`, no puede cambiar a otro estado. Esto asegura que su resultado sea inmutable.\n\n3. **Opción E:**\n   - Una promesa en estado `pending` (pendiente) puede cambiar a `fulfilled` (resuelta) o a `rejected` (rechazada). Una vez que alcanza cualquiera de estos estados, se considera `settled` (finalizada).\n\n4. **Opciones incorrectas:**\n   - A: Aunque el ejecutor de una promesa (la función que se pasa al constructor) se ejecuta inmediatamente, esto no es clave para las propiedades fundamentales de las promesas.\n   - D: Una promesa que está `settled` no puede cambiar de nuevo a `resolved` porque su estado ya está definido."
+    },
+    {
+      id: "q42",
+      question: "Which statement accurately describes the behavior of the `async/await` keywords?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "The associated class contains some asynchronous functions.",
+        B: "The associated function will always return a promise.",
+        C: "The associated function can only be called via asynchronous methods.",
+        D: "The associated function sometimes returns a promise."
+      },
+      explanation: "La opción correcta es B: `The associated function will always return a promise`.\n\n**Explicación detallada:**\n\n1. **Características de `async`:**\n   - Al definir una función con la palabra clave `async`, esa función siempre devuelve una promesa, independientemente de si contiene lógica asincrónica o no.\n   - Ejemplo:\n     ```javascript\n     async function example() {\n       return 'Hello';\n     }\n     example().then((result) => console.log(result)); // 'Hello'\n     ```\n\n2. **Uso de `await`:**\n   - La palabra clave `await` solo puede ser utilizada dentro de funciones `async`.\n   - Permite pausar la ejecución hasta que una promesa sea resuelta o rechazada, simplificando el manejo de código asincrónico.\n\n3. **Opciones incorrectas:**\n   - A: `async` se aplica a funciones, no directamente a clases.\n   - C: Las funciones `async` pueden ser llamadas por cualquier método, no exclusivamente asincrónicos.\n   - D: Una función `async` siempre devuelve una promesa, nunca en ocasiones."
+    },
+    {
+      id: "q43",
+      question: "Refer to the code below:\n\nWhat is the value of `result` when `Promise.race` executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Car 3 completed the race.",
+        B: "Car 1 crashed in the race.",
+        C: "Car 2 completed the race.",
+        D: "Race is cancelled."
+      },
+      code: "let car1 = new Promise((_, reject) =>\n  setTimeout(reject, 2000, 'Car 1 crashed in'));\nlet car2 = new Promise(resolve =>\n  setTimeout(resolve, 1500, 'Car 2 completed'));\nlet car3 = new Promise(resolve =>\n  setTimeout(resolve, 3000, 'Car 3 Completed'));\n\nPromise.race([car1, car2, car3])\n  .then(value => (\n    let result = `${value} the race.`;\n  ))\n  .catch(err => (\n    console.log('Race is cancelled.', err);\n  ));",
+      explanation: "La opción correcta es C: `Car 2 completed the race.`\n\n**Explicación detallada:**\n\n1. **Promise.race:**\n   - Este método devuelve el resultado de la primera promesa que se resuelve o se rechaza, en orden de tiempo.\n\n2. **Tiempo de ejecución:**\n   - `car1`: Se rechaza después de 2000 ms con 'Car 1 crashed in'.\n   - `car2`: Se resuelve después de 1500 ms con 'Car 2 completed'.\n   - `car3`: Se resuelve después de 3000 ms con 'Car 3 Completed'.\n\n3. **Resultado:**\n   - La primera promesa que se completa es `car2` (1500 ms), por lo que su valor es el resultado de `Promise.race`."
+    },
+    {
+      id: "q44",
+      question: "Refer to the code below. In which sequence will the numbers be logged?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "01234",
+        B: "02431",
+        C: "02413",
+        D: "13024"
+      },
+      code: "console.log(0);\nsetTimeout(() => {\n  console.log(1);\n});\nconsole.log(2);\nsetTimeout(() => {\n  console.log(3);\n}, 0);\nconsole.log(4);",
+      explanation: "La opción correcta es C: `02413`.\n\n**Explicación detallada:**\n\n1. **Ejecución síncrona:**\n   - `console.log(0)` se ejecuta primero porque es una operación síncrona.\n   - Luego, `console.log(2)` y `console.log(4)` se ejecutan de forma secuencial, ya que también son operaciones síncronas.\n\n2. **Ejecución asincrónica:**\n   - Las llamadas a `setTimeout` son asincrónicas y se colocan en la cola de tareas.\n   - El mensaje `1` está dentro de un `setTimeout` sin tiempo explícito, lo que lo hace ejecutar después de las operaciones síncronas y antes de otras tareas programadas con `setTimeout`.\n   - El mensaje `3` está programado con un tiempo explícito de `0ms`, lo que lo sitúa en la cola detrás del mensaje `1`.\n\n3. **Secuencia:**\n   - Primero se ejecutan `0`, `2`, y `4`. Luego, `1` y, finalmente, `3`."
+    },
+    {
+      id: "q45",
+      question: "Refer to the code below. When does `Promise.finally` on the last line get called?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "When rejected",
+        B: "When resolved and settled",
+        C: "When resolved",
+        D: "When resolved or rejected"
+      },
+      code: "new Promise((resolve, reject) => {\n  const fraction = Math.random();\n  if (fraction > 0.5) reject('fraction > 0.5, ' + fraction);\n  resolve(fraction);\n})\n.then(() => console.log('resolved'))\n.catch((error) => console.error(error))\n.finally(() => console.log('when am I called?'));",
+      explanation: "La opción correcta es D: `When resolved or rejected`.\n\n**Explicación detallada:**\n\n1. **Comportamiento de `finally`:**\n   - El método `finally` en una promesa se ejecuta independientemente de si la promesa es resuelta (`resolved`) o rechazada (`rejected`).\n\n2. **Secuencia de ejecución:**\n   - Cuando la promesa se resuelve, se ejecuta el bloque `then`.\n   - Cuando la promesa se rechaza, se ejecuta el bloque `catch`.\n   - En ambos casos, el bloque `finally` se ejecuta al final de la cadena de la promesa.\n\n3. **Opciones incorrectas:**\n   - A, B y C no incluyen ambas posibilidades (resuelta y rechazada)."
+    },
+    {
+      id: "q46",
+      question: "Given the following code. What is logged by the first four log statements?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "0 0 1 2",
+        B: "0 1 2 3",
+        C: "0 1 1 2",
+        D: "0 1 2 2"
+      },
+      code: "let counter = 0;\nconst logCounter = () => {\n  console.log(counter);\n};\nlogCounter();\nsetTimeout(logCounter, 1100);\nsetInterval(() => {\n  counter++;\n  logCounter();\n}, 1000);",
+      explanation: "La opción correcta es C: `0 1 1 2`.\n\n**Explicación detallada:**\n\n1. **Primera llamada a `logCounter`:**\n   - Imprime `0`, ya que el contador no ha sido incrementado todavía.\n\n2. **Segundo `setTimeout`:**\n   - Se ejecuta después de 1100 ms. El incremento del contador (`counter++`) ocurre a los 1000 ms debido a `setInterval`, lo que hace que el contador sea `1` en ese momento.\n\n3. **Primer ciclo de `setInterval`:**\n   - Incrementa `counter` a `1` y registra `1`. Esto ocurre justo antes de que `setTimeout` registre también `1`.\n\n4. **Segundo ciclo de `setInterval`:**\n   - Incrementa `counter` a `2` y registra `2`."
+    },
+    {
+      id: "q47",
+      question: "Which three statements are true about promises?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "The executor of a new Promise runs automatically.",
+        B: "A Promise has a .then() method.",
+        C: "A fulfilled or rejected promise will not change states.",
+        D: "A settled promise can become resolved.",
+        E: "A pending promise can become fulfilled, settled, or rejected."
+      },
+      explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Todas las promesas tienen un método `.then()` que se ejecuta cuando la promesa se resuelve correctamente.\n\n2. **Opción C:**\n   - Una vez que una promesa se cumple o se rechaza, su estado no puede cambiar.\n\n3. **Opción E:**\n   - Una promesa pendiente puede pasar a los estados de 'cumplida', 'rechazada' o 'resuelta'.\n\n4. **Opciones incorrectas:**\n   - A: Aunque el ejecutor de una promesa se ejecuta automáticamente al crearla, esta opción no está seleccionada.\n   - D: Una promesa establecida no puede volver a ser resuelta."
+    },
+    {
+      id: "q48",
+      question: "Refer to the code below. What is the value of `result` when `Promise.race` executes?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Car 3 completed the race.",
+        B: "Car 1 crashed in the race.",
+        C: "Car 2 completed the race.",
+        D: "Race is cancelled."
+      },
+      code: "let car1 = new Promise((_, reject) =>\n  setTimeout(reject, 2000, 'Car 1 crashed in'));\nlet car2 = new Promise(resolve =>\n  setTimeout(resolve, 1500, 'Car 2 completed'));\nlet car3 = new Promise(resolve =>\n  setTimeout(resolve, 3000, 'Car 3 Completed'));\n\nPromise.race([car1, car2, car3])\n  .then(value => {\n    let result = `${value} the race.`;\n  })\n  .catch(err => {\n    console.log('Race is cancelled.', err);\n  });",
+      explanation: "La opción correcta es C: `Car 2 completed the race.`\n\n**Explicación detallada:**\n\n1. **Promise.race:**\n   - Devuelve la primera promesa que se resuelve o rechaza. En este caso, `car2` se resuelve después de `1500 ms`, antes de que las otras promesas sean procesadas.\n\n2. **Opciones incorrectas:**\n   - A y B: Estas promesas se ejecutan después de `car2`.\n   - D: La promesa no está cancelada en este caso."
+    },
+    {
+      id: "q49",
+      question: "Refer to code below. In which sequence will the numbers be logged?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "01234",
+        B: "02431",
+        C: "02413",
+        D: "13024"
+      },
+      code: "console.log(0);\nsetTimeout(() => (\nconsole.log(1);\n});\nconsole.log(2);\nsetTimeout(() => {\nconsole.log(3);\n), 0);\nconsole.log(4);",
+      explanation: "La opción correcta es C: **02413**.\n\n**Explicación detallada:**\n\n1. **Ejecución síncrona:**\n   - `console.log(0)` se ejecuta primero.\n   - `console.log(2)` y `console.log(4)` también son síncronos y se ejecutan antes de cualquier código asincrónico.\n\n2. **Ejecución de tareas asincrónicas:**\n   - Los callbacks de `setTimeout` se encolan en la cola de tareas y se ejecutan después de que el ciclo de eventos haya procesado el código síncrono.\n   - `console.log(3)` se ejecuta antes que `console.log(1)` porque el tiempo del segundo callback es `0`, mientras que el primero tiene una demora implícita."
+    },
+    {
+      id: "q50",
+      question: "A developer has a formatName function that takes two arguments, firstName and lastName, and returns a string. They want to schedule the function to run once after five seconds. \n\nWhat is the correct syntax to schedule this function?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "setTimeout (formatName(), 5000, \"John\", \"BDoe\");",
+        B: "setTimeout (formatName('John', 'Doe'), 5000);",
+        C: "setTimout(() => { formatName('John', 'Doe') }, 5000);",
+        D: "setTimeout ('formatName', 5000, 'John', 'Doe');"
+      },
+      code: "setTimeout (formatName(), 5000, \"John\", \"BDoe\");",
+      explanation: "La opción correcta es D: **setTimeout ('formatName', 5000, 'John', 'Doe');**.\n\n**Explicación detallada:**\n\n1. **Uso correcto de setTimeout:**\n   - Se pasa una referencia a la función y los argumentos de la función se incluyen como parámetros adicionales para que se ejecuten después del retraso.\n\n2. **Errores en otras opciones:**\n   - Opción A: Invoca la función inmediatamente en lugar de programarla.\n   - Opción B: Invoca la función inmediatamente.\n   - Opción C: Tiene un error de sintaxis en la definición del callback."
+    },
+    {
+      id: "q51",
+      question: "Given the following code. What is logged by the first four log statements?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "0 0 1 2",
+        B: "0 1 2 3",
+        C: "0 1 1 2",
+        D: "0 1 2 2"
+      },
+      code: "counter = 0;\nconst logCounter = () => {\n  console.log(counter);\n};\nlogCounter();\nsetTimeout(logCounter, 1100);\nsetInterval(() => {\n  counter++;\n  logCounter();\n}, 1000);",
+      explanation: "La opción correcta es C: **0 1 1 2**.\n\n**Explicación detallada:**\n\n1. **Primera llamada:**\n   - `logCounter()` se ejecuta inmediatamente y muestra `0`.\n\n2. **Segundo registro:**\n   - A los 1000 ms, el `counter` incrementa a `1` y se registra con `logCounter()`.\n\n3. **Tercer registro:**\n   - El `setTimeout(logCounter, 1100)` espera 1100 ms y registra el valor actual (`1`).\n\n4. **Cuarto registro:**\n   - A los 2000 ms, el `counter` incrementa a `2` y se registra con `logCounter()`.\n\n**Errores en otras opciones:**\n   - Opción A: No considera correctamente el tiempo del primer incremento.\n   - Opción B: Incrementa el valor demasiado rápido.\n   - Opción D: No coordina el registro del intervalo correctamente."
+    },
+    {
+      id: "q52",
+      question: "Which three statements are true about promises?",
+      type: "multiple choice",
+      correct_options: ["B", "C", "E"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "The executor of a new Promise runs automatically.",
+        B: "A Promise has a .then() method.",
+        C: "A fulfilled or rejected promise will not change states.",
+        D: "A settled promise can become resolved.",
+        E: "A pending promise can become fulfilled, settled, or rejected."
+      },
+      explanation: "Las opciones correctas son B, C y E:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Las promesas tienen el método `.then()` para manejar los valores cumplidos.\n\n2. **Opción C:**\n   - Una promesa cumplida o rechazada no puede cambiar de estado.\n\n3. **Opción E:**\n   - Una promesa pendiente puede evolucionar hacia otros estados.\n\n4. **Errores en otras opciones:**\n   - Opción A: Aunque el ejecutor corre automáticamente, no está entre las respuestas correctas.\n   - Opción D: Las promesas cumplidas o rechazadas ya se consideran 'settled', por lo que no pueden cambiar a 'resolved'."
+    },
+    {
+      id: "q53",
+      question: "Which statement accurately describes the behaviour of the async/await keywords?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "The associated class contains some asynchronous functions.",
+        B: "The associated function will always return a promise.",
+        C: "The associated function can only be called via asynchronous methods.",
+        D: "The associated function sometimes returns a promise."
+      },
+      explanation: "La opción correcta es B: **The associated function will always return a promise.**\n\n**Explicación detallada:**\n\n1. **Comportamiento de `async/await`:**\n   - Las funciones marcadas como `async` siempre devuelven una promesa.\n\n2. **Errores en otras opciones:**\n   - Opción A: Las palabras clave `async/await` no están asociadas directamente a clases.\n   - Opción C: Las funciones `async` pueden ser llamadas en cualquier contexto que permita manejar una promesa.\n   - Opción D: Una función `async` siempre devuelve una promesa, por lo que no 'a veces' lo hace."
+    },
+    {
+      id: "q54",
+      question: "Which function should a developer use to repeatedly execute code at a fixed interval?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "setInterval",
+        B: "setTimeout",
+        C: "setPeriod",
+        D: "setInteria"
+      },
+      explanation: "La opción correcta es A: **setInterval.**\n\n**Explicación detallada:**\n\n1. **Uso de `setInterval`:**\n   - `setInterval` ejecuta un bloque de código o función repetidamente después de un intervalo de tiempo fijo, medido en milisegundos.\n\n2. **Errores en otras opciones:**\n   - Opción B: `setTimeout` ejecuta el código solo una vez después de un retraso especificado.\n   - Opción C y D: `setPeriod` y `setInteria` no son funciones válidas en JavaScript."
+    },                                                                               
   ];
 };

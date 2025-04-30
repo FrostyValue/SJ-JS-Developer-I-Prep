@@ -839,6 +839,285 @@ export default function questions3() {
         D: "document.querySelectorAll('#row-uc').classList.add('priority-account');"
       },
       explanation: "La opción correcta es C: `document.querySelector('#row-uc').classList.add('priority-account');`.\n\n**Explicación detallada:**\n\n1. **Uso de `querySelector`:**\n   - `document.querySelector('#row-uc')` selecciona el elemento con el ID `row-uc` en el DOM.\n\n2. **Uso de `classList.add`:**\n   - El método `classList.add` agrega la clase `priority-account` al elemento seleccionado.\n\n3. **Opciones incorrectas:**\n   - A: `classes.push` no es un método válido; la manipulación de clases se realiza mediante `classList`.\n   - B: `queryElementById` no es un método válido; el correcto es `getElementById`.\n   - D: `querySelectorAll` devuelve una lista de nodos, no un único elemento. Por lo tanto, `classList.add` no puede aplicarse directamente."
-    },    
+    },
+    {
+      id: "q52",
+      question: "Which three actions can be performed using the JavaScript browser console?",
+      type: "multiple choice",
+      correct_options: ["A", "C", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "View and change the DOM of the page.",
+        B: "Display a report showing the performance of a page.",
+        C: "Run code that is not related to the page.",
+        D: "View, change, and debug the JavaScript code of the page.",
+        E: "View and change security cookies."
+      },
+      explanation: "Las respuestas correctas son A, C y D.\n\n**Explicación detallada:**\n\n1. **Ver y cambiar el DOM:**\n   - La consola del navegador permite inspeccionar y modificar el DOM de la página en tiempo real. Esto es útil para depuración y pruebas.\n\n2. **Ejecutar código independiente:**\n   - Puedes ejecutar cualquier código JavaScript en la consola, incluso si no está directamente relacionado con la página que estás viendo.\n\n3. **Ver, cambiar y depurar código JavaScript:**\n   - La consola facilita la inspección, modificación y depuración de scripts de JavaScript que están asociados con la página.\n\n4. **Opciones incorrectas:**\n   - B: Mostrar un informe de rendimiento no se realiza directamente desde la consola, aunque hay herramientas de desarrollo para ello.\n   - E: Ver y cambiar cookies de seguridad no es una acción soportada directamente desde la consola, ya que estas están gestionadas por el navegador con limitaciones específicas."
+    },
+    {
+      id: "q53",
+      question: "Which code change should be made for the console to log only 'Row log' when 'Click me!' is clicked?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Add event.stopPropagation(); to window.onLoad event handler.",
+        B: "Add event.stopPropagation(); to printMessage function.",
+        C: "Add event.removeEventListener(); to window.onLoad event handler.",
+        D: "Add event.removeEventListener(); to printMessage function."
+      },
+      code: "<html lang='en'>\n<table onclick=\"console.log('Table log');\">\n<tr id='row1'>\n<td>Click me!</td>\n</tr>\n</table>\n<script>\nfunction printMessage(event) {\n  console.log('Row log');\n}\nlet elem = document.getElementById('row1');\nelem.addEventListener('click', printMessage, false);\n</script>\n</html>",
+      explanation: "La opción correcta es B: `Add event.stopPropagation(); to printMessage function.`\n\n**Explicación detallada:**\n\n1. **Propagación de eventos:**\n   - Cuando haces clic en el `<td>`, el evento `click` se propaga hacia arriba en la jerarquía de DOM, activando también el manejador de eventos del `<table>`.\n\n2. **Detener la propagación:**\n   - Al agregar `event.stopPropagation();` dentro de la función `printMessage`, se evita que el evento `click` alcance el manejador de `<table>`. Esto asegura que solo se registre 'Row log' en la consola.\n   - Ejemplo actualizado:\n     ```javascript\n     function printMessage(event) {\n       event.stopPropagation();\n       console.log('Row log');\n     }\n     ```\n\n3. **Opciones incorrectas:**\n   - A y C: Detener o eliminar eventos en `window.onLoad` no tiene relación con este problema.\n   - D: Eliminar el `EventListener` no detiene la propagación; simplemente desactiva el manejador."
+    },
+    {
+      id: "q54",
+      question: "Which function should a developer use to repeatedly execute code at a fixed interval?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "setIntervel",
+        B: "setTimeout",
+        C: "setPeriod",
+        D: "setInteria"
+      },
+      explanation: "La opción correcta es A: `setIntervel`.\n\n**Explicación detallada:**\n\n1. **Uso de `setInterval`:**\n   - `setInterval` ejecuta una función repetidamente después de un período fijo de tiempo (en milisegundos).\n   - Ejemplo:\n     ```javascript\n     setInterval(() => {\n       console.log('Hello every 1 second');\n     }, 1000);\n     ```\n\n2. **Opciones incorrectas:**\n   - B: `setTimeout` ejecuta una función una sola vez después de un período de tiempo fijo, no repetidamente.\n   - C y D: `setPeriod` y `setInteria` no son funciones válidas en JavaScript."
+    },
+    {
+      id: "q55",
+      question: "Refer to the code below. A developer needs to dispatch a custom event called `update` to send information about `recordId`. Which two options could a developer insert at the placeholder in line 02 to achieve this?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "'Update', { recordId: '123abc' }",
+        B: "'Update', '123abc'",
+        C: "{ type: 'update', recordId: '123abc' }",
+        D: "'Update', { details: { recordId: '123abc' } }"
+      },
+      code: "const event = new CustomEvent(/* Missing Code */);`\n\n`obj.dispatchEvent(event);",
+      explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **CustomEvent:**\n   - El constructor `CustomEvent` permite crear eventos personalizados con un nombre y opciones de configuración adicionales.\n\n2. **Opción A:**\n   - `'Update', { recordId: '123abc' }`: Permite definir un evento llamado `Update` y pasar un objeto con la propiedad `recordId` como datos adicionales.\n\n3. **Opción D:**\n   - `'Update', { details: { recordId: '123abc' } }`: Similar a A, pero la información se pasa dentro de un objeto `details`, lo cual es válido y común en estructuras más complejas.\n\n4. **Opciones incorrectas:**\n   - B: No incluye un objeto con datos adicionales, lo que hace que no se cumpla el requisito de enviar información de `recordId`.\n   - C: Es una estructura que no sigue el formato adecuado para el constructor de `CustomEvent`."
+    },
+    {
+      id: "q56",
+      question: "Which three actions can be performed using the JavaScript browser console?",
+      type: "multiple choice",
+      correct_options: ["A", "C", "D"],
+      number_of_correct_answers: 3,
+      options: {
+        A: "View and change the DOM of the page.",
+        B: "Display a report showing the performance of a page.",
+        C: "Run code that is not related to the page.",
+        D: "View, change, and debug the JavaScript code of the page."
+      },
+      code: "/* No code is needed for this question */",
+      explanation: "Las respuestas correctas son A, C y D.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - En la consola del navegador, puedes inspeccionar y modificar el DOM (Document Object Model) directamente.\n\n2. **Opción C:**\n   - La consola permite ejecutar cualquier fragmento de código JavaScript, incluso si no está relacionado con la página cargada.\n\n3. **Opción D:**\n   - Puedes inspeccionar y depurar el código JavaScript ejecutándose en la página.\n\n4. **Opción incorrecta:**\n   - B: Aunque se pueden verificar métricas de rendimiento utilizando herramientas específicas como el panel de rendimiento, no es una acción directa de la consola del navegador."
+    },
+    {
+      id: "q57",
+      question: "Refer to the code below. After running this code, which result is displayed on the console?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "> true > false",
+        B: "> 5 > undefined",
+        C: "> 5 > -1",
+        D: "> 5 > 0"
+      },
+      code: "const searchText = 'Yay! Salesforce is amazing!';\n\nlet result1 = searchText.search(/sales/i);\nlet result2 = searchText.search(/sales/);\n\nconsole.log(result1);\nconsole.log(result2);",
+      explanation: "La opción correcta es B: `> 5 > undefined`.\n\n**Explicación detallada:**\n\n1. **Uso de `search` con expresiones regulares:**\n   - `search(/sales/i)` busca la palabra 'sales' ignorando mayúsculas y minúsculas. Devuelve la posición inicial (índice) de la coincidencia, que es `5` en este caso.\n   - `search(/sales/)` busca la palabra 'sales' considerando la capitalización. En el código proporcionado, hay un error en la variable `result` que no existe. Esto provoca que `undefined` se registre en la consola.\n\n2. **Errores en opciones:**\n   - A, C y D: No reflejan correctamente el comportamiento del método `search` ni el manejo del error al usar una variable inexistente."
+    },
+    {
+      id: "q58",
+      question: "Refer to the following code. What will the console show when the button is clicked?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Outer message",
+        B: "Outer message Inner message",
+        C: "Inner message Outer message",
+        D: "Inner message"
+      },
+      code: "<html lang='en'>\n<body>\n  <div onclick=\"console.log('Outer message');\">\n    <button id=\"myButton\">Click me</button>\n  </div>\n</body>\n<script>\n  function displayMessage(ev) {\n    ev.stopPropagation();\n    console.log('Inner message');\n  }\n  const elem = document.getElementById('myButton');\n  elem.addEventListener('click', displayMessage);\n</script>\n</html>",
+      explanation: "La opción correcta es D: `Inner message`.\n\n**Explicación detallada:**\n\n1. **Uso de `ev.stopPropagation()`:**\n   - El método `stopPropagation` detiene la propagación del evento `click` hacia sus elementos padres. En este caso, evita que el evento alcance el `div`.\n\n2. **Resultado:**\n   - Cuando se hace clic en el botón, solo el evento registrado en el botón (`displayMessage`) se ejecuta. Esto genera el mensaje `'Inner message'` en la consola.\n\n3. **Opciones incorrectas:**\n   - A, B y C: Estas opciones incluyen mensajes adicionales que no se mostrarán debido a la propagación detenida."
+    },
+    {
+      id: "q59",
+      question: "A developer uses the code below to format a date. After executing, what is the value of `formattedDate`?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "May 10, 2020",
+        B: "June 10, 2020",
+        C: "October 05, 2020",
+        D: "November 05, 2020"
+      },
+      code: "const date = new Date(2020, 05, 10);\nconst dateDisplayOptions = {\n  year: 'numeric',\n  month: 'long',\n  day: 'numeric'\n};\n\nconst formattedDate = date.toLocaleDateString('en', dateDisplayOptions);",
+      explanation: "La opción correcta es A: `May 10, 2020`.\n\n**Explicación detallada:**\n\n1. **Creación de la fecha:**\n   - En JavaScript, los meses en el objeto `Date` están indexados desde `0` (enero) hasta `11` (diciembre).\n   - Al utilizar `new Date(2020, 05, 10)`, el mes `05` corresponde a **junio**.\n\n2. **Uso de `toLocaleDateString`:**\n   - Este método formatea una fecha según las opciones especificadas.\n   - En este caso, devuelve la fecha como `'June 10, 2020'` en formato inglés estadounidense.\n\n3. **Error en opciones:**\n   - A es incorrecto, ya que `May` no corresponde al mes representado por `05`.\n\nAsí, **A** su correctá"
+    },
+    {
+      id: "q60",
+      question: "Which statement allows a developer to cancel the scheduled timed function?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "removeTimeout(timedFunction);",
+        B: "removeTimeout(timerId);",
+        C: "clearTimeout(timerId);",
+        D: "clearTimeout(timedFunction);"
+      },
+      code: "let timeFunction = () => {\n  console.log('Timer called.');\n};\nlet timerId = setTimeout(timeFunction, 1000);",
+      explanation: "La opción correcta es C: `clearTimeout(timerId);`.\n\n**Explicación detallada:**\n\n1. **Uso de `clearTimeout`:**\n   - El método `clearTimeout` cancela un temporizador programado por `setTimeout`.\n   - Requiere el `id` devuelto por `setTimeout` (en este caso, `timerId`).\n\n2. **Opciones incorrectas:**\n   - A y B: `removeTimeout` no es un método válido en JavaScript.\n   - D: `clearTimeout` requiere el `id` del temporizador, no la función programada."
+    },
+    {
+      id: "q61",
+      question: "A developer is leading the creation of a new browser application that will serve a single-page application. The lead developer wants to advocate for a more seasoned web framework with an established community. Which two frameworks should the lead developer advocate for?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Vue",
+        B: "Angular",
+        C: "Koa",
+        D: "Express"
+      },
+      explanation: "Las respuestas correctas son B y D.\n\n**Explicación detallada:**\n\n1. **Angular (B):**\n   - Es un framework maduro, ampliamente adoptado, con una comunidad fuerte y numerosas herramientas y bibliotecas.\n\n2. **Express (D):**\n   - Aunque es más conocido como un framework de back-end para Node.js, tiene una comunidad madura y se utiliza comúnmente como parte de una arquitectura completa.\n\n3. **Opciones incorrectas:**\n   - A: Vue también es popular, pero en este caso no se selecciona porque Angular y Express tienen comunidades más establecidas.\n   - C: Koa es un framework ligero para Node.js, pero carece de la madurez y el soporte comunitario que tiene Express."
+    },
+    {
+      id: "q62",
+      question: "Refer to the HTML below:\n\nWhich JavaScript statement results in changing 'Tony' to 'Mr. T.'?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "document.querySelectorAll('$main $TONY').innerHTML = 'Mr. T.';",
+        B: "document.querySelector('$main li:second-child').innerHTML = 'Mr. T.';",
+        C: "document.querySelector('$main li.Tony').innerHTML = 'Mr. T.';",
+        D: "document.querySelector('$main li:nth-child(2)').innerHTML = 'Mr. T.';"
+      },
+      code: "<div id='main'>\n  <ul>\n    <li>Leo</li>\n    <li>Tony</li>\n    <li>Tiger</li>\n  </ul>\n</div>",
+      explanation: "La opción correcta es D: `document.querySelector('$main li:nth-child(2)').innerHTML = 'Mr. T.';`\n\n**Explicación detallada:**\n\n1. **Selección de elementos:**\n   - `nth-child(2)` selecciona el segundo elemento `<li>` dentro del contenedor.\n\n2. **Actualización del contenido:**\n   - `innerHTML` cambia el contenido de `Tony` a `'Mr. T.'`.\n\n3. **Opciones incorrectas:**\n   - A y C: Sintaxis inválida o selección incorrecta.\n   - B: `:second-child` no es un selector válido en este contexto."
+    },
+    {
+      id: "q63",
+      question: "Refer to the code below. Which code executes `sayHello` once, two minutes from now?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "setTimeout(sayHello, 120000);",
+        B: "setInterval(sayHello, 120000);",
+        C: "setTimeout(sayHello(), 120000);",
+        D: "delay(sayHello, 120000);"
+      },
+      code: "let sayHello = () => {\n  console.log('Hello, World');\n};",
+      explanation: "La opción correcta es A: `setTimeout(sayHello, 120000);`\n\n**Explicación detallada:**\n\n1. **Uso de `setTimeout`:**\n   - Este método programa la ejecución de la función `sayHello` una vez después de `120000 ms` (dos minutos).\n\n2. **Opciones incorrectas:**\n   - B: `setInterval` ejecuta la función repetidamente, no solo una vez.\n   - C: `sayHello()` ejecuta la función inmediatamente y pasa su resultado a `setTimeout`, lo cual es incorrecto.\n   - D: `delay` no es un método válido en JavaScript."
+    },
+    {
+      id: "q64",
+      question: "Universal Containers wants to prevent third-party ads on their landing page that create multiple hidden HTML elements. Which JavaScript action removes these elements from the DOM?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Use the DOM inspector to prevent the load event to be fired.",
+        B: "Use the browser to execute a script that removes all the elements containing the class ad-library-item.",
+        C: "Use the DOM inspector to remove all the elements containing the class ad-library-item.",
+        D: "Use the browser console to execute a script that prevents the load event to be fired."
+      },
+      explanation: "La opción correcta es B: `Use the browser to execute a script that removes all the elements containing the class ad-library-item.`\n\n**Explicación detallada:**\n\n1. **Eliminación por clase:**\n   - Usar el navegador para ejecutar un script dirigido asegura que todos los elementos con `class='ad-library-item'` sean identificados y removidos del DOM.\n\n2. **Opciones incorrectas:**\n   - A y D: Prevenir eventos de carga no asegura la eliminación de elementos creados.\n   - C: Aunque útil, el uso del inspector DOM no automatiza el proceso."
+    },
+    {
+      id: "q65",
+      question: "Given the following code. Which replacement for the conditional statement on line 02 allows a developer to correctly determine that a button on the page is clicked?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "event.clicked",
+        B: "e.nodeTarget == this",
+        C: "event.target.nodeName == 'BUTTON'",
+        D: "button.addEventListener('click')"
+      },
+      code: "document.body.addEventListener('click', (event) => {\n  if (/* CODE REPLACEMENT HERE */) {\n    console.log('button clicked!');\n  }\n});",
+      explanation: "La opción correcta es C: `event.target.nodeName == 'BUTTON'`.\n\n**Explicación detallada:**\n\n1. **Uso de `event.target`:**\n   - `event.target` devuelve el elemento específico que dispara el evento.\n   - Comparar `nodeName` con `'BUTTON'` verifica si el elemento es un botón.\n\n2. **Opciones incorrectas:**\n   - A: `event.clicked` no es una propiedad válida.\n   - B: `nodeTarget` es una propiedad inválida.\n   - D: No cumple el propósito de evaluar el elemento directamente."
+    },
+    {
+      id: "q66",
+      question: "If the back button is clicked after this method is executed, what can a developer expect?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "A navigate event is fired with a state property that details the previous application state.",
+        B: "The page is navigated away from and the previous page in the browser’s history is loaded.",
+        C: "The page reloads and all Javascript is reinitialized.",
+        D: "A popstate event is fired with a state property that details the application’s last state."
+      },
+      code: "const onStateChange = (newPageState) => {\n  window.history.pushState(newPageState, '', null);\n};",
+      explanation: "La opción correcta es B: **The page is navigated away from and the previous page in the browser’s history is loaded.**\n\n**Explicación detallada:**\n\n1. **Uso de `history.pushState`:**\n   - Agrega un nuevo estado al historial del navegador, pero no dispara automáticamente un evento `popstate` o recarga la página.\n\n2. **Comportamiento del botón de retroceso:**\n   - Al presionar el botón de retroceso, el navegador cargará la página previa registrada en el historial."
+    },
+    {
+      id: "q67",
+      question: "A developer creates a simple webpage with an input field. When a user enters text in the input field and clicks the button, the actual value of the field must be displayed in the console.The developer wrote the JavaScript code below. When the user clicks the button, the output is always 'Hello'. \n\nWhat needs to be done to make this code work as expected?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Replace line 04 with console.log(input.value);",
+        B: "Replace line 03 with const input = document.getElementByName('input');",
+        C: "Replace line 02 with button.addEventListener('onclick', function() {",
+        D: "Replace line 02 with button.addCallback('click', function() {"
+      },
+      code: "// HTML content\n<input type='text' value='Hello' name='input'>\n<button type='button'>Display</button>\n\n// JavaScript code\nconst button = document.querySelector('button');\nbutton.addEventListener('click', () => {\n  const input = document.querySelector('input');\n  console.log(input.getAttribute('value'));\n});",
+      explanation: "La opción correcta es A: **Replace line 04 with console.log(input.value);**.\n\n**Explicación detallada:**\n\n1. **Acceso a la propiedad `value`:**\n   - `input.getAttribute('value')` siempre devuelve el valor inicial del atributo `value` en el HTML, es decir, 'Hello'.\n   - Para obtener el valor actual del campo de entrada, se debe usar la propiedad `input.value`.\n\n2. **Errores en otras opciones:**\n   - Opción B: `document.getElementByName` no es un método válido; el correcto es `document.getElementsByName`, pero devuelve un NodeList.\n   - Opción C: `'onclick'` no es el evento correcto; el evento es `'click'`.\n   - Opción D: `addCallback` no es un método válido."
+    },
+    {
+      id: "q68",
+      question: "A developer is leading the creation of a new browser application that will serve a single page application. The team wants to use a new web framework, Minimalist.js. The Lead developer wants to advocate for a more seasoned web framework that already has a community around it. \n\nWhich two frameworks should the lead developer advocate for?",
+      type: "multiple choice",
+      correct_options: ["B", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Vue",
+        B: "Angular",
+        C: "Koa",
+        D: "Express"
+      },
+      explanation: "Las opciones correctas son B y D:\n\n**Explicación detallada:**\n\n1. **Angular:**\n   - Angular es un framework maduro y ampliamente utilizado con una gran comunidad de soporte.\n\n2. **Express:**\n   - Aunque Express se centra más en el desarrollo del lado del servidor, es un framework bien establecido con un fuerte soporte comunitario.\n\n3. **Errores en otras opciones:**\n   - Vue es una opción viable pero es menos madura que Angular.\n   - Koa es un framework minimalista y no cuenta con una comunidad tan grande como Angular o Express."
+    },
+    {
+      id: "q69",
+      question: "A developer needs to dispatch a custom event called `update` to send information about `recordId`. Which two options could a developer insert at the placeholder in line 02 to achieve this?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "'Update', { recordId: '123abc' }",
+        B: "'Update', '123abc'",
+        C: "{ type: 'update', recordId: '123abc' }",
+        D: "'Update', { details: { recordId: '123abc' } }"
+      },
+      explanation: "Las opciones correctas son A y D:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Crea un evento personalizado `update` con un objeto que contiene la propiedad `recordId`.\n\n2. **Opción D:**\n   - Crea un evento `update` con una estructura que incluye un objeto `details` que contiene `recordId`.\n\n3. **Errores en otras opciones:**\n   - Opción B: '123abc' no puede ser el segundo argumento, ya que un evento necesita un objeto con propiedades.\n   - Opción C: La estructura `type` en lugar de `details` no es necesaria para este caso de uso."
+    },
+    {
+      id: "q70",
+      question: "A developer creates a simple webpage with an input field. When a user enters text in the input field and clicks the button, the actual value of the field must be displayed in the console. The developer wrote the JavaScript code below, but when the user clicks the button, the output is always 'Hello'. \n\nWhat needs to be done to make this code work as expected?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Replace line 4 with console.log(input.value);",
+        B: "Replace line 3 with const input = document.getElementByName('input');",
+        C: "Replace line 2 with button.addEventListener('onclick', function() {",
+        D: "Replace line 2 with button.addCallback('click', function() {"
+      },
+      explanation: "La opción correcta es A: **Replace line 4 with console.log(input.value);**\n\n**Explicación detallada:**\n\n1. **Acceso al valor actual:**\n   - `input.getAttribute('value')` siempre devuelve el valor inicial del atributo `value`, mientras que `input.value` devuelve el valor actual del campo de entrada.\n\n2. **Errores en otras opciones:**\n   - Opción B: `document.getElementByName` no es un método válido.\n   - Opción C: `'onclick'` no es un evento válido en este caso; se usa `'click'`.\n   - Opción D: `addCallback` no es un método válido."
+    },                                                                           
   ];
 }

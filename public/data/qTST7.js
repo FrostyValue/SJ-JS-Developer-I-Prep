@@ -254,6 +254,182 @@ export default function questions7() {
       },
       code: "const sum3 = (arr) => (\n  if (!arr.length) return 0,\n  if (arr.length === 1) return arr[0],\n  if (arr.length === 2) return arr[0] + arr[1],\n  return arr[0] + arr[1] + arr[2]\n);",
       explanation: "Las respuestas correctas son A: `console.assert(sum3(1, '2')) == 12);` y C: `console.assert(sum3(-3, 2)) == -1);`.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Este test valida que la función `sum3` maneja correctamente una entrada con `1` y `'2'`. Aquí, `'2'` se trataría como un número en el contexto de la operación aritmética, generando el resultado esperado `12`.\n\n2. **Opción C:**\n   - La prueba verifica que `sum3(-3, 2)` devuelve `-1`, lo cual confirma que la lógica maneja correctamente números negativos combinados con positivos.\n\n3. **Opciones incorrectas:**\n   - B: `console.assert(sum3(0)) == 0);` es incorrecta porque la función espera un arreglo como argumento, no un solo número.\n   - D: `console.assert(sum3('hello', 2, 3, 4)) === NaN);` es incorrecta porque no hay manejo explícito para una entrada no numérica como `'hello'` en el código. Este tipo de entrada podría causar un error en lugar de devolver `NaN`."
-    },              
+    },
+    {
+      id: "q17",
+      question: "A developer wrote the following code to test a `sum3` function that takes in an array of numbers and returns the sum of the first three numbers in the array.\n\nA different developer made changes to the behavior of `sum3` to instead sum all of the numbers present in the array.\n\nWhich two results occur when running the test on the updated `sum3` function?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "The line 02 assertion passes.",
+        B: "The line 02 assertion fails.",
+        C: "The line 05 assertion passes.",
+        D: "The line 05 assertion fails."
+      },
+      code: "let res = sum3([1, 2, 3]);\nconsole.assert(res === 6);\nres = sum3([1, 2, 3, 4]);\nconsole.assert(res === 6);",
+      explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **Primera línea del test (línea 02):**\n   - En la primera prueba, `sum3([1, 2, 3])` suma los números en el array.\n   - Dado que los números en el array `[1, 2, 3]` son los únicos presentes, la suma es `1 + 2 + 3 = 6`. Este resultado pasa la aserción `console.assert(res === 6);`.\n\n2. **Segunda línea del test (línea 05):**\n   - En la segunda prueba, `sum3([1, 2, 3, 4])` suma todos los números en el array después de los cambios realizados por el segundo desarrollador.\n   - La suma total es `1 + 2 + 3 + 4 = 10`. Esto falla la aserción `console.assert(res === 6);`, ya que el resultado esperado era `6`.\n\n3. **Opciones incorrectas:**\n   - B: La línea 02 no falla porque la suma sigue siendo 6.\n   - C: La línea 05 no pasa porque el resultado esperado no coincide con el nuevo comportamiento de la función `sum3`."
+    },
+    {
+      id: "q18",
+      question: "The developer wants to test the array shown. Which two tests are the most accurate for this array?",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(arr.length === 5);",
+        B: "arr.forEach(elem => console.assert(elem === 0));",
+        C: "console.assert(arr[0] === 0 && arr[arr.length] === 0);",
+        D: "console.assert(arr.length > 0);"
+      },
+      code: "const arr = Array(5).fill(0);",
+      explanation: "Las respuestas correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - `arr.length === 5` verifica que la longitud del array es exactamente 5, lo cual es cierto porque `Array(5).fill(0)` crea un array de 5 elementos.\n\n2. **Opción B:**\n   - Usar `arr.forEach(elem => console.assert(elem === 0))` verifica que todos los elementos del array sean `0`, lo cual es cierto porque `fill(0)` establece todos los elementos del array en `0`.\n\n3. **Opciones incorrectas:**\n   - C: `arr[arr.length]` no es válido porque `arr[arr.length]` apunta a un índice fuera del rango del array.\n   - D: Aunque `arr.length > 0` es cierto, esta prueba no es lo suficientemente precisa para verificar la longitud específica o el valor de los elementos del array."
+    },
+    {
+      id: "q19",
+      question: "A test has a dependency on `database.query`. During the test, the dependency is replaced with an object called `database` with the method `query` that returns an array. The developer needs to verify how many times the method was called and the arguments used each time. \n\nWhich two test approaches describe the requirement?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Integration",
+        B: "Black box",
+        C: "White box",
+        D: "Mocking"
+      },
+      explanation: "Las respuestas correctas son C y D.\n\n**Explicación detallada:**\n\n1. **White box testing (C):**\n   - Este enfoque de prueba permite al desarrollador inspeccionar el comportamiento interno y la lógica del código. En este caso, se verifica directamente cómo y cuántas veces se llama al método `query` junto con sus argumentos, lo que corresponde a una prueba de caja blanca.\n\n2. **Mocking (D):**\n   - Mocking implica reemplazar dependencias reales con objetos simulados que replican el comportamiento esperado. Esto se aplica al reemplazar la dependencia de `database.query` con un objeto simulado que permite rastrear las llamadas y los argumentos para pruebas controladas.\n\n3. **Opciones incorrectas:**\n   - A: Las pruebas de integración evalúan cómo interactúan diferentes módulos entre sí. Sin embargo, esta prueba se centra en un solo componente (la dependencia simulada), no en la integración del sistema completo.\n   - B: Las pruebas de caja negra se centran en el comportamiento externo del sistema sin inspeccionar su lógica interna, lo cual no aplica aquí ya que se están verificando detalles internos específicos como las llamadas y los argumentos."
+    },
+    {
+      id: "q20",
+      question: "A developer needs to test the following function. How should the developer test the function with valid assert statements?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(sum3([1, '2']) == 12);",
+        B: "console.assert(sum3([0]) == 0);",
+        C: "console.assert(sum3([-3, 2]) == -1);",
+        D: "console.assert(sum3(['hello', 2, 3, 4]) === NaN);"
+      },
+      code: "const sum3 = (arr) => {\n  if (!arr.length) return 0;\n  if (arr.length === 1) return arr[0];\n  if (arr.length === 2) return arr[0] + arr[1];\n  return arr[0] + arr[1] + arr[2];\n};",
+      explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - La entrada es `[1, '2']`. Como `'2'` es una cadena, el operador `+` realiza una concatenación: `1 + '2'` resulta en `'12'`.\n   - Para el caso de 3 elementos o más, la función suma los primeros tres elementos. Sin embargo, aquí solo se necesitan los dos primeros elementos, y el resultado es `'12'`.\n\n2. **Opción C:**\n   - La entrada es `[-3, 2]`. La función suma los dos primeros elementos: `-3 + 2 = -1`, que cumple con la aserción.\n\n3. **Opciones incorrectas:**\n   - B: Si la entrada es `[0]`, la función devuelve `0`. Aunque esto es correcto, la opción marcada no corresponde al comportamiento específico de `sum3`.\n   - D: Si la entrada incluye `['hello', 2, 3, 4]`, se lanzará un error en lugar de devolver `NaN`, ya que el operador `+` no puede sumar una cadena no numérica ('hello') con números."
+    },
+    {
+      id: "q21",
+      question: "A developer needs to test the following function:\n\nWhich two assert statements are valid tests for the function?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(sum3(1, '2')) == 12);",
+        B: "console.assert(sum3(0)) == 0);",
+        C: "console.assert(sum3(-3, 2)) == -1);",
+        D: "console.assert(sum3('hello', 2, 3, 4)) === NaN);"
+      },
+      code: "const sum3 = (arr) => (\n  if (!arr.length) return 0,\n  if (arr.length === 1) return arr[0],\n  if (arr.length === 2) return arr[0] + arr[1],\n  return arr[0] + arr[1] + arr[2]\n);",
+      explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - La entrada sería `[1, '2']`, y el operador `+` realiza una concatenación: `'12'` es el resultado de `'1'` concatenado con `'2'`. Al convertir la cadena completa a un número (implícitamente por la prueba), esto cumple con el comportamiento esperado.\n\n2. **Opción C:**\n   - La entrada sería `[-3, 2]`. La función suma ambos valores y devuelve `-1`, cumpliendo con la prueba esperada.\n\n3. **Opciones incorrectas:**\n   - B: La entrada `0` no tiene sentido con el diseño de la función, ya que esta espera un array como parámetro.\n   - D: `NaN` no será el resultado válido porque la función no está diseñada para manejar cadenas como `hello`."
+    },
+    {
+      id: "q22",
+      question: "A developer wants to test this code:\n\nWhich two tests are most accurate for this code?",
+      type: "multiple choice",
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert(toNumber('2') === 2);",
+        B: "console.assert(Number.isNaN(toNumber()));",
+        C: "console.assert(toNumber('-3') < 0);",
+        D: "console.assert(toNumber() === NaN);"
+      },
+      code: "const toNumber = (strOrNum) => strOrNum;",
+      explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - La entrada `'2'` debería devolverse como un número `2`, cumpliendo con el comportamiento esperado.\n\n2. **Opción C:**\n   - La entrada `'-3'` es válida para comprobar que el resultado convertido sea menor que 0.\n\n3. **Opciones incorrectas:**\n   - B: El código no incluye lógica que devuelva `NaN` explícitamente.\n   - D: `NaN` no es el resultado esperado en ninguna condición válida para esta función."
+    },
+    {
+      id: "q23",
+      question: "A test has a dependency on `database.query`. During the test, the dependency is replaced with an object called `database` with the method `query` that returns an array. The developer does not need to verify how many times the method has been called. \n\nWhich two test approaches describe the requirement?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "White box",
+        B: "Stubbing",
+        C: "Black box",
+        D: "Substitution"
+      },
+      explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **White box testing (A):**\n   - En este enfoque, el desarrollador tiene acceso al código fuente y puede inspeccionar cómo se comporta el método `query`. Aunque no necesita verificar las veces que se llama al método, sigue siendo una prueba de caja blanca.\n\n2. **Substitution (D):**\n   - El reemplazo de la dependencia con otro objeto es un ejemplo de sustitución, donde el objeto sustituido actúa como dependencias simuladas durante la prueba.\n\n3. **Opciones incorrectas:**\n   - B: Stubbing implica proporcionar una implementación simulada específica para interceptar llamadas, pero esto no se menciona como parte del requisito.\n   - C: Black box testing no aplica, ya que en este enfoque no se inspecciona el comportamiento interno del sistema."
+    },
+    {
+      id: "q24",
+      question: "A test has a dependency on `database.query`. During the test, the dependency is replaced with an object called `database` with the method `query` that returns an array. The developer does not need to verify how many times the method has been called. \n\nWhich two test approaches describe the requirement?",
+      type: "multiple choice",
+      correct_options: ["A", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "White box",
+        B: "Stubbing",
+        C: "Black box",
+        D: "Substitution"
+      },
+      explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **White box testing (A):**\n   - En este enfoque, el desarrollador tiene acceso al código fuente y puede inspeccionar cómo se comporta el método `query`. Aunque no necesita verificar las veces que se llama al método, sigue siendo una prueba de caja blanca.\n\n2. **Substitution (D):**\n   - El reemplazo de la dependencia con otro objeto es un ejemplo de sustitución, donde el objeto sustituido actúa como dependencias simuladas durante la prueba.\n\n3. **Opciones incorrectas:**\n   - B: Stubbing implica proporcionar una implementación simulada específica para interceptar llamadas, pero esto no se menciona como parte del requisito.\n   - C: Black box testing no aplica, ya que en este enfoque no se inspecciona el comportamiento interno del sistema."
+    },
+    {
+      id: "q25",
+      question: "Developer removes the HTML class attribute from the checkout button, so now it is simply. There is a test to verify the existence of the checkout button; however, it looks for a button with `class='blue'`. The test fails because no such button is found. \n\nWhich type of test category describes this test?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "True positive",
+        B: "True negative",
+        C: "False positive",
+        D: "False negative"
+      },
+      code: "<button>Checkout</button>",
+      explanation: "La opción correcta es D: **False negative**.\n\n**Explicación detallada:**\n\n1. **Definición de 'False negative':**\n   - Un resultado falso negativo ocurre cuando la prueba debería haber detectado el botón pero no lo hace.\n\n2. **Causa del fallo:**\n   - La prueba busca específicamente un botón con `class='blue'`, pero el atributo de clase fue eliminado del botón, provocando que no coincida con la expectativa de la prueba.\n\n3. **Conclusión:**\n   - El botón sí existe, pero la prueba falla al encontrarlo debido a una discrepancia en el selector usado."
+    },
+    {
+      id: "q26",
+      question: "Which two tests are the most accurate for the array shown?",
+      type: "multiple choice",
+      correct_options: ["A", "B"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "console.assert( arr.length === 5 );",
+        B: "arr.forEach(elem => console.assert(elem === 0));",
+        C: "console.assert(arr[0] === 0 && arr[ arr.length] === 0);",
+        D: "console.assert (arr.length > 0);"
+      },
+      code: "const arr = Array(5).fill(0);",
+      explanation: "Las opciones correctas son A y B:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Verifica que la longitud del array sea igual a 5.\n\n2. **Opción B:**\n   - Itera sobre cada elemento del array y verifica que todos los elementos sean iguales a 0.\n\n3. **Errores en otras opciones:**\n   - Opción C: Intenta acceder a `arr[arr.length]`, lo cual es incorrecto porque el índice debe estar en el rango válido del array.\n   - Opción D: Aunque es cierta, no prueba específicamente que el array está correctamente configurado."
+    },
+    {
+      id: "q27",
+      question: "Which two test approaches describe the requirement?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Integration",
+        B: "Black box",
+        C: "White box",
+        D: "Mocking"
+      },
+      code: "const database = {\n  query: () => ['result1', 'result2']\n};\n// Método de prueba para verificar cuántas veces y con qué argumentos se llamó a database.query",
+      explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C - White box:**\n   - Este tipo de prueba verifica la lógica interna y el comportamiento de la implementación, como cuántas veces se llama a un método y con qué argumentos.\n\n2. **Opción D - Mocking:**\n   - El uso de un objeto simulado (mock) como dependencia permite rastrear interacciones específicas como llamadas al método y argumentos.\n\n3. **Errores en otras opciones:**\n   - Opción A: Una prueba de integración evalúa cómo funcionan múltiples componentes juntos, no el comportamiento interno de un método específico.\n   - Opción B: Una prueba de caja negra evalúa la funcionalidad sin considerar la implementación interna."
+    },
+    {
+      id: "q28",
+      question: "A test has a dependency on database.query. During the test, the dependency is replaced with an object called database with the method query that returns an array. The developer needs to verify how many times the method was called and the arguments used each time. \n\nWhich two test approaches describe the requirement?",
+      type: "multiple choice",
+      correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
+      options: {
+        A: "Integration",
+        B: "Black box",
+        C: "White box",
+        D: "Mocking"
+      },
+      explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C - White box:**\n   - Este enfoque examina la lógica interna de la dependencia, como cuántas veces se llamó al método `query` y los argumentos usados.\n\n2. **Opción D - Mocking:**\n   - La técnica de mocking reemplaza una dependencia real con un objeto simulado para rastrear interacciones específicas como llamadas y argumentos.\n\n3. **Errores en otras opciones:**\n   - Opción A: Las pruebas de integración evalúan cómo interactúan varios componentes juntos, no el comportamiento interno de la dependencia.\n   - Opción B: Las pruebas de caja negra evalúan funcionalidad sin observar la implementación interna."
+    },                                                               
   ];
 };
