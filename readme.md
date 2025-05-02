@@ -2,7 +2,7 @@
 
 ## Descripción
 
-TestJS App es una aplicación web interactiva desarrollada con **Vite** y **JavaScript**. Su propósito es proporcionar una plataforma para realizar cuestionarios y pruebas interactivas, que sirva como estudio para tomar el examen de "Salesforce JavaScript Developer I", simulando un servidor JSON mediante funciones que retornan arrays de objetos, debido a las limitaciones de GitHub Pages.
+TestJS App es una aplicación web interactiva desarrollada con **Vite** y **JavaScript**. Su propósito es proporcionar una plataforma para realizar cuestionarios y pruebas interactivas, que sirva como estudio para tomar el examen **"Salesforce JavaScript Developer I"**, simulando un servidor JSON mediante funciones que retornan arrays de objetos, debido a las limitaciones de GitHub Pages.
 
 ## Tecnologías
 
