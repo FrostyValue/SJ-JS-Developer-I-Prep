@@ -480,7 +480,7 @@ export default function questions2() {
     {
       id: "q29",
       question:
-        "A development team wants to migrate its legacy JavaScript code to a newer ES6 code. The first step in this migration is to identify and convert code containing prototype-based inheritance into classes. William has been given the code snippet below for conversion into a class. Which of the following statements regarding the conversion of the given code is false?",
+        "A development team wants to migrate its legacy JavaScript code to a newer ES6 code. The first step in this migration is to identify and convert code containing prototype-based inheritance into classes. William has been given the code snippet below for conversion into a class. \n\nWhich of the following statements regarding the conversion of the given code is false?",
       type: "multiple choice",
       correct_options: ["A"],
       number_of_correct_answers: 1,
@@ -994,21 +994,6 @@ export default function questions2() {
     },
     {
       id: "q61",
-      question: "Refer to the code below. Which assertion accurately tests the above code?",
-      type: "multiple choice",
-      correct_options: ["D"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "Console.assert (await functionUnderTest(true), ' OK ')",
-        B: "Console.assert (await functionUnderTest(true), ' not OK ')",
-        C: "Console.assert (awaitfunctionUnderTest(true), ' not OK ')",
-        D: "Console.assert (await functionUnderTest(true), 'OK')"
-      },
-      code: "async function functionUnderTest(isOK) {\n  if (isOK) return 'OK';\n  throw new Error('not OK');\n}",
-      explanation: "La opción correcta es la D: 'Console.assert(await functionUnderTest(true), 'OK')'.\n\n**Explicación detallada:**\n\n1. **Evaluación de la función:**\n   - La función `functionUnderTest` verifica si el parámetro `isOK` es verdadero.\n   - Si es `true`, retorna la cadena `'OK'`.\n   - Si es `false`, lanza un error con el mensaje `'not OK'`.\n\n2. **Uso de `Console.assert`:**\n   - La declaración `Console.assert(condition, message)` valida que la `condition` sea `true`. Si la condición es falsa, se registra el `message` en la consola como error.\n   - En este caso, `await functionUnderTest(true)` retorna `'OK'`, lo cual hace que la condición en `Console.assert` sea verdadera y no se registre ningún error.\n\n3. **Opciones incorrectas:**\n   - A: Incorrecto debido al espacio innecesario en `' OK '`, lo cual rompe la comparación.\n   - B: Incorrecto porque la condición no es `'not OK'` cuando `isOK` es verdadero.\n   - C: Incorrecto porque contiene un error de sintaxis en `awaitfunctionUnderTest(true)` debido a la falta de espacios."
-    },
-    {
-      id: "q62",
       question: "What is the result of the code block?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1023,7 +1008,7 @@ export default function questions2() {
       explanation: "The correct answer is **D: 'The console logs ‘flag’ and then an error is thrown.'**\n\n**Explanation:**\n\n1. **Function Declaration for `flag`:**\n   - The function `flag` is a function declaration, which means it is hoisted to the top of its scope. As a result, `flag()` can be called before its definition in the code.\n   - When `flag()` is called, it executes without issue, logging `'flag'` to the console.\n\n2. **Const Declaration for `anotherFlag`:**\n   - The variable `anotherFlag` is declared using `const`, which is not hoisted in the same way as function declarations. While the variable name is hoisted to the top of its scope, it remains in the temporal dead zone (TDZ) until the line of code where it is defined.\n   - When `anotherFlag()` is called before its definition, an error is thrown because `anotherFlag` has not been initialized yet.\n\n3. **Result:**\n   - The first log statement, `flag()`, executes successfully, logging `'flag'`.\n   - The second call to `anotherFlag()` throws a `ReferenceError` because `anotherFlag` is accessed before it is initialized.\n\n4. **Options Analysis:**\n   - A: Incorrect. The code does not just log `'flag'`; it throws an error after logging.\n   - B: Incorrect. The code does not log `'another flag'` because `anotherFlag()` throws an error before it can be executed.\n   - C: Incorrect. While an error is thrown, `'flag'` is logged first.\n   - D: Correct. The code logs `'flag'` and then throws an error."
     },
     {
-      id: "q63",
+      id: "q62",
       question: "Which statement should be added to line 09 for the code to correctly display 'The truck 123AB has a weight of 5000 lb.'?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1038,7 +1023,7 @@ export default function questions2() {
       explanation: "La opción correcta es la B: 'super(plate);'.\n\n**Explicación detallada:**\n\n1. **Uso del operador `super`:**\n   - En una clase que extiende otra, como `Truck` que extiende `Vehicle`, el constructor de la clase hija necesita llamar al constructor de la clase padre utilizando `super()`.\n   - En este caso, `super(plate);` llama al constructor de `Vehicle` y le pasa el valor `plate`, permitiendo inicializar la propiedad `this.plate` en la instancia de la clase `Truck`.\n\n2. **Llamada al constructor:**\n   - Cuando se instancia un objeto de la clase `Truck`, como en `new Truck('123AB', 5000)`, se ejecuta el constructor de `Truck`, que a su vez llama al constructor de `Vehicle` mediante `super(plate);` para inicializar `this.plate`.\n   - Luego, `this.weight` se asigna directamente en el constructor de `Truck`.\n\n3. **Opciones incorrectas:**\n   - A: `'Super.plate = plate;'` es incorrecta porque no es la sintaxis válida para llamar al constructor de la clase padre.\n   - C: `'This.plate = plate;'` es incorrecta porque inicializa `this.plate` directamente en la clase hija sin llamar al constructor de la clase padre, lo que genera un error cuando se extiende otra clase.\n   - D: `'Vehicle.plate = plate;'` es incorrecta porque intenta acceder al constructor de `Vehicle` de manera estática, lo cual no es válido aquí."
     },
     {
-      id: "q64",
+      id: "q63",
       question: "How can a developer access the `fullName` property for the `cat` object?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1053,7 +1038,7 @@ export default function questions2() {
       explanation: "La opción correcta es la A: 'cat.fullName'.\n\n**Explicación detallada:**\n\n1. **Propiedades `get`:**\n   - En JavaScript, las propiedades definidas con `get` son accesibles como si fueran propiedades normales, es decir, sin usar paréntesis.\n   - En este caso, `fullName` está definido con el accesor `get`, lo que significa que se puede acceder usando `cat.fullName` y no `cat.fullName()`.\n\n2. **Opciones incorrectas:**\n   - B: `'cat.fullName()'` es incorrecta porque no es necesario llamar a la propiedad `get` como función.\n   - C: `'cat.get.fullName'` es incorrecta porque no hay ninguna propiedad `get` en el objeto que pueda ser usada de esa forma.\n   - D: `'cat.function.fullName()'` es incorrecta porque no existe ninguna propiedad `function` definida en el objeto."
     },
     {
-      id: "q65",
+      id: "q64",
       question: "What is the value of the result after line 10 executes?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1068,7 +1053,7 @@ export default function questions2() {
       explanation: "La opción correcta es la A: 'Error: myFather.job is not a function'.\n\n**Explicación detallada:**\n\n1. **Definición de `Person.prototype`:**\n   - El objeto `Person.prototype` se sobrescribe con un nuevo objeto que contiene una propiedad `Job`.\n   - Sin embargo, el método `job` no está definido como una función en el prototipo, sino como una propiedad (`Job`) con una función de flecha.\n   - En JavaScript, las propiedades definidas en el prototipo no están disponibles directamente como métodos invocables si no se definen explícitamente como funciones.\n\n2. **Referencia a `job`:**\n   - En el código, `myFather.job()` intenta invocar `job` como una función, pero no existe una propiedad `job` en el prototipo o en la instancia de `Person`.\n   - Esto genera un error `TypeError: myFather.job is not a function`.\n\n3. **Opciones incorrectas:**\n   - B: 'Undefined Developer' es incorrecta porque no se puede acceder correctamente a `job` como una función.\n   - C: 'John undefined' es incorrecta porque el error ocurre antes de que el código pueda acceder a `job`.\n   - D: 'John Developer' es incorrecta porque el método `job()` no existe en el objeto `myFather`."
     },
     {
-      id: "q66",
+      id: "q65",
       question: "A developer has an `ErrorHandler` module that contains multiple functions. What kind of export should be leveraged so that multiple functions can be used?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1082,7 +1067,7 @@ export default function questions2() {
       explanation: "La opción correcta es la A: 'Named'.\n\n**Explicación detallada:**\n\n1. **Exportación nombrada (Named):**\n   - Una exportación nombrada permite exportar múltiples funciones, variables u objetos desde un módulo para que puedan ser importados selectivamente en otros módulos.\n   - En este caso, dado que el módulo `ErrorHandler` contiene varias funciones, usar exportaciones nombradas permite que cada función sea exportada con su propio nombre.\n   - Ejemplo:\n     ```javascript\n     // ErrorHandler.js\n     export function logError() {\n       // Código para registrar errores\n     }\n     export function displayError() {\n       // Código para mostrar errores\n     }\n     ```\n     Luego, otro archivo puede importar las funciones de esta manera:\n     ```javascript\n     import { logError, displayError } from './ErrorHandler.js';\n     ```\n\n2. **Opciones incorrectas:**\n   - B: 'All' no es un tipo de exportación válida en JavaScript.\n   - C: 'Multi' no es un término reconocido para la exportación en JavaScript.\n   - D: 'Default' permite exportar solo un valor por módulo, lo que no es ideal si hay múltiples funciones que deben ser exportadas del módulo."
     },
     {
-      id: "q67",
+      id: "q66",
       question: "A developer wants to leverage a module to print a price in pretty format, and has imported a method as shown below. Based on the code. \n\nWhat must be true about the `printPrice` function of the `PricePrettyPrint` module for this import to work?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1097,7 +1082,7 @@ export default function questions2() {
       explanation: "La opción correcta es la C: 'printPrice must be the default export.'\n\n**Explicación detallada:**\n\n1. **Importaciones en JavaScript:**\n   - Cuando se utiliza la sintaxis `import printPrice from '/path/PricePrettyPrint.js';`, se está importando el **valor de exportación por defecto** del módulo `PricePrettyPrint.js`. Solo las exportaciones por defecto son compatibles con esta forma de importación.\n\n2. **Exportación por defecto:**\n   - Una exportación por defecto es un valor único que un módulo puede exportar. Esta exportación se realiza usando la palabra clave `default`, como se muestra:\n     ```javascript\n     // PricePrettyPrint.js\n     export default function printPrice(price) {\n       // Código para formatear el precio\n       console.log(`Price: ${price}`);\n     }\n     ```\n\n3. **Opciones incorrectas:**\n   - A: 'printPrice must be a named export' es incorrecta porque una exportación nombrada requiere que se importe usando llaves (`{}`) como en `import { printPrice } from '/path/PricePrettyPrint.js';`.\n   - B: 'printPrice must be an all export' es incorrecta porque 'all export' no es una terminología reconocida en JavaScript.\n   - D: 'printPrice must be a multi export' es incorrecta porque 'multi export' tampoco es un término válido en JavaScript."
     },
     {
-      id: "q68",
+      id: "q67",
       question: "A developer creates an object where its properties should be immutable and prevent properties from being added or modified. Which method should be used to execute this business requirement?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1111,7 +1096,7 @@ export default function questions2() {
       explanation: "La opción correcta es la D: 'Object.freeze()'.\n\n**Explicación detallada:**\n\n1. **Object.freeze():**\n   - El método `Object.freeze()` congela un objeto, lo que significa que sus propiedades no pueden ser añadidas, eliminadas o modificadas.\n   - Este método hace que el objeto sea completamente inmutable, cumpliendo con el requisito de prevenir cualquier cambio.\n   - Ejemplo:\n     ```javascript\n     const obj = { name: 'John' };\n     Object.freeze(obj);\n     obj.name = 'Jane'; // No tiene efecto, el objeto permanece igual.\n     obj.age = 30; // Tampoco tiene efecto, no se pueden añadir nuevas propiedades.\n     ```\n\n2. **Opciones incorrectas:**\n   - A: 'Object.const()' es incorrecta porque no existe un método `Object.const()` en JavaScript.\n   - B: 'Object.eval()' es incorrecta porque `eval` no tiene relación con la inmovilización de objetos.\n   - C: 'Object.lock()' es incorrecta porque `Object.lock()` no es un método reconocido en JavaScript.\n\n3. **Conclusión:**\n   - `Object.freeze()` es el método adecuado para garantizar que las propiedades del objeto sean inmutables y no se puedan modificar o agregar nuevas."
     },
     {
-      id: "q69",
+      id: "q68",
       question: "Which three options show valid methods for creating a fat arrow function?",
       type: "multiple choice",
       correct_options: ["A", "E", "C"],
@@ -1126,7 +1111,7 @@ export default function questions2() {
       explanation: "Las opciones correctas son A: `x => (console.log('executed');)`, C: `() => (console.log('executed');)`, y E: `(x, y, z) => (console.log('executed');)`.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - La sintaxis `x => (console.log('executed');)` es válida para una función de flecha que recibe un único parámetro `x`.\n   - No requiere paréntesis alrededor de `x` cuando hay un solo parámetro.\n\n2. **Opción C:**\n   - La sintaxis `() => (console.log('executed');)` es válida para una función de flecha que no toma parámetros.\n   - Los paréntesis son obligatorios cuando no se pasan parámetros.\n\n3. **Opción E:**\n   - La sintaxis `(x, y, z) => (console.log('executed');)` es válida para una función de flecha que toma múltiples parámetros, como `x`, `y`, y `z`.\n   - Los paréntesis son obligatorios para múltiples parámetros.\n\n4. **Opciones incorrectas:**\n   - B: `[] => (console.log('executed');)` es incorrecta porque `[]` no es una forma válida de declarar parámetros.\n   - D: `X,y,z => (console.log('executed');)` es incorrecta porque los múltiples parámetros deben estar entre paréntesis, como en `(x, y, z)`."
     },
     {
-      id: "q70",
+      id: "q69",
       question: "Refer to the code below:\n\nWhich value can a developer expect when referencing `country.capital.cityString`?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1141,7 +1126,7 @@ export default function questions2() {
       explanation: "La opción correcta es D: `'NaN'`.\n\n**Explicación detallada:**\n\n1. **Conversión de cadena a número:**\n   - La línea `let city = Number(\"London\");` intenta convertir la cadena `'London'` en un número.\n   - Como `'London'` no se puede interpretar como un número válido, la función `Number()` devuelve `NaN` (Not a Number).\n\n2. **Uso de `toString()` en `NaN`:**\n   - El valor `NaN` es un número especial en JavaScript y tiene un método `.toString()`. Este método devuelve la cadena `'NaN'`.\n   - Por lo tanto, `city.toString()` retorna `'NaN'`.\n\n3. **Acceso a `country.capital.cityString`:**\n   - Cuando el getter `capital` es llamado, devuelve un objeto con la propiedad `cityString`.\n   - Dado que `city` es `NaN`, `city.toString()` resulta en `'NaN'`.\n\n4. **Opciones incorrectas:**\n   - A: `'London'` es incorrecta porque `Number(\"London\")` no produce `'London'`, sino `NaN`.\n   - B: `undefined` es incorrecta porque `cityString` es definido como `'NaN'`.\n   - C: `An error` es incorrecta porque no se lanza ningún error en este código."
     },
     {
-      id: "q71",
+      id: "q70",
       question: "What are two unique features of functions defined with a fat arrow as compared to normal function definition?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1155,7 +1140,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Uso del `this` en funciones flecha:**\n   - Contrariamente a lo mencionado en la opción A, las funciones flecha no generan su propio `this`. En cambio, heredan el `this` del ámbito léxico circundante. Esto las hace especialmente útiles en situaciones donde se necesita preservar el contexto del ámbito exterior, como en métodos de clases o en funciones de callback.\n\n2. **Retorno implícito:**\n   - Una característica única de las funciones flecha es que, cuando su cuerpo contiene una sola expresión, esa expresión es evaluada y devuelta implícitamente sin necesidad de usar la palabra clave `return`. Por ejemplo:\n     ```javascript\n     const add = (a, b) => a + b;\n     console.log(add(2, 3)); // Resultado: 5\n     ```\n\n3. **Opciones incorrectas:**\n   - B: Es incorrecta porque las funciones flecha no reciben explícitamente un argumento llamado `parent This`. Heredan el `this` del ámbito circundante léxico.\n   - D: Aunque se menciona el uso del `this` del ámbito circundante, este comportamiento no es único de las funciones flecha. Lo que las distingue es precisamente su falta de un propio `this`."
     },
     {
-      id: "q72",
+      id: "q71",
       question: "Refer to the code below. Which three properties are set on `pet1`?",
       type: "multiple choice",
       correct_options: ["B", "C", "E"],
@@ -1171,7 +1156,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Propiedad `canTalk` (B):**\n   - La propiedad `canTalk` se establece en el constructor `Animal` y se hereda por `pet1`. Por defecto, su valor es `false`.\n\n2. **Propiedad `Type` (C):**\n   - La propiedad `type` también se inicializa en el constructor `Animal`. Por defecto, si no se pasa ningún valor, se asigna el valor `'Animal'`.\n\n3. **Propiedad `Size` (E):**\n   - Similar a `type`, la propiedad `size` se establece en el constructor `Animal` con el valor predeterminado `'small'` si no se proporciona ningún valor.\n\n4. **Opciones incorrectas:**\n   - A: `name` no se establece porque no se pasó ningún valor al crear `pet1`. Por lo tanto, permanece como `undefined`.\n   - D: `owner` tampoco se establece, ya que no se pasó ningún valor en la instancia `pet1`."
     },
     {
-      id: "q73",
+      id: "q72",
       question: "A class was written to represent items for purchase in an online store, and a second class represents items that are on sale at a discounted price. The constructor sets the name to the first value passed in. Below are two code sections.\n\n1. The first block demonstrates the definition of `Item` and `SaleItem` classes and their constructors.\n2. The second block contains the implementation of the `description` method and the creation of instances. \n\nWhat is the output when executing the code?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1186,7 +1171,7 @@ export default function questions2() {
       explanation: "La opción correcta es B: `This is a Scarf This is a Shirt This is a ScarfThis is a discounted Shirt`.\n\n**Explicación detallada:**\n\n1. **Primera llamada a `regItem.description`:**\n   - Se ejecuta el método definido en `Item.prototype`, devolviendo `'This is a Scarf'`.\n\n2. **Primera llamada a `saleItem.description`:**\n   - Antes de sobrescribir el método, `saleItem` usa el mismo método de `Item.prototype`, devolviendo `'This is a Shirt'`.\n\n3. **Reescritura de `SaleItem.prototype.description`:**\n   - Este método se sobrescribe para los objetos creados con `SaleItem`. Ahora devuelve `'This is a discounted Shirt'` para `saleItem`.\n\n4. **Resultados posteriores:**\n   - `regItem.description()` sigue devolviendo `'This is a Scarf'` porque no se afecta la implementación en `Item.prototype`.\n   - `saleItem.description()` ahora usa su propia implementación, devolviendo `'This is a discounted Shirt'`.\n\nPor lo tanto, el resultado en consola es:\n```\nThis is a Scarf\nThis is a Shirt\nThis is a Scarf\nThis is a discounted Shirt\n```"
     },
     {
-      id: "q74",
+      id: "q73",
       question: "Refer to the code below. What is the output after the code executes?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1201,7 +1186,7 @@ export default function questions2() {
       explanation: "La opción correcta es D: `Undefined`.\n\n**Explicación detallada:**\n\n1. **Métodos y propiedades de constructor:**\n   - La propiedad `Person.job` se asigna directamente al constructor `Person`, lo que la convierte en una propiedad estática.\n   - Los objetos instanciados (`myFather`) no tienen acceso a propiedades estáticas.\n\n2. **Opciones incorrectas:**\n   - A: `eyeColor` sí está definido como parte del constructor.\n   - B: La variable `Person` está correctamente declarada.\n   - C: La propiedad `job` no está definida en la instancia `myFather`."
     },
     {
-      id: "q75",
+      id: "q74",
       question: "Refer to the following code. Which statement should be added to line 09 for the code to display ‘The truck 123AB has a weight of 5000 lb.’?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1216,7 +1201,7 @@ export default function questions2() {
       explanation: "La opción correcta es B: `super(plate);`.\n\n**Explicación detallada:**\n\n1. **Uso de `super`:**\n   - El método `super` llama al constructor de la clase padre (`Vehicle`) y pasa el valor del parámetro `plate` para inicializar correctamente la propiedad heredada.\n\n2. **Errores en opciones:**\n   - A: `Super.plate` es una sintaxis inválida.\n   - C: `this.plate = plate` sobrescribiría la lógica del constructor del padre y no utiliza correctamente la herencia.\n   - D: `Vehicle.plate = plate` no inicializa la propiedad en la instancia de la clase hija."
     },
     {
-      id: "q76",
+      id: "q75",
       question: "A developer creates a class that represents a blog post. Which statement should be inserted in the placeholder on line 02 to allow for a variable to be set to a new instance of a `Post` with the three attributes correctly populated?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1231,7 +1216,7 @@ export default function questions2() {
       explanation: "La opción correcta es C: `constructor(body, author, viewCount) {`.\n\n**Explicación detallada:**\n\n1. **Uso del constructor:**\n   - En una clase de JavaScript, el método `constructor` se utiliza para inicializar las propiedades de una instancia cuando se crea un nuevo objeto.\n   - `constructor(body, author, viewCount)` permite pasar valores iniciales para las propiedades `body`, `author`, y `viewCount`.\n\n2. **Errores en opciones:**\n   - A: `super` no aplica aquí ya que la clase `Post` no está extendiendo de otra clase.\n   - B: `function Post` sería válido en una definición de función, pero no en el contexto de una clase.\n   - D: `constructor()` no inicializaría correctamente las propiedades requeridas, ya que no recibe parámetros."
     }, 
     {
-      id: "q77",
+      id: "q76",
       question: "Refer to the code below. Which three properties are set on `pet1`?",
       type: "multiple choice",
       correct_options: ["B", "C", "E"],
@@ -1247,7 +1232,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Propiedad `canTalk` (B):**\n   - Definida en el constructor `Animal`, su valor por defecto es `false`. Esto se aplica al objeto `pet1`.\n\n2. **Propiedad `Type` (C):**\n   - También definida en el constructor `Animal`. Si no se pasa un valor, su valor predeterminado es `'Animal'`.\n\n3. **Propiedad `Size` (E):**\n   - Similar a `Type`, se define en el constructor `Animal` con valor predeterminado `'small'` si no se especifica.\n\n4. **Opciones incorrectas:**\n   - A: `Name` no se establece porque no se pasa un valor al crear `pet1`, por lo que queda como `undefined`.\n   - D: `Owner` tampoco se establece para la misma razón que `Name`."
     },
     {
-      id: "q78",
+      id: "q77",
       question: "Which three options show valid methods for creating a fat arrow function?",
       type: "multiple choice",
       correct_options: ["A", "E"],
@@ -1262,7 +1247,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y E.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Es una función flecha válida con un parámetro (`x`) y un cuerpo que incluye una llamada a `console.log`.\n\n2. **Opción E:**\n   - Es una función flecha válida con múltiples parámetros (`x`, `y`, `z`) encerrados en paréntesis.\n\n3. **Opciones incorrectas:**\n   - B: `[]` no es una sintaxis válida para parámetros en una función flecha.\n   - C: Aunque es válida como función flecha, la opción no está seleccionada en el contexto de esta pregunta.\n   - D: Falta encapsulación para múltiples parámetros."
     },
     {
-      id: "q79",
+      id: "q78",
       question: "What are two unique features of functions defined with a fat arrow as compared to normal function definition?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1276,7 +1261,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Las funciones flecha no generan su propio `this`. Usan el `this` del contexto léxico que las rodea.\n\n2. **Opción C:**\n   - Si una función flecha tiene un solo cuerpo de expresión, el valor de esa expresión se retorna implícitamente.\n\n3. **Opciones incorrectas:**\n   - B: No existe el argumento `parentThis` en funciones flecha.\n   - D: Aunque las funciones flecha heredan el `this` de su contexto léxico, esta opción no aplica específicamente a funciones flecha como una característica única."
     },
     {
-      id: "q80",
+      id: "q79",
       question: "A developer has two ways to write a function. After deciding on an option, the developer creates 1000 monster objects. \n\nHow many growl methods are created with Option A or Option B?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1293,7 +1278,7 @@ export default function questions2() {
       explanation: "La opción correcta es B: `1000 growl methods are created for Option A`.\n\n**Explicación detallada:**\n\n1. **Option A:**\n   - En este caso, `growl` es un método definido como parte de cada instancia.\n   - Por lo tanto, al crear 1000 objetos, se crearán 1000 instancias únicas de `growl`.\n\n2. **Option B:**\n   - Aquí, `growl` se define en el prototipo (`Monster.prototype`), lo que significa que todas las instancias comparten el mismo método `growl`.\n   - Solo se crea un método `growl`, independientemente del número de instancias creadas.\n\n3. **Opciones incorrectas:**\n   - A y D son incorrectas porque reflejan el comportamiento de la opción contraria.\n   - E y F no diferencian adecuadamente entre las opciones de implementación."
     },
     {
-      id: "q81",
+      id: "q80",
       question: "Which two code snippets show working examples of a recursive function?",
       type: "multiple choice",
       correct_options: ["A", "D"],
@@ -1307,7 +1292,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Esta función recursiva decrementa el valor `startNumber` hasta que alcanza `0`, momento en el que devuelve `startNumber`.\n\n2. **Opción D:**\n   - Esta función calcula el factorial de un número utilizando recursión, multiplicando el número por el resultado de la llamada a sí misma con `numVar - 1`.\n\n3. **Opciones incorrectas:**\n   - B: No implementa recursión correctamente.\n   - C: Intenta usar recursión pero no tiene un caso base válido para detener la función."
     },
     {
-      id: "q82",
+      id: "q81",
       question: "A developer wants to define a function `log` to be used a few times on a single-file JavaScript script. Which two options can correctly replace line 01 and declare the function for use?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1322,7 +1307,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Define una función normal usando la sintaxis estándar de `function`. Es válida para ser llamada múltiples veces.\n\n2. **Opción C:**\n   - Usa una función flecha (`arrow function`), que es válida y efectiva para definiciones funcionales en un archivo único.\n\n3. **Opciones incorrectas:**\n   - B: Contiene un error de sintaxis al intentar usar `const` junto con un nombre de función.\n   - D: Es sintácticamente inválido en JavaScript."
     },
     {
-      id: "q83",
+      id: "q82",
       question: "Cloud Kicks has a class to represent items for sale in an online store, as shown below. A new business requirement comes in that requests a ClothingItem class that should have all of the properties and methods of the Item class but will also have properties that are specific to clothes.\n\nWhich line of code properly declares the ClothingItem class such that it inherits from Item?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1337,7 +1322,7 @@ export default function questions2() {
       explanation: "La opción correcta es D: **Class ClothingItem extends Item { }**.\n\n**Explicación detallada:**\n\n1. **Uso de 'extends':**\n   - La palabra clave `extends` se utiliza para declarar una subclase que hereda las propiedades y métodos de una clase padre.\n\n2. **Corrección de otras opciones:**\n   - Opción A: `implements` no es adecuado para heredar clases; se utiliza con interfaces.\n   - Opción B: No declara relación alguna con la clase padre.\n   - Opción C: `super` se utiliza dentro del constructor, no para declarar la clase."
     },
     {
-      id: "q84",
+      id: "q83",
       question: "What is the value of result after the code executes?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1352,7 +1337,7 @@ export default function questions2() {
       explanation: "La opción correcta es C: **5**.\n\n**Explicación detallada:**\n\n1. **Referencia compartida en objetos:**\n   - `objA` y `objB` apuntan al mismo objeto en memoria. Esto significa que cualquier cambio hecho a `objB` también afecta a `objA`.\n\n2. **División del valor:**\n   - `changeValue` divide el valor de la propiedad `value` del objeto por 2. Después de llamar a la función, el valor de `objA.value` y `objB.value` es 5.\n\n3. **Conclusión:**\n   - `result` toma el valor de `objA.value`, que es 5."
     },
     {
-      id: "q85",
+      id: "q84",
       question: "Which three options show valid methods for creating a fat arrow function?",
       type: "multiple choice",
       correct_options: ["C", "D", "E"],
@@ -1368,7 +1353,7 @@ export default function questions2() {
       explanation: "Las opciones correctas son C, D y E:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - Uso correcto de paréntesis para una función sin argumentos.\n\n2. **Opción D:**\n   - Una lista de argumentos separada por comas (sin paréntesis si es un argumento único).\n\n3. **Opción E:**\n   - Los paréntesis son necesarios para múltiples argumentos.\n\n4. **Errores en otras opciones:**\n   - Opción A: Falta un punto y coma válido fuera del bloque.\n   - Opción B: Los corchetes `[]` no son identificadores válidos para funciones flecha."
     },
     {
-      id: "q86",
+      id: "q85",
       question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace line 1 and declare the function for use?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1382,7 +1367,7 @@ export default function questions2() {
       explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Declara la función usando el método tradicional `function log(logInput)`.\n\n2. **Opción C:**\n   - Utiliza la sintaxis moderna de funciones flecha con `const log = (logInput) => {`.\n\n3. **Errores en otras opciones:**\n   - Opción B: No es una sintaxis válida para declarar una función.\n   - Opción D: `function log =` no es una declaración válida en JavaScript."
     },
     {
-      id: "q87",
+      id: "q86",
       question: "A developer has an ErrorHandler module that contains multiple functions. What kind of export should be leveraged so that multiple functions can be used?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1396,7 +1381,7 @@ export default function questions2() {
       explanation: "La opción correcta es A: **Named.**\n\n**Explicación detallada:**\n\n1. **Exportación nombrada:**\n   - Permite exportar varias funciones del mismo módulo utilizando sus nombres específicos.\n   - Esto facilita el acceso selectivo a las funciones según sus necesidades.\n\n2. **Errores en otras opciones:**\n   - Opción B: 'All' no es una forma válida de exportar.\n   - Opción C: 'Multi' tampoco es una opción válida en JavaScript.\n   - Opción D: `Default` exporta solo un valor o función por módulo, lo cual no es aplicable aquí."
     },
     {
-      id: "q88",
+      id: "q87",
       question: "Refer to the code below. What is the value of result after the code executes?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1411,7 +1396,7 @@ export default function questions2() {
       explanation: "La opción correcta es C: **5.**\n\n**Explicación detallada:**\n\n1. **Referencia compartida en objetos:**\n   - `objA` y `objB` apuntan al mismo objeto en memoria. Esto significa que cualquier cambio realizado en `objB` también afecta a `objA`.\n\n2. **División del valor:**\n   - La función `changeValue` divide el valor de la propiedad `value` entre 2. Por lo tanto, `objA.value` se actualiza a `5`.\n\n3. **Errores en otras opciones:**\n   - Opción A: Incorrecta porque el valor de `objA.value` sí cambia.\n   - Opción B: `NaN` solo aparecería si el valor original no fuese numérico.\n   - Opción D: `undefined` no aplica porque `objA.value` está definido."
     },
     {
-      id: "q89",
+      id: "q88",
       question: "Refer to the following code. Which two statements could be inserted at line 17 to enable the function call on the last line?",
       type: "multiple choice",
       correct_options: ["A", "C"],

@@ -584,7 +584,7 @@ export default function questions3() {
         C: "Geolocation is not available when calling stop().",
         D: "Permission is needed from the user before tracking can be stopped.",
       },
-      code: 'let watchId=null;\n\nconst start=()=>{\nif(navigator.geolocation){\nnavigator.geolocation.watchPosition(handleSuccess,handleError,options);\n}else{\nlocationElement.innerHTML=("Sorry, browser does not support geolocation!");\n}\n}\n\nconst stop=()=>{\nnavigator.geolocation.clearWatch(watchId);\n}',
+      code: 'let watchId = null;\n\nconst start=()=>{\n\tif(navigator.geolocation){\n\t\tnavigator.geolocation.watchPosition(handleSuccess,handleError,options);\n\t}else{\n\t\tlocationElement.innerHTML=("Sorry, browser does not support geolocation!");\n\t}\n}\n\nconst stop=()=>{\nnavigator.geolocation.clearWatch(watchId);\n}',
       explanation:
         "La opción correcta es la B: 'watchId is still null when passed to clearWatch()'. Esto se debe a que 'watchId' nunca se asigna al valor de retorno de 'watchPosition()' dentro de la función 'start()'. Esto impide que 'stop()' funcione correctamente.\n\nEl código correcto para asignar 'watchId' debería ser:\n\n```javascript\nwatchId = navigator.geolocation.watchPosition(handleSuccess, handleError, options);\n```\n\nLas otras opciones son incorrectas:\n\n- **A**: 'clearWatch()' es la función adecuada para detener el seguimiento.\n- **C**: No hay indicios de que la geolocalización no esté disponible.\n- **D**: La solicitud de permisos es necesaria para iniciar, pero no para detener el seguimiento.",
     },
@@ -1093,20 +1093,6 @@ export default function questions3() {
     },
     {
       id: "q69",
-      question: "A developer needs to dispatch a custom event called `update` to send information about `recordId`. Which two options could a developer insert at the placeholder in line 02 to achieve this?",
-      type: "multiple choice",
-      correct_options: ["A", "D"],
-      number_of_correct_answers: 2,
-      options: {
-        A: "'Update', { recordId: '123abc' }",
-        B: "'Update', '123abc'",
-        C: "{ type: 'update', recordId: '123abc' }",
-        D: "'Update', { details: { recordId: '123abc' } }"
-      },
-      explanation: "Las opciones correctas son A y D:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Crea un evento personalizado `update` con un objeto que contiene la propiedad `recordId`.\n\n2. **Opción D:**\n   - Crea un evento `update` con una estructura que incluye un objeto `details` que contiene `recordId`.\n\n3. **Errores en otras opciones:**\n   - Opción B: '123abc' no puede ser el segundo argumento, ya que un evento necesita un objeto con propiedades.\n   - Opción C: La estructura `type` en lugar de `details` no es necesaria para este caso de uso."
-    },
-    {
-      id: "q70",
       question: "A developer creates a simple webpage with an input field. When a user enters text in the input field and clicks the button, the actual value of the field must be displayed in the console. The developer wrote the JavaScript code below, but when the user clicks the button, the output is always 'Hello'. \n\nWhat needs to be done to make this code work as expected?",
       type: "multiple choice",
       correct_options: ["A"],

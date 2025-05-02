@@ -18,7 +18,9 @@ let questionAmount = 60;
 // Inicialización de elementos del DOM
 const timerDisplay = document.getElementById("timer-display");
 const configBtn = document.getElementById("config-btn");
-const questionAmountRadios = document.querySelectorAll('input[name="question-amount"]');
+const questionAmountRadios = document.querySelectorAll(
+  'input[name="question-amount"]'
+);
 const configModal = document.getElementById("config-modal");
 const closeModal = document.getElementById("close-modal");
 const radioButtons = document.querySelectorAll('input[name="timer-mode"]');
@@ -36,11 +38,11 @@ const questionSources = [
 ];
 
 // Manejar el cambio de la cantidad de preguntas
-questionAmountRadios.forEach(radio => {
+questionAmountRadios.forEach((radio) => {
   radio.addEventListener("change", (e) => {
-    questionAmount = e.target.value === "all" ? "all" : parseInt(e.target.value);
-    console.log("Pregunta cantidad seleccionada:", questionAmount); // Para verificar
-    loadQuestions();  // Cargar las preguntas cuando cambie el valor
+    questionAmount =
+      e.target.value === "all" ? "all" : parseInt(e.target.value);
+    loadQuestions(); // Cargar las preguntas cuando cambie el valor
     configModal.classList.add("hidden"); // Cerrar modal
   });
 });
@@ -52,7 +54,10 @@ function startTimer() {
     const elapsed = Date.now() - startTime;
     const seconds = Math.floor((elapsed / 1000) % 60);
     const minutes = Math.floor(elapsed / 60000);
-    timerDisplay.textContent = `Time: ${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+    timerDisplay.textContent = `Time: ${String(minutes).padStart(
+      2,
+      "0"
+    )}:${String(seconds).padStart(2, "0")}`;
   }, 1000);
 }
 
@@ -63,7 +68,10 @@ function stopTimer() {
   const totalSeconds = Math.floor(elapsed / 1000);
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = totalSeconds % 60;
-  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+    2,
+    "0"
+  )}`;
 }
 
 // Mostrar el modal de configuración
@@ -148,11 +156,21 @@ async function loadQuestions() {
   }
 }
 
+// Randomize the order of the responses
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 // Mostrar la pregunta en pantalla
 function showQuestion() {
   const question = questions[currentQuestionIndex];
 
-  questionCounter.textContent = `${currentQuestionIndex + 1} of ${questions.length}`;
+  questionCounter.textContent = `${currentQuestionIndex + 1} of ${
+    questions.length
+  }`;
 
   document.getElementById("question-text").textContent = question.question;
 
@@ -167,7 +185,10 @@ function showQuestion() {
 
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.innerHTML = "";
-  Object.keys(question.options).forEach((optionKey) => {
+  const optionKeys = Object.keys(question.options);
+  shuffleArray(optionKeys);
+
+  optionKeys.forEach((optionKey) => {
     const button = document.createElement("button");
     button.classList.add("option-btn");
     button.textContent = question.options[optionKey];
@@ -180,7 +201,7 @@ function showQuestion() {
 
   const instructionText = document.getElementById("selection-instruction");
   if (question.number_of_correct_answers > 1) {
-    instructionText.textContent = `Selecciona exactamente ${question.number_of_correct_answers} opciones.`;
+    instructionText.textContent = `Selecciona ${question.number_of_correct_answers} opciones.`;
     enableMultipleSelection();
   } else {
     instructionText.textContent = "";
@@ -218,7 +239,9 @@ function handleOptionClick(optionKey) {
     configBtn.style.cursor = "not-allowed";
   }
 
-  document.getElementById("question-counter").textContent = `${currentQuestionIndex + 1} of ${questions.length}`;
+  document.getElementById("question-counter").textContent = `${
+    currentQuestionIndex + 1
+  } of ${questions.length}`;
 }
 
 // Función para habilitar la selección múltiple

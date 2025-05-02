@@ -430,6 +430,21 @@ export default function questions7() {
         D: "Mocking"
       },
       explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C - White box:**\n   - Este enfoque examina la lógica interna de la dependencia, como cuántas veces se llamó al método `query` y los argumentos usados.\n\n2. **Opción D - Mocking:**\n   - La técnica de mocking reemplaza una dependencia real con un objeto simulado para rastrear interacciones específicas como llamadas y argumentos.\n\n3. **Errores en otras opciones:**\n   - Opción A: Las pruebas de integración evalúan cómo interactúan varios componentes juntos, no el comportamiento interno de la dependencia.\n   - Opción B: Las pruebas de caja negra evalúan funcionalidad sin observar la implementación interna."
+    },
+    {
+      id: "q29",
+      question: "Refer to the code below. Which assertion accurately tests the above code?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Console.assert (await functionUnderTest(true), ' OK ')",
+        B: "Console.assert (await functionUnderTest(true), ' not OK ')",
+        C: "Console.assert (awaitfunctionUnderTest(true), ' not OK ')",
+        D: "Console.assert (await functionUnderTest(true), 'OK')"
+      },
+      code: "async function functionUnderTest(isOK) {\n\t  if (isOK) return 'OK';\n\t  throw new Error('not OK');\n}",
+      explanation: "La opción correcta es la D: 'Console.assert(await functionUnderTest(true), 'OK')'.\n\n**Explicación detallada:**\n\n1. **Evaluación de la función:**\n   - La función `functionUnderTest` verifica si el parámetro `isOK` es verdadero.\n   - Si es `true`, retorna la cadena `'OK'`.\n   - Si es `false`, lanza un error con el mensaje `'not OK'`.\n\n2. **Uso de `Console.assert`:**\n   - La declaración `Console.assert(condition, message)` valida que la `condition` sea `true`. Si la condición es falsa, se registra el `message` en la consola como error.\n   - En este caso, `await functionUnderTest(true)` retorna `'OK'`, lo cual hace que la condición en `Console.assert` sea verdadera y no se registre ningún error.\n\n3. **Opciones incorrectas:**\n   - A: Incorrecto debido al espacio innecesario en `' OK '`, lo cual rompe la comparación.\n   - B: Incorrecto porque la condición no es `'not OK'` cuando `isOK` es verdadero.\n   - C: Incorrecto porque contiene un error de sintaxis en `awaitfunctionUnderTest(true)` debido a la falta de espacios."
     },                                                               
   ];
 };

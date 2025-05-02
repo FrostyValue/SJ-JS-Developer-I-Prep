@@ -20,7 +20,7 @@ export default function questions1() {
     {
       id: "q2",
       question:
-        "A developer needs to send the employee data below in JSON format to a remote server for the creation of a new employee record. name = Jon Smith title = IT Manager salary = 100000 email = jsmith@cosmicinnovation.com \n\nWhich of the following represents a properly formatted JSON string that can be used as the body of the POST request?",
+        "A developer needs to send the employee data below in JSON format to a remote server for the creation of a new employee record. \n\nWhich of the following represents a properly formatted JSON string that can be used as the body of the POST request?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -30,7 +30,7 @@ export default function questions1() {
         C: "const data = '{'name': 'Jon Smith', 'title': 'IT Manager', 'salary': 100000, 'email': 'jsmith@cosmicinnovation.com' ]';",
         D: "const data =\"{ 'name': 'Jon Smith', 'title': 'IT Manager', 'salary': 100000, 'email': 'jsmith@cosmicinnovation.com']\";",
       },
-      code: "",
+      code: "name = Jon Smith title = IT Manager salary = 100000 email = jsmith@cosmicinnovation.com",
       explanation:
         "La opción correcta es la B, ya que representa una cadena JSON válida que puede ser enviada en el cuerpo de una petición POST. Esta cadena está correctamente formada: las claves y los valores tipo string están entre comillas dobles, y toda la estructura está encerrada en una cadena con comillas simples para evitar conflicto con las comillas dobles internas.\n\nLas otras opciones son incorrectas por lo siguiente:\n- A: No pone comillas alrededor de los valores tipo string ('Jon Smith', 'IT Manager' y el email), lo que rompe el formato JSON válido.\n- C: Usa comillas simples para claves y valores, lo cual no es válido en JSON, y además cierra con un corchete cuadrado `]` en vez de una llave `}`.\n- D: Tiene el mismo problema que la C, con comillas simples en vez de dobles, y termina con un `]` incorrectamente, además de que está entrecomillado con comillas dobles exteriores, lo que causa conflicto con las internas.",
     },
@@ -922,7 +922,7 @@ export default function questions1() {
         C: "Undefined",
         D: "Null"
       },
-      code: "let a = 'a';\nlet b;\n// b = a; console.log(b);",
+      code: "let a = 'a';\nlet b;\n// b = a; \nconsole.log(b);",
       explanation: "La opción correcta es la C: 'Undefined'.\n\n**Explicación detallada:**\n\n1. **Declaración de variables:**\n   - `let a = 'a';` define y asigna el valor `'a'` a la variable `a`.\n   - `let b;` declara la variable `b` pero no le asigna ningún valor.\n\n2. **Comentario de la asignación:**\n   - La línea `b = a;` está comentada, por lo que no se ejecuta.\n   - Sin esta asignación, la variable `b` sigue siendo `undefined`.\n\n3. **Impresión con `console.log(b);`:**\n   - Cuando se ejecuta `console.log(b);`, el valor actual de `b` se muestra en la consola. Dado que no tiene un valor asignado, su estado es `undefined`.\n\n4. **Opciones incorrectas:**\n   - A: 'Reference Error: b is not defined' es incorrecta porque `b` está declarada; el error solo ocurre si la variable no está declarada.\n   - B: 'A' es incorrecta porque el valor de `b` nunca se establece como `'a'` debido al comentario.\n   - D: 'Null' es incorrecta porque `null` debe ser asignado explícitamente y no es el valor predeterminado para una variable declarada sin asignar."
     },
     {
@@ -1111,7 +1111,7 @@ export default function questions1() {
     },
     {
       id: "q70",
-      question: "A developer has the following array of student test grades:\n\n`let arr = [7, 8, 5, 8, 9];`\n\nThe teacher wants to double each score and then see an array of the students who scored more than 15 points. How should the developer implement the request?",
+      question: "A developer has the following array of student test grades. The teacher wants to double each score and then see an array of the students who scored more than 15 points. \n\nHow should the developer implement the request?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -1121,6 +1121,7 @@ export default function questions1() {
         C: "let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);",
         D: "let arr1 = arr.map((num) => (num * 2)).filterBy((val) => (val > 15));"
       },
+      code: "let arr = [7, 8, 5, 8, 9];",
       explanation: "La opción correcta es C: `let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);`\n\n**Explicación detallada:**\n\n1. **Uso de `map` y `filter`:**\n   - `.map()` transforma cada elemento del array, en este caso, duplicando su valor.\n   - `.filter()` selecciona los elementos que cumplen la condición de ser mayores a 15.\n\n2. **Ejemplo actualizado:**\n   ```javascript\n   let arr = [7, 8, 5, 8, 9];\n   let arr1 = arr.map((num) => num * 2).filter((val) => val > 15);\n   console.log(arr1); // [16, 18]\n   ```\n\n3. **Opciones incorrectas:**\n   - A: Utiliza `.filter` antes de `.map`, lo cual contradice la secuencia lógica requerida.\n   - B y D: `.mapBy` y `.filterBy` no son métodos válidos en JavaScript."
     },
     {
@@ -1260,21 +1261,6 @@ export default function questions1() {
     },
     {
       id: "q80",
-      question: "Refer to the code below. What is the value of `result` when the code executes?",
-      type: "multiple choice",
-      correct_options: ["A"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "10-10",
-        B: "5-5",
-        C: "10-5",
-        D: "5-10"
-      },
-      code: "function changeValue(param) {\n  param = 5;\n}\nlet a = 10;\nlet b = a;\nchangeValue(b);\nconst result = a + ' - ' + b;",
-      explanation: "La opción correcta es A: `10-10`.\n\n**Explicación detallada:**\n\n1. **Scope de las variables:**\n   - Dentro de la función `changeValue`, el parámetro `param` se reasigna localmente a `5`, pero esto no afecta el valor original de `b`. Por lo tanto, `b` sigue siendo igual a `10`.\n\n2. **Cálculo de `result`:**\n   - Al concatenar los valores de `a` y `b`, el resultado es `'10-10'`."
-    },
-    {
-      id: "q81",
       question: "Consider type coercion, what does the following expression evaluate to?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1289,7 +1275,7 @@ export default function questions1() {
       explanation: "La opción correcta es D: `'4100null'`.\n\n**Explicación detallada:**\n\n1. **Coerción de tipos:**\n   - `true` se convierte en `1` cuando se utiliza en una operación matemática.\n   - `1 + 3` resulta en `4`.\n   - `4 + '100'` concatena el número `4` con la cadena `'100'`, dando `'4100'`.\n   - `'4100' + null` concatena `'4100'` con la cadena `'null'`, dando como resultado `'4100null'."
     },
     {
-      id: "q82",
+      id: "q81",
       question: "Which two console logs outputs `NaN`?",
       type: "multiple choice",
       correct_options: ["B", "C"],
@@ -1304,7 +1290,7 @@ export default function questions1() {
       explanation: "Las respuestas correctas son B y C.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `parseInt('two')` intenta convertir la cadena `'two'` en un número. Esto no es posible, por lo que devuelve `NaN`.\n\n2. **Opción C:**\n   - Dividir `10` por una cadena no convertible (`'five'`) genera `NaN` porque la operación matemática no puede completarse.\n\n3. **Opciones incorrectas:**\n   - A: `Number('5')` convierte la cadena `'5'` en el número `5`, por lo que `10 / 5` resulta en `2`.\n   - D: Aunque dividir por `0` es indefinido matemáticamente, en JavaScript esto produce `Infinity`, no `NaN`."
     },
     {
-      id: "q83",
+      id: "q82",
       question: "Which statement phrases successfully?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1318,7 +1304,7 @@ export default function questions1() {
       explanation: "La opción correcta es D: `JSON.parse('\"foo\"');`.\n\n**Explicación detallada:**\n\n1. **Sintaxis válida:**\n   - `JSON.parse('\"foo\"')` evalúa correctamente la cadena JSON, porque incluye comillas dobles escapadas dentro de las comillas simples.\n\n2. **Opciones incorrectas:**\n   - A: Falta la estructura JSON válida (comillas dobles).\n   - B y C: La estructura de comillas dobles está incorrecta o mal escapada, lo que genera errores de sintaxis."
     },
     {
-      id: "q84",
+      id: "q83",
       question: "Refer to the following array. Which two lines of code result in a second array, `arr2`, being created such that `arr2` is not a reference to `arr1`?",
       type: "multiple choice",
       correct_options: ["A", "B"],
@@ -1333,7 +1319,7 @@ export default function questions1() {
       explanation: "Las respuestas correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - `slice` crea una copia superficial de una porción del array original. Al usar `slice(0, 5)`, se genera un nuevo array con los mismos elementos que `arr1`.\n\n2. **Opción B:**\n   - `Array.from` genera un nuevo array copiando todos los elementos de `arr1`.\n\n3. **Opciones incorrectas:**\n   - C: `arr2` es simplemente una referencia a `arr1`.\n   - D: `sort` modifica `arr1` directamente, y `arr2` será una referencia a este array modificado."
     },
     {
-      id: "q85",
+      id: "q84",
       question: "Refer to the code below. What value can a developer expect when referencing `o.js.secondCity`?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1348,7 +1334,7 @@ export default function questions1() {
       explanation: "La opción correcta es B: `'new york'`.\n\n**Explicación detallada:**\n\n1. **Propiedad `get`:**\n   - La propiedad `js` de `o` es un getter que devuelve un objeto con las ciudades convertidas a minúsculas.\n\n2. **`secondCity`:**\n   - `city2.toLowerCase()` convierte `'New York'` a `'new york'` y es la propiedad que se devuelve en `secondCity`.\n\n3. **Opciones incorrectas:**\n   - A: `undefined` no es correcto porque `secondCity` se define explícitamente.\n   - C: `'New York'` no se devuelve en mayúsculas porque se aplica `.toLowerCase()`.\n   - D: No hay errores en la sintaxis o ejecución."
     },
     {
-      id: "q86",
+      id: "q85",
       question: "Given the following code. What is the output of line 02?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1363,7 +1349,7 @@ export default function questions1() {
       explanation: "La opción correcta es C: `'Object'`.\n\n**Explicación detallada:**\n\n1. **Uso de `typeof`:**\n   - El operador `typeof` devuelve `'object'` para valores `null`. Este comportamiento se debe a un error histórico en la implementación de JavaScript.\n\n2. **Opciones incorrectas:**\n   - A y D: `Null` y `Undefined` no son valores que `typeof` devuelva para `null`.\n   - B: `'X'` no es relevante aquí."
     },
     {
-      id: "q87",
+      id: "q86",
       question: "Given the following code. What is the output of line 02?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1378,22 +1364,7 @@ export default function questions1() {
       explanation: "La opción correcta es C: `'object'`.\n\n**Explicación detallada:**\n\n1. **Uso de `typeof`:**\n   - Aunque `null` representa la ausencia de un valor, el operador `typeof` devuelve `'object'`. Este comportamiento es un error histórico en JavaScript.\n\n2. **Opciones incorrectas:**\n   - A y B: `'x'` y `'null'` no son valores devueltos por `typeof`.\n   - D: `'undefined'` no aplica porque `null` es un valor definido intencionadamente."
     },
     {
-      id: "q88",
-      question: "Refer to the code below. What is the value of `result` when the code executes?",
-      type: "multiple choice",
-      correct_options: ["A"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "10 - 10",
-        B: "5 - 5",
-        C: "5 - 10",
-        D: "10 - 5"
-      },
-      code: "function changeValue(param) {\n  param = 5;\n}\nlet a = 10;\nlet b = 5;\nchangeValue(b);\nconst result = a + ' - ' + b;",
-      explanation: "La opción correcta es A: `10 - 10`.\n\n**Explicación detallada:**\n\n1. **Scope de las variables:**\n   - Dentro de `changeValue`, el parámetro `param` se cambia localmente, pero esto no afecta el valor de `b` fuera de la función.\n\n2. **Cálculo del resultado:**\n   - `a` permanece como `10`, y `b` sigue siendo `5`, lo que produce `'10 - 5'` como resultado esperado."
-    },
-    {
-      id: "q89",
+      id: "q87",
       question: "Refer to the code below. What is the value of `foodMenu1` after the code executes?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1408,7 +1379,7 @@ export default function questions1() {
       explanation: "La opción correcta es A: `['pizza', 'burger', 'French fries', 'Garlic bread']`.\n\n**Explicación detallada:**\n\n1. **Referencias compartidas:**\n   - `finalMenu` apunta al mismo array que `foodMenu1`, ya que no se creó una copia. Cualquier modificación en `finalMenu` afecta directamente a `foodMenu1`.\n\n2. **Efecto de `push`:**\n   - Al agregar `'Garlic bread'` con `push`, el nuevo elemento se añade al final de ambos, ya que comparten referencia."
     },
     {
-      id: "q90",
+      id: "q88",
       question: "What is returned by the function call on the last line?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1423,7 +1394,7 @@ export default function questions1() {
       explanation: "La opción correcta es A: **Undefined.**\n\n**Explicación detallada:**\n\n1. **Valor de `x`:**\n   - `x` se declara, pero no se inicializa, lo cual le asigna el valor predeterminado `undefined`.\n\n2. **Condiciones en `test`:**\n   - La primera condición `if (val === undefined)` es verdadera, por lo que la función devuelve `'Undefined value!'`.\n\n3. **Conclusión:**\n   - Aunque en la pregunta original la opción A está ligeramente desalineada ('Undefined' en vez de 'Undefined value!'), parece indicar la elección correcta."
     },
     {
-      id: "q91",
+      id: "q89",
       question: "A developer is required to write a function that calculates the sum of elements in an array but is getting `undefined` every time the code is executed. \n\nThe developer needs to find what is missing in the code.",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1437,7 +1408,7 @@ export default function questions1() {
       explanation: "La opción correcta es D: **Replace line 5 with `return result;`.**\n\n**Explicación detallada:**\n\n1. **Falta de retorno:**\n   - En la implementación actual, el valor `result` nunca se devuelve al final de la función, lo que causa que se obtenga `undefined`.\n\n2. **Correcciones necesarias:**\n   - Reemplazar la línea 5 con `return result;` asegura que el valor calculado se devuelva correctamente.\n\n3. **Errores en otras opciones:**\n   - Opción A: `.map()` no es adecuado para sumar elementos.\n   - Opción B: La corrección sugerida no resuelve el problema principal (falta de retorno).\n   - Opción C: Aunque maneja arrays vacíos, no aborda el problema específico de esta implementación."
     },
     {
-      id: "q92",
+      id: "q90",
       question: "At Universal Containers, every team has its own way of copying JavaScript objects. The code snippet shows an implementation from one team. What is the output of the code execution?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1451,7 +1422,7 @@ export default function questions1() {
       explanation: "La opción correcta es C: **TypeError: dan.name is not a function.**\n\n**Explicación detallada:**\n\n1. **Uso de JSON.stringify:**\n   - `JSON.stringify` solo copia los valores de las propiedades, no las funciones. Por lo tanto, `dan.name` no se copia como método.\n\n2. **Resultado:**\n   - Cuando se intenta llamar a `dan.name()`, JavaScript arroja un `TypeError` porque `dan.name` no es una función.\n\n3. **Errores en otras opciones:**\n   - Opción A y B: Incorrectas porque `dan.name()` nunca se ejecutará como función.\n   - Opción D: No aplica aquí; el problema no está relacionado con la asignación de constantes."
     },
     {
-      id: "q93",
+      id: "q91",
       question: "Refer to the code below. Which code assignment shows a correct way to convert this string to an integer?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1465,7 +1436,7 @@ export default function questions1() {
       explanation: "La opción correcta es A: **let numberValue = Number(textValue);**\n\n**Explicación detallada:**\n\n1. **Uso de `Number`:**\n   - `Number(textValue)` convierte correctamente una cadena en un número entero.\n\n2. **Errores en otras opciones:**\n   - Opción B: Sintaxis incorrecta.\n   - Opción C: `toInteger` no es un método válido de cadenas en JavaScript.\n   - Opción D: `Integer` no es una función nativa de JavaScript."
     },
     {
-      id: "q94",
+      id: "q92",
       question: "Refer to the following array. Which three options result in `x` evaluating as `[3, 4, 5]`?",
       type: "multiple choice",
       correct_options: ["B", "C", "D"],

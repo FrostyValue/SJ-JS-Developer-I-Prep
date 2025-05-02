@@ -155,7 +155,7 @@ export default function questions5() {
     {
       id: "q10",
       question:
-        "The function below has been created for illustrating how the event loop works. If the function is invoked using 'showEventLoop(5)', what number will be displayed in the console?",
+        "The function below has been created for illustrating how the event loop works. If the function is invoked using 'showEventLoop(5)'. What number will be displayed in the console?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -165,7 +165,7 @@ export default function questions5() {
         C: "60",
         D: "70",
       },
-      code: "function showEventLoop(num) {\nnum++;\nsetTimeout(function() {\nnum = num * 10;\nconsole.log(num);\n}, 0);\nnum++;\n};",
+      code: "function showEventLoop(num) {\n\tnum++;\n\tsetTimeout(function() {\n\t\tnum = num * 10;\n\t\tconsole.log(num);\n\t}, 0);\n\tnum++;\n};",
       explanation:
         "La opción correcta es la D: '70'. Esto se debe a que:\n\n1. Inicialmente, 'num' se incrementa a 6.\n2. El comando 'setTimeout' se ejecuta de manera asíncrona, y la función dentro de él se coloca en la cola de mensajes.\n3. Mientras tanto, 'num' se incrementa nuevamente, pasando a 7.\n4. Cuando la cola de mensajes procesa la función de 'setTimeout', multiplica 'num' por 10, mostrando '70' en la consola.\n\nLas otras opciones son incorrectas porque no consideran cómo el 'setTimeout' asíncrono afecta el orden de ejecución del código.",
     },
@@ -218,7 +218,7 @@ export default function questions5() {
         D: "The 'await' keyword cannot handle errors.",
         E: "The 'throw' keyword cannot be used inside the 'async' function.",
       },
-      code: "async function getUserData(userId) {\nconst data = await axios.get(`users/${userId}`);\nconsole.log('sample data: ', data);\nif (data.id) {\nreturn data;\n} else throw \"Something went wrong\";\n}",
+      code: "async function getUserData(userId) {\n\tconst data = await axios.get(`users/${userId}`\n);\nconsole.log('sample data: ', data);\nif (data.id) {\n\treturn data;\n} else throw \"Something went wrong\";\n}",
       explanation:
         "Las respuestas correctas son:\n\n- **A. 'The code should be used with a try ... catch statement for exception handling.'**: Las excepciones deben manejarse con un bloque 'try...catch'.\n- **C. 'Using the await keyword pauses code execution in the async function until the promise has settled.'**: 'await' detiene la ejecución hasta que la promesa sea resuelta o rechazada.\n- **D. 'The await keyword cannot handle errors.'**: 'await' no maneja errores; esto debe hacerse con 'try...catch'.\n\nLas otras opciones son incorrectas porque:\n\n- **B**: 'await' no necesita el uso del método 'then'.\n- **E**: 'throw' puede ser utilizado dentro de una función 'async' para lanzar excepciones.",
     },
