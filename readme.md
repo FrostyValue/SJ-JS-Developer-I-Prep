@@ -69,8 +69,8 @@ Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
 
 - Sistema de cuestionarios con preguntas cargadas dinámicamente.
 - Temporizador configurable para cada nivel.
-- Sistema de niveles que incrementa la dificultad progresivamente.
-- Visualización del número de pregunta actual.
+- Distintos modos que "simulan" el examen con limitaciones de tiempo.
+- En caso de fallar la pregunta, devuelve la explicación en ciertos modos.
 
 ## Despliegue
 
