@@ -2,8 +2,8 @@
   --primary-color: #1a73e8;
   --secondary-color: #f0f0f0;
   --background-color: #ffffff;
-  --button-bg: #ffeb3b;
-  --button-hover: #fdd835;
+  --button-hover: #ffeb3b;
+  --button-confirmed: #fdd835;
   --correct-color: green;
   --wrong-color: red;
   --font-color: #333;
@@ -141,7 +141,7 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 1200px;
-  margin: 6rem auto 2rem;
+  margin: 2rem auto 2rem;
 }
 
 #question-container {
@@ -162,7 +162,7 @@ header {
 #code-container {
   font-family: monospace;
   background-color: #f4f4f4;
-  padding: 1rem;
+  padding-left: 1rem;
   border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
   white-space: pre-wrap;
@@ -178,7 +178,7 @@ header {
 
 .option-btn {
   background-color: var(--primary-color);
-  color: black;
+  color: white;
   padding: 0.75rem 1rem;
   border: none;
   border-radius: var(--border-radius);
@@ -189,6 +189,7 @@ header {
 
 .option-btn:hover {
   background-color: var(--button-hover);
+  color: black
 }
 
 #explanation-container {
@@ -227,6 +228,7 @@ header {
 #next-btn {
   background-color: var(--primary-color);
   color: white;
+  margin-left: 27vw;
 }
 
 #next-btn:hover {
