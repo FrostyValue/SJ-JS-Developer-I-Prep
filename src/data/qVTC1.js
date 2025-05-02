@@ -378,7 +378,7 @@ export default function questions1() {
     {
       id: "q23",
       question:
-        "A developer of Cosmic Software Solutions has received the array of customers via an HTTP request (see below the question). She has noticed these two issues with this data: 1) 'Justin Sampson' should not be present in the array. 2) The customers should be arranged in ascending order. After fixing these issues, she needs to display the customers in a div element on a web page like below. \n\n'Alyson Macdonald | Ana Salas | Carrol Fox | Jan Ward | Natalia Wyatt' Which code statements can be used to get the given string for the requirement?",
+        "A developer of Cosmic Software Solutions has received the array of customers via an HTTP request (see below the question). She has noticed these two issues with this data: \n1) 'Justin Sampson' should not be present in the array. \n2) The customers should be arranged in ascending order. \nAfter fixing these issues, she needs to display the customers in a div element on a web page like below. \n\nWhich code statements can be used to get the given string for the requirement?",
       type: "multiple choice",
       correct_options: ["A", "D", "E"],
       number_of_correct_answers: 3,
@@ -389,7 +389,7 @@ export default function questions1() {
         D: "customers.splice(3, 1);",
         E: "customers.join(' | ');",
       },
-      code: "  let customers = ['Jan Ward', 'Carrol Fox', 'Natalia Wyatt', 'Justin Sampson', 'Alyson Macdonald', 'Ana Salas' ];",
+      code: "//Data result expected \n'Alyson Macdonald | Ana Salas | Carrol Fox | Jan Ward | Natalia Wyatt' \n\n //Current data \nlet customers = ['Jan Ward', 'Carrol Fox', 'Natalia Wyatt', 'Justin Sampson', 'Alyson Macdonald', 'Ana Salas' ];",
       explanation:
         "La opción A 'customers.sort();' ordena el array alfabéticamente en orden ascendente. La opción D 'customers.splice(3, 1);' elimina 'Justin Sampson' del array en la posición 3. Finalmente, la opción E 'customers.join(' | ');' combina los elementos del array en una cadena separada por ' | '. Estas tres acciones juntas resuelven el problema.",
     },
@@ -407,7 +407,7 @@ export default function questions1() {
         D: '""',
         E: "{}",
       },
-      code: "  function displayNotAvailable(str) {\n  console.log(`${str} not available. );\n  };\n  if (!lastName) {\n  displayNotAvailable('lastName');\n  }\n  if (!joiningDate) {\n  displayNotAvailable('joiningDate');\n  }\n  if (!salary) {\n  displayNotAvailable('salary');\n  }",
+      code: "function displayNotAvailable(str) {\n\tconsole.log(`${str} not available.`);\n}\n\nif (!lastName) {\n\tdisplayNotAvailable('lastName');\n}\nif (!joiningDate) {\n\tdisplayNotAvailable('joiningDate');\n}\nif (!salary) {\n\tdisplayNotAvailable('salary');\n}",
       explanation:
         "La función utiliza el operador '!' para comprobar si las variables no tienen un valor definido. Esto significa que 'undefined', 'null' y '{}' se consideran valores falsos, lo que hará que se ejecute la función 'displayNotAvailable' y se muestre el mensaje. La opción (cadena vacía) no es considerada falsy en este contexto.",
     },
@@ -417,6 +417,7 @@ export default function questions1() {
         "A developer is working on a web page for managing volunteers for a fundraising event organized by a non-profit company. An object named 'volunteer' has been defined to store information about a particular volunteer. When a volunteer works for a new company, then their email address also changes. \n\nWhat is the most suitable approach for updating the value of the 'email' property in the object?",
       type: "multiple choice",
       correct_options: ["D"],
+      number_of_correct_answers: 1,
       options: {
         A: "The object should be converted to an array since array elements can be reassigned values",
         B: "The variable should be declared using the Object constructor instead of the Object literal method.",
@@ -838,7 +839,7 @@ export default function questions1() {
     },
     {
       id: "q52",
-      question: "Refer to the following code that imports a module named `utils`: Which two implementations of Utils.js export `foo` and `bar` such that the code above runs without error?",
+      question: "Refer to the following code that imports a module named `utils`. Which two implementations of Utils.js export `foo` and `bar` such that the code above runs without error?",
       type: "multiple choice",
       correct_options: ["B", "C"],
       number_of_correct_answers: 2,
@@ -848,8 +849,9 @@ export default function questions1() {
         C: "export default class {\n  foo() { return 'foo'; }\n  bar() { return 'bar'; }\n}",
         D: "const foo = () => { return 'foo'; }\nconst foo = () => { return 'foo'; }\nexport default foo, bar;"
       },
-      explanation: "Las opciones correctas son B: 'export {foo, bar}' y C: 'export default class { foo() { ... }, bar() { ... } }'.\n\n**Explicación detallada:**\n\n1. **B: Uso de exportación nombrada:**\n   - En esta implementación, `foo` y `bar` son constantes que definen funciones.\n   - Estas funciones se exportan como exportaciones nombradas utilizando `export {foo, bar}`.\n   - En el archivo que las importa, `import {foo, bar} from '/path/Utils.js';`, se puede acceder directamente a las funciones.\n\n2. **C: Uso de exportación por defecto (default export):**\n   - Aquí se utiliza una clase que contiene métodos `foo` y `bar`.\n   - Sin embargo, la clase completa se exporta como `default`.\n   - Para usar esta implementación con el código proporcionado, el import en este caso específico sería incorrecto (sin modificaciones).\n\n3. **Opciones inválidas:**\n   - A: contiene un uso incorrecto por repetición; la exportación no coincide.\n   - D: contiene duplicación de definiciones en `foo`."
-    },
+      code: "const foo = () => {\n\treturn 'foo';\n};\nconst bar = () => {\n\treturn 'bar';\n};",
+      explanation: "Las opciones correctas son B: 'export {foo, bar}' y C: 'export default class { foo() { ... }, bar() { ... } }'.\n\n**Explicación detallada:**\n\n1. **B: Uso de exportación nombrada:**\n   - En esta implementación, `foo` y `bar` son constantes que definen funciones.\n   - Estas funciones se exportan como exportaciones nombradas utilizando `export {foo, bar}`.\n   - En el archivo que las importa, `import {foo, bar} from '/path/Utils.js';`, se puede acceder directamente a las funciones.\n\n2. **C: Uso de exportación por defecto (default export):**\n   - Aquí se utiliza una clase que contiene métodos `foo` y `bar`.\n   - Sin embargo, la clase completa se exporta como `default`.\n   - Para usar esta implementación con el código proporcionado, el import en este caso específico sería incorrecto (sin modificaciones).\n\n3. **Opciones inválidas:**\n   - A: contiene un uso incorrecto por repetición; la exportación no coincide.\n   - D: contiene duplicación de definiciones en `foo`.",
+    },    
     {
       id: "q53",
       question: "Refer to the code below. After changing the string index values, the value of `str` is still `'javascript'`. What is the reason for this value?",

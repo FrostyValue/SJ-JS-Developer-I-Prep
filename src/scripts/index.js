@@ -126,8 +126,6 @@ async function loadQuestions() {
       ? questionSources.reduce((sum, src) => sum + src.questions.length, 0) // Calcular total de preguntas si se seleccionan todas
       : questionAmount;
 
-    console.log("Total de preguntas a cargar:", totalQuestions); // Para verificar
-
     for (const source of questionSources) {
       const sourceQuestions = source.questions;
 
@@ -227,10 +225,10 @@ function handleOptionClick(optionKey) {
   const optionsContainer = document.getElementById("options-container");
   optionsContainer.querySelectorAll("button").forEach((button) => {
     if (selectedAnswers.includes(button.getAttribute("data-option"))) {
-      button.style.backgroundColor = "lightgreen";
+      button.style.backgroundColor = "#fbbc04"; // amarillo oscuro
     } else {
       button.style.backgroundColor = "";
-    }
+    } 
   });
 
   if (currentQuestionIndex === 0) {
@@ -320,10 +318,10 @@ function checkAnswer() {
     button.disabled = true;
     const optionKey = button.getAttribute("data-option");
     if (question.correct_options.includes(optionKey)) {
-      button.style.border = "2px solid green";
+      button.style.border = "3px solid #00c853";
     } else if (selectedAnswers.includes(optionKey)) {
-      button.style.border = "2px solid red";
-    }
+      button.style.border = "3px solid red";
+    }    
   });
 }
 

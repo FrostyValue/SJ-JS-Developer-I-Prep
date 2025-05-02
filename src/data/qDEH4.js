@@ -54,7 +54,7 @@ export default function questions4() {
     {
       id: "q4",
       question:
-        "The following JavaScript object is being created to manage how a page in an application loads and initializes third-party plugins. When the browser loads the page, the page.init() function is called which also contains logic that supposedly sets the 'loaded' property of the object to true. \n\nHowever, the property value does not get updated. Which pane in the browser developer tools can be used to allow a user to monitor the property value while stepping through code?",
+        "The following JavaScript object is being created to manage how a page in an application loads and initializes third-party plugins. When the browser loads the page, the page.init() function is called which also contains logic that supposedly sets the 'loaded' property of the object to true. However, the property value does not get updated. \n\nWhich pane in the browser developer tools can be used to allow a user to monitor the property value while stepping through code?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -325,9 +325,9 @@ export default function questions4() {
       number_of_correct_answers: 1,
       options: {
         A: "DEBUG = http, https node server.js",
-        B: "NODE_DEBUG =http, https node server.js",
-        C: "DEBUG =true node server.js",
-        D: "NODE_DEBUG =true node server.js"
+        B: "NODE_DEBUG = http, https node server.js",
+        C: "DEBUG = true node server.js",
+        D: "NODE_DEBUG = true node server.js"
       },
       explanation: "La opción correcta es C: `DEBUG = true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de la variable DEBUG:**\n   - La variable `DEBUG` puede ser usada para habilitar mensajes de depuración en ciertas aplicaciones. Esta variable puede ayudar a identificar dónde ocurren los problemas en el flujo de ejecución.\n   - En este caso, establecer `DEBUG=true` habilitará el modo de depuración para proporcionar más detalles de lo que está ocurriendo en el servidor.\n\n2. **Opciones incorrectas:**\n   - A y B: La sintaxis `http, https` no habilita depuración específica en este contexto.\n   - D: Aunque `NODE_DEBUG` es una variable válida, su uso como `NODE_DEBUG=true` sin especificar un módulo no activa mensajes relevantes para el diagnóstico."
     },
@@ -480,20 +480,6 @@ export default function questions4() {
     },
     {
       id: "q32",
-      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround. Which command can the web developer run to see what the module is doing during the latency period?",
-      type: "multiple choice",
-      correct_options: ["D"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "NODE_DEBUG=true node server.js",
-        B: "DEBUG=http, https node server.js",
-        C: "NODE_DEBUG=http,https node server.js",
-        D: "DEBUG=true node server.js"
-      },
-      explanation: "La opción correcta es D: **DEBUG=true node server.js**.\n\n**Explicación detallada:**\n\n1. **Uso de DEBUG=true:**\n   - Este comando activa el depurador de Node.js para proporcionar información detallada sobre los módulos y su actividad durante la ejecución.\n\n2. **Errores en otras opciones:**\n   - Opción A: `NODE_DEBUG=true` no es un comando válido para depurar módulos específicos.\n   - Opción B: `DEBUG=http, https` intenta depurar módulos específicos pero no utiliza el formato correcto.\n   - Opción C: `NODE_DEBUG=http,https` está mal configurado para depuración de Node.js."
-    },
-    {
-      id: "q33",
       question: "A developer is asked to fix some bugs reported by users. To do that, the developer adds a breakpoint for debugging. When the code execution stops at the breakpoint on line 6. \n\nWhich two types of information are available in the browser console?",
       type: "multiple choice",
       correct_options: ["C", "D"],
@@ -507,7 +493,7 @@ export default function questions4() {
       explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - La consola del navegador muestra el estilo, los atributos y los event listeners aplicados al elemento DOM `carSpeed`.\n\n2. **Opción D:**\n   - La propiedad `window.localStorage` contiene información almacenada localmente en el navegador.\n\n3. **Errores en otras opciones:**\n   - Opción A: Aunque los valores pueden ser visibles, no son directamente accesibles a través de este breakpoint.\n   - Opción B: La consola no muestra automáticamente el número de instancias creadas de objetos como `Car`."
     },
     {
-      id: "q34",
+      id: "q33",
       question: "A developer writes the code below to calculate the factorial of a given number. What is the result of executing line 04?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -521,7 +507,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: **RuntimeError.**\n\n**Explicación detallada:**\n\n1. **Problema con la implementación:**\n   - La función usa `number + factorial(number - 1)` en lugar de la multiplicación requerida para calcular el factorial.\n   - Esto genera una recursión infinita porque la función no tiene una condición base para detener la recursión.\n\n2. **Resultado:**\n   - La ejecución lleva a un desbordamiento de pila y arroja un `RuntimeError`.\n\n3. **Errores en otras opciones:**\n   - Opción A, B, y C: No aplican porque la función no produce un resultado válido."
     },
     {
-      id: "q35",
+      id: "q34",
       question: "The developer needs to insert a code statement in the location shown. The code statement has these requirements:\n1. Does require an import\n2. Logs an error when the boolean statement evaluates to false\n3. Works in both the browser and Node.js\n\nWhich statement meets the requirements?",
       type: "multiple choice",
       correct_options: ["B"],
