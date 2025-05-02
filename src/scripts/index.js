@@ -1,10 +1,10 @@
-import questions1 from "../../public/data/qVTC1.js";
-import questions2 from "../../public/data/qOFC2.js";
-import questions3 from "../../public/data/qBE3.js";
-import questions4 from "../../public/data/qDEH4.js";
-import questions5 from "../../public/data/qAP5.js";
-import questions6 from "../../public/data/qSS6.js";
-import questions7 from "../../public/data/qTST7.js";
+import questions1 from "../data/qVTC1.js";
+import questions2 from "../data/qOFC2.js";
+import questions3 from "../data/qBE3.js";
+import questions4 from "../data/qDEH4.js";
+import questions5 from "../data/qAP5.js";
+import questions6 from "../data/qSS6.js";
+import questions7 from "../data/qTST7.js";
 
 let currentQuestionIndex = 0;
 let questions = [];
