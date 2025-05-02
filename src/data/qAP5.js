@@ -785,14 +785,14 @@ export default function questions5() {
       correct_options: ["D"],
       number_of_correct_answers: 1,
       options: {
-        A: "setTimeout (formatName(), 5000, \"John\", \"BDoe\");",
+        A: "setTimeout (formatName(), 5000, 'John', 'BDoe');",
         B: "setTimeout (formatName('John', 'Doe'), 5000);",
         C: "setTimout(() => { formatName('John', 'Doe') }, 5000);",
-        D: "setTimeout ('formatName', 5000, 'John', 'Doe');"
+        D: "setTimeout (formatName, 5000, 'John', 'Doe');"
       },
-      code: "setTimeout (formatName(), 5000, \"John\", \"BDoe\");",
-      explanation: "La opción correcta es D: **setTimeout ('formatName', 5000, 'John', 'Doe');**.\n\n**Explicación detallada:**\n\n1. **Uso correcto de setTimeout:**\n   - Se pasa una referencia a la función y los argumentos de la función se incluyen como parámetros adicionales para que se ejecuten después del retraso.\n\n2. **Errores en otras opciones:**\n   - Opción A: Invoca la función inmediatamente en lugar de programarla.\n   - Opción B: Invoca la función inmediatamente.\n   - Opción C: Tiene un error de sintaxis en la definición del callback."
-    },
+      code: "function formatName(firstName, lastName) {\n  return `${firstName} ${lastName}`;\n}\n\n// Programar la ejecución de formatName después de 5 segundos\nsetTimeout(formatName, 5000, 'John', 'Doe');",
+      explanation: "La opción correcta es D: setTimeout (formatName, 5000, 'John', 'Doe');.\n\n**Explicación detallada:**\n\n1. **Uso correcto de setTimeout:**\n   - Se pasa una referencia a la función y los argumentos de la función se incluyen como parámetros adicionales para que se ejecuten después del retraso.\n\n2. **Errores en otras opciones:**\n   - Opción A: Invoca la función inmediatamente en lugar de programarla.\n   - Opción B: Invoca la función inmediatamente.\n   - Opción C: Tiene un error de sintaxis en la definición del callback."
+    },    
     {
       id: "q51",
       question: "Given the following code. What is logged by the first four log statements?",
