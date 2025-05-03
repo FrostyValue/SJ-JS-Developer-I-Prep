@@ -1466,6 +1466,50 @@ export default function questions1() {
       },
       code: "let arr = [1, 2, 3, 4, 5];",
       explanation: "Las opciones correctas son B, C y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `arr.splice(2, 3)` elimina tres elementos comenzando desde el índice 2 (incluido), devolviendo `[3, 4, 5]`.\n\n2. **Opción C:**\n   - `arr.slice(2)` devuelve una copia desde el índice 2 hasta el final del array, es decir, `[3, 4, 5]`.\n\n3. **Opción D:**\n   - `arr.filter((a) => { return a > 2 })` devuelve una nueva matriz con elementos que cumplen la condición, `[3, 4, 5]`.\n\n4. **Errores en otras opciones:**\n   - Opción A: Devuelve un array vacío porque no hay elementos menores que 2.\n   - Opción E: `slice(2, 3)` devuelve solo `[3]`, ya que incluye solo el índice 2."
-    },                                                                                                                                                        
+    },
+    {
+      id: "q93",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "1 and false",
+        B: "false and NaN",
+        C: "false and false"
+      },
+      code: "+true;\n!'Lydia';",
+      explanation: "La respuesta correcta es '1 and false'.\n\n**Explicación:**\n\n1. **El operador unario `+`:**\n   - El operador `+` intenta convertir un operando a un número. En este caso, `true` se convierte en `1`, por lo que la primera expresión es `1`.\n\n2. **El operador `!`:**\n   - El operador `!` convierte su operando a un valor booleano y luego lo invierte. La cadena `'Lydia'` es un valor *truthy* (es decir, no es `null`, `undefined`, `0`, `NaN`, `false` ni una cadena vacía), por lo que al invertirla con `!`, el resultado es `false`."
+    },
+    {
+      id: "q94",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "true false true",
+        B: "false false true",
+        C: "true false false",
+        D: "false true true"
+      },
+      code: "let a = 3;\nlet b = new Number(3);\nlet c = 3;\n\nconsole.log(a == b);\nconsole.log(a === b);\nconsole.log(b === c);",
+      explanation: "La respuesta correcta es 'true false false'.\n\n**Explicación:**\n\n1. **Comparación con `==`:**\n   - El operador `==` compara los valores, y convierte a ambos operandos a un tipo común si es necesario. En este caso, `a` es un número primitivo, y `b` es un objeto `Number`. Cuando se compara, JavaScript convierte `b` a su valor primitivo (`3`), por lo que la comparación es `true`.\n\n2. **Comparación con `===`:**\n   - El operador `===` compara tanto el valor como el tipo. Como `a` es un número primitivo y `b` es un objeto, la comparación es `false`.\n\n3. **Comparación entre `b` y `c`:**\n   - `b` es un objeto `Number` y `c` es un número primitivo, por lo que `b === c` también es `false` porque los tipos no coinciden."
+    },
+    {
+      id: "q95",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "{}",
+        B: "ReferenceError: greetign is not defined",
+        C: "undefined",
+        D: "TypeError: greetign is not a function"
+      },
+      code: "let greeting;\ngreetign = {}; // Typo!\nconsole.log(greetign);",
+      explanation: "La respuesta correcta es '{}'.\n\n**Explicación:**\n\n1. **Declaración de la variable `greetign`:**\n   - En JavaScript, la declaración de una variable con `let` (en este caso, `greeting`) no se utiliza correctamente en la línea del código. Sin embargo, **JavaScript permite asignar valores a una variable que no se haya declarado explícitamente**.\n\n2. **El objeto vacío:**\n   - En lugar de generar un error por el error tipográfico en `greetign`, el valor asignado es un objeto vacío `{}`, y se imprime correctamente.\n\n3. **Opción incorrecta D:**\n   - La opción D es incorrecta porque la variable `greetign` no está siendo llamada como una función, sino que se está asignando un objeto vacío, por lo que no genera un `TypeError`."
+    },                                                                                                                                                                    
   ];
 };

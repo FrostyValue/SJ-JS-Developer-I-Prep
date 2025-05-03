@@ -1409,6 +1409,82 @@ export default function questions2() {
       },
       code: "function Tiger() {\n  this.Type = 'Cat';\n  this.size = 'large';\n}\n\nlet tony = new Tiger();\ntony.roar = () => {\n  console.log('They\\'re great!');\n};\n\nfunction Lion() {\n  this.type = 'Cat';\n  this.size = 'large';\n}\n\nlet leo = new Lion();\n// Insert code here\nleo.roar();",
       explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Asigna una función `roar` directamente al objeto `leo`, permitiendo que se llame en la última línea.\n\n2. **Opción C:**\n   - Usa `Object.assign` para copiar las propiedades y métodos de `tony` (incluida la función `roar`) al objeto `leo`.\n\n3. **Errores en otras opciones:**\n   - Opción B: `Tiger` es una función constructora y no un objeto; no es válido para `Object.assign`.\n   - Opción D: Modificar `Leo.prototype` no tiene efecto en el objeto `leo` porque ya fue creado."
-    },                                                                                                                      
+    }, 
+    {
+      id: "q89",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["B"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "20 and 62.83185307179586",
+        B: "20 and NaN",
+        C: "20 and 63",
+        D: "NaN and 63"
+      },
+      code: "const shape = {\n    radius: 10,\n    diameter() {\n        return this.radius * 2;\n    },\n    perimeter: () => 2 * Math.PI * this.radius,\n};\n\nconsole.log(shape.diameter());\nconsole.log(shape.perimeter());",
+      explanation: "La respuesta correcta es '20 and NaN'.\n\n**Explicación:**\n\n1. **Método `diameter`:**\n   - El método `diameter` es una función regular, por lo que la palabra clave `this` hace referencia al objeto `shape`. Por lo tanto, `this.radius * 2` devuelve `20`.\n\n2. **Método `perimeter`:**\n   - El método `perimeter` es una función de flecha. Las funciones de flecha no tienen su propio contexto de `this`; en cambio, toman el valor de `this` del contexto en el que se crearon. Como esta función se define fuera del objeto, `this` no se refiere al objeto `shape`, sino al contexto global (o `undefined` en modo estricto), por lo que `this.radius` es `undefined`, y `2 * Math.PI * undefined` devuelve `NaN`."
+    },
+    {
+      id: "q90",
+      question: "Which one is true?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "mouse.bird.size is not valid",
+        B: "mouse[bird.size] is not valid",
+        C: "mouse[bird['size']] is not valid",
+        D: "All of them are valid"
+      },
+      code: "const bird = {\n  size: 'small',\n};\n\nconst mouse = {\n  name: 'Mickey',\n  small: true,\n};",
+      explanation: "La respuesta correcta es 'mouse.bird.size is not valid'.\n\n**Explicación:**\n\n1. **Acceso a `mouse.bird.size`:**\n   - `mouse.bird.size` no es válido porque `bird` es un objeto independiente y no es una propiedad de `mouse`. JavaScript no puede acceder a `mouse.bird.size` ya que no existe una propiedad llamada `bird` en `mouse`.\n\n2. **Acceso a `mouse[bird.size]`:**\n   - `bird.size` es `'small'`, por lo que `mouse['small']` accedería a la propiedad `small` de `mouse`, que es `true`. Este es un acceso válido.\n\n3. **Acceso a `mouse[bird['size']]`:**\n   - De manera similar, `mouse[bird['size']]` también sería un acceso válido, ya que es equivalente a `mouse['small']`, que también devuelve `true`."
+    },
+    {
+      id: "q91",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Hello",
+        B: "Hey!",
+        C: "undefined",
+        D: "ReferenceError",
+        E: "TypeError"
+      },
+      code: "let c = { greeting: 'Hey!' };\nlet d;\n\nd = c;\nc.greeting = 'Hello';\nconsole.log(d.greeting);",
+      explanation: "La respuesta correcta es 'Hello'.\n\n**Explicación:**\n\n1. **Asignación de objetos:**\n   - En JavaScript, los objetos son asignados por referencia. Esto significa que cuando se asigna `d = c`, ambos `d` y `c` apuntan al mismo objeto en memoria.\n\n2. **Cambio en `c.greeting`:**\n   - Al modificar `c.greeting = 'Hello'`, también se modifica la propiedad `greeting` del objeto al que `d` también hace referencia. Como ambos apuntan al mismo objeto, `d.greeting` también será `'Hello'`."
+    },
+    {
+      id: "q92",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "orange",
+        B: "purple",
+        C: "green",
+        D: "TypeError"
+      },
+      code: "class Chameleon {\n  static colorChange(newColor) {\n    this.newColor = newColor;\n    return this.newColor;\n  }\n\n  constructor({ newColor = 'green' } = {}) {\n    this.newColor = newColor;\n  }\n}\n\nconst freddie = new Chameleon({ newColor: 'purple' });\nconsole.log(freddie.colorChange('orange'));",
+      explanation: "La respuesta correcta es 'TypeError'.\n\n**Explicación:**\n\n1. **Método estático vs. método de instancia:**\n   - `colorChange` es un **método estático** en la clase `Chameleon`, lo que significa que se llama en la clase misma, no en instancias de la clase.\n\n2. **Uso incorrecto de `colorChange`:**\n   - Cuando se llama `freddie.colorChange('orange')`, se intenta acceder a un método estático como si fuera un método de instancia. Esto causa un `TypeError` porque `colorChange` solo está disponible en la clase, no en las instancias de la clase.\n\n3. **Corrección:**\n   - Si se quiere llamar al método estático, debería ser `Chameleon.colorChange('orange')`, no `freddie.colorChange('orange')`."
+    },
+    {
+      id: "q93",
+      question: "What happens when we do this?",
+      type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Nothing, this is totally fine!",
+        B: "SyntaxError. You cannot add properties to a function this way.",
+        C: "\"Woof\" gets logged.",
+        D: "ReferenceError"
+      },
+      code: "function bark() {\n  console.log('Woof!');\n}\n\nbark.animal = 'dog';",
+      explanation: "La respuesta correcta es 'Nothing, this is totally fine!'.\n\n**Explicación:**\n\n1. **Funciones como objetos:**\n   - En JavaScript, las funciones son también objetos, lo que significa que puedes agregarles propiedades como lo harías con cualquier otro objeto.\n\n2. **Propiedad añadida:**\n   - En este caso, `bark.animal = 'dog'` agrega correctamente una propiedad `animal` a la función `bark`, lo que no genera ningún error.\n\n3. **Comportamiento esperado:**\n   - La función `bark` aún sigue siendo funcional, y se puede seguir llamando como función. La propiedad `animal` simplemente se agrega a la función como una propiedad adicional, sin causar problemas."
+    },                                                                                                                                      
   ];
 };

@@ -805,6 +805,20 @@ export default function questions5() {
         D: "setInteria"
       },
       explanation: "La opción correcta es A: **setInterval.**\n\n**Explicación detallada:**\n\n1. **Uso de `setInterval`:**\n   - `setInterval` ejecuta un bloque de código o función repetidamente después de un intervalo de tiempo fijo, medido en milisegundos.\n\n2. **Errores en otras opciones:**\n   - Opción B: `setTimeout` ejecuta el código solo una vez después de un retraso especificado.\n   - Opción C y D: `setPeriod` y `setInteria` no son funciones válidas en JavaScript."
-    },                                                                               
+    },
+    {
+      id: "q55",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "0 1 2 and 0 1 2",
+        B: "0 1 2 and 3 3 3",
+        C: "3 3 3 and 0 1 2"
+      },
+      code: "for (var i = 0; i < 3; i++) {\n    setTimeout(() => console.log(i), 1);\n}\n\nfor (let i = 0; i < 3; i++) {\n    setTimeout(() => console.log(i), 1);\n}",
+      explanation: "La respuesta correcta es '3 3 3 and 0 1 2'.\n\n**Explicación:**\n\n1. **Primero con `var`:**\n   - La variable `i` está declarada con `var`, por lo que es compartida entre todas las iteraciones del ciclo. El `setTimeout` ejecuta la función después de que el ciclo termine, por lo que `i` ya habrá alcanzado el valor 3 en el momento de ejecutar las funciones dentro de `setTimeout`, imprimiendo `3` tres veces.\n\n2. **Luego con `let`:**\n   - La variable `i` está declarada con `let`, lo que crea un nuevo ámbito de bloque para cada iteración del ciclo. Esto significa que cada función `setTimeout` captura su propio valor de `i`, imprimiendo `0`, `1`, y `2` respectivamente, en el orden esperado."
+    },                                                                                   
   ];
 };

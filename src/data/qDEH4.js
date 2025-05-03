@@ -505,6 +505,21 @@ export default function questions4() {
       },
       code: "for(let number = 2; number <= 5; number += 1) {\n  console.error(number % 2 === 0);\n}",
       explanation: "La opción correcta es B: **console.error(number % 2 === 0);**\n\n**Explicación detallada:**\n\n1. **Requisitos:**\n   - No requiere una importación adicional.\n   - `console.error` es compatible tanto con navegadores como con Node.js.\n\n2. **Errores en otras opciones:**\n   - Opción A: `assert` requiere una importación explícita, por lo que no cumple el primer requisito.\n   - Opción C: `console.debug` no registra errores pero se utiliza para depuración.\n   - Opción D: Aunque `console.assert` registra errores, no cumple completamente con el primer requisito de no requerir una importación adicional."
-    },                                                                             
+    },
+    {
+      id: "q34",
+      question: "What's the output of the following JavaScript code?",
+      type: "multiple choice",
+      correct_options: ["D"],
+      number_of_correct_answers: 1,
+      options: {
+        A: "Lydia and undefined",
+        B: "Lydia and ReferenceError",
+        C: "ReferenceError and 21",
+        D: "undefined and ReferenceError"
+      },
+      code: "function sayHi() {\n    console.log(name);\n    console.log(age);\n    var name = 'Lydia';\n    let age = 21;\n}\n\nsayHi();",
+      explanation: "La respuesta correcta es 'undefined and ReferenceError'.\n\n**Explicación:**\n\n1. **Hoisting:**\n   - La variable `name` está declarada con `var`, lo cual hace que sea hoisted (elevada) al inicio de la función, pero con valor `undefined` hasta su inicialización.\n   - Por eso, `console.log(name);` imprime `undefined`.\n\n2. **Temporal Dead Zone:**\n   - La variable `age` está declarada con `let`, lo que significa que está en una zona temporal muerta (TDZ) hasta su inicialización.\n   - Por eso, `console.log(age);` lanza un `ReferenceError`, ya que no se puede acceder a ella antes de la línea en la que se inicializa."
+    },                                                                                 
   ];
 };
