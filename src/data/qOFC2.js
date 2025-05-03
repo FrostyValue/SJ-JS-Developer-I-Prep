@@ -322,7 +322,7 @@ export default function questions2() {
       },
       code: "const finalResults = [];\n\nfunction retrieveData(url) {\n  fetch(url)\n    .then((resp) => resp.json())\n    .then(function (response) {\n      if (response.results) {\n        finalResults.push(response.results);\n      }\n\n      // Add code here to retrieve remaining records\n\n    })\n    .catch((issue) => console.log(`Couldn't retrieve records: ${issue}`));\n};",
       explanation:
-        "La opción correcta es la B: 'if (response._next) { retrieveData(response._next); }'. La recursión es una técnica para resolver problemas haciendo que una función se llame a sí misma. La función 'retrieveData' tiene todo lo necesario para recuperar registros. Simplemente necesita ser llamada de manera recursiva hasta que no haya más registros disponibles.\n\nEn este caso, la propiedad '_next' indica que hay más datos disponibles. Si existe esta propiedad en la respuesta, la función se llama nuevamente utilizando el nuevo URL como parámetro para seguir recuperando los registros restantes. Esto garantiza que todos los registros sean recuperados.",
+        "La opción correcta es: 'if (response._next) { retrieveData(response._next); }'. La recursión es una técnica para resolver problemas haciendo que una función se llame a sí misma. La función 'retrieveData' tiene todo lo necesario para recuperar registros. Simplemente necesita ser llamada de manera recursiva hasta que no haya más registros disponibles.\n\nEn este caso, la propiedad '_next' indica que hay más datos disponibles. Si existe esta propiedad en la respuesta, la función se llama nuevamente utilizando el nuevo URL como parámetro para seguir recuperando los registros restantes. Esto garantiza que todos los registros sean recuperados. No puede ser usado un bucle while porque no va a esperar a que fetch complete su operación asincrona. Esto hara que el bucle se ejecute indefinidamente y no se detenga.",
     },
     {
       id: "q20",
@@ -1318,7 +1318,7 @@ export default function questions2() {
         C: "Class ClothingItem super Item {",
         D: "Class ClothingItem extends Item {"
       },
-      code: "class Item{\nconstructor (name, price){\nthis.name = name;\nthis.price = price;\n}\nformattedPrice(){\nreturn 's' + String(this.price);\n}}\n\nclass ClothingItem extends Item { }",
+      code: "class Item {\n\tconstructor(name, price) {\n\t\tthis.name = name;\n\t\tthis.price = price;\n\t}\n\n\tformattedPrice() {\n\t\treturn '$' + String(this.price);\n\t}\n}\n\nclass ClothingItem extends Item { }",
       explanation: "La opción correcta es D: **Class ClothingItem extends Item { }**.\n\n**Explicación detallada:**\n\n1. **Uso de 'extends':**\n   - La palabra clave `extends` se utiliza para declarar una subclase que hereda las propiedades y métodos de una clase padre.\n\n2. **Corrección de otras opciones:**\n   - Opción A: `implements` no es adecuado para heredar clases; se utiliza con interfaces.\n   - Opción B: No declara relación alguna con la clase padre.\n   - Opción C: `super` se utiliza dentro del constructor, no para declarar la clase."
     },
     {

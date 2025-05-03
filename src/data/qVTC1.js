@@ -503,6 +503,7 @@ export default function questions1() {
         "For an online quiz application, whenever a text response is provided by a learner, exactly 50 characters of the response should be recorded. If the string is too short, characters should be added at the end; if the string is too long, it should be truncated. A developer has set up the following function for this purpose. \n\nWhich code statement could be added in place of the comment in order to meet this requirement?",
       type: "multiple choice",
       correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "return newStr.padEnd(50, '.').substring(0, 50);",
         B: "return newStr.padEnd(50, '.');",
@@ -518,6 +519,7 @@ export default function questions1() {
         "What will be the outcome of the JavaScript code below when it is executed?",
       type: "multiple choice",
       correct_options: ["B"],
+      number_of_correct_answers: 1,
       options: {
         A: "page.changeColor('black') will throw an error message.",
         B: "The 'color' property will be updated to 'black'.",
@@ -534,6 +536,7 @@ export default function questions1() {
         "An online course requires a function for evaluating text input for questions. The function receives a string named 'str' that represents user input and another string named 'phrase' that represents the correct response. If 'str' contains 'phrase', then the user input is correct and should be prepared and sent to the 'recordQuestion' function. The current function doesn't meet the requirements.",
       type: "multiple choice",
       correct_options: ["C"],
+      number_of_correct_answers: 1,
       options: {
         A: "if (str.toLowerCase().includes(phrase)) { recordQuestion().replace(/ /g, '_').substring(50); }",
         B: "if (str.includes(phrase).toLowerCase()) { recordQuestion(str.replace(' ', '_').substring(50)); }",
@@ -550,6 +553,7 @@ export default function questions1() {
         "If the JSON.parse() method is applied to each of the following strings.\n\nWhich will parse without an error?",
       type: "multiple choice",
       correct_options: ["D"],
+      number_of_correct_answers: 1,
       options: {
         A: "'string'",
         B: '"string"',
@@ -565,6 +569,7 @@ export default function questions1() {
         "The variables below have been declared and the associated values assigned. \n\nWhich statements will produce a Boolean value of true?",
       type: "multiple choice",
       correct_options: ["A", "B", "E"],
+      number_of_correct_answers: 3,
       options: {
         A: "val1 == val2;",
         B: "val1 === Number(val2);",
@@ -580,13 +585,14 @@ export default function questions1() {
       question:
         "A client-side application uses a JavaScript function to send reminder emails to a small group of sales representatives using the code below. The declaration of the 'emails' variable that was supposedly located after the sendReminders() function call is now missing. \n\nWhat should a developer add to properly declare the variable?",
       type: "multiple choice",
+      correct_options: ["A"],
+      number_of_correct_answers: 1,
       options: {
         A: "var emails;",
         B: "let emails;",
         C: "const emails;",
         D: "global emails;",
       },
-      correct_options: ["A"],
       explanation:
         "La opción A es la correcta, ya que 'var' declara una variable en el ámbito global o de función, lo cual es adecuado si 'emails' se utiliza en todo el script. 'let' y 'const' también podrían usarse, pero 'var' es más apropiado aquí si no se pretende usar 'emails' como una constante.",
     },

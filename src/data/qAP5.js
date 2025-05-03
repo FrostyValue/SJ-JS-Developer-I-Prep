@@ -270,7 +270,7 @@ export default function questions5() {
         D: "success",
         E: "pending",
       },
-      code: "function initialize(userId) {\nlet dataFromServer = getDataFromServer(userId);\nconsole.log(dataFromServer);\n}",
+      code: "function initialize(userId) {\n\tlet dataFromServer = getDataFromServer(userId);\n\tconsole.log(dataFromServer);\n}",
       explanation:
         "Las respuestas correctas son:\n\n- **A. 'fulfilled'**: Representa una promesa que se ha completado exitosamente.\n- **B. 'rejected'**: Representa una promesa que ha fallado.\n- **E. 'pending'**: Representa una promesa que aún no ha sido resuelta ni rechazada.\n\nLas otras opciones son incorrectas porque:\n\n- **C**: 'failure' no es un estado válido para una promesa.\n- **D**: 'success' tampoco es un estado válido para una promesa.",
     },
@@ -393,7 +393,7 @@ export default function questions5() {
     },
     {
       id: "q24",
-      question: "Refer to the code below:\n\nWhat is the value of `result` when `Promise.race` executes?",
+      question: "Refer to the code below. What is the value of `result` when `Promise.race` executes?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -404,7 +404,7 @@ export default function questions5() {
         D: "Race is cancelled."
       },
       code: "let car1 = new Promise((_, reject) =>\n  setTimeout(reject, 2000, \"Car 1 crashed in\")\n);\n\nlet car2 = new Promise(resolve =>\n  setTimeout(resolve, 1500, \"Car 2 completed\")\n);\n\nlet car3 = new Promise(resolve =>\n  setTimeout(resolve, 3000, \"Car 3 completed\")\n);\n\nPromise.race([car1, car2, car3])\n  .then(value => {\n    let result = `${value} the race.`;\n  })\n  .catch(err => {\n    console.log(\"Race is cancelled.\", err);\n  });",
-      explanation: "La opción correcta es la C: 'Car2 completed the race.'.\n\n**Explicación detallada:**\n\n1. **Uso de Promise.race():** Este método devuelve una Promesa que se resuelve o rechaza tan pronto como una de las Promesas en el array de entrada lo haga.\n\n2. **Resolución de las promesas:**\n   - `car1` se rechaza después de 2000 ms con el mensaje 'Car 1 crashed in'.\n   - `car2` se resuelve después de 1500 ms con el mensaje 'Car 2 completed'.\n   - `car3` se resuelve después de 3000 ms con el mensaje 'Car 3 completed'.\n\n3. **Primera promesa completada:** Como `car2` se resuelve antes que las otras promesas (1500 ms), el valor de `result` será 'Car 2 completed the race.'.\n\n4. **Descartar errores:** La sección `catch` no se ejecutará porque la primera Promesa resuelta con éxito es `car2`."
+      explanation: "La opción correcta es: 'Car2 completed the race.'.\n\n**Explicación detallada:**\n\n1. **Uso de Promise.race():** Este método devuelve una Promesa que se resuelve o rechaza tan pronto como una de las Promesas en el array de entrada lo haga.\n\n2. **Resolución de las promesas:**\n   - `car1` se rechaza después de 2000 ms con el mensaje 'Car 1 crashed in'.\n   - `car2` se resuelve después de 1500 ms con el mensaje 'Car 2 completed'.\n   - `car3` se resuelve después de 3000 ms con el mensaje 'Car 3 completed'.\n\n3. **Primera promesa completada:** Como `car2` se resuelve antes que las otras promesas (1500 ms), el valor de `result` será 'Car 2 completed the race.'.\n\n4. **Descartar errores:** La sección `catch` no se ejecutará porque la primera Promesa resuelta con éxito es `car2`."
     },
     {
       id: "q25",
@@ -419,20 +419,6 @@ export default function questions5() {
         D: "setInteria"
       },
       explanation: "La opción correcta es la A: 'setInterval'.\n\n**Explicación detallada:**\n\n1. **setInterval():** Este método permite ejecutar una función repetidamente en un intervalo fijo especificado en milisegundos. Por ejemplo, `setInterval(myFunction, 1000)` ejecutará `myFunction` cada segundo.\n\n2. **Otras opciones:**\n   - B: 'setTimeout' solo ejecuta una función después de un retraso especificado, pero no de manera repetitiva.\n   - C: 'setPeriod' no es un método válido en JavaScript.\n   - D: 'setInteria' tampoco existe en JavaScript.\n\n3. **Conclusión:** Usar `setInterval` es la forma adecuada de ejecutar código en intervalos regulares."
-    },
-    {
-      id: "q26",
-      question: "Refer to the code below. What is the value of `result` when `Promise.race` executes?",
-      type: "multiple choice",
-      correct_options: ["C"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "Car 3 completed the race.",
-        B: "Car 1 crashed in the race.",
-        C: "Car 2 completed the race.",
-        D: "Race is cancelled."
-      },
-      explanation: "La opción correcta es la C: 'Car 2 completed the race.'.\n\n**Explicación detallada:**\n\n1. **Promise.race():** Este método devuelve la primera Promesa que se resuelve o se rechaza dentro del array de Promesas proporcionado.\n\n2. **Resolución de las Promesas:**\n   - `car1` se rechaza después de 2000 ms con el mensaje 'Car 1 crashed in'.\n   - `car2` se resuelve después de 1500 ms con el mensaje 'Car 2 completed'.\n   - `car3` se resuelve después de 3000 ms con el mensaje 'Car 3 completed'.\n\n3. **Primera Promesa completada:** Como `car2` es la primera en completarse (en 1500 ms), el valor de `result` será 'Car 2 completed the race.'.\n\n4. **Otras opciones:**\n   - A y B: Estas opciones no son correctas porque `car3` y `car1` no son las primeras Promesas en completarse.\n   - D: El bloque `catch` no se ejecutará porque la primera Promesa en completarse es exitosa (`car2`)."
     },
     {
       id: "q27",
@@ -673,21 +659,6 @@ export default function questions5() {
       explanation: "La opción correcta es B: `The associated function will always return a promise`.\n\n**Explicación detallada:**\n\n1. **Características de `async`:**\n   - Al definir una función con la palabra clave `async`, esa función siempre devuelve una promesa, independientemente de si contiene lógica asincrónica o no.\n   - Ejemplo:\n     ```javascript\n     async function example() {\n       return 'Hello';\n     }\n     example().then((result) => console.log(result)); // 'Hello'\n     ```\n\n2. **Uso de `await`:**\n   - La palabra clave `await` solo puede ser utilizada dentro de funciones `async`.\n   - Permite pausar la ejecución hasta que una promesa sea resuelta o rechazada, simplificando el manejo de código asincrónico.\n\n3. **Opciones incorrectas:**\n   - A: `async` se aplica a funciones, no directamente a clases.\n   - C: Las funciones `async` pueden ser llamadas por cualquier método, no exclusivamente asincrónicos.\n   - D: Una función `async` siempre devuelve una promesa, nunca en ocasiones."
     },
     {
-      id: "q43",
-      question: "Refer to the code below:\n\nWhat is the value of `result` when `Promise.race` executes?",
-      type: "multiple choice",
-      correct_options: ["C"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "Car 3 completed the race.",
-        B: "Car 1 crashed in the race.",
-        C: "Car 2 completed the race.",
-        D: "Race is cancelled."
-      },
-      code: "let car1 = new Promise((_, reject) =>\n  setTimeout(reject, 2000, 'Car 1 crashed in'));\nlet car2 = new Promise(resolve =>\n  setTimeout(resolve, 1500, 'Car 2 completed'));\nlet car3 = new Promise(resolve =>\n  setTimeout(resolve, 3000, 'Car 3 Completed'));\n\nPromise.race([car1, car2, car3])\n  .then(value => (\n    let result = `${value} the race.`;\n  ))\n  .catch(err => (\n    console.log('Race is cancelled.', err);\n  ));",
-      explanation: "La opción correcta es C: `Car 2 completed the race.`\n\n**Explicación detallada:**\n\n1. **Promise.race:**\n   - Este método devuelve el resultado de la primera promesa que se resuelve o se rechaza, en orden de tiempo.\n\n2. **Tiempo de ejecución:**\n   - `car1`: Se rechaza después de 2000 ms con 'Car 1 crashed in'.\n   - `car2`: Se resuelve después de 1500 ms con 'Car 2 completed'.\n   - `car3`: Se resuelve después de 3000 ms con 'Car 3 Completed'.\n\n3. **Resultado:**\n   - La primera promesa que se completa es `car2` (1500 ms), por lo que su valor es el resultado de `Promise.race`."
-    },
-    {
       id: "q44",
       question: "Refer to the code below. In which sequence will the numbers be logged?",
       type: "multiple choice",
@@ -746,21 +717,6 @@ export default function questions5() {
         E: "A pending promise can become fulfilled, settled, or rejected."
       },
       explanation: "Las respuestas correctas son B, C y E.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Todas las promesas tienen un método `.then()` que se ejecuta cuando la promesa se resuelve correctamente.\n\n2. **Opción C:**\n   - Una vez que una promesa se cumple o se rechaza, su estado no puede cambiar.\n\n3. **Opción E:**\n   - Una promesa pendiente puede pasar a los estados de 'cumplida', 'rechazada' o 'resuelta'.\n\n4. **Opciones incorrectas:**\n   - A: Aunque el ejecutor de una promesa se ejecuta automáticamente al crearla, esta opción no está seleccionada.\n   - D: Una promesa establecida no puede volver a ser resuelta."
-    },
-    {
-      id: "q48",
-      question: "Refer to the code below. What is the value of `result` when `Promise.race` executes?",
-      type: "multiple choice",
-      correct_options: ["C"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "Car 3 completed the race.",
-        B: "Car 1 crashed in the race.",
-        C: "Car 2 completed the race.",
-        D: "Race is cancelled."
-      },
-      code: "let car1 = new Promise((_, reject) =>\n  setTimeout(reject, 2000, 'Car 1 crashed in'));\nlet car2 = new Promise(resolve =>\n  setTimeout(resolve, 1500, 'Car 2 completed'));\nlet car3 = new Promise(resolve =>\n  setTimeout(resolve, 3000, 'Car 3 Completed'));\n\nPromise.race([car1, car2, car3])\n  .then(value => {\n    let result = `${value} the race.`;\n  })\n  .catch(err => {\n    console.log('Race is cancelled.', err);\n  });",
-      explanation: "La opción correcta es C: `Car 2 completed the race.`\n\n**Explicación detallada:**\n\n1. **Promise.race:**\n   - Devuelve la primera promesa que se resuelve o rechaza. En este caso, `car2` se resuelve después de `1500 ms`, antes de que las otras promesas sean procesadas.\n\n2. **Opciones incorrectas:**\n   - A y B: Estas promesas se ejecutan después de `car2`.\n   - D: La promesa no está cancelada en este caso."
     },
     {
       id: "q49",

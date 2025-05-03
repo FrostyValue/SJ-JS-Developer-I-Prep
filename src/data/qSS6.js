@@ -46,7 +46,6 @@ export default function questions6() {
         C: "node --debug main.js",
         D: "node --debugger main.js",
       },
-      code: "node --inspect main.js",
       explanation:
         "La opción correcta es la A: 'node --inspect main.js'. Al iniciar una aplicación Node.js, se puede usar la bandera '-inspect' para habilitar el V8 Inspector para depuración. Esto permite que la instancia de Node.js escuche a un cliente de depuración en el host y puerto 127.0.0.1:9229 por defecto. También se le asigna un UUID único.\n\nCuando se utiliza este comando, se devuelve la URL completa que contiene estos tres componentes. Una persona puede navegar a la URL, iniciar el Inspector y hacer clic en un ícono para abrir 'DevTools for Node.js' y depurar la aplicación.\n\nLos otros comandos contienen banderas inválidas (-inspector, -debug y -debugger) y no pueden ser usados para depurar una aplicación Node.js.",
     },
