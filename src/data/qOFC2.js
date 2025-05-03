@@ -1162,10 +1162,10 @@ export default function questions2() {
       correct_options: ["B"],
       number_of_correct_answers: 1,
       options: {
-        A: "This is a ScarfUncaught TypeError:saleItem.description is not a function This is a ScarfThis is a discounted Shirt",
-        B: "This is a Scarf This is a Shirt This is a ScarfThis is a discounted Shirt",
-        C: "This is a Scarf This is a ShirtThis is a discounted Scarf This is a discounted Shirt",
-        D: "This is a ScarfUncaught TypeError: saleItem.description is not a function This is a ShirtThis is a discounted Shirt"
+        A: "This is a Scarf, Uncaught TypeError:saleItem.description is not a function, This is a Scarf and This is a discounted Shirt.",
+        B: "This is a Scarf, This is a Shirt, This is a Scarf and This is a discounted Shirt.",
+        C: "This is a Scarf, This is a Shirt, This is a discounted Scarf and This is a discounted Shirt.",
+        D: "This is a Scarf, Uncaught TypeError: saleItem.description is not a function, This is a Shirt and This is a discounted Shirt."
       },
       code: "/* Block 1: Class Definitions */\nclass Item {\n  constructor(name, price) {\n    this.name = name;\n    this.price = price;\n  }\n}\n\nclass SaleItem extends Item {\n  constructor(name, price, discount) {\n    super(name, price);\n    this.discount = discount;\n  }\n}\n\n/* Block 2: Implementation and Output */\nlet regItem = new Item('Scarf', 55);\nlet saleItem = new SaleItem('Shirt', 80, 0.1);\n\nItem.prototype.description = function() {\n  return 'This is a ' + this.name;\n};\nconsole.log(regItem.description());\nconsole.log(saleItem.description());\n\nSaleItem.prototype.description = function() {\n  return 'This is a discounted ' + this.name;\n};\nconsole.log(regItem.description());\nconsole.log(saleItem.description());",
       explanation: "La opción correcta es B: `This is a Scarf This is a Shirt This is a ScarfThis is a discounted Shirt`.\n\n**Explicación detallada:**\n\n1. **Primera llamada a `regItem.description`:**\n   - Se ejecuta el método definido en `Item.prototype`, devolviendo `'This is a Scarf'`.\n\n2. **Primera llamada a `saleItem.description`:**\n   - Antes de sobrescribir el método, `saleItem` usa el mismo método de `Item.prototype`, devolviendo `'This is a Shirt'`.\n\n3. **Reescritura de `SaleItem.prototype.description`:**\n   - Este método se sobrescribe para los objetos creados con `SaleItem`. Ahora devuelve `'This is a discounted Shirt'` para `saleItem`.\n\n4. **Resultados posteriores:**\n   - `regItem.description()` sigue devolviendo `'This is a Scarf'` porque no se afecta la implementación en `Item.prototype`.\n   - `saleItem.description()` ahora usa su propia implementación, devolviendo `'This is a discounted Shirt'`.\n\nPor lo tanto, el resultado en consola es:\n```\nThis is a Scarf\nThis is a Shirt\nThis is a Scarf\nThis is a discounted Shirt\n```"
@@ -1284,10 +1284,10 @@ export default function questions2() {
       correct_options: ["A", "D"],
       number_of_correct_answers: 2,
       options: {
-        A: "Let countingDown = function(startNumber) { if (startNumber > 0) { console.log(startNumber); return countingDown(startNumber - 1); } else { return startNumber; }};",
-        B: "Function factorial(numVar) { if (numVar < 0) return; if (numVar === 0) return 1; return numVar - 1; };",
-        C: "Const sumToTen = numVar => { if (numVar < 0) return; return sumToTen(numVar + 1); };",
-        D: "Const factorial = numVar => { if (numVar < 0) return; if (numVar === 0) return 1; return numVar * factorial(numVar - 1); };"
+        A: "let countingDown = function(startNumber) { if (startNumber > 0) { console.log(startNumber); return countingDown(startNumber - 1); } else { return startNumber; }};",
+        B: "function factorial(numVar) { if (numVar < 0) return; if (numVar === 0) return 1; return numVar - 1; };",
+        C: "const sumToTen = numVar => { if (numVar < 0) return; return sumToTen(numVar + 1); };",
+        D: "const factorial = numVar => { if (numVar < 0) return; if (numVar === 0) return 1; return numVar * factorial(numVar - 1); };"
       },
       explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Esta función recursiva decrementa el valor `startNumber` hasta que alcanza `0`, momento en el que devuelve `startNumber`.\n\n2. **Opción D:**\n   - Esta función calcula el factorial de un número utilizando recursión, multiplicando el número por el resultado de la llamada a sí misma con `numVar - 1`.\n\n3. **Opciones incorrectas:**\n   - B: No implementa recursión correctamente.\n   - C: Intenta usar recursión pero no tiene un caso base válido para detener la función."
     },

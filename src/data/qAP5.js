@@ -148,9 +148,9 @@ export default function questions5() {
         C: "syntax error",
         D: "undefined",
       },
-      code: "async function fetchData(url) {\nlet results = await fetch(url);\nlet data = await results.json();\nreturn 'done';\n};\n\nlet promise1 = fetchData('https://jsonplaceholder.typicode.com/todos/1')\n.then(data => console.log(data));",
+      ccode: "async function fetchData(url) {\n\tlet results = await fetch(url);\n\tlet data = await results.json();\n\treturn 'done';\n};\n\nlet promise1 = fetchData('https://jsonplaceholder.typicode.com/todos/1')\n\t.then(data => console.log(data));",
       explanation:
-        "La opción correcta es la B: 'done'. Esto se debe a que:\n\n1. Una función 'async' devuelve una promesa que se resuelve con el valor especificado en la declaración 'return'.\n2. En este código, se devuelve la cadena 'done', y esa es la salida de la función 'fetchData'.\n3. La llamada a 'then()' está configurada para manejar el resultado de la promesa, mostrando 'done' en la consola.\n\nLas otras opciones son incorrectas porque:\n\n- **A**: No se devuelve el contenido de los datos, solo la cadena 'done'.\n- **C**: El código no tiene errores de sintaxis.\n- **D**: La promesa devuelve un valor ('done'), por lo que no es 'undefined'.",
+        "La opción correcta es 'done'. Esto se debe a que:\n\n1. Una función 'async' devuelve una promesa que se resuelve con el valor especificado en la declaración 'return'.\n2. En este código, se devuelve la cadena 'done', y esa es la salida de la función 'fetchData'.\n3. La llamada a 'then()' está configurada para manejar el resultado de la promesa, mostrando 'done' en la consola.\n\nLas otras opciones son incorrectas porque:\n\n- **A**: No se devuelve el contenido de los datos, solo la cadena 'done'.\n- **C**: El código no tiene errores de sintaxis.\n- **D**: La promesa devuelve un valor ('done'), por lo que no es 'undefined'.",
     },
     {
       id: "q10",

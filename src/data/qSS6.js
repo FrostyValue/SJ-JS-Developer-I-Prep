@@ -789,12 +789,12 @@ export default function questions6() {
       number_of_correct_answers: 2,
       options: {
         A: "The developer missed the option --add when adding the dependency.",
-        B: "The developer added the dependency as a dev dependency, and NODE_ENV is set to production.",
+        B: "NODE_ENV is set to production, which skips installing dev dependencies.",
         C: "The developer missed the option --save when adding the dependency.",
-        D: "The developer added the dependency as a dev dependency, and NODE_ENV is set to production."
+        D: "The developer added the dependency as a dev dependency.",
       },
       explanation: "Las opciones correctas son B y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Si el entorno de ejecución (`NODE_ENV`) está configurado en `production`, las dependencias agregadas como dev dependencies no se instalan.\n\n2. **Opción D:**\n   - La misma razón aplica cuando las dependencias dev no se instalan en un entorno de producción.\n\n3. **Errores en otras opciones:**\n   - Opción A: `--add` no es una opción válida para agregar dependencias en npm.\n   - Opción C: Aunque `--save` era obligatorio en versiones anteriores de npm, ahora las dependencias se guardan automáticamente en el archivo `package.json`."
-    },
+    },    
     {
       id: "q54",
       question: "The developer wants to log any issues that the server has while booting up. Which code logs an error at boot with an event?",

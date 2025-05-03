@@ -183,7 +183,7 @@ export default function questions1() {
         C: "[3, 6]",
         D: "[1, 7]",
       },
-      code: "  let days = [1, 2, 3, 4, 5, 6, 7];\n  for (let num of days) {\n  if (num == 3) {\n  days.splice(1, 2);\n  } else if (num == 6) {\n  days.splice(1, 3);\n  }\n  }\n  console.log(days);",
+      code: "let days = [1, 2, 3, 4, 5, 6, 7];\nfor (let num of days) {\n    if (num == 3) {\n        days.splice(1, 2);\n    } else if (num == 6) {\n        days.splice(1, 3);\n    }\n}\nconsole.log(days);",
       explanation:
         "El código utiliza un bucle 'for...of' para iterar sobre el array 'days'. En cada iteración, se evalúan dos condiciones usando 'splice()', lo que altera el array original. \n\n1. Cuando 'num' es 3, se ejecuta 'days.splice(1, 2)', eliminando los elementos en las posiciones 1 y 2 (es decir, '2' y '3'). Después de esta operación, el array 'days' se convierte en [1, 4, 5, 6, 7].\n2. Cuando 'num' es 6, se ejecuta 'days.splice(1, 3)', eliminando los elementos en las posiciones 1, 2 y 3 (es decir, '4', '5' y '6'). Después de esta operación, el array 'days' se convierte en [1, 7].\n\nPor lo tanto, el resultado final del array es '[1, 7]'.\n\nLa opción A es incorrecta porque '2' y '3' fueron eliminados en la primera iteración, y '4', '5' y '6' fueron eliminados en la segunda iteración.\nLa opción B es incorrecta porque los elementos '4', '5' y '6' fueron eliminados, por lo que el array es más pequeño.\nLa opción C es incorrecta porque solo se mantiene el '1' y '7' después de las operaciones de 'splice'.",
     },
@@ -302,7 +302,7 @@ export default function questions1() {
         C: "FIRST FUNCTION: return Date.parse(new Date(date)); SECOND FUNCTION: return Date.now(new Date());",
         D: "FIRST FUNCTION: return date.parse(); SECOND FUNCTION: return new Date().now();",
       },
-      code: "  function convertLearnerDate(date) {\n  // Add code to convert the passed date string into milliseconds.\n  }\n  function getCurrentDate() {\n  // Add code to get the current date in milliseconds.\n  }",
+      code: "  function convertLearnerDate(date) {\n    // Add code to convert the passed date string into milliseconds.\n  }\n  function getCurrentDate() {\n    // Add code to get the current date in milliseconds.\n  }",
       explanation:
         "La opción correcta es la **A**.\n\n- En la **primera función**, `Date.parse(date)` convierte una cadena de fecha (por ejemplo, '2025-04-21') en un número que representa los milisegundos desde el 1 de enero de 1970 (Epoch time), lo que permite almacenar esa fecha.\n\n- En la **segunda función**, `Date.now()` devuelve la fecha y hora actuales en milisegundos, lo cual es ideal para registrar el momento en que el usuario inicia sesión.\n\nLas otras opciones son incorrectas:\n- **B**: `parse()` y `now()` no son funciones globales válidas por sí solas.\n- **C**: `Date.parse(new Date(date))` es redundante, ya que `new Date(date)` crea un objeto de fecha y `Date.parse()` espera una cadena. Además, `Date.now()` no acepta argumentos.\n- **D**: `date.parse()` y `new Date().now()` no son métodos válidos en JavaScript.",
     },
@@ -371,7 +371,7 @@ export default function questions1() {
         D: "The symbol type cannot be implicitly coerced to a string.",
         E: "The symbol type can only be explicitly coerced to a string.",
       },
-      code: '  function manageLogStatement(id) {\n  let statement = "User ID:" + id;\n  log(statement);\n  }',
+      code: "function manageLogStatement(id) {\n\tlet statement = \"User ID:\" + id;\n\tlog(statement);\n}",
       explanation:
         "La opción **A** es correcta porque el símbolo en JavaScript no se puede convertir implícitamente a una cadena, lo que provoca un error al intentar concatenarlo con un string. El operador `+` intenta convertir el valor de `id` a una cadena, lo que genera el error.\n\nLa opción **D** también es correcta porque los símbolos no se pueden convertir implícitamente a una cadena en JavaScript. Necesitan ser tratados de manera explícita para ser usados como cadenas.\n\nLa opción **E** es correcta porque los símbolos solo pueden ser convertidos explícitamente a una cadena utilizando el método `String(id)` o llamando directamente a su `toString()`.\n\nLas otras opciones son incorrectas porque los símbolos no pueden ser convertidos automáticamente ni implícitamente a números ni cadenas sin usar una conversión explícita.",
     },
@@ -793,7 +793,7 @@ export default function questions1() {
     },
     {
       id: "q48",
-      question: "Given the following code, what is the output of the line 02?",
+      question: "Given the following code, what is the output of the last line?",
       type: "multiple choice",
       correct_options: ["C"],
       number_of_correct_answers: 1,
@@ -803,8 +803,9 @@ export default function questions1() {
         C: "'Object'",
         D: "'undefined'"
       },
+      code: "let x = null;\nconsole.log(typeof x);",
       explanation: "La opción correcta es la C: 'Object'.\n\n**Explicación detallada:**\n\n1. **El operador `typeof`:** En JavaScript, el operador `typeof` devuelve una cadena que indica el tipo del valor evaluado.\n\n2. **El caso especial de `null`:** Históricamente, debido a un error en la implementación original del operador `typeof`, se devuelve 'object' para valores `null`. Aunque `null` técnicamente representa la ausencia de un valor y no es un objeto, este comportamiento se ha mantenido en JavaScript por razones de compatibilidad.\n\n3. **Salida del código:** Dado que `x` se inicializa con `null`, la línea `console.log(typeof x);` devuelve 'object'.\n\n4. **Opciones incorrectas:**\n   - A: 'Null' no es un valor retornado por `typeof`.\n   - B: 'X' no está relacionado con el valor o tipo de `x`.\n   - D: 'undefined' no es correcto porque `typeof null` no devuelve 'undefined'."
-    },
+    },    
     {
       id: "q49",
       question: "Given the following code. What is the value of `x`?",
