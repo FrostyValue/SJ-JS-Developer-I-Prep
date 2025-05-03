@@ -13,7 +13,7 @@ export default function questions5() {
         C: "The setTimeout method pauses a running function and continues execution after a specified time period.",
         D: "The setTimeout method pauses the thread for the specified time period.",
       },
-      code: "let timer = 3000;\n\nlet alertTimer = (time) => {\nconsole.log(`Your ${time / 1000} seconds is over');\n//implement alert\n}\n\nsetTimeout(alertTimer, timer, timer);",
+      code: "let timer = 3000;\n\nlet alertTimer = (time) => {\n\tconsole.log(`Your ${time / 1000} seconds is over');\n\t//implement alert\n}\n\nsetTimeout(alertTimer, timer, timer);",
       explanation:
         "La opción correcta es la B: 'The setTimeout method submits a function to be run after a specified time period.'. Esto se debe a que 'setTimeout()' se utiliza para ejecutar un bloque de código una vez después de un período de tiempo especificado. No pausa una función ni un hilo, ni ejecuta la función a intervalos regulares.\n\nLas otras opciones son incorrectas porque:\n\n- **A**: Se describe el comportamiento de 'setInterval()', no 'setTimeout()'.\n- **C y D**: 'setTimeout()' no pausa la ejecución ni un hilo, sino que programa una función para que se ejecute después del tiempo especificado.",
     },
@@ -236,9 +236,8 @@ export default function questions5() {
         D: "The 'then' method should be called on the Promise object to receive a response when the Promise is fulfilled.",
         E: "The 'getUser' method must be wrapped within a console.log statement to display the returned value.",
       },
-      code: "let getUser = function (id) {\nreturn new Promise((resolve, reject) => {\nlet user = getUserFromStorage(id);\nif (user) {\nresolve(user);\n} else {\nreject('User not found');\n}\n});\n}",
-      explanation:
-        "Las respuestas correctas son:\n\n- **B. 'The async and await keywords can be used with a try ... catch statement to receive a response when the Promise is fulfilled and catch errors when it is rejected.'**: Usar 'async' y 'await' dentro de un bloque 'try ... catch' permite manejar tanto las respuestas como los errores.\n- **C. 'The catch method should be called on the Promise object to catch the error when the Promise is rejected.'**: La forma más común de manejar errores en promesas es encadenar 'catch()' después de 'then()'.\n- **D. 'The then method should be called on the Promise object to receive a response when the Promise is fulfilled.'**: 'then()' captura la respuesta cuando la promesa es resuelta.\n\nLas otras opciones son incorrectas porque:\n\n- **A**: 'resolve' se utiliza para completar una promesa, no para recibir un valor o error.\n- **E**: Aunque 'console.log()' puede mostrar el valor devuelto, no aborda el problema fundamental del manejo de errores y respuestas.",
+      code: "let getUser = function (id) {\treturn new Promise((resolve, reject) => {\t\tlet user = getUserFromStorage(id);\t\tif (user) {\t\t\tresolve(user);\t\t} else {\t\t\treject('User not found');\t\t}\t});",
+      explanation: "Las respuestas correctas son:\n\n- **B. 'The async and await keywords can be used with a try ... catch statement to receive a response when the Promise is fulfilled and catch errors when it is rejected.'**: Usar 'async' y 'await' dentro de un bloque 'try ... catch' permite manejar tanto las respuestas como los errores.\n- **C. 'The catch method should be called on the Promise object to catch the error when the Promise is rejected.'**: La forma más común de manejar errores en promesas es encadenar 'catch()' después de 'then()'.\n- **D. 'The then method should be called on the Promise object to receive a response when the Promise is fulfilled.'**: 'then()' captura la respuesta cuando la promesa es resuelta.\n\nLas otras opciones son incorrectas porque:\n\n- **A**: 'resolve' se utiliza para completar una promesa, no para recibir un valor o error.\n- **E**: Aunque 'console.log()' puede mostrar el valor devuelto, no aborda el problema fundamental del manejo de errores y respuestas.",
     },
     {
       id: "q15",
@@ -373,7 +372,7 @@ export default function questions5() {
         C: "1150",
         D: "100",
       },
-      code: "function timer(time) {\nreturn new Promise((resolve, reject) => {\nsetTimeout(() => {\nresolve(time);\n}, time);\n});\n}\n\nasync function getNum() {\nreturn 50;\n}\n\nasync function compute(num) {\nlet num1 = num2 = num3 = 0;\nnum1 = await timer(500);\nnum2 = await getNum();\ntimer(500)\n.then(val => num3 = val);\nconsole.log(num + num1 + num2 + num3);\n}\n\ncompute(100);",
+      code: "function timer(time) {\n\treturn new Promise((resolve, reject) => {\n\t\tsetTimeout(() => {\n\t\t\tresolve(time);\n\t\t}, time);\n\t});\n}\n\nasync function getNum() {\n\treturn 50;\n}\n\nasync function compute(num) {\n\tlet num1 = num2 = num3 = 0;\n\n\tnum1 = await timer(500);\n\tnum2 = await getNum();\n\n\ttimer(500).then(val => {\n\t\tnum3 = val;\n\t});\n\n\tconsole.log(num + num1 + num2 + num3);\n}\n\ncompute(100);",
       explanation:
         "La opción correcta es la B: '650'. Esto se debe a que:\n\n1. 'num1' se resuelve usando 'await timer(500)', lo que devuelve 500.\n2. 'num2' se resuelve usando 'await getNum()', lo que devuelve 50.\n3. 'num3' se establece dentro de un 'then()' y, aunque la promesa se resuelve, la asignación ocurre asíncronamente, después de que se ejecuta el 'console.log'. Por lo tanto, 'num3' permanece en su valor inicial de 0.\n4. La suma de 'num', 'num1', 'num2' y 'num3' produce 650 (100 + 500 + 50 + 0).\n\nLas otras opciones son incorrectas porque no consideran correctamente cómo se manejan las promesas y las funciones asíncronas.",
     },

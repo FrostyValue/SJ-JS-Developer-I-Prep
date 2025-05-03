@@ -859,7 +859,7 @@ export default function questions2() {
     },
     {
       id: "q52",
-      question: "Refer to the code below. What is the value of the `result` after line 10 executes?",
+      question: "Refer to the code below. What is the value of the `result` after last line executes?",
       type: "multiple choice",
       correct_options: ["D"],
       number_of_correct_answers: 1,
@@ -1005,7 +1005,7 @@ export default function questions2() {
         D: "The console logs ‘flag’ and then an error is thrown."
       },
       code: "flag();\nanotherFlag();\n\nfunction flag() {\n  console.log('flag');\n}\n\nconst anotherFlag = () => {\n  console.log('another flag');\n};",
-      explanation: "The correct answer is **D: 'The console logs ‘flag’ and then an error is thrown.'**\n\n**Explanation:**\n\n1. **Function Declaration for `flag`:**\n   - The function `flag` is a function declaration, which means it is hoisted to the top of its scope. As a result, `flag()` can be called before its definition in the code.\n   - When `flag()` is called, it executes without issue, logging `'flag'` to the console.\n\n2. **Const Declaration for `anotherFlag`:**\n   - The variable `anotherFlag` is declared using `const`, which is not hoisted in the same way as function declarations. While the variable name is hoisted to the top of its scope, it remains in the temporal dead zone (TDZ) until the line of code where it is defined.\n   - When `anotherFlag()` is called before its definition, an error is thrown because `anotherFlag` has not been initialized yet.\n\n3. **Result:**\n   - The first log statement, `flag()`, executes successfully, logging `'flag'`.\n   - The second call to `anotherFlag()` throws a `ReferenceError` because `anotherFlag` is accessed before it is initialized.\n\n4. **Options Analysis:**\n   - A: Incorrect. The code does not just log `'flag'`; it throws an error after logging.\n   - B: Incorrect. The code does not log `'another flag'` because `anotherFlag()` throws an error before it can be executed.\n   - C: Incorrect. While an error is thrown, `'flag'` is logged first.\n   - D: Correct. The code logs `'flag'` and then throws an error."
+      explanation: "La respuesta correcta es 'The console logs ‘flag’ and then an error is thrown.'** La función `flag` es una declaración de función que se eleva al inicio de su ámbito, por lo que `flag()` se ejecuta sin problemas y registra `'flag'` en la consola. Sin embargo, `anotherFlag` es una variable declarada con `const`, que no se inicializa hasta que se alcanza su línea de código. Al intentar llamar a `anotherFlag()` antes de su definición, se lanza un error (`ReferenceError`) porque está en la zona muerta temporal (TDZ). Por lo tanto, el código registra `'flag'` y luego lanza un error."
     },
     {
       id: "q62",

@@ -13,7 +13,7 @@ export default function questions1() {
         C: "jsObject[index].isbn, jsObject[index].price",
         D: "jsObject[isbn], jsObject[price]",
       },
-      code: "/*\n  Expected Output:\n  Index: 0, ISBN: 0-5153-0346-1, Price: 24.95\n  Index: 1, ISBN: 0-8522-3763-4, Price: 6.99\n  Index: 2, ISBN: 0-4567-5678-2, Price: 15.99\n  \u2026\n  */\n  for (let index=0; index < jsObject.length; index++) {\n  console.log('Index: ', index, ', ISBN: ', /* ??? */, ', Price: ', /* ??? */);\n  }",
+      code: "/*\n\tExpected Output:\n\tIndex: 0, ISBN: 0-5153-0346-1, Price: 24.95\n\tIndex: 1, ISBN: 0-8522-3763-4, Price: 6.99\n\tIndex: 2, ISBN: 0-4567-5678-2, Price: 15.99\n\t…\n*/\nfor (let index=0; index < jsObject.length; index++) {\n\tconsole.log('Index: ', index, ', ISBN: ', /* ??? */, ', Price: ', /* ??? */);\n}",
       explanation:
         "La opción correcta es la C: `jsObject[index].isbn, jsObject[index].price`. Esto se debe a que `jsObject` es un arreglo de objetos, y cada objeto contiene las propiedades 'isbn' y 'price'. Para acceder a cada elemento del arreglo se usa `jsObject[index]`, y luego para acceder a las propiedades del objeto se usa la notación punto: `.isbn` y `.price`.\n\nLas otras opciones son incorrectas por lo siguiente:\n- A: `jsObject[index][isbn]` intenta acceder a la propiedad con una variable llamada `isbn`, pero `isbn` no está definida como variable, por lo tanto lanzará un error.\n- B: `jsObject.isbn` accede a una propiedad `isbn` directamente en el arreglo `jsObject`, lo cual no tiene sentido porque `jsObject` es un arreglo, no un objeto con esas propiedades.\n- D: `jsObject[isbn]` accede a un índice del arreglo usando una variable `isbn` no definida, lo cual también es incorrecto.",
     },
@@ -64,7 +64,7 @@ export default function questions1() {
         C: "[4, 6, 8, 10]",
         D: "[10, 9, 5, 6]",
       },
-      code: "  let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];\n  let peak = [];\n  for (let month of months) {\n  if (month > 3) {\n  peak.push(month);\n  }\n  if (month > 5) {\n  peak.pop();\n  }\n  if (month > 7) {\n  peak.unshift(month);\n  }\n  if (month > 9) {\n  peak.shift();\n  }\n  }",
+      code: "let months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];\nlet peak = [];\nfor (let month of months) {\n\tif (month > 3) {\n\t\tpeak.push(month);\n\t}\n\tif (month > 5) {\n\t\tpeak.pop();\n\t}\n\tif (month > 7) {\n\t\tpeak.unshift(month);\n\t}\n\tif (month > 9) {\n\t\tpeak.shift();\n\t}\n}",
       explanation:
         "El array 'months' contiene los valores de 1 a 12. El array 'peak' comienza vacío. A continuación, se describe el proceso paso a paso:\n\n1. Si el mes es mayor a 3, se agrega al final del array 'peak' mediante el método 'push'.\n2. Si el mes es mayor a 5, se elimina el último elemento del array 'peak' mediante el método 'pop'.\n3. Si el mes es mayor a 7, se agrega al principio del array 'peak' mediante el método 'unshift'.\n4. Si el mes es mayor a 9, se elimina el primer elemento del array 'peak' mediante el método 'shift'.\n\nTras ejecutar todo el código, el array 'peak' contiene los valores [9, 8, 4, 5], lo que corresponde a la opción B.",
     },
@@ -234,7 +234,7 @@ export default function questions1() {
         C: "Replace 'const courses = data.courses' with 'const courses = JSON.parse(data)'.",
         D: "Replace 'const courses = data.courses' with 'const courses = JSON.parse(data.courses)'.",
       },
-      code: "/*\n  CK-CM => Chicken Marsala\n  CK-KFC => Kentucky Fried Chicken\n  CK-KPC => Kung Pao Chicken\n  */\n  if (xhr.readyState === XMLHttpRequest.DONE) {\n  const data = xhr.responseText;\n  const courses = data.courses;\n  let string = '';\n  for (let item=0; item < courses.length; item++) {\n  string += courses[item].code + ' => ' + courses[item].name + '<br/>';\n  }\n  console.log(string);\n  }",
+      code: "/*\nCK-CM => Chicken Marsala\nCK-KFC => Kentucky Fried Chicken\nCK-KPC => Kung Pao Chicken\n*/\nif (xhr.readyState === XMLHttpRequest.DONE) {\n\tconst data = xhr.responseText;\n\tconst courses = data.courses;\n\tlet string = '';\n\tfor (let item = 0; item < courses.length; item++) {\n\t\tstring += courses[item].code + ' => ' + courses[item].name + '<br/>';\n\t}\n\tconsole.log(string);\n}",
       explanation:
         "La opción correcta es **B**, ya que la propiedad `xhr.responseText` devuelve una cadena de texto JSON, y se debe convertir a un objeto JavaScript utilizando `JSON.parse(xhr.responseText)`. Esto permite que la variable `data` contenga el objeto con las propiedades correspondientes (como `courses`). Si no se realiza esta conversión, `data` permanecería como una cadena, y acceder a `data.courses` no funcionaría correctamente.\n\nLas otras opciones son incorrectas por las siguientes razones:\n- **Opción A** es incorrecta porque `JSON.parse(xhr)` no es válido. Debemos parsear `xhr.responseText`, que es la cadena JSON, no el objeto `xhr` entero.\n- **Opción C** es incorrecta porque `data` ya es un objeto parseado, y no necesita ser parseado nuevamente. Se debe acceder directamente a `data.courses` sin realizar otro `JSON.parse`.\n- **Opción D** es incorrecta porque `data.courses` ya es un array (suponiendo que el JSON se haya parseado correctamente), y no es necesario volver a parsearlo.",
     },
@@ -434,6 +434,7 @@ export default function questions1() {
         "A developer is working on an online course. Whenever a learner starts the course, a welcome message is displayed using the greeting function. During testing, it was discovered that some names cause this welcome message to be larger than the 75 characters that are available for the message. \n\nWhat code could be added to the function in order to return a welcome message without the name in those rare situations when the name is too large?",
       type: "multiple choice",
       correct_options: ["C"],
+      number_of_correct_answers: 1,
       options: {
         A: "if (greet.length > 75) return greet.replace(name);",
         B: "if (greet.length > 75) return greet.trim();",
@@ -450,6 +451,7 @@ export default function questions1() {
         "Which two code blocks meet the requirements for the 'checkNumber' function?",
       type: "multiple choice",
       correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
       options: {
         A: "let num = parseFloat(fieldNum); return Number.isInteger(num);",
         B: "let num = fieldNum.parseFloat();return isInteger(num);",
@@ -466,12 +468,14 @@ export default function questions1() {
         "A developer of Cosmic Lights is working on a web page for a portal that shows compensation information of the employee or contractor who is currently logged in. The information is retrieved from a cloud-based datastore. If the user does not receive any benefits, then the datastore returns null, false, or 0 as the value of the 'benefits' property. A unique section should be displayed on the web page for such users. If the user receives benefits, then a non-empty object is returned as the value of the property. \n\nWhich of the following conditions can be used alone in the 'if statement' below to check if the current user does not receive benefits?",
       type: "multiple choice",
       correct_options: ["C", "D"],
+      number_of_correct_answers: 2,
       options: {
         A: "benefits == false",
         B: "benefits == null",
         C: "benefits == false || benefits == null",
         D: "benefits == 0 || benefits == null",
       },
+      code: "if (/* condición aquí */) {\n\tshowNoBenefitsSection();\n}",
       explanation:
         "Las opciones C y D son correctas porque verifican adecuadamente si el usuario no recibe beneficios, ya que 'false', 'null' y '0' son considerados valores falsos en JavaScript. Las otras opciones no cubren todos los posibles valores falsos que puede devolver la propiedad 'benefits'.",
     },
@@ -511,7 +515,7 @@ export default function questions1() {
     {
       id: "q31",
       question:
-        " \n\nWhat will be the outcome of the JavaScript code below when it is executed?",
+        "What will be the outcome of the JavaScript code below when it is executed?",
       type: "multiple choice",
       correct_options: ["B"],
       options: {
@@ -520,9 +524,10 @@ export default function questions1() {
         C: "The 'color' property will become read-only.",
         D: "page.changeColor('black') will return the method body.",
       },
+      code: "class Page {\n\t#color = 'white';\n\n\tget color() {\n\t\treturn this.#color;\n\t}\n\n\tchangeColor(newColor) {\n\t\tthis.#color = newColor;\n\t}\n}\n\nconst page = new Page();\npage.changeColor('black');",
       explanation:
-        "La respuesta correcta es B, ya que al llamar al método 'changeColor' con el argumento 'black', se actualizará la propiedad 'color' de la página. Las otras opciones son interpretaciones incorrectas de lo que sucede cuando se ejecuta el método.",
-    },
+        "La respuesta correcta es 'The 'color' property will be updated to 'black'.', ya que al llamar al método 'changeColor' con el argumento 'black', se actualiza la propiedad privada '#color' del objeto. Las demás opciones no describen correctamente el comportamiento del código.",
+    },    
     {
       id: "q32",
       question:
@@ -535,6 +540,7 @@ export default function questions1() {
         C: "if (str.toLowerCase().includes(phrase)) { recordQuestion(str.replace(/ /g, '_').substring(0, 50)); }",
         D: "if (str.toLowerCase().includes(phrase)) { recordQuestion().replace(' ', '_').substring(0, 50)); }",
       },
+      code: "function evaluate(str, phrase) {\n\t  if (str.includes(phrase)) {\n\t\t    recordQuestion(str);\n\t  }\n}",
       explanation:
         "La opción C es la correcta porque convierte la cadena a minúsculas antes de verificar si contiene la frase, reemplaza los espacios con guiones bajos y recorta la cadena a 50 caracteres. Las otras opciones tienen errores en la lógica de la comparación o el procesamiento de la cadena.",
     },
@@ -657,13 +663,14 @@ export default function questions1() {
       question:
         "A developer needs to define a JavaScript variable named 'totalCost', which will be used to store the total cost of product items that are contained in a shopping cart. \n\nHow should this variable be declared and initialized?",
       type: "multiple choice",
+      correct_options: ["C"],
+      number_of_correct_answers: 1,
       options: {
         A: "var totalCost = On;",
         B: "totalCost = new float(0.0);",
         C: "let totalCost = 0;",
         D: "float totalCost = 0.0;",
       },
-      correct_options: ["C"],
       explanation:
         "La opción C es la correcta porque 'let' es la forma adecuada de declarar una variable en JavaScript. 'totalCost' debe inicializarse en 0 ya que se usará para almacenar el costo total de los productos.",
     },
@@ -1049,7 +1056,7 @@ export default function questions1() {
         C: "let x = (1 + 2) == ('6' / 2);",
         D: "let x = (1 + 2) == (6 / 2);"
       },
-      code: "let x = ('1' + 2) == (6 * 2);",
+      code: "let x = //insert code here",
       explanation: "La opción correcta es B: `let x = ('1' + 2) == (6 * 2);`.\n\n**Explicación detallada:**\n\n1. **Evaluación de la expresión original:**\n   - `('1' + 2)` realiza concatenación de cadenas, convirtiendo `2` en una cadena y resultando en `'12'`.\n   - `(6 * 2)` evalúa a `12` como un número.\n   - Comparar `'12'` (cadena) con `12` (número) devuelve `false`.\n\n2. **Modificación para garantizar `false`:**\n   - Manteniendo la opción B sin cambios, se asegura la evaluación de `false` porque la expresión original ya cumple esa condición.\n\n3. **Opciones incorrectas:**\n   - A: Cambiar `('1' + 2)` por `('1' + '2')` produce `'12' == 12`, lo que podría evaluarse a `true` con coerción.\n   - C y D: Cambiar las operaciones altera la lógica original y puede no garantizar que se evalúe consistentemente a `false`."
     },
     {

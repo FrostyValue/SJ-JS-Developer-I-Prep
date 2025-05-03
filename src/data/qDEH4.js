@@ -64,7 +64,7 @@ export default function questions4() {
         C: "Watch",
         D: "Breakpoints",
       },
-      code: "var page = {\nloaded: false, // 'loaded' property\nplugins: [\n{ id: 'library', status: false },\n{ id: 'analytics', status: false },\n// …\n],\nload: function () {\nfor (i in this.plugins) {\nplugin.init(this.plugins[i].id); // initialize plugin\nthis.plugins[i].status = true; // update plugin status\n}\n(function () {\n// ...\nthis.loaded = true; // update 'loaded' property\n})();\n},\ninit: function () {\nthis.load();\n},\n//…\n};\n\npage.init(); // load the page",
+      code: "var page = {\n\tloaded: false, // 'loaded' property\n\tplugins: [\n\t\t{ id: 'library', status: false },\n\t\t{ id: 'analytics', status: false },\n\t\t// …\n\t],\n\tload: function () {\n\t\tfor (i in this.plugins) {\n\t\t\tplugin.init(this.plugins[i].id); // initialize plugin\n\t\t\tthis.plugins[i].status = true; // update plugin status\n\t\t}\n\t\t(function () {\n\t\t\t// ...\n\t\t\tthis.loaded = true; // update 'loaded' property\n\t\t})();\n\t},\n\tinit: function () {\n\t\tthis.load();\n\t},\n\t//…\n};\n\npage.init(); // load the page",
       explanation:
         "La opción correcta es la C: 'Watch'. El panel Watch se usa para inspeccionar valores de expresiones o variables de JavaScript, como propiedades de objetos. Los valores se actualizan automáticamente mientras se recorre el código paso a paso.\n\nEl problema es que la propiedad 'loaded' no se actualiza porque la lógica está restringida al alcance local dentro de la función anónima. Los otros paneles tienen funciones diferentes:\n\n- **A. Scope**: Permite ver y editar variables en el ámbito local, global y de cierres, pero no es específico para monitorear propiedades continuamente.\n- **B. Call Stack**: Muestra las funciones llamadas hasta la línea actual en la ejecución pausada.\n- **D. Breakpoints**: Muestra los puntos de interrupción establecidos, pero no se utiliza para monitorear valores.",
     },
@@ -391,21 +391,6 @@ export default function questions4() {
     },
     {
       id: "q26",
-      question: "Which option allows the developer to step into each function execution within `calculateBill`?",
-      type: "multiple choice",
-      correct_options: ["A"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "Using the debugger command on line 05.",
-        B: "Using the debugger command on line 03.",
-        C: "Calling the console.trace(total) method on line 03.",
-        D: "Wrapping findSubTotal in a console.log() method."
-      },
-      code: "function calculateBill(items) {\n  let total = 0;\n  total += findSubTotal(items);\n  total += addTax(total);\n  total += addTip(total);\n  debugger;\n  return total;\n}",
-      explanation: "La opción correcta es A: `Using the debugger command on line 05.`\n\n**Explicación detallada:**\n\n1. **Uso de `debugger`:**\n   - El comando `debugger` detiene la ejecución del código y permite al desarrollador inspeccionar cada función en el flujo de ejecución.\n\n2. **Opciones incorrectas:**\n   - B: Aunque el uso de `debugger` es válido en esta línea, no permite entrar en todas las funciones necesarias.\n   - C: `console.trace` registra la pila de llamadas, pero no permite interactuar directamente con el flujo de ejecución.\n   - D: Usar `console.log` solo registra valores, pero no detiene la ejecución ni permite inspeccionar funciones."
-    },
-    {
-      id: "q27",
       question: "Given the code below, what is the expected output?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -420,7 +405,7 @@ export default function questions4() {
       explanation: "La opción correcta es B: `Line 6 outputs the variable, but line 7 throws an error.`\n\n**Explicación detallada:**\n\n1. **Variable `a`:**\n   - `a` se asigna sin ser declarada, por lo que JavaScript la trata como una variable global. Se imprimirá correctamente como `5` en la línea 6.\n\n2. **Variable `b`:**\n   - `b` es declarada con `var` dentro de la función `myFunction`. Esto la hace local a la función, por lo que no está disponible fuera de su alcance. La línea 7 lanzará un error de referencia (`ReferenceError`)."
     },
     {
-      id: "q28",
+      id: "q27",
       question: "The developer has a `getNextValue` function to execute after `handleObjectValue()` but does not want to execute `getNextValue()` if an error occurs. \n\nHow can the developer change the code to ensure this behavior?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -434,7 +419,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: La ejecución de `getNextValue()` debe evitarse si ocurre un error.\n\n**Explicación detallada:**\n\n1. **`try...catch`:**\n   - Captura errores y evita la ejecución de cualquier código que esté fuera del bloque `catch`.\n\n2. **Opciones incorrectas:**\n   - A, B y C: Estas soluciones no garantizan que `getNextValue()` se omita correctamente si se lanza un error."
     },
     {
-      id: "q29",
+      id: "q28",
       question: "Universal Containers decides to implement a debounce function to address too many network requests during string changes in a search handler. \n\nWhat are three key steps to implement this debounce function?",
       type: "multiple choice",
       correct_options: ["A", "D", "E"],
@@ -449,7 +434,7 @@ export default function questions4() {
       explanation: "La opción correcta incluye A, D y E.\n\n**Explicación detallada:**\n\n1. **Cancelación del temporizador existente:**\n   - D: Cuando el cambio de cadena ocurre nuevamente, el temporizador previo debe ser cancelado usando `clearTimeout` para evitar múltiples solicitudes innecesarias.\n\n2. **Persistencia de timerId:**\n   - E: Es necesario almacenar el identificador del último `setTimeout` creado para poder cancelarlo si ocurre otro cambio.\n\n3. **Manejo de setTimeout en cambios:**\n   - A: Se puede permitir que el temporizador en ejecución termine si no se reemplaza. Esto asegura que no se sobrecargue la red innecesariamente.\n\n**Opciones incorrectas:**\n   - B: El uso de `setTimeout` es válido, pero no aborda completamente la lógica de cancelación y reemplazo.\n   - C: `debounce` no es una propiedad de red estándar; se implementa a nivel de JavaScript."
     },
     {
-      id: "q30",
+      id: "q29",
       question: "Which three console logging methods allow the use of string substitution in line 2?",
       type: "multiple choice",
       correct_options: ["A", "D"],
@@ -465,7 +450,7 @@ export default function questions4() {
       explanation: "Las opciones correctas son A y D:\n\n**Explicación detallada:**\n\n1. **Uso de la sustitución de cadenas:**\n   - `console.assert` y `console.info` permiten el uso de `%s` para insertar valores dinámicos en mensajes de registro.\n\n2. **Errores en otras opciones:**\n   - Opción B: Aunque `console.log` admite sustituciones, no fue seleccionado como parte de las opciones correctas en la pregunta original.\n   - Opción C: `console.message` no es un método válido.\n   - Opción E: `console.error` no soporta directamente la sustitución de cadenas."
     },
     {
-      id: "q31",
+      id: "q30",
       question: "A developer is debugging a web server that uses Node.js. The server hits a runtime error every third request to an important endpoint on the web server. The developer added a breakpoint to the start script, that is at index.js at the root of the server’s source code. The developer wants to make use of Chrome DevTools to debug. \n\nWhich command can be run to access DevTools and make sure the breakdown is hit?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -479,7 +464,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: **node --inspect index.js**.\n\n**Explicación detallada:**\n\n1. **Uso del parámetro --inspect:**\n   - Este comando activa el soporte para la depuración remota con Chrome DevTools, permitiendo al desarrollador interactuar con el código fuente y los puntos de interrupción.\n\n2. **Evitar errores de otras opciones:**\n   - Opción A: `-i` activa el modo interactivo de Node.js, pero no permite depurar usando DevTools.\n   - Opción B: `--inspect-brk` detiene la ejecución en el primer archivo, lo cual no garantiza que se alcance el punto esperado.\n   - Opción C: `inspect` habilita la depuración interna de Node.js pero no abre DevTools."
     },
     {
-      id: "q32",
+      id: "q31",
       question: "A developer is asked to fix some bugs reported by users. To do that, the developer adds a breakpoint for debugging. When the code execution stops at the breakpoint on line 6. \n\nWhich two types of information are available in the browser console?",
       type: "multiple choice",
       correct_options: ["C", "D"],
@@ -493,7 +478,7 @@ export default function questions4() {
       explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - La consola del navegador muestra el estilo, los atributos y los event listeners aplicados al elemento DOM `carSpeed`.\n\n2. **Opción D:**\n   - La propiedad `window.localStorage` contiene información almacenada localmente en el navegador.\n\n3. **Errores en otras opciones:**\n   - Opción A: Aunque los valores pueden ser visibles, no son directamente accesibles a través de este breakpoint.\n   - Opción B: La consola no muestra automáticamente el número de instancias creadas de objetos como `Car`."
     },
     {
-      id: "q33",
+      id: "q32",
       question: "A developer writes the code below to calculate the factorial of a given number. What is the result of executing line 04?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -507,7 +492,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: **RuntimeError.**\n\n**Explicación detallada:**\n\n1. **Problema con la implementación:**\n   - La función usa `number + factorial(number - 1)` en lugar de la multiplicación requerida para calcular el factorial.\n   - Esto genera una recursión infinita porque la función no tiene una condición base para detener la recursión.\n\n2. **Resultado:**\n   - La ejecución lleva a un desbordamiento de pila y arroja un `RuntimeError`.\n\n3. **Errores en otras opciones:**\n   - Opción A, B, y C: No aplican porque la función no produce un resultado válido."
     },
     {
-      id: "q34",
+      id: "q33",
       question: "The developer needs to insert a code statement in the location shown. The code statement has these requirements:\n1. Does require an import\n2. Logs an error when the boolean statement evaluates to false\n3. Works in both the browser and Node.js\n\nWhich statement meets the requirements?",
       type: "multiple choice",
       correct_options: ["B"],

@@ -463,9 +463,9 @@ export default function questions6() {
       number_of_correct_answers: 1,
       options: {
         A: "DEBUG = http, https node server.js",
-        B: "NODE_DEBUG =http, https node server.js",
-        C: "DEBUG =true node server.js",
-        D: "NODE_DEBUG =true node server.js"
+        B: "NODE_DEBUG = http, https node server.js",
+        C: "DEBUG = true node server.js",
+        D: "NODE_DEBUG = true node server.js"
       },
       explanation: "La opción correcta es C: 'DEBUG =true node server.js'.\n\n**Explicación detallada:**\n\n1. **Uso de la variable de entorno `DEBUG`:**\n   - En aplicaciones de Node.js, establecer la variable `DEBUG` permite habilitar el registro detallado de depuración en los módulos que admiten esta funcionalidad.\n   - Usar `DEBUG =true` garantiza que el módulo proporcione información más detallada sobre lo que ocurre durante el tiempo de latencia.\n\n2. **Opciones incorrectas:**\n   - A: 'DEBUG = http, https node server.js' es incorrecta porque usar 'http, https' con `DEBUG` no activa automáticamente la depuración en los módulos correspondientes.\n   - B: 'NODE_DEBUG =http, https node server.js' es incorrecta porque, aunque `NODE_DEBUG` permite activar la depuración en determinados módulos, no es compatible con el valor 'http, https' directamente en este contexto.\n   - D: 'NODE_DEBUG =true node server.js' es incorrecta porque `NODE_DEBUG` no funciona con un valor booleano como `true`. Requiere un listado explícito de módulos que admiten esta variable."
     },
@@ -684,20 +684,6 @@ export default function questions6() {
     },
     {
       id: "q46",
-      question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround. \n\nWhich command can the web developer run to see what the module is doing during the latency period?",
-      type: "multiple choice",
-      correct_options: ["C"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "DEBUG = http, https node server.js",
-        B: "NODE_DEBUG =http, https node server.js",
-        C: "DEBUG =true node server.js",
-        D: "NODE_DEBUG =true node server.js"
-      },
-      explanation: "La opción correcta es C: `DEBUG =true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de `DEBUG` en Node.js:**\n   - Configurar la variable de entorno `DEBUG=true` habilita mensajes de depuración en el servidor.\n   - Esto ayuda a identificar problemas de rendimiento y latencia al monitorear módulos y tareas activas.\n\n2. **Opciones incorrectas:**\n   - A: Usar `http, https` en `DEBUG` es inválido en este contexto.\n   - B y D: `NODE_DEBUG` se utiliza para habilitar mensajes de depuración en módulos específicos, pero no activa depuración general como se requiere aquí."
-    },
-    {
-      id: "q47",
       question: "A developer is debugging a web server that uses Node.js. The server hits a runtime error every third request to an important endpoint on the web server. Which command can be run to access DevTools and make sure the breakdown is hit?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -711,7 +697,7 @@ export default function questions6() {
       explanation: "La opción correcta es D: `node --inspect index.js`.\n\n**Explicación detallada:**\n\n1. **Uso de `--inspect`:**\n   - Este comando habilita la depuración remota en Node.js utilizando Chrome DevTools. Al ejecutarlo, se proporciona una URL que permite conectar el navegador al servidor para depuración.\n\n2. **Opciones incorrectas:**\n   - A: `node -i` ejecuta Node.js en modo interactivo, pero no permite depuración remota.\n   - B: `node --inspect-brk` detendría la ejecución en el primer archivo del programa, pero no garantiza que el error específico sea alcanzado.\n   - C: `node inspect` activa un depurador interno en línea de comandos, pero no utiliza Chrome DevTools."
     },
     {
-      id: "q48",
+      id: "q47",
       question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. \n\nWhich command can the web developer run to see what the module is doing during the latency period?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -725,7 +711,7 @@ export default function questions6() {
       explanation: "La opción correcta es D: `DEBUG=true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de `DEBUG`:**\n   - Configurar la variable de entorno `DEBUG=true` permite habilitar la depuración general en el servidor Node.js y muestra información adicional durante la ejecución.\n\n2. **Opciones incorrectas:**\n   - A, B y C: Estas combinaciones de comandos son inválidas o no habilitan la depuración adecuada para resolver problemas de latencia."
     },
     {
-      id: "q49",
+      id: "q48",
       question: "A developer publishes a new version of a package with new features that do not break backward compatibility. The previous version number was `1.1.3`. Following semantic versioning format. \n\nWhat should the new package version number be?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -739,7 +725,7 @@ export default function questions6() {
       explanation: "La opción correcta es D: `1.2.0`.\n\n**Explicación detallada:**\n\n1. **Formato de versionado semántico:**\n   - **Mayor**: Incrementa si hay cambios que rompen la compatibilidad con versiones anteriores.\n   - **Menor**: Incrementa si se agregan nuevas características pero no se rompen las versiones anteriores.\n   - **Patch**: Incrementa si se corrigen errores o mejoras menores.\n\n2. **Opciones:**\n   - A: `2.0.0` es incorrecto, porque no hay cambios importantes.\n   - B y C: `1.2.3` y `1.1.4` no reflejan correctamente una actualización de características."
     },
     {
-      id: "q50",
+      id: "q49",
       question: "A developer wants to log any issues that the server has while booting up. Which code logs an error at boot using an event?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -753,7 +739,7 @@ export default function questions6() {
       explanation: "La opción correcta es C: `server.on('error', (error) => { console.log('ERROR', error); });`.\n\n**Explicación detallada:**\n\n1. **Uso de `on`:**\n   - La mayoría de las bibliotecas basadas en eventos usan `on` para asociar controladores de eventos. Aquí, se escucha el evento `'error'` y se registra cualquier problema.\n\n2. **Opciones incorrectas:**\n   - A y B: Estas sintaxis son inválidas.\n   - D: Aunque captura excepciones, no es una implementación basada en eventos."
     },
     {
-      id: "q51",
+      id: "q50",
       question: "Which code statement below correctly persists an object in local Storage?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -768,7 +754,7 @@ export default function questions6() {
       explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso correcto de localStorage:**\n   - `localStorage.setItem` almacena datos bajo una clave específica como un string.\n   - `JSON.stringify` convierte el objeto JavaScript en una cadena para que pueda ser almacenado correctamente.\n\n2. **Errores en otras opciones:**\n   - Opción B: `connectObject` no es un método válido.\n   - Opción C: Falta la clave de almacenamiento.\n   - Opción D: `persist` no es un método válido en `localStorage`."
     },
     {
-      id: "q52",
+      id: "q51",
       question: "Without using any third-party libraries, what should the developer add to index.js to create a secure web server?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -783,7 +769,7 @@ export default function questions6() {
       explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso de 'https':**\n   - El módulo `https` es parte de Node.js y permite crear servidores web seguros mediante SSL/TLS.\n\n2. **Errores en otras opciones:**\n   - Opción B: `secure-server` no es un módulo nativo de Node.js.\n   - Opción C: Aunque `tls` maneja conexiones seguras, no crea servidores web.\n   - Opción D: `http` crea un servidor web no seguro."
     },
     {
-      id: "q53",
+      id: "q52",
       question: "A developer wants to use a module named universalContainersLib and then call functions from it. \n\nHow should a developer import every function from the module and then call the functions foo and bar?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -797,7 +783,7 @@ export default function questions6() {
       explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso de `import * as lib`:**\n   - Esto importa todos los métodos y los agrupa bajo el alias `lib`, permitiendo acceder a ellos como `lib.foo()` y `lib.bar()`.\n\n2. **Errores en otras opciones:**\n   - Opción B: Sintaxis incorrecta, no se usa `()` para importar funciones específicas.\n   - Opción C: La palabra clave `all` no es válida para importaciones.\n   - Opción D: `import *` necesita un alias después de la palabra clave `as`."
     },
     {
-      id: "q54",
+      id: "q53",
       question: "A team that works on a big project uses npm to deal with project dependencies. A developer added a dependency, but it does not get downloaded when they execute `npm install`. \n\nWhich two reasons could be possible explanations for this?",
       type: "multiple choice",
       correct_options: ["B", "D"],
@@ -811,7 +797,7 @@ export default function questions6() {
       explanation: "Las opciones correctas son B y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - Si el entorno de ejecución (`NODE_ENV`) está configurado en `production`, las dependencias agregadas como dev dependencies no se instalan.\n\n2. **Opción D:**\n   - La misma razón aplica cuando las dependencias dev no se instalan en un entorno de producción.\n\n3. **Errores en otras opciones:**\n   - Opción A: `--add` no es una opción válida para agregar dependencias en npm.\n   - Opción C: Aunque `--save` era obligatorio en versiones anteriores de npm, ahora las dependencias se guardan automáticamente en el archivo `package.json`."
     },
     {
-      id: "q55",
+      id: "q54",
       question: "The developer wants to log any issues that the server has while booting up. Which code logs an error at boot with an event?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -826,7 +812,7 @@ export default function questions6() {
       explanation: "La opción correcta es C: **server.on('error', (error) => { console.log('ERROR', error); });**\n\n**Explicación detallada:**\n\n1. **Uso de eventos:**\n   - `on('error')` es el método apropiado para escuchar y manejar eventos de error en Node.js.\n\n2. **Errores en otras opciones:**\n   - Opción A: `catch` no es válido como método de eventos en Node.js.\n   - Opción B: `error` no es un método válido para escuchar eventos.\n   - Opción D: Aunque maneja errores con un bloque `try-catch`, no cumple con la funcionalidad requerida para eventos emitidos por el servidor."
     },
     {
-      id: "q56",
+      id: "q55",
       question: "In the browser, the `window` object is often used to assign variables that require the broadest scope in an application. Node.js applications do not have access to the `window` object by default. Which two methods are used to address this?",
       type: "multiple choice",
       correct_options: ["B", "D"],
