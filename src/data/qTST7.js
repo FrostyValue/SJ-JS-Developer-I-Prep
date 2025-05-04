@@ -229,17 +229,17 @@ export default function questions7() {
       id: "q15",
       question: "A developer wrote a fizzbuzz function that when passed in a number, returns the following:\n- 'Fizz' if the number is divisible by 3.\n- 'Buzz' if the number is divisible by 5.\n- 'Fizzbuzz' if the number is divisible by both 3 and 5.\n- Empty string if the number is divisible by neither 3 nor 5.\n\nWhich test cases will properly test scenarios for the fizzbuzz function?",
       type: "multiple choice",
-      correct_options: ["B", "C", "D"],
-      number_of_correct_answers: 3,
+      correct_options: ["B", "C"],
+      number_of_correct_answers: 2,
       options: {
         A: "let res = fizzbuzz(5); console.assert(res === '');",
-        B: "let res = fizzbuzz(15); console.assert(res === 'fizzbuzz');",
+        B: "let res = fizzbuzz(15); console.assert(res === 'Fizzbuzz');",
         C: "let res = fizzbuzz(Infinity); console.assert(res === '');",
-        D: "let res = fizzbuzz(3); console.assert(res === 'buzz');"
+        D: "let res = fizzbuzz(3); console.assert(res === 'Buzz');"
       },
-      code: "function fizzbuzz(num) {\n  if (num % 3 === 0 && num % 5 === 0) return 'Fizzbuzz';\n  if (num % 3 === 0) return 'Fizz';\n  if (num % 5 === 0) return 'Buzz';\n  return '';\n}",
-      explanation: "Las respuestas correctas son B: `let res = fizzbuzz(15); console.assert(res === 'fizzbuzz');`, C: `let res = fizzbuzz(Infinity); console.assert(res === '');`, y D: `let res = fizzbuzz(3); console.assert(res === 'buzz');`.\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `fizzbuzz(15)` devuelve `'Fizzbuzz'` porque el número `15` es divisible por ambos `3` y `5`. Este test verifica el caso más completo.\n\n2. **Opción C:**\n   - `fizzbuzz(Infinity)` devuelve una cadena vacía (`''`) porque `Infinity` no cumple las condiciones de divisibilidad necesarias para devolver `'Fizz'`, `'Buzz'` o `'Fizzbuzz'`. Este test valida casos extremos.\n\n3. **Opción D:**\n   - `fizzbuzz(3)` debería devolver `'Fizz'` porque el número `3` es divisible por `3` pero no por `5`. Este test verifica la condición específica de divisibilidad por `3`.\n\n4. **Opción incorrecta:**\n   - A: `let res = fizzbuzz(5); console.assert(res === '');` es incorrecta porque el número `5` debería devolver `'Buzz'`, no una cadena vacía."
-    },
+      code: "function fizzbuzz(num) {\n\tif (num % 3 === 0 && num % 5 === 0) return 'Fizzbuzz';\n\tif (num % 3 === 0) return 'Fizz';\n\tif (num % 5 === 0) return 'Buzz';\n\treturn '';\n}",
+      explanation: "Las respuestas correctas son B y C:\n\n1. **Opción B:**\n   - `fizzbuzz(15)` devuelve `'Fizzbuzz'` porque 15 es divisible por 3 y 5.\n\n2. **Opción C:**\n   - `fizzbuzz(Infinity)` devuelve `''` porque `Infinity % 3` y `Infinity % 5` dan `NaN`, así que ninguna condición se cumple.\n\n**Opciones incorrectas:**\n- A: `fizzbuzz(5)` retorna `'Buzz'`, no una cadena vacía.\n- D: `fizzbuzz(3)` retorna `'Fizz'`, no `'Buzz'`."
+    },    
     {
       id: "q16",
       question: "A developer needs to test this function. Which two assert statements are valid tests for the function?",

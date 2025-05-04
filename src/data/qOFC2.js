@@ -1097,19 +1097,19 @@ export default function questions2() {
     },
     {
       id: "q68",
-      question: "Which three options show valid methods for creating a fat arrow function?",
+      question: "Which two options show valid methods for creating a fat arrow function?",
       type: "multiple choice",
-      correct_options: ["A", "E", "C"],
-      number_of_correct_answers: 3,
+      correct_options: ["C", "E"],
+      number_of_correct_answers: 2,
       options: {
         A: "x => (console.log('executed');)",
         B: "[] => (console.log('executed');)",
-        C: "() => (console.log('executed');)",
+        C: "() => { console.log('executed'); }",
         D: "X,y,z => (console.log('executed');)",
-        E: "(x, y, z) => (console.log('executed');)"
+        E: "(x, y, z) => { console.log('executed'); }"
       },
-      explanation: "Las opciones correctas son A: `x => (console.log('executed');)`, C: `() => (console.log('executed');)`, y E: `(x, y, z) => (console.log('executed');)`.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - La sintaxis `x => (console.log('executed');)` es válida para una función de flecha que recibe un único parámetro `x`.\n   - No requiere paréntesis alrededor de `x` cuando hay un solo parámetro.\n\n2. **Opción C:**\n   - La sintaxis `() => (console.log('executed');)` es válida para una función de flecha que no toma parámetros.\n   - Los paréntesis son obligatorios cuando no se pasan parámetros.\n\n3. **Opción E:**\n   - La sintaxis `(x, y, z) => (console.log('executed');)` es válida para una función de flecha que toma múltiples parámetros, como `x`, `y`, y `z`.\n   - Los paréntesis son obligatorios para múltiples parámetros.\n\n4. **Opciones incorrectas:**\n   - B: `[] => (console.log('executed');)` es incorrecta porque `[]` no es una forma válida de declarar parámetros.\n   - D: `X,y,z => (console.log('executed');)` es incorrecta porque los múltiples parámetros deben estar entre paréntesis, como en `(x, y, z)`."
-    },
+      explanation: "Las opciones correctas son `() => { console.log('executed'); }` y `(x, y, z) => { console.log('executed'); }`.\n\n**Errores en las otras opciones:**\n- **A:** `x => (console.log('executed');)` es inválida porque no puedes usar una sentencia `console.log(...)` con `;` dentro de paréntesis.\n- **B:** `[] => ...` es inválido; los corchetes no definen parámetros.\n- **D:** `X,y,z => ...` es inválido porque se requiere paréntesis cuando hay más de un parámetro."
+    },    
     {
       id: "q69",
       question: "Refer to the code below:\n\nWhich value can a developer expect when referencing `country.capital.cityString`?",
@@ -1233,21 +1233,6 @@ export default function questions2() {
     },
     {
       id: "q77",
-      question: "Which three options show valid methods for creating a fat arrow function?",
-      type: "multiple choice",
-      correct_options: ["A", "E"],
-      number_of_correct_answers: 2,
-      options: {
-        A: "x => (console.log('executed');)",
-        B: "[ ] => (console.log('executed');)",
-        C: "() => (console.log('executed');)",
-        D: "x, y, z => (console.log('executed');)",
-        E: "(x, y, z) => (console.log('executed');)"
-      },
-      explanation: "Las respuestas correctas son A y E.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Es una función flecha válida con un parámetro (`x`) y un cuerpo que incluye una llamada a `console.log`.\n\n2. **Opción E:**\n   - Es una función flecha válida con múltiples parámetros (`x`, `y`, `z`) encerrados en paréntesis.\n\n3. **Opciones incorrectas:**\n   - B: `[]` no es una sintaxis válida para parámetros en una función flecha.\n   - C: Aunque es válida como función flecha, la opción no está seleccionada en el contexto de esta pregunta.\n   - D: Falta encapsulación para múltiples parámetros."
-    },
-    {
-      id: "q78",
       question: "What are two unique features of functions defined with a fat arrow as compared to normal function definition?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1261,7 +1246,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Las funciones flecha no generan su propio `this`. Usan el `this` del contexto léxico que las rodea.\n\n2. **Opción C:**\n   - Si una función flecha tiene un solo cuerpo de expresión, el valor de esa expresión se retorna implícitamente.\n\n3. **Opciones incorrectas:**\n   - B: No existe el argumento `parentThis` en funciones flecha.\n   - D: Aunque las funciones flecha heredan el `this` de su contexto léxico, esta opción no aplica específicamente a funciones flecha como una característica única."
     },
     {
-      id: "q79",
+      id: "q78",
       question: "A developer has two ways to write a function. After deciding on an option, the developer creates 1000 monster objects. \n\nHow many growl methods are created with Option A or Option B?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1278,7 +1263,7 @@ export default function questions2() {
       explanation: "La opción correcta es B: `1000 growl methods are created for Option A`.\n\n**Explicación detallada:**\n\n1. **Option A:**\n   - En este caso, `growl` es un método definido como parte de cada instancia.\n   - Por lo tanto, al crear 1000 objetos, se crearán 1000 instancias únicas de `growl`.\n\n2. **Option B:**\n   - Aquí, `growl` se define en el prototipo (`Monster.prototype`), lo que significa que todas las instancias comparten el mismo método `growl`.\n   - Solo se crea un método `growl`, independientemente del número de instancias creadas.\n\n3. **Opciones incorrectas:**\n   - A y D son incorrectas porque reflejan el comportamiento de la opción contraria.\n   - E y F no diferencian adecuadamente entre las opciones de implementación."
     },
     {
-      id: "q80",
+      id: "q79",
       question: "Which two code snippets show working examples of a recursive function?",
       type: "multiple choice",
       correct_options: ["A", "D"],
@@ -1292,7 +1277,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y D.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Esta función recursiva decrementa el valor `startNumber` hasta que alcanza `0`, momento en el que devuelve `startNumber`.\n\n2. **Opción D:**\n   - Esta función calcula el factorial de un número utilizando recursión, multiplicando el número por el resultado de la llamada a sí misma con `numVar - 1`.\n\n3. **Opciones incorrectas:**\n   - B: No implementa recursión correctamente.\n   - C: Intenta usar recursión pero no tiene un caso base válido para detener la función."
     },
     {
-      id: "q81",
+      id: "q80",
       question: "A developer wants to define a function `log` to be used a few times on a single-file JavaScript script. Which two options can correctly replace line 01 and declare the function for use?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1307,7 +1292,7 @@ export default function questions2() {
       explanation: "Las respuestas correctas son A y C.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Define una función normal usando la sintaxis estándar de `function`. Es válida para ser llamada múltiples veces.\n\n2. **Opción C:**\n   - Usa una función flecha (`arrow function`), que es válida y efectiva para definiciones funcionales en un archivo único.\n\n3. **Opciones incorrectas:**\n   - B: Contiene un error de sintaxis al intentar usar `const` junto con un nombre de función.\n   - D: Es sintácticamente inválido en JavaScript."
     },
     {
-      id: "q82",
+      id: "q81",
       question: "Cloud Kicks has a class to represent items for sale in an online store, as shown below. A new business requirement comes in that requests a ClothingItem class that should have all of the properties and methods of the Item class but will also have properties that are specific to clothes.\n\nWhich line of code properly declares the ClothingItem class such that it inherits from Item?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1322,7 +1307,7 @@ export default function questions2() {
       explanation: "La opción correcta es D: **Class ClothingItem extends Item { }**.\n\n**Explicación detallada:**\n\n1. **Uso de 'extends':**\n   - La palabra clave `extends` se utiliza para declarar una subclase que hereda las propiedades y métodos de una clase padre.\n\n2. **Corrección de otras opciones:**\n   - Opción A: `implements` no es adecuado para heredar clases; se utiliza con interfaces.\n   - Opción B: No declara relación alguna con la clase padre.\n   - Opción C: `super` se utiliza dentro del constructor, no para declarar la clase."
     },
     {
-      id: "q83",
+      id: "q82",
       question: "What is the value of result after the code executes?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1337,23 +1322,7 @@ export default function questions2() {
       explanation: "La opción correcta es C: **5**.\n\n**Explicación detallada:**\n\n1. **Referencia compartida en objetos:**\n   - `objA` y `objB` apuntan al mismo objeto en memoria. Esto significa que cualquier cambio hecho a `objB` también afecta a `objA`.\n\n2. **División del valor:**\n   - `changeValue` divide el valor de la propiedad `value` del objeto por 2. Después de llamar a la función, el valor de `objA.value` y `objB.value` es 5.\n\n3. **Conclusión:**\n   - `result` toma el valor de `objA.value`, que es 5."
     },
     {
-      id: "q84",
-      question: "Which three options show valid methods for creating a fat arrow function?",
-      type: "multiple choice",
-      correct_options: ["C", "D", "E"],
-      number_of_correct_answers: 3,
-      options: {
-        A: "x => ( console.log('executed') ; )",
-        B: "[ ] => ( console.log('executed') ; )",
-        C: "() => ( console.log('executed') ; )",
-        D: "x,y,z => ( console.log('executed') ; )",
-        E: "(x,y,z) => ( console.log('executed') ; )"
-      },
-      code: "// Ejemplos válidos de funciones flecha\nconst example1 = () => (console.log('executed'));\nconst example2 = (x, y, z) => (console.log('executed'));\nconst example3 = x => (console.log('executed'));",
-      explanation: "Las opciones correctas son C, D y E:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - Uso correcto de paréntesis para una función sin argumentos.\n\n2. **Opción D:**\n   - Una lista de argumentos separada por comas (sin paréntesis si es un argumento único).\n\n3. **Opción E:**\n   - Los paréntesis son necesarios para múltiples argumentos.\n\n4. **Errores en otras opciones:**\n   - Opción A: Falta un punto y coma válido fuera del bloque.\n   - Opción B: Los corchetes `[]` no son identificadores válidos para funciones flecha."
-    },
-    {
-      id: "q85",
+      id: "q83",
       question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace the first line and declare the function for use?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1368,7 +1337,7 @@ export default function questions2() {
       explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Declara la función usando el método tradicional `function log(logInput)`.\n\n2. **Opción C:**\n   - Utiliza la sintaxis moderna de funciones flecha con `const log = (logInput) => {`.\n\n3. **Errores en otras opciones:**\n   - Opción B: No es una sintaxis válida para declarar una función.\n   - Opción D: `function log =` no es una declaración válida en JavaScript."
     },
     {
-      id: "q86",
+      id: "q84",
       question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace the first line and declare the function for use?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1383,7 +1352,7 @@ export default function questions2() {
       explanation: "Las opciones correctas son function log(logInput) { y const log = (logInput) => {:\n\n1. Ambas permiten declarar una función válida y utilizable en un script JavaScript.\n\n2. La forma tradicional usa la palabra clave `function` seguida del nombre y los parámetros.\n\n3. La moderna usa una expresión de función flecha asignada a una constante.\n\n4. Las otras opciones no son válidas sintácticamente y lanzarían errores."
     },        
     {
-      id: "q87",
+      id: "q85",
       question: "Refer to the code below. What is the value of result after the code executes?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1398,7 +1367,7 @@ export default function questions2() {
       explanation: "La opción correcta es C: **5.**\n\n**Explicación detallada:**\n\n1. **Referencia compartida en objetos:**\n   - `objA` y `objB` apuntan al mismo objeto en memoria. Esto significa que cualquier cambio realizado en `objB` también afecta a `objA`.\n\n2. **División del valor:**\n   - La función `changeValue` divide el valor de la propiedad `value` entre 2. Por lo tanto, `objA.value` se actualiza a `5`.\n\n3. **Errores en otras opciones:**\n   - Opción A: Incorrecta porque el valor de `objA.value` sí cambia.\n   - Opción B: `NaN` solo aparecería si el valor original no fuese numérico.\n   - Opción D: `undefined` no aplica porque `objA.value` está definido."
     },
     {
-      id: "q88",
+      id: "q86",
       question: "Refer to the following code. Which two statements could be inserted at line 17 to enable the function call on the last line?",
       type: "multiple choice",
       correct_options: ["A", "C"],
@@ -1413,7 +1382,7 @@ export default function questions2() {
       explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Asigna una función `roar` directamente al objeto `leo`, permitiendo que se llame en la última línea.\n\n2. **Opción C:**\n   - Usa `Object.assign` para copiar las propiedades y métodos de `tony` (incluida la función `roar`) al objeto `leo`.\n\n3. **Errores en otras opciones:**\n   - Opción B: `Tiger` es una función constructora y no un objeto; no es válido para `Object.assign`.\n   - Opción D: Modificar `Leo.prototype` no tiene efecto en el objeto `leo` porque ya fue creado."
     }, 
     {
-      id: "q89",
+      id: "q87",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -1428,7 +1397,7 @@ export default function questions2() {
       explanation: "La respuesta correcta es '20 and NaN'.\n\n**Explicación:**\n\n1. **Método `diameter`:**\n   - El método `diameter` es una función regular, por lo que la palabra clave `this` hace referencia al objeto `shape`. Por lo tanto, `this.radius * 2` devuelve `20`.\n\n2. **Método `perimeter`:**\n   - El método `perimeter` es una función de flecha. Las funciones de flecha no tienen su propio contexto de `this`; en cambio, toman el valor de `this` del contexto en el que se crearon. Como esta función se define fuera del objeto, `this` no se refiere al objeto `shape`, sino al contexto global (o `undefined` en modo estricto), por lo que `this.radius` es `undefined`, y `2 * Math.PI * undefined` devuelve `NaN`."
     },
     {
-      id: "q90",
+      id: "q88",
       question: "Which one is true?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1443,7 +1412,7 @@ export default function questions2() {
       explanation: "La respuesta correcta es 'mouse.bird.size is not valid'.\n\n**Explicación:**\n\n1. **Acceso a `mouse.bird.size`:**\n   - `mouse.bird.size` no es válido porque `bird` es un objeto independiente y no es una propiedad de `mouse`. JavaScript no puede acceder a `mouse.bird.size` ya que no existe una propiedad llamada `bird` en `mouse`.\n\n2. **Acceso a `mouse[bird.size]`:**\n   - `bird.size` es `'small'`, por lo que `mouse['small']` accedería a la propiedad `small` de `mouse`, que es `true`. Este es un acceso válido.\n\n3. **Acceso a `mouse[bird['size']]`:**\n   - De manera similar, `mouse[bird['size']]` también sería un acceso válido, ya que es equivalente a `mouse['small']`, que también devuelve `true`."
     },
     {
-      id: "q91",
+      id: "q89",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1459,7 +1428,7 @@ export default function questions2() {
       explanation: "La respuesta correcta es 'Hello'.\n\n**Explicación:**\n\n1. **Asignación de objetos:**\n   - En JavaScript, los objetos son asignados por referencia. Esto significa que cuando se asigna `d = c`, ambos `d` y `c` apuntan al mismo objeto en memoria.\n\n2. **Cambio en `c.greeting`:**\n   - Al modificar `c.greeting = 'Hello'`, también se modifica la propiedad `greeting` del objeto al que `d` también hace referencia. Como ambos apuntan al mismo objeto, `d.greeting` también será `'Hello'`."
     },
     {
-      id: "q92",
+      id: "q90",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -1474,7 +1443,7 @@ export default function questions2() {
       explanation: "La respuesta correcta es 'TypeError'.\n\n**Explicación:**\n\n1. **Método estático vs. método de instancia:**\n   - `colorChange` es un **método estático** en la clase `Chameleon`, lo que significa que se llama en la clase misma, no en instancias de la clase.\n\n2. **Uso incorrecto de `colorChange`:**\n   - Cuando se llama `freddie.colorChange('orange')`, se intenta acceder a un método estático como si fuera un método de instancia. Esto causa un `TypeError` porque `colorChange` solo está disponible en la clase, no en las instancias de la clase.\n\n3. **Corrección:**\n   - Si se quiere llamar al método estático, debería ser `Chameleon.colorChange('orange')`, no `freddie.colorChange('orange')`."
     },
     {
-      id: "q93",
+      id: "q91",
       question: "What happens when we do this?",
       type: "multiple choice",
       correct_options: ["A"],

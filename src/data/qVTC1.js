@@ -1191,7 +1191,7 @@ export default function questions1() {
       question: "A developer uses a parsed JSON string to work with user information. Which two options access the `email` attribute in the object?",
       type: "multiple choice",
       correct_options: ["C"],
-      number_of_correct_answers: 2,
+      number_of_correct_answers: 1,
       options: {
         A: "userInformation(\"email\")",
         B: "userInformation.get(\"email\")",
@@ -1263,7 +1263,7 @@ export default function questions1() {
     },
     {
       id: "q79",
-      question: "How should line 02 be written to ensure that `x` evaluates to `6` in the line below?\n`let x = calculate(8);`",
+      question: "How should line 02 be written to ensure that `x` evaluates to `6` in the line below?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -1273,7 +1273,7 @@ export default function questions1() {
         C: "Return Integer(num + 10) / 3;",
         D: "Return Number(num + 10) / 3;"
       },
-      code: "function calculate(num) {\n  return (num + 10) / 3;\n}",
+      code: "function calculate(num) {\n  //Line to be replaced return (num + 10) / 3;\n}",
       explanation: "La opción correcta es B: `Return (Number(num + 10) / 3);`.\n\n**Explicación detallada:**\n\n1. **Cálculo esperado:**\n   - Para que `calculate(8)` devuelva `6`, el cálculo correcto es `(8 + 10) / 3`, que resulta en `6`.\n\n2. **Opción B:**\n   - Encierra la conversión de `num` en `Number` antes de realizar la operación matemática.\n\n3. **Opciones incorrectas:**\n   - A: La sintaxis con `Number` carece de paréntesis correctamente aplicados.\n   - C: `Integer` no es un método válido en JavaScript.\n   - D: Aunque funcional, esta opción no tiene paréntesis, lo cual puede causar confusión de precedencia."
     },
     {
@@ -1332,7 +1332,7 @@ export default function questions1() {
         C: "let arr2 = arr1;",
         D: "let arr2 = arr1.sort();"
       },
-      code: "let arr1 = [1, 2, 3, 4, 5];\nlet arr2 = arr1.slice(0, 5);\nconsole.log(arr2);\n\nlet arr1 = [1, 2, 3, 4, 5];\nlet arr2 = Array.from(arr1);\nconsole.log(arr2);",
+      code: "let arr1 = [1, 2, 3, 4, 5];\n\\Insert code here\nconsole.log(arr2);",
       explanation: "Las respuestas correctas son A y B.\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - `slice` crea una copia superficial de una porción del array original. Al usar `slice(0, 5)`, se genera un nuevo array con los mismos elementos que `arr1`.\n\n2. **Opción B:**\n   - `Array.from` genera un nuevo array copiando todos los elementos de `arr1`.\n\n3. **Opciones incorrectas:**\n   - C: `arr2` es simplemente una referencia a `arr1`.\n   - D: `sort` modifica `arr1` directamente, y `arr2` será una referencia a este array modificado."
     },
     {

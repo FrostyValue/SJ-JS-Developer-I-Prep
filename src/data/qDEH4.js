@@ -217,20 +217,6 @@ export default function questions4() {
     },
     {
       id: "q14",
-      question: "Which option is a core Node.js module?",
-      type: "multiple choice",
-      correct_options: ["A"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "Path",
-        B: "Ios",
-        C: "Memory",
-        D: "Locate"
-      },
-      explanation: "La opción correcta es la A: 'Path'.\n\n**Explicación detallada:**\n\n1. **Path como módulo núcleo:** El módulo `Path` es una parte central de Node.js. Proporciona herramientas para trabajar con rutas de archivos y directorios. Al ser un módulo nativo, está disponible de forma inmediata sin necesidad de instalar paquetes adicionales.\n\n2. **Opciones incorrectas:**\n   - B: 'Ios' no existe como módulo en Node.js y parece hacer referencia al sistema operativo iOS de Apple.\n   - C: 'Memory' no es un módulo integrado en Node.js.\n   - D: 'Locate' tampoco forma parte de los módulos centrales de Node.js."
-    },
-    {
-      id: "q15",
       question: "A developer has code that calculates a restaurant bill but generates incorrect answers. Which option allows the developer to step into each function execution within `calculateBill`?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -245,7 +231,7 @@ export default function questions4() {
       explanation: "La opción correcta es la A: 'Using the debugger command on line 05.'\n\n**Explicación detallada:**\n\n1. **Uso del comando `debugger`:**\n   - El comando `debugger` permite que el código se detenga en un punto específico cuando se ejecuta en herramientas de desarrollo como DevTools de un navegador o un depurador de Node.js.\n   - Al colocarlo en línea 05 (justo antes del `return total`), permite al desarrollador inspeccionar cómo se ejecutaron las funciones `findSubTotal`, `addTax` y `addTip`, y verificar los valores en cada paso.\n\n2. **Opciones incorrectas:**\n   - B: 'Using the debugger command on line 03.' solo permitirá depurar la ejecución en ese punto y no facilitará el análisis de las otras funciones dentro de `calculateBill`.\n   - C: 'Calling the console.trace(total) method on line 03.' únicamente generará un rastreo de pila y no permitirá el paso a paso dentro de las funciones.\n   - D: 'Wrapping findSubtotal in a console.log() method.' solo imprimirá el resultado de esa función, sin proporcionar información sobre las otras funciones o el flujo completo."
     },
     {
-      id: "q16",
+      id: "q15",
       question: "Refer to the code below.Line 05 causes an error. What are the values of `greeting` and `salutation` once the code completes?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -260,7 +246,7 @@ export default function questions4() {
       explanation: "La opción correcta es la A: 'Greeting is Hello and salutation is Hello, Hello.'\n\n**Explicación detallada:**\n\n1. **Inicialización de variables:**\n   - `greeting` se inicializa como `'Goodbye'`.\n   - `salutation` se inicializa como `'Hello, hello, hello'`.\n\n2. **Bloque `try`:**\n   - `greeting` se cambia a `'Hello'`.\n   - La función `decodeURI('%%%')` lanza un error debido al formato inválido de URI.\n   - Dado que ocurre un error, la línea `salutation = 'Goodbye';` no se ejecuta.\n\n3. **Bloque `catch`:**\n   - El bloque `catch` captura el error y establece el valor de `salutation` a `'I say hello'`.\n\n4. **Bloque `finally`:**\n   - El bloque `finally` siempre se ejecuta, independientemente de si hubo un error o no.\n   - Aquí, `salutation` se actualiza nuevamente a `'Hello, Hello'`.\n\n5. **Resultados finales:**\n   - `greeting` permanece como `'Hello'` después de la ejecución exitosa en el bloque `try`.\n   - `salutation` termina como `'Hello, Hello'` debido al bloque `finally`, que sobrescribe cualquier valor asignado en el bloque `catch`.\n\n6. **Opciones incorrectas:**\n   - B: 'Greeting is Goodbye and salutation is Hello, Hello.' es incorrecta porque `greeting` se cambia a `'Hello'`.\n   - C: 'Greeting is Goodbye and salutation is I say Hello.' es incorrecta porque el bloque `finally` sobrescribe el valor de `salutation` asignado en el bloque `catch`.\n   - D: 'Greeting is Hello and salutation is I say hello.' es incorrecta por la misma razón; el bloque `finally` sobrescribe el valor anterior de `salutation`."
     },
     {
-      id: "q17",
+      id: "q16",
       question: "Which two console logs output `NaN`?",
       type: "multiple choice",
       correct_options: ["B", "C"],
@@ -274,7 +260,7 @@ export default function questions4() {
       explanation: "Las opciones correctas son B: `console.log(parseInt('two'));` y C: `console.log(10 / 'five');`.\n\n**Explicación detallada:**\n\n1. **Opción A - `console.log(10 / Number('5'));`:**\n   - Aquí, `'5'` es convertido a un número usando `Number('5')`, lo cual resulta en el valor `5`.\n   - La operación `10 / 5` produce el resultado `2`, no `NaN`.\n\n2. **Opción B - `console.log(parseInt('two'));`:**\n   - `parseInt('two')` intenta convertir la cadena `'two'` en un número, pero como no es un valor numérico válido, devuelve `NaN`.\n   - `console.log(NaN)` se ejecuta, generando `NaN` como salida.\n\n3. **Opción C - `console.log(10 / 'five');`:**\n   - Intentar dividir un número (`10`) por una cadena no numérica (`'five'`) genera automáticamente `NaN` porque JavaScript no puede realizar la operación matemática con tipos incompatibles.\n\n4. **Opción D - `console.log(10 / 0);`:**\n   - Aunque dividir por cero puede parecer una operación inválida, en JavaScript, el resultado es `Infinity`, no `NaN`.\n   - Por lo tanto, esta opción no genera `NaN`.\n\n**Resultados finales:** Las pruebas más precisas que generan `NaN` son las de las opciones B y C."
     },
     {
-      id: "q18",
+      id: "q17",
       question: "After running the code below, which result is displayed on the console?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -289,7 +275,7 @@ export default function questions4() {
       explanation: "La opción correcta es B: `> 5 > undefined`.\n\n**Explicación detallada:**\n\n1. **Búsqueda con `String.prototype.search`:**\n   - `searchText.search(/sales/i)` busca la primera coincidencia del patrón `/sales/i` en `searchText`.\n   - El valor retornado, `5`, indica que el patrón comienza en el índice 5 de la cadena (si asumimos que `searchText` es `'some salesforce text'`).\n\n2. **Error `ReferenceError`:**\n   - La variable `result2` no está definida en el código proporcionado. Por lo tanto, cuando se intenta registrar `result2` en la consola, se lanza un error `Uncaught ReferenceError: result2 is not defined`.\n\n3. **Opciones incorrectas:**\n   - A: `> true > false` no tiene sentido, ya que `search` devuelve un índice y no valores booleanos.\n   - C: `> 5 > -1` es incorrecto porque el error ocurre antes de que se registre `-1` u otro valor.\n   - D: `> 5 > 0` es incorrecto por la misma razón que la opción C."
     },
     {
-      id: "q19",
+      id: "q18",
       question: "Which statement parses successfully?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -303,7 +289,7 @@ export default function questions4() {
       explanation: "La opción correcta es A: `JSON.parse('foo');`.\n\n**Explicación detallada:**\n\n1. **Uso de `JSON.parse`:**\n   - El método `JSON.parse` analiza una cadena JSON y la convierte en un objeto de JavaScript válido. La cadena debe tener un formato JSON válido, como objetos o arrays.\n\n2. **Opciones incorrectas:**\n   - B, C: Estas opciones no están correctamente formateadas como JSON válido, por lo que lanzarán un error.\n   - D: Aunque parece válida, hay un error en cómo se estructuran las comillas dobles dentro de la cadena, lo que provoca un fallo en la interpretación."
     },
     {
-      id: "q20",
+      id: "q19",
       question: "After running the code below. Which result is displayed on the console?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -318,7 +304,7 @@ export default function questions4() {
       explanation: "La opción correcta es B: `> 5 > undefined`.\n\n**Explicación detallada:**\n\n1. **Uso de `String.prototype.search`:**\n   - `searchText.search(/sales/i)` busca la primera coincidencia del patrón `/sales/i` en la cadena.\n   - El valor retornado, `5`, indica que el patrón comienza en el índice 5 de la cadena.\n\n2. **Error `ReferenceError`:**\n   - La variable `result2` está mal definida como `result 21`, lo que provoca un error `Uncaught ReferenceError: result2 is not defined`.\n   - Por lo tanto, `console.log(result2)` mostrará `undefined` después del error.\n\n3. **Opciones incorrectas:**\n   - A: `> true > false` es incorrecto porque el método `search` devuelve un índice, no valores booleanos.\n   - C: `> 5 > -1` es incorrecto porque el error ocurre antes de que se registre `-1` u otro valor.\n   - D: `> 5 > 0` es incorrecto por la misma razón que la opción C."
     },
     {
-      id: "q21",
+      id: "q20",
       question: "A developer has a web server running with Node.js. The command to start the web server is `node server.js`. The web server started having latency issues. Instead of a one-second turnaround for web requests, the developer now sees a five-second turnaround.\n\nWhich command can the web developer run to see what the module is doing during the latency period?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -332,7 +318,7 @@ export default function questions4() {
       explanation: "La opción correcta es C: `DEBUG = true node server.js`.\n\n**Explicación detallada:**\n\n1. **Uso de la variable DEBUG:**\n   - La variable `DEBUG` puede ser usada para habilitar mensajes de depuración en ciertas aplicaciones. Esta variable puede ayudar a identificar dónde ocurren los problemas en el flujo de ejecución.\n   - En este caso, establecer `DEBUG=true` habilitará el modo de depuración para proporcionar más detalles de lo que está ocurriendo en el servidor.\n\n2. **Opciones incorrectas:**\n   - A y B: La sintaxis `http, https` no habilita depuración específica en este contexto.\n   - D: Aunque `NODE_DEBUG` es una variable válida, su uso como `NODE_DEBUG=true` sin especificar un módulo no activa mensajes relevantes para el diagnóstico."
     },
     {
-      id: "q22",
+      id: "q21",
       question: "In which situation should a developer include a `try...catch` block around their function call?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -346,7 +332,7 @@ export default function questions4() {
       explanation: "La opción correcta es C: `The function might raise a runtime error that needs to be handled`.\n\n**Explicación detallada:**\n\n1. **Uso de `try...catch`:**\n   - Se utiliza para manejar errores en tiempo de ejecución que podrían interrumpir la ejecución normal del programa.\n   - Esto permite al desarrollador capturar y manejar de manera controlada esos errores para evitar bloqueos inesperados.\n\n2. **Opciones incorrectas:**\n   - A: Si el error **no debe ser silenciado**, el desarrollador debería lanzar o registrar el error, pero no es una situación específica para `try...catch`.\n   - B: Problemas como `out of memory` no pueden ser manejados con un `try...catch` porque son errores fatales que afectan el proceso completo.\n   - D: El código programado o asincrónico (como los temporizadores) no requiere un `try...catch` a menos que incluya operaciones propensas a errores dentro de su ejecución."
     },
     {
-      id: "q23",
+      id: "q22",
       question: "A developer wants to use a `try...catch` statement to catch any error that `countSheep()` may throw and pass it to a `handleError()` function. What is the correct implementation of the `try...catch`?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -360,7 +346,7 @@ export default function questions4() {
       explanation: "La opción correcta es C: `setTimeout(function() { try { countSheep(); } catch (e) { handleError(e); } }, 1000);`\n\n**Explicación detallada:**\n\n1. **Contexto:**\n   - Cuando una función está envuelta en `setTimeout`, cualquier error lanzado por esa función no puede ser manejado directamente por un bloque externo `try...catch` debido a la naturaleza asincrónica de `setTimeout`.\n\n2. **Solución:**\n   - Para manejar errores correctamente, el bloque `try...catch` debe estar dentro de la función pasada a `setTimeout`.\n\n3. **Opciones incorrectas:**\n   - A: No puedes usar `try...catch` directamente fuera de la función proporcionada a `setTimeout`.\n   - B y D: Ambos tienen errores de sintaxis o lógica que hacen que la implementación sea inválida."
     },
     {
-      id: "q24",
+      id: "q23",
       question: "Refer to the code below. What are the values for `first` and `second` once the code executes?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -375,7 +361,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: `First is Why and second is When`.\n\n**Explicación detallada:**\n\n1. **Primera estructura `try...catch`:**\n   - El error es lanzado dentro del primer bloque `try`.\n   - Es capturado en el bloque `catch`, donde `first` se asigna a `'Why'`.\n   - El bloque `finally` siempre se ejecuta, asignando `second` a `'When'`.\n\n2. **Segunda estructura `try...catch`:**\n   - No ocurre ningún error en el bloque externo, por lo que el bloque `catch` externo no se ejecuta.\n\n3. **Valores finales:**\n   - `first` se asigna a `'Why'` en el primer `catch`.\n   - `second` se asigna a `'When'` en el primer `finally`."
     },
     {
-      id: "q25",
+      id: "q24",
       question: "A developer is asked to fix some bugs reported by users. To do that, the developer adds a breakpoint for debugging. When the code execution stops at the breakpoint on line 06. \n\nWhich two types of information are available in the browser console?",
       type: "multiple choice",
       correct_options: ["C", "D"],
@@ -390,7 +376,7 @@ export default function questions4() {
       explanation: "Las respuestas correctas son C y D.\n\n**Explicación detallada:**\n\n1. **Información disponible:**\n   - `debugger` detiene la ejecución del código en el navegador y expone información detallada sobre el entorno actual.\n\n2. **C (Style, event listeners, and attributes):**\n   - El elemento DOM `carSpeed` está disponible en la consola, y se pueden inspeccionar sus estilos, atributos y cualquier evento adjunto.\n\n3. **D (window.localStorage):**\n   - La propiedad `window.localStorage` almacena información persistente en el navegador. Esta puede ser inspeccionada mientras el código está pausado.\n\n4. **Opciones incorrectas:**\n   - A: Aunque las variables `carSpeed` y `fourWheels` están en el alcance local, su inspección directa no está garantizada sin que sean referenciadas explícitamente.\n   - B: JavaScript no rastrea automáticamente el número de instancias creadas de un objeto sin código adicional."
     },
     {
-      id: "q26",
+      id: "q25",
       question: "Given the code below, what is the expected output?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -405,7 +391,7 @@ export default function questions4() {
       explanation: "La opción correcta es B: `Line 6 outputs the variable, but line 7 throws an error.`\n\n**Explicación detallada:**\n\n1. **Variable `a`:**\n   - `a` se asigna sin ser declarada, por lo que JavaScript la trata como una variable global. Se imprimirá correctamente como `5` en la línea 6.\n\n2. **Variable `b`:**\n   - `b` es declarada con `var` dentro de la función `myFunction`. Esto la hace local a la función, por lo que no está disponible fuera de su alcance. La línea 7 lanzará un error de referencia (`ReferenceError`)."
     },
     {
-      id: "q27",
+      id: "q26",
       question: "The developer has a `getNextValue` function to execute after `handleObjectValue()` but does not want to execute `getNextValue()` if an error occurs. \n\nHow can the developer change the code to ensure this behavior?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -419,7 +405,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: La ejecución de `getNextValue()` debe evitarse si ocurre un error.\n\n**Explicación detallada:**\n\n1. **`try...catch`:**\n   - Captura errores y evita la ejecución de cualquier código que esté fuera del bloque `catch`.\n\n2. **Opciones incorrectas:**\n   - A, B y C: Estas soluciones no garantizan que `getNextValue()` se omita correctamente si se lanza un error."
     },
     {
-      id: "q28",
+      id: "q27",
       question: "Universal Containers decides to implement a debounce function to address too many network requests during string changes in a search handler. \n\nWhat are three key steps to implement this debounce function?",
       type: "multiple choice",
       correct_options: ["A", "D", "E"],
@@ -434,7 +420,7 @@ export default function questions4() {
       explanation: "La opción correcta incluye A, D y E.\n\n**Explicación detallada:**\n\n1. **Cancelación del temporizador existente:**\n   - D: Cuando el cambio de cadena ocurre nuevamente, el temporizador previo debe ser cancelado usando `clearTimeout` para evitar múltiples solicitudes innecesarias.\n\n2. **Persistencia de timerId:**\n   - E: Es necesario almacenar el identificador del último `setTimeout` creado para poder cancelarlo si ocurre otro cambio.\n\n3. **Manejo de setTimeout en cambios:**\n   - A: Se puede permitir que el temporizador en ejecución termine si no se reemplaza. Esto asegura que no se sobrecargue la red innecesariamente.\n\n**Opciones incorrectas:**\n   - B: El uso de `setTimeout` es válido, pero no aborda completamente la lógica de cancelación y reemplazo.\n   - C: `debounce` no es una propiedad de red estándar; se implementa a nivel de JavaScript."
     },
     {
-      id: "q29",
+      id: "q28",
       question: "Which three console logging methods allow the use of string substitution in line 2?",
       type: "multiple choice",
       correct_options: ["A", "D"],
@@ -450,7 +436,7 @@ export default function questions4() {
       explanation: "Las opciones correctas son A y D:\n\n**Explicación detallada:**\n\n1. **Uso de la sustitución de cadenas:**\n   - `console.assert` y `console.info` permiten el uso de `%s` para insertar valores dinámicos en mensajes de registro.\n\n2. **Errores en otras opciones:**\n   - Opción B: Aunque `console.log` admite sustituciones, no fue seleccionado como parte de las opciones correctas en la pregunta original.\n   - Opción C: `console.message` no es un método válido.\n   - Opción E: `console.error` no soporta directamente la sustitución de cadenas."
     },
     {
-      id: "q30",
+      id: "q29",
       question: "A developer is debugging a web server that uses Node.js. The server hits a runtime error every third request to an important endpoint on the web server. The developer added a breakpoint to the start script, that is at index.js at the root of the server’s source code. The developer wants to make use of Chrome DevTools to debug. \n\nWhich command can be run to access DevTools and make sure the breakdown is hit?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -464,7 +450,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: **node --inspect index.js**.\n\n**Explicación detallada:**\n\n1. **Uso del parámetro --inspect:**\n   - Este comando activa el soporte para la depuración remota con Chrome DevTools, permitiendo al desarrollador interactuar con el código fuente y los puntos de interrupción.\n\n2. **Evitar errores de otras opciones:**\n   - Opción A: `-i` activa el modo interactivo de Node.js, pero no permite depurar usando DevTools.\n   - Opción B: `--inspect-brk` detiene la ejecución en el primer archivo, lo cual no garantiza que se alcance el punto esperado.\n   - Opción C: `inspect` habilita la depuración interna de Node.js pero no abre DevTools."
     },
     {
-      id: "q31",
+      id: "q30",
       question: "A developer is asked to fix some bugs reported by users. To do that, the developer adds a breakpoint for debugging. When the code execution stops at the breakpoint on line 6. \n\nWhich two types of information are available in the browser console?",
       type: "multiple choice",
       correct_options: ["C", "D"],
@@ -478,7 +464,7 @@ export default function questions4() {
       explanation: "Las opciones correctas son C y D:\n\n**Explicación detallada:**\n\n1. **Opción C:**\n   - La consola del navegador muestra el estilo, los atributos y los event listeners aplicados al elemento DOM `carSpeed`.\n\n2. **Opción D:**\n   - La propiedad `window.localStorage` contiene información almacenada localmente en el navegador.\n\n3. **Errores en otras opciones:**\n   - Opción A: Aunque los valores pueden ser visibles, no son directamente accesibles a través de este breakpoint.\n   - Opción B: La consola no muestra automáticamente el número de instancias creadas de objetos como `Car`."
     },
     {
-      id: "q32",
+      id: "q31",
       question: "A developer writes the code below to calculate the factorial of a given number. What is the result of executing line 04?",
       type: "multiple choice",
       correct_options: ["D"],
@@ -492,7 +478,7 @@ export default function questions4() {
       explanation: "La opción correcta es D: **RuntimeError.**\n\n**Explicación detallada:**\n\n1. **Problema con la implementación:**\n   - La función usa `number + factorial(number - 1)` en lugar de la multiplicación requerida para calcular el factorial.\n   - Esto genera una recursión infinita porque la función no tiene una condición base para detener la recursión.\n\n2. **Resultado:**\n   - La ejecución lleva a un desbordamiento de pila y arroja un `RuntimeError`.\n\n3. **Errores en otras opciones:**\n   - Opción A, B, y C: No aplican porque la función no produce un resultado válido."
     },
     {
-      id: "q33",
+      id: "q32",
       question: "The developer needs to insert a code statement in the location shown. The code statement has these requirements:\n1. Does require an import\n2. Logs an error when the boolean statement evaluates to false\n3. Works in both the browser and Node.js\n\nWhich statement meets the requirements?",
       type: "multiple choice",
       correct_options: ["B"],
@@ -507,7 +493,7 @@ export default function questions4() {
       explanation: "La opción correcta es B: **console.error(number % 2 === 0);**\n\n**Explicación detallada:**\n\n1. **Requisitos:**\n   - No requiere una importación adicional.\n   - `console.error` es compatible tanto con navegadores como con Node.js.\n\n2. **Errores en otras opciones:**\n   - Opción A: `assert` requiere una importación explícita, por lo que no cumple el primer requisito.\n   - Opción C: `console.debug` no registra errores pero se utiliza para depuración.\n   - Opción D: Aunque `console.assert` registra errores, no cumple completamente con el primer requisito de no requerir una importación adicional."
     },
     {
-      id: "q34",
+      id: "q33",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["D"],
