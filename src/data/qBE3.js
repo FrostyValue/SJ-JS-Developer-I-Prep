@@ -481,12 +481,12 @@ export default function questions3() {
         A: "The keyword 'await' is missing from fetch().",
         B: "The JSON data received is corrupted.",
         C: "The Internet connection is poor.",
-        D: "The URL string is invalid.",
+        D: "The URL string is invalid."
       },
-      code: "const url='http://dummy.restapiexample.com/api/v1/employee/1';\n\nconst request=async()=>{\ntry{\nconst response=fetch(url,{method:'GET'});\nconst data=response.json();\nconsole.log(data);\n}catch(error){\nconsole.log(error);\n}\n};\n\nrequest();",
+      code: "const url = 'http://dummy.restapiexample.com/api/v1/employee/1';\n\nconst request = async () => {\n\ttry {\n\t\tconst response = fetch(url, { method: 'GET' });\n\t\tconst data = response.json();\n\t\tconsole.log(data);\n\t} catch (error) {\n\t\tconsole.log(error);\n\t}\n};\n\nrequest();",
       explanation:
-        "La opción correcta es la A: 'The keyword await is missing from fetch().'. Esto se debe a que la función 'request()' es asincrónica (marcada con 'async'), pero la palabra clave 'await' falta antes de la llamada a 'fetch()'. Sin 'await', el código no espera que se resuelva la promesa de 'fetch()', y la variable 'response' se vuelve indefinida, causando un error cuando se intenta invocar 'response.json()'.\n\nLas otras opciones son incorrectas:\n\n- **B. 'The JSON data received is corrupted.'**: No es el problema principal, ya que el error ocurre antes de procesar los datos JSON.\n- **C. 'The Internet connection is poor.'**: Una mala conexión generaría un error diferente (por ejemplo, un error de red).\n- **D. 'The URL string is invalid.'**: Si la URL fuera inválida, el error sería diferente, probablemente relacionado con un 404 o conexión rechazada.",
-    },
+        "La opción correcta es la 'The keyword await is missing from fetch().'. Esto se debe a que la función 'request()' es asincrónica (marcada con 'async'), pero la palabra clave 'await' falta antes de la llamada a 'fetch()'. Sin 'await', el código no espera que se resuelva la promesa de 'fetch()', y la variable 'response' se vuelve una promesa en lugar de la respuesta, causando un error cuando se intenta invocar 'response.json()'.\n\nLas otras opciones son incorrectas:\n\n- 'The JSON data received is corrupted.': No es el problema principal, ya que el error ocurre antes de procesar los datos JSON.\n- 'The Internet connection is poor.': Una mala conexión generaría un error diferente (por ejemplo, un error de red).\n- 'The URL string is invalid.': Si la URL fuera inválida, el error sería diferente, probablemente relacionado con un 404 o conexión rechazada."
+    },    
     {
       id: "q30",
       question:

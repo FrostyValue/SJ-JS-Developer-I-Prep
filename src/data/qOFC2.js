@@ -1354,7 +1354,7 @@ export default function questions2() {
     },
     {
       id: "q85",
-      question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace line 1 and declare the function for use?",
+      question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace the first line and declare the function for use?",
       type: "multiple choice",
       correct_options: ["A", "C"],
       number_of_correct_answers: 2,
@@ -1364,22 +1364,24 @@ export default function questions2() {
         C: "const log = (logInput) => {",
         D: "function log = (logInput) {"
       },
+      
       explanation: "Las opciones correctas son A y C:\n\n**Explicación detallada:**\n\n1. **Opción A:**\n   - Declara la función usando el método tradicional `function log(logInput)`.\n\n2. **Opción C:**\n   - Utiliza la sintaxis moderna de funciones flecha con `const log = (logInput) => {`.\n\n3. **Errores en otras opciones:**\n   - Opción B: No es una sintaxis válida para declarar una función.\n   - Opción D: `function log =` no es una declaración válida en JavaScript."
     },
     {
       id: "q86",
-      question: "A developer has an ErrorHandler module that contains multiple functions. What kind of export should be leveraged so that multiple functions can be used?",
+      question: "A developer wants to define a function log to be used a few times on a single-file JavaScript script. \n\nWhich two options can correctly replace the first line and declare the function for use?",
       type: "multiple choice",
-      correct_options: ["A"],
-      number_of_correct_answers: 1,
+      correct_options: ["A", "C"],
+      number_of_correct_answers: 2,
       options: {
-        A: "Named",
-        B: "All",
-        C: "Multi",
-        D: "Default"
+        A: "function log(logInput) {",
+        B: "const log(logInput) {",
+        C: "const log = (logInput) => {",
+        D: "function log = (logInput) {"
       },
-      explanation: "La opción correcta es A: **Named.**\n\n**Explicación detallada:**\n\n1. **Exportación nombrada:**\n   - Permite exportar varias funciones del mismo módulo utilizando sus nombres específicos.\n   - Esto facilita el acceso selectivo a las funciones según sus necesidades.\n\n2. **Errores en otras opciones:**\n   - Opción B: 'All' no es una forma válida de exportar.\n   - Opción C: 'Multi' tampoco es una opción válida en JavaScript.\n   - Opción D: `Default` exporta solo un valor o función por módulo, lo cual no es aplicable aquí."
-    },
+      code: "// Replace the line\n  console.log('Log:', logInput);\n}\n\nlog('Test message');",
+      explanation: "Las opciones correctas son function log(logInput) { y const log = (logInput) => {:\n\n1. Ambas permiten declarar una función válida y utilizable en un script JavaScript.\n\n2. La forma tradicional usa la palabra clave `function` seguida del nombre y los parámetros.\n\n3. La moderna usa una expresión de función flecha asignada a una constante.\n\n4. Las otras opciones no son válidas sintácticamente y lanzarían errores."
+    },        
     {
       id: "q87",
       question: "Refer to the code below. What is the value of result after the code executes?",

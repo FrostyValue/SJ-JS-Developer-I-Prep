@@ -503,7 +503,7 @@ export default function questions4() {
         C: "console.debug(number % 2 === 0);",
         D: "console.assert(number % 2 === 0);"
       },
-      code: "for(let number = 2; number <= 5; number += 1) {\n  console.error(number % 2 === 0);\n}",
+      code: "for(let number = 2; number <= 5; number += 1) {\n  \\Insert code here\n}",
       explanation: "La opción correcta es B: **console.error(number % 2 === 0);**\n\n**Explicación detallada:**\n\n1. **Requisitos:**\n   - No requiere una importación adicional.\n   - `console.error` es compatible tanto con navegadores como con Node.js.\n\n2. **Errores en otras opciones:**\n   - Opción A: `assert` requiere una importación explícita, por lo que no cumple el primer requisito.\n   - Opción C: `console.debug` no registra errores pero se utiliza para depuración.\n   - Opción D: Aunque `console.assert` registra errores, no cumple completamente con el primer requisito de no requerir una importación adicional."
     },
     {
