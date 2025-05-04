@@ -510,8 +510,9 @@ export default function questions1() {
         C: "return newStr.substring(0, 50);",
         D: "return newStr.padStart(50, '.').substring(0, 50);",
       },
+      code: "function formatResponse(response) {\n\tlet newStr = response;\n\t// Code inserted here\n}",
       explanation:
-        "La opción A es la solución correcta porque agrega el carácter '.' al final de la cadena hasta que tenga 50 caracteres y luego la recorta a exactamente 50 caracteres. Las otras opciones no manejan correctamente el recorte o utilizan métodos de relleno incorrectos.",
+        "La correcta es 'return newStr.padEnd(50, '.').substring(0, 50);' porque agrega el carácter '.' al final de la cadena hasta que tenga 50 caracteres y luego la recorta a exactamente 50 caracteres. Las otras opciones no manejan correctamente el recorte o utilizan métodos de relleno incorrectos.",
     },
     {
       id: "q31",
@@ -949,9 +950,9 @@ export default function questions1() {
       number_of_correct_answers: 1,
       options: {
         A: "let numberValue = Number(textValue);",
-        B: "Let numberValue = (Number)textValue;",
-        C: "Let numberValue = textValue.toInteger();",
-        D: "Let numberValue = Integer(textValue);"
+        B: "let numberValue = (Number)textValue;",
+        C: "let numberValue = textValue.toInteger();",
+        D: "let numberValue = Integer(textValue);"
       },
       code: "let textValue = '1984';",
       explanation: "La opción correcta es A: `let numberValue = Number(textValue);`.\n\n**Explicación detallada:**\n\n1. **Conversión usando `Number`:**\n   - En JavaScript, el método `Number()` convierte valores al tipo `number`, siempre que sea posible. Aquí, la cadena `'1984'` se convierte correctamente al número `1984`.\n   - Ejemplo:\n     ```javascript\n     let textValue = '1984';\n     let numberValue = Number(textValue);\n     console.log(numberValue); // Output: 1984\n     ```\n\n2. **Opciones incorrectas:**\n   - B: `Let numberValue = (Number)textValue;` es incorrecta porque la sintaxis `(Number)textValue` no es válida en JavaScript.\n   - C: `Let numberValue = textValue.toInteger();` es incorrecta porque no existe el método `toInteger()` en JavaScript.\n   - D: `Let numberValue = Integer(textValue);` es incorrecta porque `Integer()` no es un método o función nativa en JavaScript.\n\n3. **Conclusión:**\n   - La conversión más apropiada y válida en JavaScript es usar `Number()`."
@@ -1439,20 +1440,6 @@ export default function questions1() {
     },
     {
       id: "q91",
-      question: "Refer to the code below. Which code assignment shows a correct way to convert this string to an integer?",
-      type: "multiple choice",
-      correct_options: ["A"],
-      number_of_correct_answers: 1,
-      options: {
-        A: "let numberValue = Number(textValue);",
-        B: "let numberValue = (Number)textValue;",
-        C: "let numberValue = textValue.toInteger();",
-        D: "let numberValue = Integer(textValue);"
-      },
-      explanation: "La opción correcta es A: **let numberValue = Number(textValue);**\n\n**Explicación detallada:**\n\n1. **Uso de `Number`:**\n   - `Number(textValue)` convierte correctamente una cadena en un número entero.\n\n2. **Errores en otras opciones:**\n   - Opción B: Sintaxis incorrecta.\n   - Opción C: `toInteger` no es un método válido de cadenas en JavaScript.\n   - Opción D: `Integer` no es una función nativa de JavaScript."
-    },
-    {
-      id: "q92",
       question: "Refer to the following array. Which three options result in `x` evaluating as `[3, 4, 5]`?",
       type: "multiple choice",
       correct_options: ["B", "C", "D"],
@@ -1468,7 +1455,7 @@ export default function questions1() {
       explanation: "Las opciones correctas son B, C y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - `arr.splice(2, 3)` elimina tres elementos comenzando desde el índice 2 (incluido), devolviendo `[3, 4, 5]`.\n\n2. **Opción C:**\n   - `arr.slice(2)` devuelve una copia desde el índice 2 hasta el final del array, es decir, `[3, 4, 5]`.\n\n3. **Opción D:**\n   - `arr.filter((a) => { return a > 2 })` devuelve una nueva matriz con elementos que cumplen la condición, `[3, 4, 5]`.\n\n4. **Errores en otras opciones:**\n   - Opción A: Devuelve un array vacío porque no hay elementos menores que 2.\n   - Opción E: `slice(2, 3)` devuelve solo `[3]`, ya que incluye solo el índice 2."
     },
     {
-      id: "q93",
+      id: "q92",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["A"],
@@ -1482,7 +1469,7 @@ export default function questions1() {
       explanation: "La respuesta correcta es '1 and false'.\n\n**Explicación:**\n\n1. **El operador unario `+`:**\n   - El operador `+` intenta convertir un operando a un número. En este caso, `true` se convierte en `1`, por lo que la primera expresión es `1`.\n\n2. **El operador `!`:**\n   - El operador `!` convierte su operando a un valor booleano y luego lo invierte. La cadena `'Lydia'` es un valor *truthy* (es decir, no es `null`, `undefined`, `0`, `NaN`, `false` ni una cadena vacía), por lo que al invertirla con `!`, el resultado es `false`."
     },
     {
-      id: "q94",
+      id: "q93",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["C"],
@@ -1497,7 +1484,7 @@ export default function questions1() {
       explanation: "La respuesta correcta es 'true false false'.\n\n**Explicación:**\n\n1. **Comparación con `==`:**\n   - El operador `==` compara los valores, y convierte a ambos operandos a un tipo común si es necesario. En este caso, `a` es un número primitivo, y `b` es un objeto `Number`. Cuando se compara, JavaScript convierte `b` a su valor primitivo (`3`), por lo que la comparación es `true`.\n\n2. **Comparación con `===`:**\n   - El operador `===` compara tanto el valor como el tipo. Como `a` es un número primitivo y `b` es un objeto, la comparación es `false`.\n\n3. **Comparación entre `b` y `c`:**\n   - `b` es un objeto `Number` y `c` es un número primitivo, por lo que `b === c` también es `false` porque los tipos no coinciden."
     },
     {
-      id: "q95",
+      id: "q94",
       question: "What's the output of the following JavaScript code?",
       type: "multiple choice",
       correct_options: ["A"],

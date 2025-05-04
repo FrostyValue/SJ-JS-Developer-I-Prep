@@ -435,7 +435,7 @@ export default function questions6() {
     },
     {
       id: "q29",
-      question: "bar.awesome is a popular JavaScript module. The versions published to npm are: 1.2, 1.3.1, 1.3.5, and 1.4.0. Teams at Universal Containers use this module in a number of projects. A particular project has the `package.json` definition below:\n\n{\n  \"name\": \"UC Project Extra\",\n  \"version\": \"0.0.5\",\n  \"dependencies\": {\n    \"bar.awesome\": \"~1.3.0\"\n  }\n}\n\nA developer runs the command `npm install`. Which version of `bar.awesome` is installed?",
+      question: "bar.awesome is a popular JavaScript module. The versions published to npm are: 1.2, 1.3.1, 1.3.5, and 1.4.0. Teams at Universal Containers use this module in a number of projects. A particular project has the `package.json` definition below. A developer runs the command `npm install`. Which version of `bar.awesome` is installed?",
       type: "multiple choice",
       correct_options: ["B"],
       number_of_correct_answers: 1,
@@ -764,7 +764,6 @@ export default function questions6() {
         C: "const tls = require('tls');",
         D: "const http = require('http');"
       },
-      code: "const https = require('https');",
       explanation: "La opción correcta es A:\n\n**Explicación detallada:**\n\n1. **Uso de 'https':**\n   - El módulo `https` es parte de Node.js y permite crear servidores web seguros mediante SSL/TLS.\n\n2. **Errores en otras opciones:**\n   - Opción B: `secure-server` no es un módulo nativo de Node.js.\n   - Opción C: Aunque `tls` maneja conexiones seguras, no crea servidores web.\n   - Opción D: `http` crea un servidor web no seguro."
     },
     {

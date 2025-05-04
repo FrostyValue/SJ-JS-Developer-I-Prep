@@ -979,9 +979,9 @@ export default function questions2() {
     },
     {
       id: "q60",
-      question: "Refer to the following code. What is returned by the function call on line 13?",
+      question: "Refer to the following code. What is returned by the function call on the last line?",
       type: "multiple choice",
-      correct_options: ["A"],
+      correct_options: ["C"],
       number_of_correct_answers: 1,
       options: {
         A: "Undefined",
@@ -1318,7 +1318,7 @@ export default function questions2() {
         C: "Class ClothingItem super Item {",
         D: "Class ClothingItem extends Item {"
       },
-      code: "class Item {\n\tconstructor(name, price) {\n\t\tthis.name = name;\n\t\tthis.price = price;\n\t}\n\n\tformattedPrice() {\n\t\treturn '$' + String(this.price);\n\t}\n}\n\nclass ClothingItem extends Item { }",
+      code: "class Item {\n\tconstructor(name, price) {\n\t\tthis.name = name;\n\t\tthis.price = price;\n\t}\n\n\tformattedPrice() {\n\t\treturn '$' + String(this.price);\n\t}\n}\n\n\\Add line code here \n}",
       explanation: "La opción correcta es D: **Class ClothingItem extends Item { }**.\n\n**Explicación detallada:**\n\n1. **Uso de 'extends':**\n   - La palabra clave `extends` se utiliza para declarar una subclase que hereda las propiedades y métodos de una clase padre.\n\n2. **Corrección de otras opciones:**\n   - Opción A: `implements` no es adecuado para heredar clases; se utiliza con interfaces.\n   - Opción B: No declara relación alguna con la clase padre.\n   - Opción C: `super` se utiliza dentro del constructor, no para declarar la clase."
     },
     {

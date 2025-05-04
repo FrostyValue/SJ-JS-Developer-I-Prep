@@ -732,8 +732,9 @@ export default function questions3() {
         C: "document.getElementById('status').innerHTML = 'Completed';",
         D: "document.getElementById('.status').innerHTML = 'Completed';"
       },
-      explanation: "La opción correcta es la C: 'document.getElementById('status').innerHTML = 'Completed';'.\n\n**Explicación detallada:**\n\n1. **document.getElementById:** Este método selecciona el elemento con el `id` especificado. En este caso, selecciona el `<span>` con `id='status'`.\n\n2. **innerHTML:** Este atributo permite modificar el contenido HTML del elemento seleccionado. Usar `innerHTML = 'Completed'` cambia el contenido del `<span>` de 'In Progress' a 'Completed'.\n\n3. **Opciones incorrectas:**\n   - A: `Value` no es un atributo válido para cambiar el contenido de un elemento que no sea un campo de formulario.\n   - B: `#status` no es válido porque `getElementById` solo requiere el nombre del ID, sin el prefijo `#`.\n   - D: `.status` no es válido porque `getElementById` no utiliza prefijos de clase (como `.status`)."
-    },
+      code: "<div>\n\t<p>Status: <span id=\"status\">In Progress</span></p>\n</div>",
+      explanation: "La opción correcta es 'document.getElementById('status').innerHTML = 'Completed';'.\n\n**Explicación detallada:**\n\n1. **document.getElementById:** Este método selecciona el elemento con el `id` especificado. En este caso, selecciona el `<span>` con `id='status'`.\n\n2. **innerHTML:** Este atributo permite modificar el contenido HTML del elemento seleccionado. Usar `innerHTML = 'Completed'` cambia el contenido del `<span>` de 'In Progress' a 'Completed'.\n\n3. **Opciones incorrectas:**\n   - 'document.getElementById('status').Value = 'Completed';': `Value` no es un atributo válido para cambiar el contenido de un elemento que no sea un campo de formulario.\n   - 'document.getElementById('#status').innerHTML = 'Completed';': `#status` no es válido porque `getElementById` solo requiere el nombre del ID, sin el prefijo `#`.\n   - 'document.getElementById('.status').innerHTML = 'Completed';': `.status` no es válido porque `getElementById` no utiliza prefijos de clase (como `.status`)."
+    },    
     {
       id: "q45",
       question: "In lines 04 and 08, which code allows the user to select an image from their local computer and display the image in the browser?",
