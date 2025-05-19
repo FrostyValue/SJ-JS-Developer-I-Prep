@@ -794,34 +794,6 @@ export default function questions6() {
         D: "Assign variables to module.exports and require them as needed."
       },
       explanation: "Las opciones correctas son B y D:\n\n**Explicación detallada:**\n\n1. **Opción B:**\n   - En Node.js, el objeto `global` actúa como un equivalente al `window` en el navegador, permitiendo que las variables asignadas a `global` tengan alcance amplio en la aplicación.\n\n2. **Opción D:**\n   - `module.exports` permite exportar variables y funciones que pueden ser requeridas en diferentes módulos, proporcionando una solución controlada y estructurada.\n\n3. **Errores en otras opciones:**\n   - Opción A: El objeto `document` tampoco está disponible en Node.js.\n   - Opción C: Crear un nuevo objeto `window` no tiene sentido y no es práctico en Node.js."
-    },
-    {
-      id: "q54",
-      question: "A development team is working on the backend of an existing Node.js application. They’ve already installed useful packages like `mongoose` and are looking for additional libraries to help build out their server-side logic. \n\nWhich of the following could they install?",
-      type: "multiple choice",
-      correct_options: ["A", "B"],
-      number_of_correct_answers: 2,
-      options: {
-        A: "Express",
-        B: "Next.js",
-        C: "React",
-        D: "Gatsby"
-      },
-      explanation: "Las respuestas correctas son **Express** y **Next.js**:\n\n- **Express** es un framework minimalista y flexible para Node.js que permite construir aplicaciones web y móviles con facilidad.\n- **Next.js**, aunque se utiliza principalmente en el frontend con React, también permite definir rutas API, lo que facilita la implementación de lógica del lado del servidor.\n\n**Opciones incorrectas:**\n- **React** es una librería de JavaScript para construir interfaces de usuario del lado del cliente (frontend).\n- **Gatsby** es un generador de sitios estáticos basado en React, enfocado en el desarrollo frontend y no es adecuado para crear una lógica de backend."
-    },
-    {
-      id: "q55",
-      question: "A frontend team is enhancing the user interface of an existing Node.js application. They are open to adding dependencies and have already installed tools like `sass` and `axios`. \n\nWhich of the following packages would be suitable to improve the frontend experience?",
-      type: "multiple choice",
-      correct_options: ["A", "C"],
-      number_of_correct_answers: 2,
-      options: {
-        A: "Webpack",
-        B: "Hapi",
-        C: "Vue.js",
-        D: "NestJS"
-      },
-      explanation: "Las opciones correctas son **Webpack** y **Vue.js**:\n\n- **Webpack** es un empaquetador de módulos ampliamente utilizado en proyectos frontend para optimizar y organizar los archivos de la interfaz.\n- **Vue.js** es un framework progresivo de JavaScript para construir interfaces de usuario interactivas.\n\n**Opciones incorrectas:**\n- **Hapi** y **NestJS** son frameworks orientados al desarrollo backend con Node.js. Aunque útiles, no están diseñados para mejorar directamente la experiencia del usuario en el frontend."
-    },                                                                                                 
+    },                                                                                               
   ];
 };
