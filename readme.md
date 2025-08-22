@@ -1,98 +1,74 @@
-# TestJS App
+<p align="right">
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite Badge" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript Badge" />
+  <img src="https://img.shields.io/badge/GitHub%20Pages-121013?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Pages Badge" />
+  <img src="https://img.shields.io/badge/License-GPLv3-blue.svg?style=for-the-badge" alt="License Badge" />
+</p>
 
-## Descripción
+# SF-JS-Developer-I-Prep
 
-TestJS App es una aplicación web interactiva desarrollada con **Vite** y **JavaScript**. Su propósito es proporcionar una plataforma para realizar cuestionarios y pruebas interactivas, que sirva como estudio para tomar el examen **"Salesforce JavaScript Developer I"**, simulando un servidor JSON mediante funciones que retornan arrays de objetos, debido a las limitaciones de GitHub Pages.
+## 🌟 Descripción
+SF-JS-Developer-I-Prep es una aplicación web interactiva diseñada para la preparación del examen de certificación SF JavaScript Developer I. La plataforma ofrece un entorno de práctica con cuestionarios y simulaciones que imitan las condiciones del examen real. Para superar la limitación de no poder usar una base de datos en GitHub Pages, el proyecto simula un servidor JSON mediante funciones que devuelven arrays de objetos con las preguntas separadas por categoría.
 
-## Tecnologías
+## 🚀 Funcionalidades Clave
+- **Simulación de Examen**: Diferentes modos para probar tus conocimientos, incluyendo un temporizador configurable.
+- **Banco de Preguntas Dinámico**: Preguntas y respuestas cargadas dinámicamente para una experiencia de estudio variada.
+- **Comentarios Detallados**: En caso de respuestas incorrectas, la aplicación proporciona explicaciones para reforzar el aprendizaje.
+- **Despliegue Sencillo**: Disponible en GitHub Pages para acceso directo desde cualquier navegador.
 
-- **Vite**: Herramienta de construcción rápida para proyectos modernos.
-- **JavaScript**: Lenguaje de programación principal.
-- **HTML & CSS**: Estructura y estilo de la aplicación.
-- **GitHub Pages**: Plataforma de despliegue estático de la aplicación.
+## ⚙️ Tecnologías
+Este proyecto está construido con:
+- **Vite**: Herramienta de construcción rápida que optimiza el flujo de desarrollo.
+- **JavaScript**: El lenguaje principal para toda la lógica de la aplicación.
+- **HTML & CSS**: Para la estructura y el estilo visual de la interfaz.
 
-## Instalación
-
-Para instalar y ejecutar el proyecto localmente, sigue estos pasos:
+## ⬇️ Instalación y Uso
+Para ejecutar el proyecto en tu entorno local, sigue estos pasos:
 
 1. Clona el repositorio:
-
    ```bash
    git clone https://github.com/FrostyValue/testjs-app.git
    ```
-
-2. Accede al directorio del proyecto:
-
+2. Navega al directorio del proyecto:
    ```bash
-   cd testsf-app
+   cd testjs-app
    ```
-
 3. Instala las dependencias:
-
    ```bash
    npm install
    ```
-
-4. Ejecuta el servidor de desarrollo:
-
+4. Inicia el servidor de desarrollo:
    ```bash
    npm run dev
    ```
+   La aplicación se abrirá en tu navegador en `http://localhost:5173`.
 
-   La aplicación estará disponible en `http://localhost:5173` en tu navegador.
-
-## Estructura del Proyecto
-
-```plaintext
-📦 public/
-├── 📂 images/           # Carpeta para imágenes
-│   └── 📄 javascript.svg  # Icono de JavaScript
-📦 src/
-├── 📂 data/             # Archivos de datos (simulados mediante funciones)
-│   ├── 📄 qAP5.js
-│   ├── 📄 qBE3.js
-│   ├── 📄 qDEH4.js
-│   ├── 📄 qOFC2.js
-│   ├── 📄 qSS6.js
-│   ├── 📄 qTST7.js
-│   └── 📄 qVTC1.js
-├── 📂 scripts/          # Código JavaScript principal
-│   └── 📄 index.js
-├── 📂 styles/           # Archivos de estilo CSS
-│   └── 📄 index.css
-📄 vite.config.js        # Configuración de Vite
-📄 package.json          # Información del proyecto y dependencias
-📄 README.md             # Documentación del proyecto
-```
-
-## Funcionalidades
-
-- Sistema de cuestionarios con preguntas cargadas dinámicamente.
-- Temporizador configurable para cada nivel.
-- Distintos modos que "simulan" el examen con limitaciones de tiempo.
-- En caso de fallar la pregunta, devuelve la explicación en ciertos modos.
-
-## Despliegue
-
-Este proyecto está desplegado en **GitHub Pages**. Puedes verlo en la siguiente URL:
+## 📂 Estructura del Proyecto
+La organización del código es simple e intuitiva:
 
 ```
-https://frostyvalue.github.io/testjs-app/
+📦 testjs-app/
+├── 📂 public/
+│   └── 📂 images/
+├── 📂 src/
+│   ├── 📂 data/        # Archivos que simulan la API de preguntas
+│   ├── 📂 scripts/     # Lógica de la aplicación
+│   └── 📂 styles/      # Hojas de estilo
+├── 📄 .gitignore
+├── 📄 index.html
+├── 📄 package.json
+├── 📄 README.md
+├── 📄 vite.config.js
+└── 📄 ...otros archivos
 ```
 
-## Notas
+## 🌐 En Vivo
+Puedes acceder a la versión desplegada en GitHub Pages en la siguiente URL:
 
-- Si deseas realizar un cambio en la versión, puedes hacerlo con el siguiente comando de `npm`:
+[https://frostyvalue.github.io/SJ-JS-Developer-I-Prep/](https://frostyvalue.github.io/SJ-JS-Developer-I-Prep/)
 
-  ```bash
-  npm version minor    # Para incrementar la versión menor automáticamente
-  ```
+## 🤝 Contribuciones
+¡Las contribuciones son bienvenidas! Si encuentras un error, tienes una sugerencia o quieres añadir nuevas preguntas, por favor, abre un *issue* o un *pull request*.
 
-
-## Contribuciones
-
-Si tienes sugerencias o encuentras algún error, siéntete libre de abrir un **issue** o hacer un **pull request**.
-
-## Licencia
-
-Este proyecto está licenciado bajo la **Licencia Pública General GNU (GPL)** v3.0. Puedes ver el texto completo de la licencia en el archivo [LICENSE](./LICENSE).
+## 📜 Licencia
+Este proyecto se distribuye bajo la Licencia Pública General GNU v3.0. Para más detalles, consulta el archivo `LICENSE` en el repositorio.
